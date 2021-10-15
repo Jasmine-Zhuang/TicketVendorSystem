@@ -38,6 +38,7 @@ public class Customer {
         return this.username;
     }
 
+
     /**
      * Return whether the password parameter matches this user's password.
      * @param password the password guess
@@ -46,6 +47,7 @@ public class Customer {
     public boolean checkPassword(String password) {
         return this.password.equals(password);
     }
+
 
     /**
      * Change the password of this customer.
@@ -58,5 +60,21 @@ public class Customer {
             this.password = password;
             return true;
         } return false;
+    }
+
+    /**
+     * Increase the balance of this customer
+     * @param balance the balance to be increased
+     */
+    public void incrBalance(int balance){
+        this.balance += balance;
+    }
+
+    /**
+     * Decrease the balance of this customer
+     * @param balance the balance to be decrease
+     */
+    public void decrBalance(int balance){
+        this.balance += balance;
     }
 }
