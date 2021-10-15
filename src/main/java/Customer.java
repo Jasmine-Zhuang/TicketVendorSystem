@@ -6,12 +6,19 @@ public class Customer {
     private String name;
     private String password;
     private String username;
+    private int balance;
+    private int millage;
+    private boolean membership;
+
 
 
     public Customer(String username, String password){
         this.username = username;
         this.password = password;
         this.name = null;
+        this.balance = 0;
+        this.millage = 0;
+        this.membership = false;
     }
 
     /**
@@ -21,6 +28,7 @@ public class Customer {
     public String getName(){
         return this.name;
     }
+
 
     /**
      * The getter function of customer's username.
