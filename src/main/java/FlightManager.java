@@ -36,6 +36,7 @@ public class FlightManager {
 
     /**
      * sort the Scheduled_flight list by travel distance, from shorter to longer
+     * @return an arraylist of flights in sorted order
      */
     public List<String> sortFlightsDistance(){
         List<String> tempArray = new ArrayList<>(this.idToFlight.keySet());
@@ -55,16 +56,18 @@ public class FlightManager {
 
     /**
      * get a flight by flight number
+     * @return Flight
      */
-    public Flight get_flight_by_num(String flight_num){
+    public Flight getFlightByNum(String flight_num){
         return this.idToFlight.get(flight_num);
     }
 
     /**
      * reserve a flight by providing flight number and seat number
+     * @return reservation status
      */
-    public String Reserve_seat(String flight_num, String seat_num) {
-        Flight flight = get_flight_by_num(flight_num);
+    public String reserveSeat(String flight_num, String seat_num) {
+        Flight flight = this.idToFlight.get(flight_num);
        if (flight.ReserveOneSeat(seat_num)){
            return "You have successfully booked the flight" +  flight_num + "Have a nice trip! : )";
        }
@@ -76,7 +79,7 @@ public class FlightManager {
      * return a string of the flight information if the flight is scheduled, otherwise return
      * a string inform the customer that this flight is not scheduled to fly.
      */
-    public String Verify_your_flight(String flight_num){
+    public String verifyYouFlight(String flight_num){
         if (this.idToFlight.containsKey(flight_num)) {
             return this.idToFlight.get(flight_num).toString();
         }
@@ -84,7 +87,8 @@ public class FlightManager {
     }
 
     /**
-     * provide user a list of flight that with specified city
+     * provide user a list of flight that with specified city of departure and destination
+     * @return list of flight, or empty list if there's no available flight
      */
     public List<String> getFlightByRoute(String dep, String des) {
         ArrayList<String> lst = new ArrayList<>();
