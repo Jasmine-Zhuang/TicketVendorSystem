@@ -13,6 +13,7 @@ Our test code are under the folder src-test-java.
 Please run the "UI" file to assess our U-Ticket program and follow the prompts.
 
 Group Member:
+
 Chuan Liu 
 
 Yefan Jiang 
