@@ -12,17 +12,15 @@ public class UI {
                     "Please enter Yes or No.");
             option = scanner.nextLine();
         }
-        if(Objects.equals(option, "Yes")){
+        if(option.equals("Yes")){
           System.out.println("Please enter you username");
           String username = scanner.nextLine();
           //verify if username exists
           System.out.println("Please enter you password");
           String password = scanner.nextLine();
           //verify if password is correct.
-
         }
-
-       else if(Objects.equals(option, "No")){
+       else {
            //create an account
            System.out.println("Now let's register to continue. \n Please enter you username");
             String username = scanner.nextLine();
