@@ -129,9 +129,7 @@ public class Flight {
      * A getter method.
      * @return the number of available seats of the fight.
      */
-
     public int getAvailableSeats() {return availableSeats;}
-    //public void ResetAvailableSeats(int availableSeats) {this.availableSeats = availableSeats;}
 
     /**
      * A getter method.
@@ -150,10 +148,9 @@ public class Flight {
      * @return the array of seat numbers of the fight. ("x" if the seat is occupied)
      */
     public ArrayList<String> getSeatNumberArray() {return seatNumberArray;}
-    //public void setSeatNumberArray(ArrayList<String> seatNumberArray) {this.seatNumberArray = seatNumberArray;}
 
     /*
-     *  Replace the seat number by "X" from seatNumberArray to represent that this seat has been booked.
+     * Replace the seat number by "X" from seatNumberArray to represent that this seat has been booked.
      * @param seatNumber A String of seat number.
      * @return true if this seat number was seatNumberArray, and now has been replaced by "X" , false otherwise.
      */
