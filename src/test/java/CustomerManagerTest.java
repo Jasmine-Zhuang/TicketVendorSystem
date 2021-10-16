@@ -37,9 +37,9 @@ public class CustomerManagerTest {
     @Test(timeout = 50)
     public void test_changeName() {
         assertEquals("RyanMaggie", Maggie.getName());
-        String newname = "OliverJiang";
+        String new_name = "OliverJiang";
         Ryan.addCustomer(Maggie);
-        Ryan.changeName(newname, Maggie);
+        Ryan.changeName(new_name, Maggie);
         assertEquals("OliverJiang", Maggie.getName());
     }
 
