@@ -1,4 +1,4 @@
-## Happy207 CSC207 course project!
+## Happy207 course project!
 
 
 Our specification, crc model, walkthrough and progress report are located under the folder "phase0".
