@@ -102,16 +102,19 @@ public class FlightManager {
         return lst;
     }
 
-
-    public ArrayList<String> printAvailableSeatArray(String flight_num){
+    /**
+     * @param flight_num flight number
+     * @return ArrayList of availableSeat
+     */
+    public ArrayList<String> printAvailableSeat(String flight_num){
         Flight flight = this.idToFlight.get(flight_num);
-        ArrayList<String> availableSeatArray = new ArrayList<String>();
+        ArrayList<String> availableSeat = new ArrayList<String>();
         for(String seatnum:flight.getSeatNumberArray()){
             if(!seatnum.equals("X")){
-                availableSeatArray.add(seatnum);
+                availableSeat.add(seatnum);
             }
         }
-        return availableSeatArray;
+        return availableSeat;
     }
 
 
