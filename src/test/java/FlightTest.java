@@ -1,11 +1,13 @@
 import org.junit.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+
+import static org.junit.Assert.*;
 
 public class FlightTest {
     Flight flight;
+    Flight emptyFlight;
+
 
     @Before
     public void setUp() {
@@ -39,8 +41,24 @@ public class FlightTest {
         seatNumArray.add("4B");
         seatNumArray.add("5A");
         seatNumArray.add("5B");
+
         flight = new Flight("CZ311", "Toronto", "Vancouver",dTime,aTime,
                 10, 10, 3600,"10A", seatNumArray);
+
+        emptyFlight = new Flight();
+
+    }
+    @Test(timeout = 50)
+    public void TestEmptyConstructor(){
+        assertNull(emptyFlight.getFlightNumber());
+        assertNull(emptyFlight.getOriginCity());
+        assertNull(emptyFlight.getDestinationCity());
+        assertNull(emptyFlight.getDepartureTime());
+        assertNull(emptyFlight.getArrivalTime());
+        assertEquals(0,emptyFlight.getTotalSeats());
+        assertEquals(0,emptyFlight.getAvailableSeats());
+        assertEquals(0,emptyFlight.getDistanceTraveled());
+        assertNull(emptyFlight.getBoardingGate());
     }
 
     @Test(timeout = 50)
