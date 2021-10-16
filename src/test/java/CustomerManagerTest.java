@@ -8,11 +8,27 @@ public class CustomerManagerTest {
     public void setUp() {
         Ryan = new CustomerManager();
     }
+
     @Test(timeout = 50)
     public void test_addCustomer() {
         Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         Ryan.addCustomer(Maggie);
         assertTrue(Ryan.checkCustomer("RyanMaggie"));
+    }
+
+    @Test(timeout = 50)
+    public void test_showCustomer() {
+        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
+        Ryan.addCustomer(Maggie);
+        assertEquals(Maggie, Ryan.showCustomer("RyanMaggie"));
+    }
+
+
+    @Test(timeout = 50)
+    public void test_showCustomerBalance() {
+        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
+        Ryan.addCustomer(Maggie);
+        assertEquals(0, Ryan.showCustomerBalance("RyanMaggie"));
     }
 
     @Test(timeout = 50)
@@ -53,6 +69,22 @@ public class CustomerManagerTest {
         Ryan.addCustomer(Maggie);
         Ryan.incrBalance(new_balance, Maggie);
         assertEquals(1000, Maggie.getBalance());
+    }
+
+    @Test(timeout = 50)
+    public void test_decrBalance() {
+        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
+        assertEquals(0, Maggie.getBalance());
+        int new_balance = 1000;
+        Ryan.addCustomer(Maggie);
+        Ryan.incrBalance(new_balance, Maggie);
+        assertEquals(1000, Maggie.getBalance());
+        int dec_balance1 = 10000;
+        Ryan.decrBalance(dec_balance1, Maggie);
+        assertEquals(1000, Maggie.getBalance());
+        int dec_balance2 = 10;
+        Ryan.decrBalance(dec_balance2, Maggie);
+        assertEquals(990, Maggie.getBalance());
     }
 
     @Test(timeout = 50)

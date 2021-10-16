@@ -3,9 +3,9 @@
  * Represents a customer in the system.
  */
 public class Customer {
-    private String name;
-    private String password;
     private String username;
+    private String password;
+    private String name;
     private int balance;
     private int millage;
     private boolean membership;

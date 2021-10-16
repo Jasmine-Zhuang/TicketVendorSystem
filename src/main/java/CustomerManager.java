@@ -24,6 +24,30 @@ public class CustomerManager{
         return nameToCustomer.containsKey(name);
     }
 
+    /** A method named showCustomer that takes a String (the name of the customer).
+     *       If the name string does not appear as a key
+     *       in nameToCustomer, then return there is no customer exsit.
+     *       Return true if the name exsit in the nameToCustomer and return the customer information.
+     * @param name The name of this customer needed to be checked if exit in nameToCustomer.
+     * @return Customer The corresponding customer with this customer's name.
+     */
+    public Customer showCustomer(String name)
+    {
+        return nameToCustomer.get(name);
+    }
+
+
+    /** A method named showCustomer that takes a String (the name of the customer).
+     *       If the name string does not appear as a key
+     *       in nameToCustomer, then return there is no customer exsit.
+     *       Return true if the name exsit in the nameToCustomer and return the customer information.
+     * @param name The name of this customer needed to be checked if exit in nameToCustomer.
+     * @return int The corresponding customer's balance with this customer's name.
+     */
+    public int showCustomerBalance(String name)
+    {
+        return nameToCustomer.get(name).getBalance();
+    }
     /** Modify this customer's current name.
      * @param customer The customer needed to change name.
      * @param new_name The new name of this customer needed to be changed.
@@ -59,6 +83,13 @@ public class CustomerManager{
      */
     public void incrBalance(int balance_update, Customer customer){
         customer.incrBalance(balance_update);}
+
+    /** Modify this customer's current balance.
+     * @param customer The customer needed to change name.
+     * @param balance_update The new balance of this customer to be added to this customer's current balance.
+     */
+    public void decrBalance(int balance_update, Customer customer){
+        customer.decrBalance(balance_update);}
 
     /** Modify this customer's current millage
      * @param customer The customer needed to change name.

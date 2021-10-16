@@ -15,6 +15,57 @@ public class TicketReservationSystem {
         this.tm = tm;
     }
 
+    //CustomerManager
+    /**
+     * Ask one customer to create an account is this customer does not exit in the customer system.
+     * @param username the username of this customer
+     * @param password the password of this customer
+     * @param name the name of this customer
+     */
+    public void findCustomer(String username,String password,String name){
+        if (!cm.checkCustomer(name)){
+        Customer new_customer = new Customer(username,password, name);
+        cm.addCustomer(new_customer);}
+    }
+
+    /**
+     * match name with customer and return to correspond customer
+     * @param name the name of this customer
+     * @return Customer The corresponding customer with this customer's name.
+     */
+    public Customer findCustomer(String name){
+        return cm.showCustomer(name);
+    }
+
+    /**
+     * Show the current balance with to correspond customer
+     * @param name the name of this customer
+     * @return int The corresponding customer's balance with this customer's name.
+     */
+    public int showCustomerBalance(String name){
+        return cm.showCustomerBalance(name);
+    }
+
+    /**
+     * Show the current balance with to correspond customer
+     * @param name the customer name of this customer
+     * @return new_balance The corresponding customer's new balance with this customer's name.
+     */
+    public int increaseBalance(int new_balance, String name){
+         cm.incrBalance(new_balance, cm.showCustomer(name));
+         return cm.showCustomer(name).getBalance();
+    }
+
+    /**
+     * Show the current balance with to correspond customer
+     * @param name the customer name of this customer
+     * @return new_balance The corresponding customer's new balance with this customer's name.
+     */
+    public int decreaseBalance(int dec_balance, String name){
+        cm.incrBalance(dec_balance, cm.showCustomer(name));
+        return cm.showCustomer(name).getBalance();
+    }
+
     //FlightManager
 
     /**
@@ -65,9 +116,5 @@ public class TicketReservationSystem {
     public String reserveSeat(String seat_num, String flight_num){
        return fm.reserveSeat(flight_num,seat_num);
     }
-
-
-
-
 
 }
