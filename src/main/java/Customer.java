@@ -10,6 +10,12 @@ public class Customer {
     private int millage;
     private boolean membership;
 
+    /**
+     * Create one Customer giving it the given username, password, name
+     * @param username the username of this customer.
+     * @param password the password of this customer.
+     * @param name the name of this customer.
+     */
     public Customer(String username, String password, String name){
         this.username = username;
         this.password = password;

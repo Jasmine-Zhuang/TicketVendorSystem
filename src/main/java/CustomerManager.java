@@ -36,7 +36,6 @@ public class CustomerManager{
         return nameToCustomer.get(name);
     }
 
-
     /** A method named showCustomer that takes a String (the name of the customer).
      *       If the name string does not appear as a key
      *       in nameToCustomer, then return there is no customer exsit.

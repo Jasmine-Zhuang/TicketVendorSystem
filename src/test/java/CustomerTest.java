@@ -44,14 +44,12 @@ public class CustomerTest {
         assertTrue(Maggie.changePassword("1203",changed_password));
     }
 
-
     @Test(timeout = 50)
     public void test_changeName() {
         String changed_name = "OliverJiang";
         Maggie.changeName(changed_name);
         assertEquals(changed_name, Maggie.getName());
     }
-
 
     @Test(timeout = 50)
     public void test_changeUsername() {
@@ -77,7 +75,6 @@ public class CustomerTest {
         assertEquals(50, Maggie.getBalance());
     }
 
-
     @Test(timeout = 50)
     public void test_filed_decrBalance() {
         int new_balance = 100;
@@ -88,7 +85,6 @@ public class CustomerTest {
         assertEquals(100, Maggie.getBalance());
     }
 
-
     @Test(timeout = 50)
     public void test_incrMillage() {
         assertEquals(0, Maggie.getMillage());
@@ -97,12 +93,10 @@ public class CustomerTest {
         assertEquals(new_Millage, Maggie.getMillage());
     }
 
-
     @Test(timeout = 50)
     public void test_checkMembership() {
         assertFalse(Maggie.checkMembership());
     }
-
 
     @Test(timeout = 50)
     public void test_changeMembership() {

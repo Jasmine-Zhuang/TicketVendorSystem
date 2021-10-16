@@ -8,17 +8,16 @@ public class CustomerManagerTest {
     public void setUp() {
         Ryan = new CustomerManager();
     }
+    Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
 
     @Test(timeout = 50)
     public void test_addCustomer() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         Ryan.addCustomer(Maggie);
         assertTrue(Ryan.checkCustomer("RyanMaggie"));
     }
 
     @Test(timeout = 50)
     public void test_showCustomer() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         Ryan.addCustomer(Maggie);
         assertEquals(Maggie, Ryan.showCustomer("RyanMaggie"));
     }
@@ -26,14 +25,12 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_showCustomerBalance() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         Ryan.addCustomer(Maggie);
         assertEquals(0, Ryan.showCustomerBalance("RyanMaggie"));
     }
 
     @Test(timeout = 50)
     public void test_changeName() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         assertEquals("RyanMaggie", Maggie.getName());
         String newname = "OliverJiang";
         Ryan.addCustomer(Maggie);
@@ -43,7 +40,6 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_changePassword() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         assertTrue(Maggie.checkPassword("1203"));
         String new_password = "04123456789";
         Ryan.addCustomer(Maggie);
@@ -53,7 +49,6 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_changeUsername() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         assertEquals("Name1203", Maggie.getUsername());
         String new_username = "Name0422";
         Ryan.addCustomer(Maggie);
@@ -63,7 +58,6 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_incrBalance() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         assertEquals(0, Maggie.getBalance());
         int new_balance = 1000;
         Ryan.addCustomer(Maggie);
@@ -73,7 +67,6 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_decrBalance() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         assertEquals(0, Maggie.getBalance());
         int new_balance = 1000;
         Ryan.addCustomer(Maggie);
@@ -89,7 +82,6 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_updateMillage() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         assertEquals(0, Maggie.getMillage());
         int new_millage = 500;
         Ryan.addCustomer(Maggie);
@@ -99,7 +91,6 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_checkMembership() {
-        Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
         assertFalse(Maggie.checkMembership());
         Ryan.addCustomer(Maggie);
         Ryan.checkMembership(Maggie);
