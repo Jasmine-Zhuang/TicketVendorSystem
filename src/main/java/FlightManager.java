@@ -8,9 +8,8 @@ import java.util.*;
 public class FlightManager {
     private final HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
 
-    public FlightManager(){
+    public FlightManager(){}
 
-    }
 
     /**
      * Add a New Flight to the manager.
@@ -60,7 +59,7 @@ public class FlightManager {
      * @return Flight
      */
     public Flight getFlightByNum(String flight_num){
-        return this.idToFlight.get(flight_num);
+        return idToFlight.get(flight_num);
     }
 
     /**
@@ -70,9 +69,9 @@ public class FlightManager {
     public String reserveSeat(String flight_num, String seat_num) {
         Flight flight = this.idToFlight.get(flight_num);
         if (flight.ReserveOneSeat(seat_num)){
-            return "You have successfully selected this seat"+ seat_num+" of flight" +  flight_num ;
+            return "You have successfully selected this seat "+ seat_num +" of flight " +  flight_num;
         }
-        return "This seat has been reserved, please select another seat.";
+        return "This seat has been reserved or does not exist, please select another seat.";
     }
 
     /**
@@ -88,10 +87,10 @@ public class FlightManager {
     }
 
     /**
-     * provide user a list of flight that with specified city of departure and destination
-     * @return list of flight, or empty list if there's no available flight
+     * provide user a list of flight nums that with specified city of departure and destination
+     * @return Arraylist of flight nums, or empty list if there's no available flight
      */
-    public List<String> getFlightByRoute(String dep, String des) {
+    public ArrayList<String> getFlightByRoute(String dep, String des) {
         ArrayList<String> lst = new ArrayList<>();
         for (String id: this.idToFlight.keySet()) {
             if (Objects.equals(this.idToFlight.get(id).getOriginCity(), dep) &&
@@ -116,6 +115,11 @@ public class FlightManager {
         }
         return availableSeat;
     }
+
+    public int getPriceByFlight(Flight flight){
+        return flight.getPrice();
+    }
+
 
 
 }

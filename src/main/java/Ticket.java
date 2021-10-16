@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+
 
 /*
     An entity class represents each flight ticket, which stores:
@@ -34,35 +34,24 @@ public class Ticket {
      * @param a_time       Arrival time in the format of [year,month,day,hour,minute]
      * @param b_gate       String of the boarding gate(e.g. "C9").
      * @param seat_num     String of the passenger's seat number(e.g. "15C").
-     * @param distance     Integer of the length of the flight.
+     * @param price        Float of the price of the flight.
      * @param p_name       String of passenger's Name.
      * @param p_user       String of passenger's username when the passenger booked the flight.
      */
-    public Ticket(String flightNumber, String d_city, String a_city, ArrayList<String> d_time,
-                  ArrayList<String> a_time, String b_gate, String seat_num, int distance,
+    public Ticket(String flightNumber, String d_city, String a_city, LocalDateTime d_time,
+                  LocalDateTime a_time, String b_gate, String seat_num, int price,
                   String p_name, String p_user) {
         this.flightNumber = flightNumber;
         this.departure_city = d_city;
         this.arrival_city = a_city;
         this.boardingGate = b_gate;
         this.seat_number = seat_num;
-        this.price = (int) (distance * 0.2 + 100);
+        this.price = price;
         this.passenger_name = p_name;
         this.passenger_username = p_user;
         this.ticket_id = flightNumber + "," + seat_num;
-
-        int dYear = Integer.parseInt(d_time.get(0));
-        int dMonth = Integer.parseInt(d_time.get(1));
-        int dDay = Integer.parseInt(d_time.get(2));
-        int dHour = Integer.parseInt(d_time.get(3));
-        int dMinute = Integer.parseInt(d_time.get(4));
-        int aYear = Integer.parseInt(a_time.get(0));
-        int aMonth = Integer.parseInt(a_time.get(1));
-        int aDay = Integer.parseInt(a_time.get(2));
-        int aHour = Integer.parseInt(a_time.get(3));
-        int aMinute = Integer.parseInt(a_time.get(4));
-        this.arrivalTime = LocalDateTime.of(aYear, aMonth, aDay, aHour, aMinute);
-        this.departureTime = LocalDateTime.of(dYear, dMonth, dDay, dHour, dMinute);
+        this.arrivalTime = d_time;
+        this.departureTime = a_time;
     }
 
     /**

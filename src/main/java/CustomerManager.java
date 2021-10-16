@@ -10,42 +10,47 @@ public class CustomerManager{
      * @param newCustomer This customer needed to add to this nameToCustomer.
      */
     public void addCustomer(Customer newCustomer) {
-        this.nameToCustomer.put(newCustomer.getName(), newCustomer);
+        this.nameToCustomer.put(newCustomer.getUsername(), newCustomer);
     }
 
     /** A method named checkCustomer that takes a String (the name of the customer).
-     *       If the name string does not appear as a key
-     *       in nameToCustomer, then return there is no customer exsit.
-     *       Return true if the name exsit in the nameToCustomer and return the customer information.
-     * @param name The name of this customer needed to be checked if exit in nameToCustomer.
+     *  Return true if username exists in the nameToCustomer, return false otherwise.
+     * @param username The name of this customer needed to be checked if exit in nameToCustomer.
      */
-    public boolean checkCustomer(String name)
-    {
-        return nameToCustomer.containsKey(name);
+    public boolean checkCustomer(String username) {
+        return nameToCustomer.containsKey(username);
     }
 
+    /** A method named checkPassword that takes a String username (the username of the customer).
+     *  And another String password (the password of the customer).
+     *  If the given password does not match the correct, return false.
+     * @param username The username of this customer needed to be checked if exit in nameToCustomer.
+     * @param password The password of this customer needed to be checked if exit in nameToCustomer.
+     */
+    public boolean checkPassword(String username, String password){
+        return this.nameToCustomer.get(username).checkPassword(password);
+    }
+
+
     /** A method named showCustomer that takes a String (the name of the customer).
-     *       If the name string does not appear as a key
-     *       in nameToCustomer, then return there is no customer exsit.
-     *       Return true if the name exsit in the nameToCustomer and return the customer information.
-     * @param name The name of this customer needed to be checked if exit in nameToCustomer.
+     *       Return Customer with corresponding name.
+     * @param username The name of this customer needed to be checked if exit in nameToCustomer.
      * @return Customer The corresponding customer with this customer's name.
      */
-    public Customer showCustomer(String name)
-    {
-        return nameToCustomer.get(name);
+    public Customer showCustomer(String username) {
+        return nameToCustomer.get(username);
     }
 
     /** A method named showCustomer that takes a String (the name of the customer).
      *       If the name string does not appear as a key
      *       in nameToCustomer, then return there is no customer exsit.
      *       Return true if the name exsit in the nameToCustomer and return the customer information.
-     * @param name The name of this customer needed to be checked if exit in nameToCustomer.
+     * @param username The name of this customer needed to be checked if exit in nameToCustomer.
      * @return int The corresponding customer's balance with this customer's name.
      */
-    public int showCustomerBalance(String name)
+    public int showCustomerBalance(String username)
     {
-        return nameToCustomer.get(name).getBalance();
+        return nameToCustomer.get(username).getBalance();
     }
     /** Modify this customer's current name.
      * @param customer The customer needed to change name.
@@ -63,7 +68,7 @@ public class CustomerManager{
      */
     public String changePassword(String original, String new_password, Customer customer){
         if (customer.changePassword(original,new_password)){
-        return "Success";}
+            return "Success";}
         else{
             return "Failed";
         }
@@ -87,8 +92,8 @@ public class CustomerManager{
      * @param customer The customer needed to change name.
      * @param balance_update The new balance of this customer to be added to this customer's current balance.
      */
-    public void decrBalance(int balance_update, Customer customer){
-        customer.decrBalance(balance_update);}
+    public boolean decrBalance(int balance_update, Customer customer){
+        return customer.decrBalance(balance_update);}
 
     /** Modify this customer's current millage
      * @param customer The customer needed to change name.

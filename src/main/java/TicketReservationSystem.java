@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,48 +23,70 @@ public class TicketReservationSystem {
      * @param password the password of this customer
      * @param name the name of this customer
      */
-    public void findCustomer(String username,String password,String name){
-        if (!cm.checkCustomer(name)){
-        Customer new_customer = new Customer(username,password, name);
-        cm.addCustomer(new_customer);}
+    public void addCustomer(String username,String password,String name){
+        if (!cm.checkCustomer(username)){
+            Customer new_customer = new Customer(username,password, name);
+            cm.addCustomer(new_customer);}
     }
+
+    /**
+     * Check if the customer with given username exit in the customer system or not.
+     * @param username the name of this customer
+     */
+    public boolean checkCustomer(String username){
+        return cm.checkCustomer(username);
+    }
+
+    /**
+     * Check the password of the customer with given username.
+     * @param username the name of this customer
+     * @param password the password to be checked
+     */
+    public boolean checkPassword(String username, String password){
+        return cm.checkPassword(username,password);}
 
     /**
      * match name with customer and return to correspond customer
-     * @param name the name of this customer
+     * @param username the name of this customer
      * @return Customer The corresponding customer with this customer's name.
      */
-    public Customer findCustomer(String name){
-        return cm.showCustomer(name);
+    public Customer showCustomer(String username){
+        return cm.showCustomer(username);
+    }
+
+
+    /**
+     * match name with customer and return to correspond customer
+     * @param username the name of this customer
+     * @return String The corresponding customer information with this customer's name.
+     */
+    public String showCustomerInfo(String username){
+        return cm.showCustomer(username).toString();
     }
 
     /**
      * Show the current balance with to correspond customer
-     * @param name the name of this customer
+     * @param username the name of this customer
      * @return int The corresponding customer's balance with this customer's name.
      */
-    public int showCustomerBalance(String name){
-        return cm.showCustomerBalance(name);
+    public int showCustomerBalance(String username){
+        return cm.showCustomerBalance(username);
     }
 
     /**
-     * Show the current balance with to correspond customer
-     * @param name the customer name of this customer
-     * @return new_balance The corresponding customer's new balance with this customer's name.
+     * Increase the current balance with to correspond customer.
+     * @param username the customer name of this customer.
      */
-    public int increaseBalance(int new_balance, String name){
-         cm.incrBalance(new_balance, cm.showCustomer(name));
-         return cm.showCustomer(name).getBalance();
+    public void increaseBalance(int new_balance, String username){
+        cm.incrBalance(new_balance, cm.showCustomer(username));
     }
 
     /**
-     * Show the current balance with to correspond customer
-     * @param name the customer name of this customer
-     * @return new_balance The corresponding customer's new balance with this customer's name.
+     * Decrease the current balance with to correspond customer
+     * @param username the customer name of this customer
      */
-    public int decreaseBalance(int dec_balance, String name){
-        cm.incrBalance(dec_balance, cm.showCustomer(name));
-        return cm.showCustomer(name).getBalance();
+    public boolean decreaseBalance(int dec_balance, String username){
+        return cm.decrBalance(dec_balance, cm.showCustomer(username));
     }
 
     //FlightManager
@@ -74,7 +97,7 @@ public class TicketReservationSystem {
      * @param des destination
      * @return lst List of flight numbers; empty if no flight available.
      */
-    public List<String> matchFlight(String dep, String des){
+    public ArrayList<String> matchFlight(String dep, String des){
         return fm.getFlightByRoute(dep, des);
     }
 
@@ -116,5 +139,24 @@ public class TicketReservationSystem {
     public String reserveSeat(String seat_num, String flight_num){
        return fm.reserveSeat(flight_num,seat_num);
     }
+
+
+    public Ticket createTicket(String username, String seat_num, String flight_num){
+        String name = showCustomer(username).getName();
+        String dep_city = selectFlight(flight_num).getDestinationCity();
+        String arr_city = selectFlight(flight_num).getDestinationCity();
+        LocalDateTime d_time = selectFlight(flight_num).getDepartureTime();
+        LocalDateTime a_time = selectFlight(flight_num).getArrivalTime();
+        String gate = selectFlight(flight_num).getBoardingGate();
+        int price = (int) selectFlight(flight_num).getPrice();
+        return tm.generateTicket(flight_num, dep_city, arr_city,
+                d_time, a_time, gate, seat_num, price, name, username);
+    }
+
+    public String book_ticket(Ticket t){
+        return tm.bookTickets(t);
+    }
+
+
 
 }

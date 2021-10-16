@@ -128,5 +128,17 @@ public class Customer {
         if(!this.membership){
             this.membership = true;
         }
-        }
+    }
+
+    /**
+     * Print the associated customer's information.
+     */
+    @Override
+    public String toString(){
+        return "Username: " + this.username +
+                "\nName: " + this.name +
+                "\nBalance: " + this.balance +
+                "\nMillage: " + this.millage +
+                "\nMembership statues: " + this.membership;
+    }
 }
