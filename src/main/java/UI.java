@@ -36,9 +36,15 @@ public class UI {
            System.out.println("Sorry, your answer is invalid, please make sure you type either 1, 2 or 3");
            option1 = scanner.nextInt();
        }
-       if(option1==1){}
-       else if(option1==2){}
-       else{}
+       if(option1==1){
+       //manage account
+       }
+       else if(option1==2){
+           // book ticket
+       }
+     else{
+         System.out.println("Thank you for using U-ticket. Hope you enjoy your experience using us! See you next time.");
+       }
 }}
 
 
