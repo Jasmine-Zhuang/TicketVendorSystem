@@ -33,7 +33,7 @@ public class TicketManager {
      * @return a confirmation message confirming if this ticket has been stored, false otherwise.
      */
 
-    public String addToSoldTickets(Ticket ticket) {
+    public String bookTickets(Ticket ticket) {
         if (!soldTickets.contains(ticket)) {
             soldTickets.add(ticket);
             return "You have successfully booked the ticket for flight " + ticket.getFlightNumber() + "! The" +
@@ -48,7 +48,7 @@ public class TicketManager {
      * @return true if this ticket has been removed from the list, false otherwise.
      */
 
-    public String removeFromSoldTickets(Ticket ticket) {
+    public String cancelTickets(Ticket ticket) {
         if (soldTickets.contains(ticket)) {
             soldTickets.remove(ticket);
             return "You have successfully canceled the ticket for flight " + ticket.getFlightNumber() +
@@ -65,10 +65,11 @@ public class TicketManager {
                 "5B", 100, "Taylor", "taylorsusername");
         Ticket t2 = new Ticket("1234", "Vancouver", "Toronto", dt, at, "A",
                 "5B", 100, "Taylor", "taylorsusername");
-        System.out.println(tm.addToSoldTickets(t1));
-        System.out.println(tm.removeFromSoldTickets(t2));
+        System.out.println(tm.bookTickets(t1));
+        System.out.println(tm.cancelTickets(t2));
     }
 
 
 
 }
+
