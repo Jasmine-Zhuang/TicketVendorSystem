@@ -14,9 +14,14 @@ Please run the "UI" file to assess our U-Ticket program and follow the prompts.
 
 Group Member:
 Chuan Liu 
+
 Yefan Jiang 
+
 Jasmine Zhuang
+
 Yunya Li
+
 Ryan Fang
+
 Qiaoru Zhang 
 
