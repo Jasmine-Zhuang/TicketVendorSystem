@@ -171,7 +171,7 @@ public class Flight {
         DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm:ss");
         String formattedArrivalTime = arrivalTime.format(FormatObj);
         String formattedDepartureTime = departureTime.format(FormatObj);
-        return "Flight " + flightNumber +
+        return "Flight number: " + flightNumber +
                 " \n from " + originCity + " to " + destinationCity +
                 "\n from " + formattedDepartureTime + " to " + formattedArrivalTime +
                 "\n boarding gate: " + boardingGate+

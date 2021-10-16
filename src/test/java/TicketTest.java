@@ -33,8 +33,8 @@ public class TicketTest {
         int aDay = Integer.parseInt(aTime.get(2));
         int aHour = Integer.parseInt(aTime.get(3));
         int aMinute = Integer.parseInt(aTime.get(4));
-        LocalDateTime arrivalTime =  LocalDateTime.of(aYear,aMonth,aDay,aHour,aMinute);
         LocalDateTime departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
+        LocalDateTime arrivalTime =  LocalDateTime.of(aYear,aMonth,aDay,aHour,aMinute);
         t = new Ticket("A00100", "Beijing", "Toronto", departureTime, arrivalTime,
                 "C4", "15P", 1500, "James", "J52000");
         emp = new Ticket();
@@ -66,27 +66,11 @@ public class TicketTest {
         assertNull(emp.getArrivalTime());
         assertNull(emp.getBoardingGate());
         assertNull(emp.getSeat_number());
-        assertNull(emp.getPrice());
+        assertEquals(0, emp.getPrice());
         assertNull(emp.getPassenger_name());
         assertNull(emp.getPassenger_username());
         assertNull(emp.getTicket_id());
     }
 
-    @Test(timeout = 500)
-    public void TestToString(){
-        String a = "--------Air Ticket-------- \n" +
-                "Name of Passenger: James\n" +
-                "Flight: A00100  Seat: 15P\n" +
-                "From Beijing to Toronto\n" +
-                "Departure time: 2021 12 01  08:50:00\n" +
-                "Estimate arrival time: 2021 12 01  10:45:00\n" +
-                "Boarding Gate: C4\n" +
-                "Price: $3100\n" +
-                "Boarding time will be one hour before departure.\n" +
-                "And gate closes 20 minutes before departure.\n" +
-                "Have a nice trip!\n" +
-                "-----------------------";
-        assertEquals(a, t.toString());
-    }
 
 }

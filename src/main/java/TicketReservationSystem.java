@@ -2,9 +2,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TicketReservationSystem {
-    private CustomerManager cm;
-    private FlightManager fm;
-    private TicketManager tm;
+    private final CustomerManager cm;
+    private final FlightManager fm;
+    private final TicketManager tm;
 
     /**
      * Construct a System with 3 managers.
@@ -147,7 +147,7 @@ public class TicketReservationSystem {
         LocalDateTime d_time = selectFlight(flight_num).getDepartureTime();
         LocalDateTime a_time = selectFlight(flight_num).getArrivalTime();
         String gate = selectFlight(flight_num).getBoardingGate();
-        int price = (int) selectFlight(flight_num).getPrice();
+        int price = selectFlight(flight_num).getPrice();
         return tm.generateTicket(flight_num, dep_city, arr_city,
                 d_time, a_time, gate, seat_num, price, name, username);
     }

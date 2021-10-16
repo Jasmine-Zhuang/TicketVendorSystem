@@ -2,7 +2,6 @@
 This is the class that manages all scheduled flights information
  */
 
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class FlightManager {
@@ -107,10 +106,10 @@ public class FlightManager {
      */
     public ArrayList<String> printAvailableSeat(String flight_num){
         Flight flight = this.idToFlight.get(flight_num);
-        ArrayList<String> availableSeat = new ArrayList<String>();
-        for(String seatnum:flight.getSeatNumberArray()){
-            if(!seatnum.equals("X")){
-                availableSeat.add(seatnum);
+        ArrayList<String> availableSeat = new ArrayList<>();
+        for(String seat_num:flight.getSeatNumberArray()){
+            if(!seat_num.equals("X")){
+                availableSeat.add(seat_num);
             }
         }
         return availableSeat;

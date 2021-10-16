@@ -50,8 +50,8 @@ public class Ticket {
         this.passenger_name = p_name;
         this.passenger_username = p_user;
         this.ticket_id = flightNumber + "," + seat_num;
-        this.arrivalTime = d_time;
-        this.departureTime = a_time;
+        this.arrivalTime = a_time;
+        this.departureTime = d_time;
     }
 
     /**
@@ -181,5 +181,6 @@ public class Ticket {
                 "\nHave a nice trip!\n" +
                 "-----------------------";
     }
+
 
 }
