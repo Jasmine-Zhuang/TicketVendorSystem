@@ -1,5 +1,4 @@
 
-import java.util.*;
 /**
  * Represents a customer in the system.
  */
@@ -10,8 +9,6 @@ public class Customer {
     private int balance;
     private int millage;
     private boolean membership;
-
-
 
     public Customer(String username, String password, String name){
         this.username = username;
@@ -93,20 +90,37 @@ public class Customer {
     /**
      * Decrease the balance of this customer
      * @param balance the balance to be decreased
+     * @return return whether the balance decreased successfully or not
      */
     public boolean decrBalance(int balance){
-        if (balance < this.balance){
+        if (balance <= this.balance){
             this.balance -= balance;
-        } return false;
+            return true;
+        }
+        return false;
     }
 
     /**
      * Increase the millage of this customer
-     * @param millage the balance to be increase
+     * @param millage the millage to be increase
      */
     public void incrMillage(int millage){
         this.millage += millage;
     }
 
+
+    /**
+     * Check the current membership of this customer
+     * @return return true if this customer has membership status
+     */
     public boolean checkMembership(){return this.membership;}
+
+    /**
+     * Change the current membership of this customer
+     */
+    public void changeMembership(){
+        if(!this.membership){
+            this.membership = true;
+        }
+        }
 }
