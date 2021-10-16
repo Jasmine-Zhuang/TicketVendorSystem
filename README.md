@@ -1,6 +1,10 @@
-## Replace this README.md!
+## Happy207 CSC207 course project!
 
-This is a standard README.md file for you to replace. You'll want to include your own content here!
 
-MD (Markdown) files use [Markdown formatting](https://guides.github.com/features/mastering-markdown/): 
-these look very much like .txt files, so you can write them in a very similar way.
+Our specification, crc model, walkthrough and progress report are located under the folder "phase0".
+
+
+All of our code are under the folder src-main-java.
+
+
+Please run the "UI" file to access our U-Ticket program and follow the instruction.
