@@ -152,9 +152,8 @@ public class UI {
                         dep = "Toronto";
                         des = "Vancouver";
                     }
-                    //NullPointerexception  ArrayList<String> flightlst = trs.matchFlight(dep,des);//list of flight nums
-                    ArrayList<String> flightlst = trs.matchFlight(dep,des);
-                    //System.out.println(flightlst);+price of each price
+
+                    ArrayList<String> flight_lst = trs.matchFlight(dep,des);
 
 
                     for (String flight_num : flight_lst) {
