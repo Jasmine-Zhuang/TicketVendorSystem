@@ -1,6 +1,6 @@
-#U-Ticket
+## U-Ticket
 
-###Specification
+### Specification
 
 This program creates a flight ticket booking system designed for booking flight tickets, modifying existing tickets, and keeping track of ticket sales.​ It stores flight and customer data from user inputs to generate tickets for particular flights. 
 Each ticket contains information about the passenger’s name, flight number, and date and time of departure and arrival. In addition, tickets can be modified or canceled by users. 
