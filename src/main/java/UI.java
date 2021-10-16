@@ -17,11 +17,19 @@ public class UI {
           System.out.println("Please enter you password");
           String password = scanner.nextLine();
           //verify if password is correct.
+
         }
-
        else if(Objects.equals(option, "No")){
-
-    }}}
+           //create an account
+           System.out.println("Now let's register to continue. \n Please enter you username");
+            String username = scanner.nextLine();
+            System.out.println("Please enter you password");
+            String password = scanner.nextLine();
+            //create an account with this info.
+    }
+       
+    }
+}
 
 
 
