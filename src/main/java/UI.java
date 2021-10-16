@@ -43,7 +43,7 @@ public class UI {
                 10, 2000, "A1", seatNumArray);
 
 
-        // begining of CustomerManager Part
+        // beginning of CustomerManager Part
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to U-ticket! \n To start, may I ask do you have an account? \n" +
                 "Please enter 1. Yes or 2. No.");
@@ -152,22 +152,22 @@ public class UI {
                         dep = "Toronto";
                         des = "Vancouver";
                     }
-                    //NullPointerexception  ArrayList<String> flightlst = trs.matchFlight(dep,des);//list of flight nums
-                    ArrayList<String> flightlst = trs.matchFlight(dep,des);
-                    //System.out.println(flightlst);+price of each price
 
-                    for (String flightnum : flightlst) {
-                        System.out.println(trs.printFlightInfo(flightnum));
+                    ArrayList<String> flight_lst = trs.matchFlight(dep,des);
+
+
+                    for (String flight_num : flight_lst) {
+                        System.out.println(trs.printFlightInfo(flight_num));
                     }
                     System.out.println("Please enter a preferred flight number you want to " +
                             "book.");
-                    String flightnum = scanner.nextLine();
-                    while (!flightlst.contains(flightnum)) {
+                    String flight_num = scanner.nextLine();
+                    while (!flight_lst.contains(flight_num)) {
                         System.out.println("Please make sure you enter a valid flight number");
-                        flightnum = scanner.nextLine();
+                        flight_num = scanner.nextLine();
                     }
                     //check if balance is sufficient to buy this ticket
-                    Flight f = trs.selectFlight(flightnum);
+                    Flight f = trs.selectFlight(flight_num);
                     int price = fm.getPriceByFlight(f);
                     if (!trs.decreaseBalance(price, username)){
                         System.out.println("Your balance is not enough, see you next time!" +
@@ -176,20 +176,20 @@ public class UI {
                     }
 
                     //select seat
-                    ArrayList<String> seatmap = trs.showAvailableSeatNums(flightnum);
+                    ArrayList<String> seat_map = trs.showAvailableSeatNums(flight_num);
                     System.out.println("Please select a seat from the following available seats shown below by its seat number.\n " +
-                            seatmap);
+                            seat_map);
                     String seat_num = scanner.nextLine();
-                    while (!seatmap.contains(seat_num)) {
+                    while (!seat_map.contains(seat_num)) {
                         System.out.println("Please make sure you enter a valid seat number.");
                         seat_num = scanner.nextLine();
                     }
 
                     //reserve confirmation
-                    System.out.println(trs.reserveSeat(seat_num, flightnum));
+                    System.out.println(trs.reserveSeat(seat_num, flight_num));
 
                     //generate ticket
-                    Ticket ticket = trs.createTicket(username, seat_num, flightnum);
+                    Ticket ticket = trs.createTicket(username, seat_num, flight_num);
                     System.out.println(trs.book_ticket(ticket));
 
                 }
