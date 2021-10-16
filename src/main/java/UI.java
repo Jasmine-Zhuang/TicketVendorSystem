@@ -43,13 +43,13 @@ public class UI {
                 10, 2000, "A1", seatNumArray);
 
 
-        // begining of CustomerManager Part
+        // beginning of CustomerManager Part
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to U-ticket! \n To start, may I ask do you have an account? \n" +
-                "Please enter 1. Yes or 2. No.");
+        System.out.println("Welcome to U-ticket! \n To start, you need to have an account. \n" +
+                "Already have an account? \n Please enter 1. Yes 2. No");
         String option = scanner.nextLine();
         while (!option.equals("1") && !option.equals("2")) {
-            System.out.println("Sorry, this option is invalid, please make sure you type either Yes or No");
+            System.out.println("Sorry, this option is invalid, please make sure you enter 1 or 2");
             System.out.println("Please enter 1 or 2");
             option = scanner.nextLine();
         }
@@ -60,10 +60,11 @@ public class UI {
             username = scanner.nextLine();
             //verify if username exists
             while (!trs.checkCustomer(username)) {
-                System.out.println("The username does not exist, please re-enter username or type 1 to exit");
+                System.out.println("The username does not exist, please re-enter username or enter 1 to exit");
                 username = scanner.nextLine();
                 if (username.equals("1")){
-                    System.out.println("Thank you for using U-ticket. Hope you enjoy your experience using us! See you next time.");
+                    System.out.println("Thank you for using U-ticket. Hope you enjoy your experience using us! See you "
+                            + "next time.");
                     return;
                 }
 
@@ -95,21 +96,20 @@ public class UI {
         }
 
         //Once login succeeds:
-        System.out.println("Login succeeds! \n Please type 1 to manage your account first(once finish, we will be " +
-                "able to book ticket" +
-                "  2 to exit");
+        System.out.println("Login succeeds! \n Please select 1.manage your account first (once finished, you will be "
+                + "able to book ticket" + "  2.exit");
         int option1 = scanner.nextInt();
         while (option1 != 1 && option1 != 2) {
-            System.out.println("Sorry, your answer is invalid, please make sure you type either 1 or 2");
+            System.out.println("Sorry, your option is invalid, please make sure to enter either 1 or 2");
             option1 = scanner.nextInt();
         }
         if (option1 == 1) {
             //print customer info:
             System.out.println(trs.showCustomerInfo(username));
-            System.out.println("Would you like to load balance?\n Please enter 1. Yes and 2. No.");
+            System.out.println("Would you like to load balance?\n Please enter 1.Yes 2.No");
             int option2 = scanner.nextInt();
             while (option2 != 1 && option2 != 2) {
-                System.out.println("Please make sure you enter 1 for Yes and 2 for No.");
+                System.out.println("Please make sure you enter 1.Yes 2.No");
                 option2 = scanner.nextInt();
             }
             if (option2 == 1) {
@@ -152,7 +152,6 @@ public class UI {
                         dep = "Toronto";
                         des = "Vancouver";
                     }
-                    //NullPointerexception  ArrayList<String> flightlst = trs.matchFlight(dep,des);//list of flight nums
                     ArrayList<String> flightlst = trs.matchFlight(dep,des);
                     //System.out.println(flightlst);+price of each price
 
