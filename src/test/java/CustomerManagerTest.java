@@ -13,20 +13,25 @@ public class CustomerManagerTest {
     @Test(timeout = 50)
     public void test_addCustomer() {
         Ryan.addCustomer(Maggie);
-        assertTrue(Ryan.checkCustomer("RyanMaggie"));
+        assertTrue(Ryan.checkCustomer("Name1203"));
+    }
+
+    @Test(timeout = 50)
+    public void test_checkPassword() {
+        Ryan.addCustomer(Maggie);
+        assertTrue(Ryan.checkPassword("Name1203","1203"));
     }
 
     @Test(timeout = 50)
     public void test_showCustomer() {
         Ryan.addCustomer(Maggie);
-        assertEquals(Maggie, Ryan.showCustomer("RyanMaggie"));
+        assertEquals(Maggie, Ryan.showCustomer("Name1203"));
     }
-
 
     @Test(timeout = 50)
     public void test_showCustomerBalance() {
         Ryan.addCustomer(Maggie);
-        assertEquals(0, Ryan.showCustomerBalance("RyanMaggie"));
+        assertEquals(0, Ryan.showCustomerBalance("Name1203"));
     }
 
     @Test(timeout = 50)

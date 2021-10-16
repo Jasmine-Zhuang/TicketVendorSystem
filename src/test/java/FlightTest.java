@@ -8,7 +8,6 @@ public class FlightTest {
     Flight flight;
     Flight emptyFlight;
 
-
     @Before
     public void setUp() {
         //initialize departure time

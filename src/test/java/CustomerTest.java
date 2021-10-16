@@ -103,4 +103,15 @@ public class CustomerTest {
         Maggie.changeMembership();
         assertTrue(Maggie.checkMembership());
     }
+
+    @Test(timeout = 1000)
+    public void Test_ToString(){
+        String a =
+                "Username: Happy1203\n" +
+                "Name: MaggieZhang\n" +
+                "Balance: 0\n" +
+                "Millage: 0\n" +
+                "Membership statues: false";
+        assertEquals(a, Maggie.toString());
+    }
 }
