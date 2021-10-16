@@ -19,9 +19,9 @@ import java.util.ArrayList;
 
 
 public class Flight {
-    private  String flightNumber;
-    private  String originCity;
-    private  String destinationCity;
+    private String flightNumber;
+    private String originCity;
+    private String destinationCity;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private int distanceTraveled;
@@ -29,6 +29,8 @@ public class Flight {
     private String boardingGate;
     private ArrayList<String> seatNumberArray;
     private int availableSeats;
+    private float price;
+
 
 
     /**
@@ -57,6 +59,9 @@ public class Flight {
         this.boardingGate = boardingGate;
         this.seatNumberArray = seatNumberArray;
 
+        this.price =(int) (distanceTraveled * 0.2 + 100);
+
+
         // set departure and arrival time
         int dYear = Integer.parseInt(departureTime.get(0));
         int dMonth = Integer.parseInt(departureTime.get(1));
@@ -76,6 +81,12 @@ public class Flight {
      * Construct an empty Flight
      */
     public Flight(){}
+
+    /**
+     * A getter method.
+     * @return price of this flight
+     */
+    public float getPrice(){return this.price;}
 
 
     /**

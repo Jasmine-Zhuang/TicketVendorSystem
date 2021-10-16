@@ -2,6 +2,7 @@
 This is the class that manages all scheduled flights information
  */
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class FlightManager {
@@ -25,12 +26,12 @@ public class FlightManager {
      * @param seatNumberArray    array of all seat numbers of this flight
      */
     public void AddFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
-                            ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
+                          ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
             , String boardingGate, ArrayList<String> seatNumberArray) {
 
         Flight newFlight = new Flight(flightNumber, originCity, destinationCity, departureTime,
                 arrivalTime, totalNumSeats, numSeatAvailable, distance_traveled
-            , boardingGate, seatNumberArray);
+                , boardingGate, seatNumberArray);
         this.idToFlight.put(flightNumber, newFlight);
     }
 
@@ -68,10 +69,10 @@ public class FlightManager {
      */
     public String reserveSeat(String flight_num, String seat_num) {
         Flight flight = this.idToFlight.get(flight_num);
-       if (flight.ReserveOneSeat(seat_num)){
-           return "You have successfully booked the flight" +  flight_num + "Have a nice trip! : )";
-       }
-       return "This seat has been reserved, please select another seat.";
+        if (flight.ReserveOneSeat(seat_num)){
+            return "You have successfully selected this seat"+ seat_num+" of flight" +  flight_num ;
+        }
+        return "This seat has been reserved, please select another seat.";
     }
 
     /**
@@ -100,5 +101,18 @@ public class FlightManager {
         }
         return lst;
     }
+
+
+    public ArrayList<String> printAvailableSeatArray(String flight_num){
+        Flight flight = this.idToFlight.get(flight_num);
+        ArrayList<String> availableSeatArray = new ArrayList<String>();
+        for(String seatnum:flight.getSeatNumberArray()){
+            if(!seatnum.equals("X")){
+                availableSeatArray.add(seatnum);
+            }
+        }
+        return availableSeatArray;
+    }
+
 
 }

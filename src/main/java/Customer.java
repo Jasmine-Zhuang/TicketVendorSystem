@@ -1,4 +1,5 @@
 
+import java.util.*;
 /**
  * Represents a customer in the system.
  */
@@ -12,10 +13,10 @@ public class Customer {
 
 
 
-    public Customer(String username, String password){
+    public Customer(String username, String password, String name){
         this.username = username;
         this.password = password;
-        this.name = null;
+        this.name = name;
         this.balance = 0;
         this.millage = 0;
         this.membership = false;
@@ -29,13 +30,28 @@ public class Customer {
         return this.name;
     }
 
-
     /**
      * The getter function of customer's username.
      * @return return the username
      */
     public String getUsername(){
         return this.username;
+    }
+
+    /**
+     * The getter function of customer's balance.
+     * @return return the balance
+     */
+    public int getBalance(){
+        return this.balance;
+    }
+
+    /**
+     * The getter function of customer's millage.
+     * @return return the millage
+     */
+    public int getMillage(){
+        return this.millage;
     }
 
 
@@ -55,12 +71,16 @@ public class Customer {
      * @param password the new password
      * @return return whether the change succeeded or not
      */
-    public boolean ChangePassword(String original, String password){
+    public boolean changePassword(String original, String password){
         if(original.equals(this.password)){
             this.password = password;
             return true;
         } return false;
     }
+
+    public void changeName(String newName){ this.name = newName;}
+
+    public void changeUsername(String newUsername){ this.username = newUsername;}
 
     /**
      * Increase the balance of this customer
@@ -72,9 +92,21 @@ public class Customer {
 
     /**
      * Decrease the balance of this customer
-     * @param balance the balance to be decrease
+     * @param balance the balance to be decreased
      */
-    public void decrBalance(int balance){
-        this.balance += balance;
+    public boolean decrBalance(int balance){
+        if (balance < this.balance){
+            this.balance -= balance;
+        } return false;
     }
+
+    /**
+     * Increase the millage of this customer
+     * @param millage the balance to be increase
+     */
+    public void incrMillage(int millage){
+        this.millage += millage;
+    }
+
+    public boolean checkMembership(){return this.membership;}
 }
