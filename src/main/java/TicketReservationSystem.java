@@ -142,7 +142,7 @@ public class TicketReservationSystem {
 
     public Ticket createTicket(String username, String seat_num, String flight_num){
         String name = showCustomer(username).getName();
-        String dep_city = selectFlight(flight_num).getDestinationCity();
+        String dep_city = selectFlight(flight_num).getOriginCity();
         String arr_city = selectFlight(flight_num).getDestinationCity();
         LocalDateTime d_time = selectFlight(flight_num).getDepartureTime();
         LocalDateTime a_time = selectFlight(flight_num).getArrivalTime();
