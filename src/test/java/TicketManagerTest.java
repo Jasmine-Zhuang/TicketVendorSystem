@@ -89,14 +89,14 @@ public class TicketManagerTest {
     }
 
     @Test(timeout = 500)
-    public void TestDisplayInfo() {
+    public void TestTicketDisplay() {
         tm.bookTickets(t1);
         tm.bookTickets(t2);
         tm.bookTickets(t3);
-        List<Ticket> taylorsTicketInfo = tm.displayInfo("taylorsusername");
+        List<Ticket> taylorsTicketInfo = tm.ticketDisplay("taylorsusername");
         List<Ticket> res = new ArrayList<>(Arrays.asList(t1, t2));
         assertEquals(res, taylorsTicketInfo);
-        List<Ticket> marksTicketInfo = tm.displayInfo("mark123");
+        List<Ticket> marksTicketInfo = tm.ticketDisplay("mark123");
         List<Ticket> res2 = new ArrayList<>(List.of(t3));
         assertEquals(res2, marksTicketInfo);
     }

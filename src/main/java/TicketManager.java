@@ -82,7 +82,7 @@ public class TicketManager {
      * @return a list of tickets that this customer has booked under this username.
      */
 
-    public List<Ticket> displayInfo(String username) {
+    public List<Ticket> ticketDisplay(String username) {
         List<Ticket> ticketHistory = new ArrayList<>();
         for (Ticket ticket : soldTickets) {
             if (ticket.getPassenger_username().equals(username)) ticketHistory.add(ticket);
