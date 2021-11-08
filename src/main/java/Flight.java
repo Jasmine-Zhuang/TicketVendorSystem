@@ -25,8 +25,80 @@ public class Flight {
     private int distanceTraveled;
     private int totalSeats;
     private String boardingGate;
-    private ArrayList<ArrayList<String>> seatNumberArray;
+    private ArrayList<ArrayList<String>> seatArray;
     private int availableSeats;
+
+    /**
+     * Build an array list of arraylist of seat number and seat type
+     */
+    public ArrayList<ArrayList<String>> buildSeatArray(int totalSeats, ArrayList<String> seatNumArray) {
+        ArrayList<ArrayList<String>> seatArray = new ArrayList<>();
+
+        if (totalSeats == 10){
+            //small flight: 10 first class seats
+            for(int i=0;i<10;i++){
+                ArrayList<String> seat = new ArrayList<String>();
+                seat.add(0,seatNumArray.get(i));
+                seat.add(1,"First");
+                seatArray.add(seat);
+            }
+            return seatArray;
+
+        }else if (totalSeats == 20){
+            //medium flight: 6 first class,14 business
+            for(int i=0;i<6;i++){
+                ArrayList<String> seat = new ArrayList<String>();
+                seat.add(0,seatNumArray.get(i));
+                seat.add(1,"First");
+                seatArray.add(seat);
+            }
+            for(int i=0;i<14;i++){
+                ArrayList<String> seat = new ArrayList<String>();
+                seat.add(0,seatNumArray.get(i));
+                seat.add(1,"Business");
+                seatArray.add(seat);
+            }
+            return seatArray;
+
+        }else if(totalSeats ==30){
+            //large flight: 6 first,8 business,16 economy
+            for(int i=0;i<6;i++){
+                ArrayList<String> seat = new ArrayList<String>();
+                seat.add(0,seatNumArray.get(i));
+                seat.add(1,"First");
+                seatArray.add(seat);
+            }
+            for(int i=0;i<8;i++){
+                ArrayList<String> seat = new ArrayList<String>();
+                seat.add(0,seatNumArray.get(i));
+                seat.add(1,"Business");
+                seatArray.add(seat);
+            }
+            for(int i=0;i<16;i++){
+                ArrayList<String> seat = new ArrayList<String>();
+                seat.add(0,seatNumArray.get(i));
+                seat.add(1,"Economy");
+                seatArray.add(seat);
+            }
+            return seatArray;
+
+        }else{
+            return null;
+        }
+
+    }
+    public LocalDateTime buildTime(ArrayList<String> time){
+        if (time.size() == 5){
+            int dYear = Integer.parseInt(time.get(0));
+            int dMonth = Integer.parseInt(time.get(1));
+            int dDay = Integer.parseInt(time.get(2));
+            int dHour = Integer.parseInt(time.get(3));
+            int dMinute = Integer.parseInt(time.get(4));
+            return LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
+        }
+        return null;
+
+    }
 
 
     /**
@@ -41,11 +113,11 @@ public class Flight {
      * @param numSeatAvailable number of seats booked
      * @param distance_traveled The flight's length
      * @param boardingGate the boarding gate of this flight
-     * @param seatNumberArray    array list of array list of each seat number and seat type of this flight
+     * @param seatNumberArray    array list of every seat number of this flight
      */
     public Flight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
                   ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
-            , String boardingGate, ArrayList<ArrayList<String>> seatNumberArray){
+            , String boardingGate, ArrayList<String> seatNumberArray){
         this.flightNumber = flightNumber;
         this.distanceTraveled = distance_traveled;
         this.originCity = originCity;
@@ -53,10 +125,10 @@ public class Flight {
         this.totalSeats = totalNumSeats;
         this.availableSeats = numSeatAvailable;
         this.boardingGate = boardingGate;
-        this.seatNumberArray = seatNumberArray;
+        this.seatArray = buildSeatArray(totalNumSeats,seatNumberArray);
 
         // set departure and arrival time
-        int dYear = Integer.parseInt(departureTime.get(0));
+/*        int dYear = Integer.parseInt(departureTime.get(0));
         int dMonth = Integer.parseInt(departureTime.get(1));
         int dDay = Integer.parseInt(departureTime.get(2));
         int dHour = Integer.parseInt(departureTime.get(3));
@@ -67,7 +139,9 @@ public class Flight {
         int aHour = Integer.parseInt(arrivalTime.get(3));
         int aMinute = Integer.parseInt(arrivalTime.get(4));
         this.arrivalTime =  LocalDateTime.of(aYear,aMonth,aDay,aHour,aMinute);
-        this.departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
+        this.departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);*/
+        this.arrivalTime = buildTime(arrivalTime);
+        this.departureTime = buildTime(departureTime);
     }
 
 
@@ -134,7 +208,7 @@ public class Flight {
      * A getter method.
      * @return the array of seat numbers of the fight. ("x" if the seat is occupied)
      */
-    public ArrayList<ArrayList<String>> getSeatNumberArray() {return seatNumberArray;}
+    public ArrayList<ArrayList<String>> getSeatArray() {return seatArray;}
 
     /*
      * Replace the seat number by "X" from seatNumberArray to represent that this seat has been booked.
@@ -142,7 +216,7 @@ public class Flight {
      * @return true if this seat number was seatNumberArray, and now has been replaced by "X" , false otherwise.
      */
     public boolean ReserveOneSeat(String seatNumber){
-        for(ArrayList<String> seat: this.getSeatNumberArray()){
+        for(ArrayList<String> seat: this.getSeatArray()){
             if(seat.contains(seatNumber)){
                 int index = seat.indexOf(seatNumber);
                 seat.set(index,"X");
