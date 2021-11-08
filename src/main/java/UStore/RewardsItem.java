@@ -44,10 +44,11 @@ public class RewardsItem {
      */
 
     public RewardsItem redeemItem(float points) {
-        if (points >=this.getPoints()){
+        if (points >= this.getPoints()){
             // TODO: subtract these points after redemption from customer's info
-            return new RewardsItem(this.getName(),this.getPoints());
-            // since it hasn't been redeemed(i.e., add to customer's info), its redeemed attribute is set to false
+            RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());
+            rewardsItem.setRedeemed(true);//after added to customer history
+            return rewardsItem;
         }
         return null;
     }
