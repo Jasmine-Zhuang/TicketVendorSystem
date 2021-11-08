@@ -5,8 +5,8 @@ public class RewardsItemGenerator {
     public RewardsItem generateRewardsItem(String itemType){
         RewardsItem rewardsItem= (RewardsItem) rewardsItemFactory.getItem(itemType);
         //TODO: get customer's points earned
-        float customerPoints = 0;
-        rewardsItem.redeemItem(customerPoints);
+        float customerPoints = 12;
+        rewardsItem.redeemItem((int)customerPoints);
         return rewardsItem;
 
     }

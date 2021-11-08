@@ -3,12 +3,12 @@ package UStore;
 public class RewardsItem {
     private boolean isRedeemed;
     private final String name;
-    private final float points;
+    private final int points;
 
     /**
      * Construct a rewards item
      */
-    public RewardsItem(String name, float points) {
+    public RewardsItem(String name, int points) {
         this.isRedeemed = false;
         this.name = name;
         this.points = points;
@@ -24,7 +24,7 @@ public class RewardsItem {
      * A getter method.
      * @return points needed to redeem the item
      */
-    public float getPoints() {return points;}
+    public int getPoints() {return points;}
 
     /**
      * A getter method.
@@ -43,7 +43,7 @@ public class RewardsItem {
      * @param points redeem points that the customer has
      */
 
-    public RewardsItem redeemItem(float points) {
+    public RewardsItem redeemItem(int points) {
         if (points >= this.getPoints()){
             // TODO: subtract these points after redemption from customer's info
             RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());

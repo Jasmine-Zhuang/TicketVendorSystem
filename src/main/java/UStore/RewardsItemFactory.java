@@ -7,15 +7,18 @@ public class RewardsItemFactory {
      */
 
     public Redeemable getItem(String itemType){
-        return switch (itemType) {
-            case "Backpack" -> new Backpack();
-            case "BookstoreCoupon" -> new BookstoreCoupon();
-            case "GiftCard" -> new GiftCard();
-            case "Mug" -> new Mug();
-            case "TVoucher" -> new TVoucher();
-            default -> null;
-        };
-
+        if ("Backpack".equals(itemType)) {
+            return new Backpack();
+        } else if ("BookstoreCoupon".equals(itemType)) {
+            return new BookstoreCoupon();
+        } else if ("GiftCard".equals(itemType)) {
+            return new GiftCard();
+        } else if ("Mug".equals(itemType)) {
+            return new Mug();
+        } else if ("TVoucher".equals(itemType)) {
+            return new TVoucher();
+        }
+        return null;
     }
 
 }

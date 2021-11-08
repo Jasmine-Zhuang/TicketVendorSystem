@@ -2,7 +2,7 @@ package UStore;
 
 public interface Redeemable {
 
-    RewardsItem redeemItem(float points);
+    RewardsItem redeemItem(int points);
 
 
 }
