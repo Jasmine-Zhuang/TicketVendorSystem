@@ -1,43 +1,12 @@
 package UStore;
 
-public class GiftCard implements RewardsItem{
-    private boolean redeemed;
-    private final String name;
+public class GiftCard extends RewardsItem implements Redeemable {
     /**
      * Construct a Starbucks $20 gift card
      */
     public GiftCard() {
-        this.name="Starbucks $20 gift card";
-        this.redeemed = false;
+        super("Starbucks $20 gift card", 2000);
     }
 
-    /**
-     * Construct a Starbucks $20 gift card if the customer has earned at least 2000 points.
-     * @param points redeem points that the customer has
-     */
-    @Override
-    public Object createItem(float points) {
-        if(points >= 2000){
-            // TODO:subtract 1000 points after redemption from customer's info
-            return new GiftCard();
-            // since it hasn't been redeemed(i.e., add to customer's info), its redeemed attribute is set to false
-        }
-        return null;
-    }
-    /**
-     * Redeem a UofT limited edition backpack if the customer has earned at least 3500 points.
-     * @return a String of confirmation of the redemption
-     */
-    public String redeem() {
-        this.redeemed = true;
-        return "You have successfully redeemed a "+ this.getName();
-    }
 
-    /**
-     * A getter method.
-     * @return name of the rewards item
-     */
-    public String getName() {
-        return name;
-    }
 }

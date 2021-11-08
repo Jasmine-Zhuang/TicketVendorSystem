@@ -6,7 +6,7 @@ public class RewardsItemFactory {
      * @param itemType type of rewards item to be redeemed
      */
 
-    public RewardsItem getItem(String itemType){
+    public Redeemable getItem(String itemType){
         return switch (itemType) {
             case "Backpack" -> new Backpack();
             case "BookstoreCoupon" -> new BookstoreCoupon();
