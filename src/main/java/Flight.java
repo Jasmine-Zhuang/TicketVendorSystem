@@ -25,10 +25,8 @@ public class Flight {
     private int distanceTraveled;
     private int totalSeats;
     private String boardingGate;
-    private ArrayList<String> seatNumberArray;
+    private ArrayList<ArrayList<String>> seatNumberArray;
     private int availableSeats;
-    private int price;
-
 
 
     /**
@@ -43,11 +41,11 @@ public class Flight {
      * @param numSeatAvailable number of seats booked
      * @param distance_traveled The flight's length
      * @param boardingGate the boarding gate of this flight
-     * @param seatNumberArray    array of all seat numbers of this flight
+     * @param seatNumberArray    array list of array list of each seat number and seat type of this flight
      */
     public Flight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
                   ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
-            , String boardingGate, ArrayList<String> seatNumberArray){
+            , String boardingGate, ArrayList<ArrayList<String>> seatNumberArray){
         this.flightNumber = flightNumber;
         this.distanceTraveled = distance_traveled;
         this.originCity = originCity;
@@ -56,9 +54,6 @@ public class Flight {
         this.availableSeats = numSeatAvailable;
         this.boardingGate = boardingGate;
         this.seatNumberArray = seatNumberArray;
-
-        this.price = (int) (distanceTraveled * 0.2 + 100);
-
 
         // set departure and arrival time
         int dYear = Integer.parseInt(departureTime.get(0));
@@ -75,17 +70,11 @@ public class Flight {
         this.departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
     }
 
+
     /**
      * Construct an empty Flight
      */
     public Flight(){}
-
-    /**
-     * A getter method.
-     * @return price of this flight
-     */
-    public int getPrice(){return this.price;}
-
 
     /**
      * A getter method.
@@ -145,7 +134,7 @@ public class Flight {
      * A getter method.
      * @return the array of seat numbers of the fight. ("x" if the seat is occupied)
      */
-    public ArrayList<String> getSeatNumberArray() {return seatNumberArray;}
+    public ArrayList<ArrayList<String>> getSeatNumberArray() {return seatNumberArray;}
 
     /*
      * Replace the seat number by "X" from seatNumberArray to represent that this seat has been booked.
@@ -153,11 +142,13 @@ public class Flight {
      * @return true if this seat number was seatNumberArray, and now has been replaced by "X" , false otherwise.
      */
     public boolean ReserveOneSeat(String seatNumber){
-        if(seatNumberArray.contains(seatNumber)){
-            int index = seatNumberArray.indexOf(seatNumber);
-            seatNumberArray.set(index,"X");
-            this.availableSeats --;
-            return true;
+        for(ArrayList<String> seat: this.getSeatNumberArray()){
+            if(seat.contains(seatNumber)){
+                int index = seat.indexOf(seatNumber);
+                seat.set(index,"X");
+                this.availableSeats --;
+                return true;
+            }
         }
         return false;
     }
@@ -171,13 +162,11 @@ public class Flight {
         DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm:ss");
         String formattedArrivalTime = arrivalTime.format(FormatObj);
         String formattedDepartureTime = departureTime.format(FormatObj);
-        return "Flight number: " + flightNumber +
+        return "Flight " + flightNumber +
                 " \n from " + originCity + " to " + destinationCity +
                 "\n from " + formattedDepartureTime + " to " + formattedArrivalTime +
-                "\n boarding gate: " + boardingGate+
-                "\n price:" +price;
+                "\n boarding gate: " + boardingGate;
         }
-
     }
 
 
