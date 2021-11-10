@@ -30,43 +30,56 @@ public class Flight {
 
     /**
      * Build an array list of arraylist of seat number and seat type
+     * @param totalSeats total number of seats
+     * @param seatNumArray array of seat number
      */
     public ArrayList<ArrayList<String>> buildSeatArray(int totalSeats, ArrayList<String> seatNumArray) {
         ArrayList<ArrayList<String>> seatArray = new ArrayList<>();
 
         if (totalSeats == 10){
             //small flight: 10 first class seats
-            CreateClassSeat(seatNumArray, seatArray, 10,"First");
+            CreateClassSeat(seatNumArray, seatArray, 10,0,"First");
             return seatArray;
 
         }else if (totalSeats == 20){
             //medium flight: 6 first class,14 business
-            CreateClassSeat(seatNumArray, seatArray, 6,"First");
-            CreateClassSeat(seatNumArray, seatArray, 14,"Business");
+            CreateClassSeat(seatNumArray, seatArray, 6,0,"First");
+            CreateClassSeat(seatNumArray, seatArray, 14,6,"Business");
             return seatArray;
 
         }else if(totalSeats ==30){
             //large flight: 6 first,8 business,16 economy
-            CreateClassSeat(seatNumArray, seatArray, 6,"First");
-            CreateClassSeat(seatNumArray, seatArray, 8,"Business");
-            CreateClassSeat(seatNumArray, seatArray, 16,"Economy");
+            CreateClassSeat(seatNumArray, seatArray, 6,0,"First");
+            CreateClassSeat(seatNumArray, seatArray, 8,6,"Business");
+            CreateClassSeat(seatNumArray, seatArray, 16,14,"Economy");
             return seatArray;
 
         }else{
             return null;
         }
     }
-
-    private void CreateClassSeat(ArrayList<String> seatNumArray, ArrayList<ArrayList<String>> seatArray, int num,
+    /**
+     * Create and add seats with type C into an array list of arraylist of seat number and seat type
+     * @param seatArray an array list of arraylist of seat number and seat type
+     * @param seatNumArray array of seat number
+     * @param num total number of seats wanted to be made and added to seatArray
+     * @param index start index, is the index of the seat number for the first seat created in seatNumArray
+     */
+    private void CreateClassSeat(ArrayList<String> seatNumArray, ArrayList<ArrayList<String>> seatArray, int num, int index,
                                  String C) {
+       // Notice num + index <= last index in seatNumArray
         for(int i = 0; i<num; i++){
-            ArrayList<String> seat = new ArrayList<String>();
-            seat.add(0,seatNumArray.get(i));
+            ArrayList<String> seat = new ArrayList<>();
+            seat.add(0,seatNumArray.get(i+index));
             seat.add(1,C);
             seatArray.add(seat);
         }
     }
 
+    /**
+     * Build a LocalDateTime instance using Year,Month,Day,Hour and Minute stored in the arraylist inputted
+     * @param time arraylist of Year,Month,Day,Hour and Minute for the LocalDateTime wanted to be created.
+     */
     public LocalDateTime buildTime(ArrayList<String> time){
         if (time.size() == 5){
             int dYear = Integer.parseInt(time.get(0));
@@ -106,24 +119,9 @@ public class Flight {
         this.availableSeats = numSeatAvailable;
         this.boardingGate = boardingGate;
         this.seatArray = buildSeatArray(totalNumSeats,seatNumberArray);
-
-        // set departure and arrival time
-/*        int dYear = Integer.parseInt(departureTime.get(0));
-        int dMonth = Integer.parseInt(departureTime.get(1));
-        int dDay = Integer.parseInt(departureTime.get(2));
-        int dHour = Integer.parseInt(departureTime.get(3));
-        int dMinute = Integer.parseInt(departureTime.get(4));
-        int aYear = Integer.parseInt(arrivalTime.get(0));
-        int aMonth = Integer.parseInt(arrivalTime.get(1));
-        int aDay = Integer.parseInt(arrivalTime.get(2));
-        int aHour = Integer.parseInt(arrivalTime.get(3));
-        int aMinute = Integer.parseInt(arrivalTime.get(4));
-        this.arrivalTime =  LocalDateTime.of(aYear,aMonth,aDay,aHour,aMinute);
-        this.departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);*/
         this.arrivalTime = buildTime(arrivalTime);
         this.departureTime = buildTime(departureTime);
     }
-
 
     /**
      * Construct an empty Flight
