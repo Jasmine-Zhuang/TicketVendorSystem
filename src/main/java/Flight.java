@@ -29,34 +29,34 @@ public class Flight {
     private int availableSeats;
 
     /**
-     * Build an array list of arraylist of seat number and seat type
+     * Build an array list of arraylist of seat number and seat type.
+     * The number of seats in the return nested arraylist can't be greater than the number of elements in seatNumArray
      * @param totalSeats total number of seats
      * @param seatNumArray array of seat number
      */
     public ArrayList<ArrayList<String>> buildSeatArray(int totalSeats, ArrayList<String> seatNumArray) {
         ArrayList<ArrayList<String>> seatArray = new ArrayList<>();
-
-        if (totalSeats == 10){
-            //small flight: 10 first class seats
-            CreateClassSeat(seatNumArray, seatArray, 10,0,"First");
-            return seatArray;
-
-        }else if (totalSeats == 20){
-            //medium flight: 6 first class,14 business
-            CreateClassSeat(seatNumArray, seatArray, 6,0,"First");
-            CreateClassSeat(seatNumArray, seatArray, 14,6,"Business");
-            return seatArray;
-
-        }else if(totalSeats ==30){
-            //large flight: 6 first,8 business,16 economy
-            CreateClassSeat(seatNumArray, seatArray, 6,0,"First");
-            CreateClassSeat(seatNumArray, seatArray, 8,6,"Business");
-            CreateClassSeat(seatNumArray, seatArray, 16,14,"Economy");
-            return seatArray;
-
-        }else{
-            return null;
+        if(totalSeats <= seatNumArray.size()){
+            if (totalSeats == 10){
+                //small flight: 10 first class seats
+                CreateClassSeat(seatNumArray, seatArray, 10,0,"First");
+                return seatArray;
+            }else if (totalSeats == 20){
+                //medium flight: 6 first class,14 business
+                CreateClassSeat(seatNumArray, seatArray, 6,0,"First");
+                CreateClassSeat(seatNumArray, seatArray, 14,6,"Business");
+                return seatArray;
+            }else if(totalSeats ==30){
+                //large flight: 6 first,8 business,16 economy
+                CreateClassSeat(seatNumArray, seatArray, 6,0,"First");
+                CreateClassSeat(seatNumArray, seatArray, 8,6,"Business");
+                CreateClassSeat(seatNumArray, seatArray, 16,14,"Economy");
+                return seatArray;
+            }else{
+                return null;
+            }
         }
+        return null;
     }
     /**
      * Create and add seats with type C into an array list of arraylist of seat number and seat type
