@@ -68,9 +68,9 @@ public class Flight {
     private void CreateClassSeat(ArrayList<String> seatNumArray, ArrayList<ArrayList<String>> seatArray, int num, int index,
                                  String C) {
        // Notice num + index <= last index in seatNumArray
-        for(int i = index; i<num; i++){
+        for(int i = 0; i<num; i++){
             ArrayList<String> seat = new ArrayList<>();
-            seat.add(0,seatNumArray.get(i));
+            seat.add(0,seatNumArray.get(i+index));
             seat.add(1,C);
             seatArray.add(seat);
         }
