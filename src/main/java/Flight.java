@@ -36,57 +36,37 @@ public class Flight {
 
         if (totalSeats == 10){
             //small flight: 10 first class seats
-            for(int i=0;i<10;i++){
-                ArrayList<String> seat = new ArrayList<String>();
-                seat.add(0,seatNumArray.get(i));
-                seat.add(1,"First");
-                seatArray.add(seat);
-            }
+            CreateClassSeat(seatNumArray, seatArray, 10,"First");
             return seatArray;
 
         }else if (totalSeats == 20){
             //medium flight: 6 first class,14 business
-            for(int i=0;i<6;i++){
-                ArrayList<String> seat = new ArrayList<String>();
-                seat.add(0,seatNumArray.get(i));
-                seat.add(1,"First");
-                seatArray.add(seat);
-            }
-            for(int i=0;i<14;i++){
-                ArrayList<String> seat = new ArrayList<String>();
-                seat.add(0,seatNumArray.get(i));
-                seat.add(1,"Business");
-                seatArray.add(seat);
-            }
+            CreateClassSeat(seatNumArray, seatArray, 6,"First");
+            CreateClassSeat(seatNumArray, seatArray, 14,"Business");
             return seatArray;
 
         }else if(totalSeats ==30){
             //large flight: 6 first,8 business,16 economy
-            for(int i=0;i<6;i++){
-                ArrayList<String> seat = new ArrayList<String>();
-                seat.add(0,seatNumArray.get(i));
-                seat.add(1,"First");
-                seatArray.add(seat);
-            }
-            for(int i=0;i<8;i++){
-                ArrayList<String> seat = new ArrayList<String>();
-                seat.add(0,seatNumArray.get(i));
-                seat.add(1,"Business");
-                seatArray.add(seat);
-            }
-            for(int i=0;i<16;i++){
-                ArrayList<String> seat = new ArrayList<String>();
-                seat.add(0,seatNumArray.get(i));
-                seat.add(1,"Economy");
-                seatArray.add(seat);
-            }
+            CreateClassSeat(seatNumArray, seatArray, 6,"First");
+            CreateClassSeat(seatNumArray, seatArray, 8,"Business");
+            CreateClassSeat(seatNumArray, seatArray, 16,"Economy");
             return seatArray;
 
         }else{
             return null;
         }
-
     }
+
+    private void CreateClassSeat(ArrayList<String> seatNumArray, ArrayList<ArrayList<String>> seatArray, int num,
+                                 String C) {
+        for(int i = 0; i<num; i++){
+            ArrayList<String> seat = new ArrayList<String>();
+            seat.add(0,seatNumArray.get(i));
+            seat.add(1,C);
+            seatArray.add(seat);
+        }
+    }
+
     public LocalDateTime buildTime(ArrayList<String> time){
         if (time.size() == 5){
             int dYear = Integer.parseInt(time.get(0));
