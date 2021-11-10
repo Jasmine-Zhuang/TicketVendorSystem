@@ -4,11 +4,13 @@ import static org.junit.Assert.*;
 
 public class CustomerManagerTest {
     CustomerManager Ryan;
+
     @Before
     public void setUp() {
         Ryan = new CustomerManager();
     }
-    Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
+
+    Customer Maggie = new Customer("Name1203", "1203", "RyanMaggie");
 
     @Test(timeout = 50)
     public void test_addCustomer() {
@@ -19,7 +21,7 @@ public class CustomerManagerTest {
     @Test(timeout = 50)
     public void test_checkPassword() {
         Ryan.addCustomer(Maggie);
-        assertTrue(Ryan.checkPassword("Name1203","1203"));
+        assertTrue(Ryan.checkPassword("Name1203", "1203"));
     }
 
     @Test(timeout = 50)
@@ -86,6 +88,31 @@ public class CustomerManagerTest {
     }
 
     @Test(timeout = 50)
+    public void test_decrMemberBalance() {
+        Maggie.changeMembership();
+        Ryan.addCustomer(Maggie);
+        assertEquals(0, (int) Ryan.AllMember.showCustomerBalance(Maggie.getUsername()));
+        int new_balance = 2000;
+        Maggie.incrBalance(new_balance);
+        int ticket_price = 300;
+        Ryan.decrMemberBalance(ticket_price, Maggie);
+        assertEquals(1730, (int) Ryan.AllMember.showCustomerBalance(Maggie.getUsername()));
+    }
+
+
+    @Test(timeout = 50)
+    public void test_incrMemberBalance() {
+        Maggie.changeMembership();
+        Ryan.addCustomer(Maggie);
+        assertEquals(0, (int) Ryan.AllMember.showCustomerBalance(Maggie.getUsername()));
+        int new_balance = 2000;
+        Maggie.incrBalance(new_balance);
+        int ticket_price = 300;
+        Ryan.incrMemberBalance(ticket_price, Maggie);
+        assertEquals(2270, (int) Ryan.AllMember.showCustomerBalance(Maggie.getUsername()));
+    }
+
+    @Test(timeout = 50)
     public void test_incrMillage() {
         assertEquals(0, Maggie.getMillage());
         int new_millage = 500;
@@ -113,7 +140,7 @@ public class CustomerManagerTest {
         assertEquals(500, Maggie.getMillage());
         Ryan.changeMembership(Maggie);
         double redeem_point = 5.00;
-        assertEquals(redeem_point, Ryan.getRedeemPoint(Maggie),0);
+        assertEquals(redeem_point, Ryan.getRedeemPoint(Maggie), 0);
     }
 
     @Test(timeout = 50)
@@ -125,15 +152,15 @@ public class CustomerManagerTest {
         assertEquals(500, Maggie.getMillage());
         Ryan.changeMembership(Maggie);
         double redeem_point = 5.00;
-        assertEquals(redeem_point, Maggie.getRedeemPoint(),0);
+        assertEquals(redeem_point, Maggie.getRedeemPoint(), 0);
         int remain_Millage = 400;
         double redeem_points = 1;
-        Ryan.decrMillage(Maggie,redeem_points);
-        assertEquals(remain_Millage, Maggie.getMillage(),0);
+        Ryan.decrMillage(Maggie, redeem_points);
+        assertEquals(remain_Millage, Maggie.getMillage(), 0);
     }
 
     @Test(timeout = 1000)
-    public void Test_ToString(){
+    public void Test_ToString() {
         assertEquals(0, Maggie.getMillage());
         int new_millage = 500;
         Ryan.addCustomer(Maggie);

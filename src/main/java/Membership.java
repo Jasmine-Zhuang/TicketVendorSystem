@@ -13,6 +13,13 @@ public class Membership {
      * @param customer The customer needed to Check current membership status.
      */
     public boolean checkMembership(Customer customer) {
+        if (customer.checkMembership()){
+            if (this.MembershipCustomer.containsKey(customer.getUsername())) {
+                return customer.checkMembership();}
+            else{
+            this.MembershipCustomer.put(customer.getUsername(), customer);
+            return customer.checkMembership();}
+        }
         return customer.checkMembership();
     }
 
@@ -22,6 +29,7 @@ public class Membership {
     public void changeMembership(Customer customer) {
         if (!customer.checkMembership()) {
             customer.changeMembership();
+            this.MembershipCustomer.put(customer.getUsername(), customer);
         }
     }
 
@@ -40,10 +48,10 @@ public class Membership {
      * A method named checkCustomer that takes a String (the name of the customer).
      * Return true if username exists in the nameToCustomer, return false otherwise.
      *
-     * @param customer This customer needed to add to this nameToCustomer.
+     * @param username This customer username needed to check.
      */
-    public boolean checkCustomer(Customer customer) {
-        return MembershipCustomer.containsKey(customer.getUsername());
+    public boolean checkCustomer(String username) {
+        return MembershipCustomer.containsKey(username);
     }
 
     /**
@@ -67,12 +75,12 @@ public class Membership {
      * in nameToCustomer, then return there is no customer exsit.
      * Return true if the name exsit in the nameToCustomer and return the customer information.
      *
-     * @param customer This customer needed to add to this nameToCustomer.
+     * @param username This customer username needed to add to this nameToCustomer.
      * @return int The corresponding customer's balance with this customer's name.
      */
-    public Integer showCustomerBalance(Customer customer) {
-        if (this.MembershipCustomer.containsKey(customer.getUsername())) {
-            return MembershipCustomer.get(customer.getUsername()).getBalance();
+    public Integer showCustomerBalance(String username) {
+        if (this.MembershipCustomer.containsKey(username)) {
+            return MembershipCustomer.get(username).getBalance();
         }
         return null;
     }

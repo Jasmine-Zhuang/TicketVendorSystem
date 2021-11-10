@@ -30,21 +30,21 @@ public class MembershipTest {
     public void test_addCustomer() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        assertTrue(AllMember.checkCustomer(Maggie));
+        assertTrue(AllMember.checkCustomer(Maggie.getUsername()));
     }
 
     @Test(timeout = 50)
     public void test_checkCustomer() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        assertTrue(AllMember.checkCustomer(Maggie));
+        assertTrue(AllMember.checkCustomer(Maggie.getUsername()));
     }
 
     @Test(timeout = 50)
     public void test_showCustomer() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        assertTrue(AllMember.checkCustomer(Maggie));
+        assertTrue(AllMember.checkCustomer(Maggie.getUsername()));
         Customer mm = AllMember.showCustomer(Maggie.getUsername());
         assertEquals(Maggie.getName(), mm.getName());
     }
@@ -53,20 +53,20 @@ public class MembershipTest {
     public void test_showCustomerBalance() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        if (AllMember.showCustomerBalance(Maggie) == (int)AllMember.showCustomerBalance(Maggie)) {
-            assertEquals(0, (int)AllMember.showCustomerBalance(Maggie));
+        if (AllMember.showCustomerBalance(Maggie.getUsername()) == (int)AllMember.showCustomerBalance(Maggie.getUsername())) {
+            assertEquals(0, (int)AllMember.showCustomerBalance(Maggie.getUsername()));
     }}
 
     @Test(timeout = 50)
     public void test_decrMemberBalance() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        assertEquals(0, (int)AllMember.showCustomerBalance(Maggie));
+        assertEquals(0, (int)AllMember.showCustomerBalance(Maggie.getUsername()));
         int new_balance = 2000;
         Maggie.incrBalance(new_balance);
         int ticket_price = 300;
         assertTrue(AllMember.decrMemberBalance(ticket_price, Maggie));
-        assertEquals(1730, (int)AllMember.showCustomerBalance(Maggie));
+        assertEquals(1730, (int)AllMember.showCustomerBalance(Maggie.getUsername()));
     }
 
 
@@ -74,12 +74,12 @@ public class MembershipTest {
     public void test_incrMemberBalance() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        assertEquals(0, (int)AllMember.showCustomerBalance(Maggie));
+        assertEquals(0, (int)AllMember.showCustomerBalance(Maggie.getUsername()));
         int new_balance = 2000;
         Maggie.incrBalance(new_balance);
         int ticket_price = 300;
         AllMember.incrMemberBalance(ticket_price, Maggie);
-        assertEquals(2270, (int)AllMember.showCustomerBalance(Maggie));
+        assertEquals(2270, (int)AllMember.showCustomerBalance(Maggie.getUsername()));
     }
 
     @Test(timeout = 50)
