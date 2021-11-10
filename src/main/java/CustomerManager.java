@@ -2,6 +2,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class CustomerManager{
+
+    Membership AllMember = new Membership();
+
     private final HashMap<String, Customer> nameToCustomer = new LinkedHashMap<>();
     public CustomerManager(){
     }
@@ -12,6 +15,9 @@ public class CustomerManager{
      */
     public void addCustomer(Customer newCustomer) {
         this.nameToCustomer.put(newCustomer.getUsername(), newCustomer);
+        if (newCustomer.checkMembership()){
+            AllMember.addCustomer(newCustomer);
+        }
     }
 
     /** A method named checkCustomer that takes a String (the name of the customer).
@@ -38,6 +44,9 @@ public class CustomerManager{
      * @return Customer The corresponding customer with this customer's name.
      */
     public Customer showCustomer(String username) {
+        if (AllMember.checkCustomer(username)){
+            return AllMember.showCustomer(username);
+        }
         return nameToCustomer.get(username);
     }
 
@@ -50,6 +59,9 @@ public class CustomerManager{
      */
     public int showCustomerBalance(String username)
     {
+        if (AllMember.checkCustomer(username)){
+            AllMember.showCustomerBalance(username);
+        }
         return nameToCustomer.get(username).getBalance();
     }
 
@@ -96,27 +108,49 @@ public class CustomerManager{
     public boolean decrBalance(int balance_update, Customer customer){
         return customer.decrBalance(balance_update);}
 
+    /** Modify this customer's current balance.
+     * @param customer The customer needed to change name.
+     * @param ticket_price The new balance of this customer to be added to this customer's current balance.
+     */
+    public void incrMemberBalance(int ticket_price, Customer customer){
+        if (AllMember.checkCustomer(customer.getUsername())){
+        AllMember.incrMemberBalance(ticket_price,customer);}}
+
+    /** Modify this customer's current balance.
+     * @param customer The customer needed to change name.
+     * @param ticket_price The new balance of this customer to be added to this customer's current balance.
+     */
+    public void decrMemberBalance(int ticket_price, Customer customer){
+        if (AllMember.checkCustomer(customer.getUsername())){
+        AllMember.decrMemberBalance(ticket_price,customer);}}
+
+
     /** Modify this customer's current millage
      * @param customer The customer needed to Modify current millage.
      * @param millage_update The new millage of this customer to be added to this customer's current millage.
      */
     public void incrMillage(int millage_update, Customer customer){
+        if (AllMember.checkCustomer(customer.getUsername())){
         customer.incrMillage(millage_update);}
+        customer.incrMillage(millage_update);
+    }
+
 
     /** Check this customer's current membership status
      * @param customer The customer needed to Check current membership status.
      */
     public boolean checkMembership(Customer customer){
-            return customer.checkMembership();
+            return AllMember.checkMembership(customer);
     }
 
     /**
      * Change the current membership of this customer
      */
     public void changeMembership(Customer customer){
-        if(!customer.checkMembership()){
-            customer.changeMembership();
+        if(!AllMember.checkMembership(customer)){
+            AllMember.changeMembership(customer);
         }
+
     }
 
     /**
@@ -124,20 +158,20 @@ public class CustomerManager{
      */
 
     public double getRedeemPoint(Customer customer){
-        if(customer.checkMembership()){
-            customer.getRedeemPoint();
-            return customer.getRedeemPoint();
+        if(AllMember.checkCustomer(customer.getUsername())){
+            return AllMember.getRedeemPoint(customer);
         }
-        return customer.getRedeemPoint();
+        else{
+        return AllMember.getRedeemPoint(customer);}
     }
 
     /**
-     * Get Reedem Points for this customer
+     * Get Reedem Millage for this customer
      */
 
     public void decrMillage(Customer customer, double redeem_points){
-        if(customer.checkMembership()){
-            customer.decrMillage(redeem_points);
+        if(AllMember.checkCustomer(customer.getUsername())){
+            AllMember.decrMillage(customer, redeem_points);
         }
     }
 
