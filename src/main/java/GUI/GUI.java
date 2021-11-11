@@ -23,7 +23,7 @@ public class GUI {
         label.setVerticalTextPosition(JLabel.TOP);//top,center,bottom
         label.setForeground(Color.black);// or new Color(rgb, or hex)
         label.setFont(new Font("MV Boli", Font.PLAIN,20));//font name, font style, and size
-        label.setIconTextGap(-10);// set gap of text to image
+        /*label.setIconTextGap(-10);// set gap of text to image*/
         label.setBackground(Color.ORANGE);// set background color of label
         label.setOpaque(true);
         label.setBorder(border);// set border for the label
@@ -54,8 +54,6 @@ public class GUI {
         /*frame.pack();
         // adjust sizes of the components automatically as you adjust the size of the frame;
         //if it's used, delete label.setBounds, frame.setLayout, frame.setSize*/
-
-
 
     }
 }
