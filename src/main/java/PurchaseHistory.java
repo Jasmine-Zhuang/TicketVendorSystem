@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class PurchaseHistory {
 
     private final Customer phCustomer;
-    private final ArrayList<Ticket> purchasedTickets;
-    private final ArrayList<RewardsItem> itemRedeemed;
+    private ArrayList<Ticket> purchasedTickets;
+    private ArrayList<RewardsItem> itemRedeemed;
 
 
     /** Construct a PurchaseHistory, giving them the customer it belongs to, an empty list of purchased tickets and

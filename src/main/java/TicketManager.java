@@ -11,7 +11,7 @@ import java.util.List;
 public class TicketManager {
 
 
-    private final ArrayList<Ticket> soldTickets;
+    private ArrayList<Ticket> soldTickets;
 
     /** Construct a TicketManager, giving them an empty list of soldTickets
      */

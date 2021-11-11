@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class PHManager {
 
-    private final HashMap<Customer, PurchaseHistory> phMap;
+    private HashMap<Customer, PurchaseHistory> phMap;
 
 
     /** Construct an empty hashmap of purchase history.
