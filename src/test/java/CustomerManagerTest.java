@@ -175,6 +175,22 @@ public class CustomerManagerTest {
         assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie), 0);
     }
 
+    @Test(timeout = 50)
+    public void test_minusRedeemPoint() {
+        assertEquals(0, Maggie.getMileage());
+        int new_millage = 500;
+        Ryan.addCustomer(Maggie);
+        Ryan.incrMillage(new_millage, Maggie);
+        assertEquals(500, Maggie.getMileage());
+        Ryan.changeMembership(Maggie);
+        double redeem_point = 5.00;
+        assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie), 0);
+        assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie),0);
+        assertEquals(redeem_point, Ryan.getRedeem_points(Maggie),0);
+        Integer redeemed_point = 1;
+        Ryan.minusRedeemPoint(Maggie,redeemed_point);
+        assertEquals(4, Ryan.getRedeem_points(Maggie),0);
+    }
 
     @Test(timeout = 50)
     public void test_getRedeem_points() {
