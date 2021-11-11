@@ -9,7 +9,7 @@ public class Customer {
     private int balance;
     private int millage;
     private boolean membership;
-    private double redeem_points;
+    private Integer redeem_points;
 
     /**
      * Create one Customer giving it the given username, password, name
@@ -140,9 +140,9 @@ public class Customer {
     /**
      * Get Reedem Points for this customer
      */
-    public double getRedeemPoint(){
+    public Integer getRedeemPoint(){
         if(this.membership){
-            this.redeem_points = ((double) this.millage/(double) 100);
+            this.redeem_points = ((Integer) this.millage/(Integer) 100);
             return this.redeem_points;
         }
         return this.redeem_points;

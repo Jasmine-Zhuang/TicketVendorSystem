@@ -141,16 +141,7 @@ public class MembershipTest {
                         Balance: 0
                         Millage: 500
                         Membership statues: true
-                        Redeemed points: 0.0""";
+                        Redeemed points: 0""";
         assertEquals(a, AllMember.displayInfo(Maggie));
     }
-
-
-
-
-
-
-
-
-
 }
