@@ -1,4 +1,5 @@
-package Ticket;/*
+package Ticket;
+/*
 This is the class that manages all sold tickets.
  */
 
@@ -64,8 +65,8 @@ public class TicketManager {
 
     public Ticket generateTicket(String flightNumber, String d_city, String a_city, LocalDateTime d_time,
                                  LocalDateTime a_time, String b_gate, String seat_num, int price,
-                                 String p_name, String p_user) {
-        return new Ticket(flightNumber, d_city, a_city, d_time, a_time, b_gate, seat_num, price, p_name, p_user);
+                                 String p_name, String p_user, String Class_tp) {
+        return new Ticket(flightNumber, d_city, a_city, d_time, a_time, b_gate, seat_num, price, p_name, p_user, Class_tp);
 
     }
 

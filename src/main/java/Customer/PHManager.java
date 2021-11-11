@@ -32,7 +32,7 @@ public class PHManager {
      */
     public void updateHistory (PurchaseHistory purchaseHistory) {
         Customer customer = purchaseHistory.getOwner();
-        phMap.put(customer, purchaseHistory);
+        this.phMap.put(customer, purchaseHistory);
     }
 
 }
