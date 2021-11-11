@@ -1,5 +1,7 @@
+package Ticket;
 import org.junit.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
@@ -36,7 +38,7 @@ public class TicketTest {
         LocalDateTime departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
         LocalDateTime arrivalTime =  LocalDateTime.of(aYear,aMonth,aDay,aHour,aMinute);
         t = new Ticket("A00100", "Beijing", "Toronto", departureTime, arrivalTime,
-                "C4", "15P", 1500, "James", "J52000");
+                "C4", "15P", 1500, "James", "J52000", "First");
         emp = new Ticket();
     }
 
@@ -55,6 +57,7 @@ public class TicketTest {
         assertEquals("James",t.getPassenger_name());
         assertEquals("J52000", t.getPassenger_username());
         assertEquals("A00100,15P", t.getTicket_id());
+        assertEquals("First", t.getTicket_class());
     }
 
     @Test(timeout = 100)
@@ -70,6 +73,29 @@ public class TicketTest {
         assertNull(emp.getPassenger_name());
         assertNull(emp.getPassenger_username());
         assertNull(emp.getTicket_id());
+    }
+
+    @Test(timeout = 500)
+    public void Test_toString() {
+        DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm:ss");
+        String formattedArrivalTime = LocalDateTime.of(2021,12,1,
+                10,45,0).format(FormatObj);
+        String formattedDepartureTime = LocalDateTime.of(2021,12,1,
+                8,50,0).format(FormatObj);
+        String Expected = "--------Air Ticket-------- \n" +
+                "Name of Passenger: James" +
+                "\nFlight: A00100  Seat: 15P  Class Type: First" +
+                "\nFrom Beijing to Toronto" +
+                "\nDeparture time: "+formattedDepartureTime+
+                "\nEstimate arrival time: "+formattedArrivalTime+
+                "\nBoarding Gate: C4"+
+                "\nPrice: $1500"+
+                "\nBoarding time will be one hour before departure."+
+                "\nAnd gate closes 20 minutes before departure."+
+                "\nHave a nice trip!"+
+                "\n-----------------------";
+        assertEquals(Expected, t.toString());
+
     }
 
 
