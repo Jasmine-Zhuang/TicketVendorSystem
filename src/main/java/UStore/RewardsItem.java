@@ -60,5 +60,9 @@ public class RewardsItem {
         return "Fail to redeem since your points are insufficient.";
 
     }
+    @Override
+    public String toString() {
+        return this.getName() +":"+ this.getPoints()+" is needed to redeem.";
+    }
 
 }
