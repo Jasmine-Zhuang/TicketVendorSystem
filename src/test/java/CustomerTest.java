@@ -132,6 +132,12 @@ public class CustomerTest {
     }
 
     @Test(timeout = 50)
+    public void test_getPurchase_History() {
+        PurchaseHistory ph = Maggie.getPurchaseHistory();
+        assertEquals(Maggie, ph.getOwner());
+    }
+
+    @Test(timeout = 50)
     public void test_calculateRedeemPoint() {
         Maggie.changeMembership();
         int new_Millage = 525;
