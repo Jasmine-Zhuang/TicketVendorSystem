@@ -2,8 +2,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -31,6 +33,8 @@ public class TicketManagerTest {
             "5B", 100, "Taylor", "taylorsusername");
     Ticket t2 = new Ticket("1234", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
             "5B", 100, "Taylor", "taylorsusername");
+    Ticket t3 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
+            "5B", 100, "Mark", "mark123");
 
     @Test(timeout = 200)
     public void TestEmptyConstructor() {
@@ -61,24 +65,39 @@ public class TicketManagerTest {
         String exp2 = "Sorry! Please ensure all the information is correct, and try again later!";
         assertEquals(exp2, tm.bookTickets(t1));
 
-
     }
 
     @Test(timeout = 200)
     public void TestCancelTickets() {
         tm.bookTickets(t1);
-        String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() +
-                "! The details are:" + " \n" + t1;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() + " on " +
+                dtf.format(now) +
+                ". The details are:" + " \n" + t1;
         assertEquals(exp1, tm.cancelTickets(t1));
         String exp2 = "You have not booked this flight yet, so it cannot be canceled.";
         assertEquals(exp2, tm.cancelTickets(t2));
     }
-/*
+
     @Test(timeout = 500)
     public void TestGenerateTicket(){
         Ticket new_t = tm.generateTicket("1234", "Toronto", "Vancouver",
                 departureTime, arrivalTime, "A1", "5B", 100, "Taylor",
                 "taylorsusername");
         assertEquals(t1, new_t);
-    }*/
+    }
+
+    @Test(timeout = 500)
+    public void TestTicketDisplay() {
+        tm.bookTickets(t1);
+        tm.bookTickets(t2);
+        tm.bookTickets(t3);
+        List<Ticket> taylorsTicketInfo = tm.ticketDisplay("taylorsusername");
+        List<Ticket> res = new ArrayList<>(Arrays.asList(t1, t2));
+        assertEquals(res, taylorsTicketInfo);
+        List<Ticket> marksTicketInfo = tm.ticketDisplay("mark123");
+        List<Ticket> res2 = new ArrayList<>(List.of(t3));
+        assertEquals(res2, marksTicketInfo);
+    }
 }
