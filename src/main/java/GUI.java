@@ -1,4 +1,3 @@
-package GUI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -7,6 +6,7 @@ import java.awt.*;
 
 public class GUI {
     public static void main(String[] args){
+
         //enable frame icon display
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -40,9 +40,9 @@ public class GUI {
 
         //frame setup
         JFrame frame = new JFrame("UTicket");
-        /*ImageIcon image = new ImageIcon("flight_ticket.png");//input icon file name
+       /* ImageIcon image = new ImageIcon("flight_ticket.png");//input icon file name
         frame.setIconImage(image.getImage());*/
-        Image icon = Toolkit.getDefaultToolkit().getImage("src/main/java/GUI/flight_ticket.png");
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/main/java/flight_ticket.png");
         frame.setIconImage(icon);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -54,8 +54,6 @@ public class GUI {
         /*frame.pack();
         // adjust sizes of the components automatically as you adjust the size of the frame;
         //if it's used, delete label.setBounds, frame.setLayout, frame.setSize*/
-
-
 
     }
 }
