@@ -51,6 +51,7 @@ public class RewardsItem {
             RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());
             rewardsItem.setRedeemed(true);
             PurchaseHistory ph = customer.getPurchaseHistory();
+
             if(ph.addItemRedeemed(rewardsItem)){
                 customer.minusRedeemPoint(rewardsItem.getPoints());
                 return "A "+rewardsItem.getName()+ "is redeemed successfully. You can see it on your purchase history.";

@@ -18,7 +18,6 @@ public class RewardsItemTest {
 
     @Test(timeout = 50)
     public void TestRedeemItem(){
-
         String new_username = "Haaa";
         String new_password = "1203";
         String new_name = "MXY";
