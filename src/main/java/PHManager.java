@@ -15,6 +15,12 @@ public class PHManager {
         this.phMap = new HashMap<>();
     }
 
+    /** A getter method.
+     */
+    public HashMap<Customer, PurchaseHistory> getPhMap() {
+        return phMap;
+    }
+
     /**
      * If a customer is not in the map, add it to this map. Update the purchase history if the customer already exists.
      * @param purchaseHistory A PurchaseHistory that is associated with the given customer.
