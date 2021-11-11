@@ -103,7 +103,7 @@ public class MembershipTest {
 
 
     @Test(timeout = 50)
-    public void test_getRedeemPoint() {
+    public void test_calculateRedeemPoint() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
         assertEquals(0, Maggie.getMileage());
@@ -113,8 +113,43 @@ public class MembershipTest {
         assertEquals(500, Maggie.getMileage());
         AllMember.changeMembership(Maggie);
         double redeem_point = 5.00;
-        assertEquals(redeem_point, AllMember.getRedeemPoint(Maggie),0);
+        assertEquals(redeem_point, AllMember.calculateRedeemPoint(Maggie),0);
     }
+
+
+    @Test(timeout = 50)
+    public void test_getRedeem_points() {
+        Maggie.changeMembership();
+        AllMember.addCustomer(Maggie);
+        assertEquals(0, Maggie.getMileage());
+        int new_millage = 500;
+        AllMember.addCustomer(Maggie);
+        AllMember.incrMillage(new_millage, Maggie);
+        assertEquals(500, Maggie.getMileage());
+        AllMember.changeMembership(Maggie);
+        double redeem_point = 5.00;
+        assertEquals(redeem_point, AllMember.calculateRedeemPoint(Maggie),0);
+        assertEquals(redeem_point, AllMember.getRedeem_points(Maggie),0);
+    }
+
+    @Test(timeout = 50)
+    public void test_minusRedeemPoint() {
+        Maggie.changeMembership();
+        AllMember.addCustomer(Maggie);
+        assertEquals(0, Maggie.getMileage());
+        int new_millage = 500;
+        AllMember.addCustomer(Maggie);
+        AllMember.incrMillage(new_millage, Maggie);
+        assertEquals(500, Maggie.getMileage());
+        AllMember.changeMembership(Maggie);
+        double redeem_point = 5.00;
+        assertEquals(redeem_point, AllMember.calculateRedeemPoint(Maggie),0);
+        assertEquals(redeem_point, AllMember.getRedeem_points(Maggie),0);
+        Integer redeemed_point = 1;
+        AllMember.minusRedeemPoint(Maggie,redeemed_point);
+        assertEquals(4, AllMember.getRedeem_points(Maggie),0);
+    }
+
     @Test(timeout = 50)
     public void test_decrMillage() {
         Maggie.changeMembership();
@@ -126,7 +161,7 @@ public class MembershipTest {
         assertEquals(500, Maggie.getMileage());
         AllMember.changeMembership(Maggie);
         double redeem_point = 5.00;
-        assertEquals(redeem_point, Maggie.getRedeemPoint(),0);
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
         int remain_Millage = 400;
         double redeem_points = 1;
         AllMember.decrMillage(Maggie,redeem_points);

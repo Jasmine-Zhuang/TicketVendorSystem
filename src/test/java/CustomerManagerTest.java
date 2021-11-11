@@ -150,7 +150,7 @@ public class CustomerManagerTest {
     }
 
     @Test(timeout = 50)
-    public void test_getRedeemPoint() {
+    public void test_calculateRedeemPoint() {
         assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         Ryan.addCustomer(Maggie);
@@ -158,8 +158,23 @@ public class CustomerManagerTest {
         assertEquals(500, Maggie.getMileage());
         Ryan.changeMembership(Maggie);
         double redeem_point = 5.00;
-        assertEquals(redeem_point, Ryan.getRedeemPoint(Maggie), 0);
+        assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie), 0);
     }
+
+
+    @Test(timeout = 50)
+    public void test_getRedeem_points() {
+        assertEquals(0, Maggie.getMileage());
+        int new_millage = 500;
+        Ryan.addCustomer(Maggie);
+        Ryan.incrMillage(new_millage, Maggie);
+        assertEquals(500, Maggie.getMileage());
+        Ryan.changeMembership(Maggie);
+        double redeem_point = 5.00;
+        Ryan.calculateRedeemPoint(Maggie);
+        assertEquals(redeem_point, Ryan.getRedeem_points(Maggie), 0);
+    }
+
 
     @Test(timeout = 50)
     public void test_decrMillage() {
@@ -170,7 +185,7 @@ public class CustomerManagerTest {
         assertEquals(500, Maggie.getMileage());
         Ryan.changeMembership(Maggie);
         double redeem_point = 5.00;
-        assertEquals(redeem_point, Maggie.getRedeemPoint(), 0);
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(), 0);
         int remain_Millage = 400;
         double redeem_points = 1;
         Ryan.decrMillage(Maggie, redeem_points);

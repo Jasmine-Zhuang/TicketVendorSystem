@@ -61,6 +61,13 @@ public class Customer {
         return this.mileage;
     }
 
+    /**
+     * The getter function of customer's mileage.
+     * @return return the mileage
+     */
+    public Integer getRedeem_points(){
+        return this.redeem_points;
+    }
 
     /**
      * Return whether the password parameter matches this user's password.
@@ -162,14 +169,23 @@ public class Customer {
     }
 
     /**
-     * Get Reedem Points for this customer
+     * Get Redeem Points for this customer
      */
-    public Integer getRedeemPoint(){
+    public Integer calculateRedeemPoint(){
         if(this.membership){
             this.redeem_points = ((Integer) this.mileage /(Integer) 100);
             return this.redeem_points;
         }
         return this.redeem_points;
+    }
+
+    /**
+     * Get Redeem Points for this customer
+     */
+    public void minusRedeemPoint(Integer redeem_points){
+        if(this.membership){
+            this.redeem_points -= redeem_points;
+        }
     }
 
     /**

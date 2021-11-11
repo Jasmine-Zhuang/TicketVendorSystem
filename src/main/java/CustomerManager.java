@@ -175,16 +175,30 @@ public class CustomerManager{
      * Get Reedem Points for this customer
      */
 
-    public Integer getRedeemPoint(Customer customer){
+    public Integer getRedeem_points(Customer customer){
         if(AllMember.checkCustomer(customer.getUsername())){
-            return AllMember.getRedeemPoint(customer);
+            return AllMember.getRedeem_points(customer);
         }
         else{
-        return AllMember.getRedeemPoint(customer);}
+        return AllMember.getRedeem_points(customer);}
     }
 
+
     /**
-     * Get Reedem Millage for this customer
+     * Get Reedem Points for this customer
+     */
+
+    public Integer calculateRedeemPoint(Customer customer){
+        if(AllMember.checkCustomer(customer.getUsername())){
+            return AllMember.calculateRedeemPoint(customer);
+        }
+        else{
+            return AllMember.calculateRedeemPoint(customer);}
+    }
+
+
+    /**
+     * Get Redeem Millage for this customer
      */
 
     public void decrMillage(Customer customer, double redeem_points){
