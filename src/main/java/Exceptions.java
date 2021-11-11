@@ -20,6 +20,10 @@ public class Exceptions {
 
     public final static String INVALID_AMOUNT = "Please enter a valid integer between 1 and 1000000.";
     public final static String INSUFFICIENT_BALANCE = "Insufficient balance. Please load first.";
+    
+    // error messages associated with point redemption.
+    
+    public final static String INSUFFICIENT_POINTS = "Insufficient points to redeem."
 
     // error messages associated with selecting seats.
 
