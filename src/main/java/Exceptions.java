@@ -23,7 +23,7 @@ public class Exceptions {
     
     // error messages associated with point redemption.
     
-    public final static String INSUFFICIENT_POINTS = "Insufficient points to redeem."
+    public final static String INSUFFICIENT_POINTS = "Insufficient points to redeem.";
 
     // error messages associated with selecting seats.
 
