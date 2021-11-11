@@ -36,7 +36,7 @@ public class PurchaseHistory {
         return itemRedeemed;
     }
 
-    public Customer getOwner() { return phCustomer};
+    public Customer getOwner() { return phCustomer; }
 
     public void addPurchasedTickets (Ticket ticket) {
         purchasedTickets.add(ticket);
