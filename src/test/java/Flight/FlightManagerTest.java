@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 import static org.junit.Assert.assertEquals;
@@ -44,42 +45,35 @@ public class FlightManagerTest {
         seatNumArray.add("5B");
 
         fm = new FlightManager();
-        fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime,aTime,
-                10, 10, 3600,"10A", seatNumArray);
+        fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime, aTime,
+                10, 10, 3600, "10A", seatNumArray);
     }
 
     @Test(timeout = 500)
-    public void TestGetFlightByRoute(){
+    public void TestGetFlightByRoute() {
         String des = "Vancouver";
         String dep = "Toronto";
         ArrayList<String> flights = new ArrayList<>();
         flights.add("CZ311");
-        assertEquals(fm.getFlightByRoute(dep,des), flights);
+        assertEquals(fm.getFlightByRoute(dep, des), flights);
     }
 
     @Test(timeout = 500)
-    public void TestReserveSeat(){
+    public void TestReserveSeat() {
         String seat_num = "1A";
-        String flight_num = "CZ311" ;
-        String s_return = "You have successfully selected this seat "+ seat_num +" of flight " +  flight_num;
+        String flight_num = "CZ311";
+        String s_return = "You have successfully selected this seat " + seat_num + " of flight " + flight_num;
         String f_return = "This seat has been reserved or does not exist, please select another seat.";
         assertEquals(s_return, fm.reserveSeat("CZ311", "1A"));
         assertEquals(f_return, fm.reserveSeat("CZ311", "1G"));
     }
 
     @Test(timeout = 500)
-    public void TestPrintAvailableSeat(){
-        ArrayList<String> seatNumArray = new ArrayList<>();
-        seatNumArray.add("1A");
-        seatNumArray.add("1B");
-        seatNumArray.add("2A");
-        seatNumArray.add("2B");
-        seatNumArray.add("3A");
-        seatNumArray.add("3B");
-        seatNumArray.add("4A");
-        seatNumArray.add("4B");
-        seatNumArray.add("5A");
-        seatNumArray.add("5B");
+    public void TestPrintAvailableSeat() {
+        ArrayList<ArrayList<String>> seatNumArray = new ArrayList<>();
+
+
         assertEquals(seatNumArray, fm.printAvailableSeat("CZ311"));
     }
+
 }
