@@ -44,6 +44,7 @@ public class RewardsItemTest {
         String new_name = "MXY";
         Customer C = new Customer(new_username,new_password,new_name);
         C.incrMillage(70000);
+        C.changeMembership();
         C.calculateRedeemPoint();
         assertEquals((int)C.getRedeem_points(),700);
         assertEquals(mug.redeemItem(C), "Fail to redeem since your points are insufficient.");
@@ -51,7 +52,7 @@ public class RewardsItemTest {
         C.incrMillage(10000);
         C.calculateRedeemPoint();
         assertEquals((int)C.getRedeem_points(),800);
-        assertEquals(mug.redeemItem(C),"A Mug is redeemed successfully. You can see it on your purchase history now.");
+        assertEquals(mug.redeemItem(C),"A Mug is redeemed successfully. You can see it on your purchase history.");
         assertEquals((int)C.getRedeem_points(),0);
 
         PurchaseHistory ph = C.getPurchaseHistory();
