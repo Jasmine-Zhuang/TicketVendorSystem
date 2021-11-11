@@ -1,7 +1,9 @@
 package Customer;
 
-import Customer.Customer;
+import UStore.RewardsItem;
 import org.junit.*;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -33,7 +35,12 @@ public class CustomerTest {
 
     @Test(timeout = 50)
     public void test_getMillage() {
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
+    }
+
+    @Test(timeout = 50)
+    public void getRedeem_points() {
+        assertEquals((Integer)0, Maggie.getRedeem_points());
     }
 
     @Test(timeout = 50)
@@ -90,10 +97,10 @@ public class CustomerTest {
 
     @Test(timeout = 50)
     public void test_incrMillage() {
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_Millage = 525;
         Maggie.incrMillage(new_Millage);
-        assertEquals(new_Millage, Maggie.getMillage());
+        assertEquals(new_Millage, Maggie.getMileage());
     }
 
     @Test(timeout = 50)
@@ -102,19 +109,89 @@ public class CustomerTest {
     }
 
     @Test(timeout = 50)
+    public void test_checkMembershiplevel() {
+        assertEquals(0, Maggie.checkMembershiplevel());
+    }
+
+    @Test(timeout = 50)
     public void test_changeMembership() {
         Maggie.changeMembership();
         assertTrue(Maggie.checkMembership());
+    }
+
+    @Test(timeout = 50)
+    public void test_changeMembershiplevel() {
+        Maggie.changeMembership();
+        Maggie.changeMembershiplevel();
+        Maggie.incrMillage(900);
+        assertEquals(1, Maggie.checkMembershiplevel());
+    }
+
+    @Test(timeout = 50)
+    public void test_getRedeemPoint() {
+        Maggie.changeMembership();
+        int new_Millage = 525;
+        Maggie.incrMillage(new_Millage);
+        double redeem_point = 5.0;
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
+    }
+
+    @Test(timeout = 50)
+    public void test_getPurchase_History() {
+        RewardsItem mug = new RewardsItem("Mug",800);
+        Maggie.getPurchaseHistory().addItemRedeemed(mug);
+        PurchaseHistory ph = Maggie.getPurchaseHistory();
+        assertEquals(Maggie, ph.getOwner());
+        ArrayList<RewardsItem> item_list = new ArrayList<>();
+        item_list.add(mug);
+        assertEquals(Maggie.getPurchaseHistory().getItemRedeemed(), item_list);
+    }
+
+    @Test(timeout = 50)
+    public void test_calculateRedeemPoint() {
+        Maggie.changeMembership();
+        int new_Millage = 525;
+        Maggie.incrMillage(new_Millage);
+        double redeem_point = 5.0;
+        Maggie.calculateRedeemPoint();
+        assertEquals(redeem_point, Maggie.getRedeem_points(),0);
+    }
+
+    @Test(timeout = 50)
+    public void test_minusRedeemPoint() {
+        Maggie.changeMembership();
+        int new_Millage = 525;
+        Maggie.incrMillage(new_Millage);
+        double redeem_point = 5.0;
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
+        Integer redeemed_points = 1;
+        Maggie.minusRedeemPoint(redeemed_points);
+        assertEquals(4, Maggie.getRedeem_points(),0);
+    }
+
+    @Test(timeout = 50)
+    public void test_decrMillage() {
+        Maggie.changeMembership();
+        int new_Millage = 525;
+        Maggie.incrMillage(new_Millage);
+        double redeem_point = 5.0;
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
+        int remain_Millage = 425;
+        double redeem_points = 1;
+        Maggie.decrMillage(redeem_points);
+        assertEquals(remain_Millage, Maggie.getMileage(),0);
     }
 
     @Test(timeout = 1000)
     public void Test_ToString(){
         String a =
                 "Username: Happy1203\n" +
-                "Name: MaggieZhang\n" +
-                "Balance: 0\n" +
-                "Millage: 0\n" +
-                "Membership statues: false";
+                        "Name: MaggieZhang\n" +
+                        "Balance: 0\n" +
+                        "Millage: 0\n" +
+                        "Membership statues: false\n" +
+                        "Membership level: 0\n" +
+                        "Redeemed points: 0";
         assertEquals(a, Maggie.toString());
     }
 }

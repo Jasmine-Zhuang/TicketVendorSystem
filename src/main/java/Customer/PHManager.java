@@ -3,17 +3,27 @@ package Customer;
 This class contains a map of purchase history of all customers regarding tickets and redeemed items.
  */
 
+/*
+This class contains a map of purchase history of all customers regarding tickets and redeemed items.
+ */
+
 import java.util.HashMap;
 
 public class PHManager {
 
-    private final HashMap<Customer, PurchaseHistory> phMap;
+    private HashMap<Customer, PurchaseHistory> phMap;
 
 
     /** Construct an empty hashmap of purchase history.
      */
     public PHManager() {
         this.phMap = new HashMap<>();
+    }
+
+    /** A getter method.
+     */
+    public HashMap<Customer, PurchaseHistory> getPhMap() {
+        return this.phMap;
     }
 
     /**

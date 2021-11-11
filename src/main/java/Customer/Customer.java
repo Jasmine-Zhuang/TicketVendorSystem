@@ -1,7 +1,4 @@
 package Customer;
-/**
- * Represents a customer in the system.
- */
 import java.util.HashMap;
 
 /**
@@ -16,7 +13,7 @@ public class Customer {
     private boolean membership;
     private int membership_level;
     private Integer redeem_points;
-    private PurchaseHistory purchase_history;
+    private final PurchaseHistory purchase_history;
 
     /**
      * Create one Customer giving it the given username, password, name
@@ -163,6 +160,7 @@ public class Customer {
     public void changeMembership(){
         if(!this.membership){
             this.membership = true;
+            this.changeMembershiplevel();
         }
     }
 
@@ -215,5 +213,4 @@ public class Customer {
                 "\nMembership statues: " + this.membership+
                 "\nMembership level: " + this.membership_level+
                 "\nRedeemed points: " + this.redeem_points;
-    }
-}
+    }}

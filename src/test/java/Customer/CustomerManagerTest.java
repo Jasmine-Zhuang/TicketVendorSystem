@@ -1,18 +1,21 @@
 package Customer;
-
-import Customer.Customer;
-import Customer.CustomerManager;
+import UStore.RewardsItem;
 import org.junit.*;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
+
 public class CustomerManagerTest {
     CustomerManager Ryan;
+
     @Before
     public void setUp() {
         Ryan = new CustomerManager();
     }
-    Customer Maggie = new Customer("Name1203","1203", "RyanMaggie");
+
+    Customer Maggie = new Customer("Name1203", "1203", "RyanMaggie");
 
     @Test(timeout = 50)
     public void test_addCustomer() {
@@ -23,7 +26,7 @@ public class CustomerManagerTest {
     @Test(timeout = 50)
     public void test_checkPassword() {
         Ryan.addCustomer(Maggie);
-        assertTrue(Ryan.checkPassword("Name1203","1203"));
+        assertTrue(Ryan.checkPassword("Name1203", "1203"));
     }
 
     @Test(timeout = 50)
@@ -36,6 +39,18 @@ public class CustomerManagerTest {
     public void test_showCustomerBalance() {
         Ryan.addCustomer(Maggie);
         assertEquals(0, Ryan.showCustomerBalance("Name1203"));
+    }
+
+    @Test(timeout = 50)
+    public void test_getPurchase_History() {
+        Ryan.addCustomer(Maggie);
+        RewardsItem mug = new RewardsItem("Mug",800);
+        Maggie.getPurchaseHistory().addItemRedeemed(mug);
+        PurchaseHistory ph = Ryan.getPurchaseHistory(Maggie);
+        assertEquals(Maggie, ph.getOwner());
+        ArrayList<RewardsItem> item_list = new ArrayList<>();
+        item_list.add(mug);
+        assertEquals(Ryan.getPurchaseHistory(Maggie).getItemRedeemed(), item_list);
     }
 
     @Test(timeout = 50)
@@ -90,20 +105,141 @@ public class CustomerManagerTest {
     }
 
     @Test(timeout = 50)
-    public void test_updateMillage() {
-        assertEquals(0, Maggie.getMillage());
+    public void test_decrMemberBalance() {
+        Maggie.changeMembership();
+        Ryan.addCustomer(Maggie);
+        assertEquals(0, (int) Ryan.AllMember.showCustomerBalance(Maggie.getUsername()));
+        int new_balance = 2000;
+        Maggie.incrBalance(new_balance);
+        int ticket_price = 300;
+        Ryan.decrMemberBalance(ticket_price, Maggie);
+        assertEquals(1730, (int) Ryan.AllMember.showCustomerBalance(Maggie.getUsername()));
+    }
+
+
+    @Test(timeout = 50)
+    public void test_incrMemberBalance() {
+        Maggie.changeMembership();
+        Ryan.addCustomer(Maggie);
+        assertEquals(0, (int) Ryan.AllMember.showCustomerBalance(Maggie.getUsername()));
+        int new_balance = 2000;
+        Maggie.incrBalance(new_balance);
+        int ticket_price = 300;
+        Ryan.incrMemberBalance(ticket_price, Maggie);
+        assertEquals(2270, (int) Ryan.AllMember.showCustomerBalance(Maggie.getUsername()));
+    }
+
+    @Test(timeout = 50)
+    public void test_incrMillage() {
+        assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         Ryan.addCustomer(Maggie);
-        Ryan.updateMillage(new_millage, Maggie);
-        assertEquals(500, Maggie.getMillage());
+        Ryan.incrMillage(new_millage, Maggie);
+        assertEquals(500, Maggie.getMileage());
     }
 
     @Test(timeout = 50)
     public void test_checkMembership() {
         assertFalse(Maggie.checkMembership());
         Ryan.addCustomer(Maggie);
-        Ryan.checkMembership(Maggie);
-        assertTrue(Maggie.checkMembership());
+        assertFalse(Ryan.checkMembership(Maggie));
+        Ryan.changeMembership(Maggie);
+        assertTrue(Ryan.checkMembership(Maggie));
     }
 
+    @Test(timeout = 50)
+    public void test_checkMembershiplevel() {
+        assertFalse(Maggie.checkMembership());
+        Ryan.changeMembership(Maggie);
+        Ryan.changeMembershiplevel(Maggie);
+        Ryan.addCustomer(Maggie);
+        assertEquals(1, Ryan.checkMembershiplevel(Maggie));
+    }
+
+
+    @Test(timeout = 50)
+    public void test_changeMembershiplevel() {
+        assertFalse(Maggie.checkMembership());
+        Ryan.changeMembership(Maggie);
+        Ryan.changeMembershiplevel(Maggie);
+        Ryan.addCustomer(Maggie);
+        assertEquals(1, Ryan.checkMembershiplevel(Maggie));
+    }
+
+    @Test(timeout = 50)
+    public void test_calculateRedeemPoint() {
+        assertEquals(0, Maggie.getMileage());
+        int new_millage = 500;
+        Ryan.addCustomer(Maggie);
+        Ryan.incrMillage(new_millage, Maggie);
+        assertEquals(500, Maggie.getMileage());
+        Ryan.changeMembership(Maggie);
+        double redeem_point = 5.00;
+        assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie), 0);
+    }
+
+    @Test(timeout = 50)
+    public void test_minusRedeemPoint() {
+        assertEquals(0, Maggie.getMileage());
+        int new_millage = 500;
+        Ryan.addCustomer(Maggie);
+        Ryan.incrMillage(new_millage, Maggie);
+        assertEquals(500, Maggie.getMileage());
+        Ryan.changeMembership(Maggie);
+        double redeem_point = 5.00;
+        assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie), 0);
+        assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie),0);
+        assertEquals(redeem_point, Ryan.getRedeem_points(Maggie),0);
+        Integer redeemed_point = 1;
+        Ryan.minusRedeemPoint(Maggie,redeemed_point);
+        assertEquals(4, Ryan.getRedeem_points(Maggie),0);
+    }
+
+    @Test(timeout = 50)
+    public void test_getRedeem_points() {
+        assertEquals(0, Maggie.getMileage());
+        int new_millage = 500;
+        Ryan.addCustomer(Maggie);
+        Ryan.incrMillage(new_millage, Maggie);
+        assertEquals(500, Maggie.getMileage());
+        Ryan.changeMembership(Maggie);
+        double redeem_point = 5.00;
+        Ryan.calculateRedeemPoint(Maggie);
+        assertEquals(redeem_point, Ryan.getRedeem_points(Maggie), 0);
+    }
+
+
+    @Test(timeout = 50)
+    public void test_decrMillage() {
+        assertEquals(0, Maggie.getMileage());
+        int new_millage = 500;
+        Ryan.addCustomer(Maggie);
+        Ryan.incrMillage(new_millage, Maggie);
+        assertEquals(500, Maggie.getMileage());
+        Ryan.changeMembership(Maggie);
+        double redeem_point = 5.00;
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(), 0);
+        int remain_Millage = 400;
+        double redeem_points = 1;
+        Ryan.decrMillage(Maggie, redeem_points);
+        assertEquals(remain_Millage, Maggie.getMileage(), 0);
+    }
+
+    @Test(timeout = 1000)
+    public void Test_ToString() {
+        assertEquals(0, Maggie.getMileage());
+        int new_millage = 500;
+        Ryan.addCustomer(Maggie);
+        Ryan.incrMillage(new_millage, Maggie);
+        Ryan.displayInfo(Maggie);
+        String a =
+                "Username: Name1203\n" +
+                        "Name: RyanMaggie\n" +
+                        "Balance: 0\n" +
+                        "Millage: 500\n" +
+                        "Membership statues: false\n" +
+                        "Membership level: 0\n" +
+                        "Redeemed points: 0";
+        assertEquals(a, Ryan.displayInfo(Maggie));
+    }
 }

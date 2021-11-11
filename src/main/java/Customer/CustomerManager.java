@@ -209,6 +209,15 @@ public class CustomerManager{
             return AllMember.calculateRedeemPoint(customer);}
     }
 
+    /**
+     * Get Reedem Points for this customer
+     */
+
+    public void minusRedeemPoint(Customer customer, Integer redeem_points){
+        if(AllMember.checkCustomer(customer.getUsername())){
+            AllMember.minusRedeemPoint(customer, redeem_points);
+        }
+    }
 
     /**
      * Get Redeem Millage for this customer

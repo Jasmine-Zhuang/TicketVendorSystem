@@ -1,7 +1,5 @@
 package Ticket;
 
-import Ticket.Ticket;
-import Ticket.TicketManager;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,11 +32,11 @@ public class TicketManagerTest {
     LocalDateTime arrivalTime =  LocalDateTime.of(aYear,aMonth,aDay,aHour,aMinute);
     LocalDateTime departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
     Ticket t1 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
-            "5B", 100, "Taylor", "taylorsusername");
+            "5B", 100, "Taylor", "taylorsusername","First");
     Ticket t2 = new Ticket("1234", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
-            "5B", 100, "Taylor", "taylorsusername");
+            "5B", 100, "Taylor", "taylorsusername","Economy");
     Ticket t3 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
-            "5B", 100, "Mark", "mark123");
+            "5B", 100, "Mark", "mark123","Business");
 
     @Test(timeout = 200)
     public void TestEmptyConstructor() {
@@ -86,10 +84,9 @@ public class TicketManagerTest {
 
     @Test(timeout = 500)
     public void TestGenerateTicket(){
-        Ticket new_t = tm.generateTicket("1234", "Toronto", "Vancouver",
-                departureTime, arrivalTime, "A1", "5B", 100, "Taylor",
-                "taylorsusername");
-        assertEquals(t1, new_t);
+        Ticket new_t = tm.generateTicket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
+                "5B", 100, "Taylor", "taylorsusername", "First");
+        assertEquals(new_t.toString(), t1.toString());
     }
 
     @Test(timeout = 500)

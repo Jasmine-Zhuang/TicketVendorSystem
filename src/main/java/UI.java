@@ -1,6 +1,7 @@
+/*
 import Customer.CustomerManager;
-import Flight.Flight;
-import Ticket.Ticket;
+import Flight.FlightManager;
+import Ticket.TicketManager;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -212,3 +213,4 @@ public class UI {
 
 
 
+*/
