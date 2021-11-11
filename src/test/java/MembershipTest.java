@@ -95,10 +95,10 @@ public class MembershipTest {
     public void test_incrMillage() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         AllMember.incrMillage(new_millage, Maggie);
-        assertEquals(500, Maggie.getMillage());
+        assertEquals(500, Maggie.getMileage());
     }
 
 
@@ -106,11 +106,11 @@ public class MembershipTest {
     public void test_getRedeemPoint() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         AllMember.addCustomer(Maggie);
         AllMember.incrMillage(new_millage, Maggie);
-        assertEquals(500, Maggie.getMillage());
+        assertEquals(500, Maggie.getMileage());
         AllMember.changeMembership(Maggie);
         double redeem_point = 5.00;
         assertEquals(redeem_point, AllMember.getRedeemPoint(Maggie),0);
@@ -119,18 +119,18 @@ public class MembershipTest {
     public void test_decrMillage() {
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         AllMember.addCustomer(Maggie);
         AllMember.incrMillage(new_millage, Maggie);
-        assertEquals(500, Maggie.getMillage());
+        assertEquals(500, Maggie.getMileage());
         AllMember.changeMembership(Maggie);
         double redeem_point = 5.00;
         assertEquals(redeem_point, Maggie.getRedeemPoint(),0);
         int remain_Millage = 400;
         double redeem_points = 1;
         AllMember.decrMillage(Maggie,redeem_points);
-        assertEquals(remain_Millage, Maggie.getMillage(),0);
+        assertEquals(remain_Millage, Maggie.getMileage(),0);
     }
 
 
@@ -138,7 +138,7 @@ public class MembershipTest {
     public void Test_displayInfo(){
         Maggie.changeMembership();
         AllMember.addCustomer(Maggie);
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         AllMember.addCustomer(Maggie);
         AllMember.incrMillage(new_millage, Maggie);

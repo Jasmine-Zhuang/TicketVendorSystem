@@ -30,7 +30,7 @@ public class CustomerTest {
 
     @Test(timeout = 50)
     public void test_getMillage() {
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
     }
 
     @Test(timeout = 50)
@@ -87,10 +87,10 @@ public class CustomerTest {
 
     @Test(timeout = 50)
     public void test_incrMillage() {
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_Millage = 525;
         Maggie.incrMillage(new_Millage);
-        assertEquals(new_Millage, Maggie.getMillage());
+        assertEquals(new_Millage, Maggie.getMileage());
     }
 
     @Test(timeout = 50)
@@ -137,7 +137,7 @@ public class CustomerTest {
         int remain_Millage = 425;
         double redeem_points = 1;
         Maggie.decrMillage(redeem_points);
-        assertEquals(remain_Millage, Maggie.getMillage(),0);
+        assertEquals(remain_Millage, Maggie.getMileage(),0);
     }
 
     @Test(timeout = 1000)

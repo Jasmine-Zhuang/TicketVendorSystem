@@ -7,7 +7,7 @@ public class Customer {
     private String password;
     private String name;
     private int balance;
-    private int millage;
+    private int mileage;
     private boolean membership;
     private int membership_level;
     private Integer redeem_points;
@@ -23,7 +23,7 @@ public class Customer {
         this.password = password;
         this.name = name;
         this.balance = 0;
-        this.millage = 0;
+        this.mileage = 0;
         this.membership = false;
         this.membership_level = 0;
         this.redeem_points = 0;
@@ -54,11 +54,11 @@ public class Customer {
     }
 
     /**
-     * The getter function of customer's millage.
-     * @return return the millage
+     * The getter function of customer's mileage.
+     * @return return the mileage
      */
-    public int getMillage(){
-        return this.millage;
+    public int getMileage(){
+        return this.mileage;
     }
 
 
@@ -111,16 +111,16 @@ public class Customer {
     }
 
     /**
-     * Increase the millage of this customer
-     * @param millage the millage to be increase
+     * Increase the mileage of this customer
+     * @param millage the mileage to be increase
      */
     public void incrMillage(int millage){
-        this.millage += millage;
+        this.mileage += millage;
     }
 
     public void decrMillage(double redeem_points){
         if (this.membership){
-            this.millage -= redeem_points * 100;}
+            this.mileage -= redeem_points * 100;}
     }
 
     /**
@@ -149,13 +149,13 @@ public class Customer {
      */
     public void changeMembershiplevel(){
         if(this.membership){
-            if ( this.millage >=0 && this.millage <= 1000 ) {
+            if ( this.mileage >=0 && this.mileage <= 1000 ) {
                 this.membership_level = 1;
             }
-            if (1000 <= this.millage && this.millage <= 5000) {
+            if (1000 <= this.mileage && this.mileage <= 5000) {
                 this.membership_level = 2;
             }
-            if (this.millage > 5000) {
+            if (this.mileage > 5000) {
                 this.membership_level = 3;
             }
         }
@@ -166,7 +166,7 @@ public class Customer {
      */
     public Integer getRedeemPoint(){
         if(this.membership){
-            this.redeem_points = ((Integer) this.millage/(Integer) 100);
+            this.redeem_points = ((Integer) this.mileage /(Integer) 100);
             return this.redeem_points;
         }
         return this.redeem_points;
@@ -180,7 +180,7 @@ public class Customer {
         return "Username: " + this.username +
                 "\nName: " + this.name +
                 "\nBalance: " + this.balance +
-                "\nMillage: " + this.millage +
+                "\nMillage: " + this.mileage +
                 "\nMembership statues: " + this.membership+
                 "\nMembership level: " + this.membership_level+
                 "\nRedeemed points: " + this.redeem_points;
