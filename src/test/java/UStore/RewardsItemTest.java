@@ -1,6 +1,12 @@
 package UStore;
 import Customer.Customer;
+import Customer.PurchaseHistory;
 import org.junit.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class RewardsItemTest {
@@ -37,8 +43,22 @@ public class RewardsItemTest {
         String new_password = "1203";
         String new_name = "MXY";
         Customer C = new Customer(new_username,new_password,new_name);
-        assertEquals(mug.redeemItem(700, C), "Fail to redeem since your points are insufficient.");
-        assertEquals(mug.redeemItem(900, C),"A Mug is redeemed successfully. You can see it on your purchase history now.");
+        C.incrMillage(70000);
+        C.calculateRedeemPoint();
+        assertEquals((int)C.getRedeem_points(),700);
+        assertEquals(mug.redeemItem(C), "Fail to redeem since your points are insufficient.");
+
+        C.incrMillage(10000);
+        C.calculateRedeemPoint();
+        assertEquals((int)C.getRedeem_points(),800);
+        assertEquals(mug.redeemItem(C),"A Mug is redeemed successfully. You can see it on your purchase history now.");
+        assertEquals((int)C.getRedeem_points(),0);
+
+        PurchaseHistory ph = C.getPurchaseHistory();
+        assertTrue(ph.getItemRedeemed().get(0) instanceof Mug);
+        assertTrue(mug.isRedeemed());
+
+
  /*       assertTrue(mug1.isRedeemed());
         assertEquals(mug1.getName(),"Mug");
         assertEquals(mug1.getPoints(),800);*/

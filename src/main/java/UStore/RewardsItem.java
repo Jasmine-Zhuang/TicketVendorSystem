@@ -40,10 +40,10 @@ public class RewardsItem implements Redeemable{
 
     /**
      * Redeem a rewards item if the customer has earned the points needed for the item.
-     * @param points redeem points that the customer has
+     * @param customer Customer
      */
-    public String redeemItem(int points, Customer customer) {
-        if (points >= this.getPoints()){
+    public String redeemItem(Customer customer) {
+        if (customer.getRedeem_points() >= this.getPoints()){
             RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());
             rewardsItem.setRedeemed(true);
             PurchaseHistory ph = customer.getPurchaseHistory();
