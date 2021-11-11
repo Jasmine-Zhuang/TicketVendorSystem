@@ -114,11 +114,11 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_incrMillage() {
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         Ryan.addCustomer(Maggie);
         Ryan.incrMillage(new_millage, Maggie);
-        assertEquals(500, Maggie.getMillage());
+        assertEquals(500, Maggie.getMileage());
     }
 
     @Test(timeout = 50)
@@ -151,11 +151,11 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_getRedeemPoint() {
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         Ryan.addCustomer(Maggie);
         Ryan.incrMillage(new_millage, Maggie);
-        assertEquals(500, Maggie.getMillage());
+        assertEquals(500, Maggie.getMileage());
         Ryan.changeMembership(Maggie);
         double redeem_point = 5.00;
         assertEquals(redeem_point, Ryan.getRedeemPoint(Maggie), 0);
@@ -163,23 +163,23 @@ public class CustomerManagerTest {
 
     @Test(timeout = 50)
     public void test_decrMillage() {
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         Ryan.addCustomer(Maggie);
         Ryan.incrMillage(new_millage, Maggie);
-        assertEquals(500, Maggie.getMillage());
+        assertEquals(500, Maggie.getMileage());
         Ryan.changeMembership(Maggie);
         double redeem_point = 5.00;
         assertEquals(redeem_point, Maggie.getRedeemPoint(), 0);
         int remain_Millage = 400;
         double redeem_points = 1;
         Ryan.decrMillage(Maggie, redeem_points);
-        assertEquals(remain_Millage, Maggie.getMillage(), 0);
+        assertEquals(remain_Millage, Maggie.getMileage(), 0);
     }
 
     @Test(timeout = 1000)
     public void Test_ToString() {
-        assertEquals(0, Maggie.getMillage());
+        assertEquals(0, Maggie.getMileage());
         int new_millage = 500;
         Ryan.addCustomer(Maggie);
         Ryan.incrMillage(new_millage, Maggie);
