@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PurchaseHistory {
 
-    private final Customer customer;
+    private final Customer phCustomer;
     private final ArrayList<Ticket> purchasedTickets;
     private final ArrayList<RewardsItem> itemRedeemed;
 
@@ -15,7 +15,7 @@ public class PurchaseHistory {
      * item redeemed.
      */
     public PurchaseHistory(Customer customer) {
-        this.customer = customer;
+        this.phCustomer = customer;
         this.purchasedTickets = new ArrayList<>();
         this.itemRedeemed = new ArrayList<>();
     }
@@ -35,6 +35,8 @@ public class PurchaseHistory {
     public ArrayList<RewardsItem> getItemRedeemed() {
         return itemRedeemed;
     }
+
+    public Customer getOwner() { return phCustomer};
 
     public void addPurchasedTickets (Ticket ticket) {
         purchasedTickets.add(ticket);

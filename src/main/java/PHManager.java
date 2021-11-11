@@ -17,10 +17,11 @@ public class PHManager {
 
     /**
      * If a customer is not in the map, add it to this map. Update the purchase history if the customer already exists.
-     * @param customer A customer instance.
      * @param purchaseHistory A PurchaseHistory that is associated with the given customer.
      */
-    public void updateHistory (Customer customer, PurchaseHistory purchaseHistory) {
-            phMap.put(customer, purchaseHistory);
+    public void updateHistory (PurchaseHistory purchaseHistory) {
+        Customer customer = purchaseHistory.getOwner();
+        phMap.put(customer, purchaseHistory);
     }
+
 }
