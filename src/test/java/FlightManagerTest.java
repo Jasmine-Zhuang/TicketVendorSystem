@@ -1,3 +1,4 @@
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class FlightManagerTest {
     private FlightManager fm;
-
+    private Flight flight;
     @Before
     public void setUp() {
         //initialize departure time
@@ -28,7 +29,7 @@ public class FlightManagerTest {
         aTime.add("45");
         aTime.add("0");
         //initialize seatNumberArray
-        ArrayList<String> seatNumArray = new ArrayList<>();
+        ArrayList<String> seatNumArray = new ArrayList<String>();
         seatNumArray.add("1A");
         seatNumArray.add("1B");
         seatNumArray.add("2A");
@@ -39,7 +40,11 @@ public class FlightManagerTest {
         seatNumArray.add("4B");
         seatNumArray.add("5A");
         seatNumArray.add("5B");
+        String dep = "Toronto";
+        String des="Vancouver";
 
+        flight = new Flight("CZ311", dep, des, dTime,aTime,
+                10, 10, 3600,"10A", seatNumArray);
         fm = new FlightManager();
         fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime,aTime,
                 10, 10, 3600,"10A", seatNumArray);
@@ -66,7 +71,7 @@ public class FlightManagerTest {
 
     @Test(timeout = 500)
     public void TestPrintAvailableSeat(){
-        ArrayList<String> seatNumArray = new ArrayList<>();
+        ArrayList<String> seatNumArray = new ArrayList<String>();
         seatNumArray.add("1A");
         seatNumArray.add("1B");
         seatNumArray.add("2A");
