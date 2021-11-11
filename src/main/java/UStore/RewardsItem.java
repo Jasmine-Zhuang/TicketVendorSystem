@@ -1,5 +1,8 @@
 package UStore;
 
+import Customer.Customer;
+import Customer.PurchaseHistory;
+
 public class RewardsItem {
     private boolean isRedeemed;
     private final String name;
@@ -43,14 +46,18 @@ public class RewardsItem {
      * @param points redeem points that the customer has
      */
 
-    public RewardsItem redeemItem(int points) {
+    public String redeemItem(int points, Customer customer) {
         if (points >= this.getPoints()){
-            // TODO: subtract these points after redemption from customer's info
             RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());
-            rewardsItem.setRedeemed(true);//after added to customer history
-            return rewardsItem;
+            rewardsItem.setRedeemed(true);
+            PurchaseHistory ph = customer.getPurchaseHistory();
+            if(ph.addItemRedeemed(rewardsItem)){
+                customer.minusRedeemPoint(rewardsItem.getPoints());
+                return "A "+rewardsItem.getName()+ "is redeemed successfully. You can see it on your purchase history.";
+            }
         }
-        return null;
+        return "Fail to redeem since your points are insufficient.";
+
     }
 
 }

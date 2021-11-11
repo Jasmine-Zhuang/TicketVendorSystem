@@ -1,8 +1,11 @@
 package UStore;
 
+import Customer.Customer;
+import Customer.PurchaseHistory;
+
 public interface Redeemable {
 
-    RewardsItem redeemItem(int points);
+    String redeemItem(int points, PurchaseHistory ph, Customer customer);
 
 
 }

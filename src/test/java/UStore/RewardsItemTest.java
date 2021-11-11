@@ -1,4 +1,5 @@
 package UStore;
+import Customer.Customer;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -17,11 +18,16 @@ public class RewardsItemTest {
 
     @Test(timeout = 50)
     public void TestRedeemItem(){
-        assertNull(mug.redeemItem(700));
-        RewardsItem mug1=mug.redeemItem(900);
-        assertTrue(mug1.isRedeemed());
+
+        String new_username = "Haaa";
+        String new_password = "1203";
+        String new_name = "MXY";
+        Customer C = new Customer(new_username,new_password,new_name);
+        assertEquals(mug.redeemItem(700, C), "Fail to redeem since your points are insufficient.");
+        assertEquals(mug.redeemItem(900, C),"A Mug is redeemed successfully. You can see it on your purchase history now.");
+ /*       assertTrue(mug1.isRedeemed());
         assertEquals(mug1.getName(),"Mug");
-        assertEquals(mug1.getPoints(),800);
+        assertEquals(mug1.getPoints(),800);*/
     }
 
     @Test(timeout = 50)
