@@ -34,6 +34,11 @@ public class CustomerTest {
     }
 
     @Test(timeout = 50)
+    public void getRedeem_points() {
+        assertEquals((Integer)0, Maggie.getRedeem_points());
+    }
+
+    @Test(timeout = 50)
     public void test_checkPassword() {
         assertTrue(Maggie.checkPassword("1203"));
     }
@@ -123,9 +128,30 @@ public class CustomerTest {
         int new_Millage = 525;
         Maggie.incrMillage(new_Millage);
         double redeem_point = 5.0;
-        assertEquals(redeem_point, Maggie.getRedeemPoint(),0);
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
     }
 
+    @Test(timeout = 50)
+    public void test_calculateRedeemPoint() {
+        Maggie.changeMembership();
+        int new_Millage = 525;
+        Maggie.incrMillage(new_Millage);
+        double redeem_point = 5.0;
+        Maggie.calculateRedeemPoint();
+        assertEquals(redeem_point, Maggie.getRedeem_points(),0);
+    }
+
+    @Test(timeout = 50)
+    public void test_minusRedeemPoint() {
+        Maggie.changeMembership();
+        int new_Millage = 525;
+        Maggie.incrMillage(new_Millage);
+        double redeem_point = 5.0;
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
+        Integer redeemed_points = 1;
+        Maggie.minusRedeemPoint(redeemed_points);
+        assertEquals(4, Maggie.getRedeem_points(),0);
+    }
 
     @Test(timeout = 50)
     public void test_decrMillage() {
@@ -133,7 +159,7 @@ public class CustomerTest {
         int new_Millage = 525;
         Maggie.incrMillage(new_Millage);
         double redeem_point = 5.0;
-        assertEquals(redeem_point, Maggie.getRedeemPoint(),0);
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
         int remain_Millage = 425;
         double redeem_points = 1;
         Maggie.decrMillage(redeem_points);

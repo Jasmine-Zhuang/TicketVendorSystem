@@ -173,18 +173,42 @@ public class Membership {
     }
 
     /**
+     * Calculate Reedem Points for this customer
+     */
+
+    public Integer calculateRedeemPoint(Customer customer) {
+        if (this.MembershipCustomer.containsKey(customer.getUsername())) {
+            if (customer.checkMembership()) {
+                return customer.calculateRedeemPoint();
+            }
+        }
+        return customer.calculateRedeemPoint();
+    }
+
+    /**
      * Get Reedem Points for this customer
      */
 
-    public Integer getRedeemPoint(Customer customer) {
+    public Integer getRedeem_points(Customer customer) {
         if (this.MembershipCustomer.containsKey(customer.getUsername())) {
             if (customer.checkMembership()) {
-                customer.getRedeemPoint();
-                return customer.getRedeemPoint();
+                Integer result = customer.getRedeem_points();
+                return customer.getRedeem_points();
             }
         }
-        return customer.getRedeemPoint();
+        return customer.getRedeem_points();
     }
+
+    /**
+     * Get Redeem Points for this customer
+     */
+    public void minusRedeemPoint(Customer customer, Integer redeem_points){
+        if (this.MembershipCustomer.containsKey(customer.getUsername())) {
+            if (customer.checkMembership()) {
+                customer.calculateRedeemPoint();
+                customer.minusRedeemPoint(redeem_points);
+            }
+        }}
 
     /**
      * Return this customer's current information
