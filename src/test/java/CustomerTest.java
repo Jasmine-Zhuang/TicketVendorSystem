@@ -1,5 +1,7 @@
 import org.junit.*;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class CustomerTest {
@@ -133,8 +135,13 @@ public class CustomerTest {
 
     @Test(timeout = 50)
     public void test_getPurchase_History() {
+        RewardsItem mug = new RewardsItem("Mug",800);
+        Maggie.getPurchaseHistory().addItemRedeemed(mug);
         PurchaseHistory ph = Maggie.getPurchaseHistory();
         assertEquals(Maggie, ph.getOwner());
+        ArrayList<RewardsItem> item_list = new ArrayList<>();
+        item_list.add(mug);
+        assertEquals(Maggie.getPurchaseHistory().getItemRedeemed(), item_list);
     }
 
     @Test(timeout = 50)
