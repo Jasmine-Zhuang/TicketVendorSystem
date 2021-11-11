@@ -66,6 +66,18 @@ public class CustomerManager{
         return nameToCustomer.get(username).getBalance();
     }
 
+    /** A method named showCustomer that takes a String (the name of the customer).
+     *       If the name string does not appear as a key
+     *       in nameToCustomer, then return there is no customer exsit.
+     *       Return true if the name exsit in the nameToCustomer and return the customer information.
+     * @param customer The customer of this customer needed to be checked if exit in nameToCustomer.
+     * @return int The corresponding customer's balance with this customer's name.
+     */
+    public PurchaseHistory getPurchaseHistory(Customer customer)
+    {
+        return customer.getPurchaseHistory();
+    }
+
     /** Modify this customer's current name.
      * @param customer The customer needed to change name.
      * @param new_name The new name of this customer needed to be changed.
@@ -176,16 +188,30 @@ public class CustomerManager{
      * Get Reedem Points for this customer
      */
 
-    public Integer getRedeemPoint(Customer customer){
+    public Integer getRedeem_points(Customer customer){
         if(AllMember.checkCustomer(customer.getUsername())){
-            return AllMember.getRedeemPoint(customer);
+            return AllMember.getRedeem_points(customer);
         }
         else{
-            return AllMember.getRedeemPoint(customer);}
+            return AllMember.getRedeem_points(customer);}
     }
 
+
     /**
-     * Get Reedem Millage for this customer
+     * Get Reedem Points for this customer
+     */
+
+    public Integer calculateRedeemPoint(Customer customer){
+        if(AllMember.checkCustomer(customer.getUsername())){
+            return AllMember.calculateRedeemPoint(customer);
+        }
+        else{
+            return AllMember.calculateRedeemPoint(customer);}
+    }
+
+
+    /**
+     * Get Redeem Millage for this customer
      */
 
     public void decrMillage(Customer customer, double redeem_points){
