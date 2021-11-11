@@ -182,14 +182,13 @@ public class CustomerTest {
     @Test(timeout = 1000)
     public void Test_ToString(){
         String a =
-                """
-                        Username: Happy1203
-                        Name: MaggieZhang
-                        Balance: 0
-                        Millage: 0
-                        Membership statues: false
-                        Membership level: 0
-                        Redeemed points: 0""";
+                "Username: Happy1203\n" +
+                        "Name: MaggieZhang\n" +
+                        "Balance: 0\n" +
+                        "Millage: 0\n" +
+                        "Membership statues: false\n" +
+                        "Membership level: 0\n" +
+                        "Redeemed points: 0";
         assertEquals(a, Maggie.toString());
     }
 }
