@@ -3,7 +3,7 @@ package UStore;
 import Customer.Customer;
 import Customer.PurchaseHistory;
 
-public class RewardsItem {
+public class RewardsItem implements Redeemable{
     private boolean isRedeemed;
     private final String name;
     private final int points;
