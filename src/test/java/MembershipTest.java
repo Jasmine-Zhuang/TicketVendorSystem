@@ -179,14 +179,13 @@ public class MembershipTest {
         AllMember.incrMillage(new_millage, Maggie);
         AllMember.displayInfo(Maggie);
         String a =
-                """
-                        Username: GoodStudy
-                        Name: DayStudy
-                        Balance: 0
-                        Millage: 500
-                        Membership statues: true
-                        Membership level: 1
-                        Redeemed points: 0""";
+                "Username: GoodStudy\n" +
+                        "Name: DayStudy\n" +
+                        "Balance: 0\n" +
+                        "Millage: 500\n" +
+                        "Membership statues: true\n" +
+                        "Membership level: 1\n" +
+                        "Redeemed points: 0";
         assertEquals(a, AllMember.displayInfo(Maggie));
     }
 }

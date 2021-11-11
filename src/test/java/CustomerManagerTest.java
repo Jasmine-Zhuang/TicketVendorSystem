@@ -230,14 +230,13 @@ public class CustomerManagerTest {
         Ryan.incrMillage(new_millage, Maggie);
         Ryan.displayInfo(Maggie);
         String a =
-                """
-                        Username: Name1203
-                        Name: RyanMaggie
-                        Balance: 0
-                        Millage: 500
-                        Membership statues: false
-                        Membership level: 0
-                        Redeemed points: 0""";
+                "Username: Name1203\n" +
+                        "Name: RyanMaggie\n" +
+                        "Balance: 0\n" +
+                        "Millage: 500\n" +
+                        "Membership statues: false\n" +
+                        "Membership level: 0\n" +
+                        "Redeemed points: 0";
         assertEquals(a, Ryan.displayInfo(Maggie));
     }
 }
