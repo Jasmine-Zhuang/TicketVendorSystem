@@ -182,6 +182,7 @@ public class Customer {
                 "\nBalance: " + this.balance +
                 "\nMillage: " + this.millage +
                 "\nMembership statues: " + this.membership+
+                "\nMembership level: " + this.membership_level+
                 "\nRedeemed points: " + this.redeem_points;
     }
 }
