@@ -1,5 +1,5 @@
 /*
-This class is a record of purchase history of a customer regarding ticktes and redeemed items.
+This class is a record of purchase history of a customer regarding tickets and redeemed items.
  */
 
 import java.util.ArrayList;

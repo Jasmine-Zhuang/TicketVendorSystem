@@ -1,5 +1,5 @@
 /*
-This class contains a map of purchase history of all customers regarding ticktes and redeemed items.
+This class contains a map of purchase history of all customers regarding tickets and redeemed items.
  */
 
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public class PHManager {
     /** Construct an empty hashmap of purchase history.
      */
     public PHManager() {
-        this.phMap = new HashMap<Customer, PurchaseHistory>();
+        this.phMap = new HashMap<>();
     }
 
     /**
