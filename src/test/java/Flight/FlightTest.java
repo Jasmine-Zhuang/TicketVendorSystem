@@ -1,3 +1,5 @@
+package Flight;
+
 import Flight.Flight;
 import org.junit.*;
 import java.time.LocalDateTime;
