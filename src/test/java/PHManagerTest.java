@@ -1,4 +1,3 @@
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -9,14 +8,10 @@ public class PHManagerTest {
 
     Customer c1;
     Customer c2;
-    PHManager phm;
     PurchaseHistory ph1 = new PurchaseHistory(c1);
     PurchaseHistory ph2 = new PurchaseHistory(c2);
     Ticket t1;
-
-    @Before
-    public void setUp() { PHManager phm = new PHManager();
-    }
+    PHManager phm = new PHManager();
 
     @Test (timeout = 500)
     public void TestEmptyUpdateHistory() {
