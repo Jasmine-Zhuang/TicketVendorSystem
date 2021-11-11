@@ -41,23 +41,25 @@ public class RewardsItem implements Redeemable{
     /**
      * Redeem a rewards item if the customer has earned the points needed for the item.
      * @param customer Customer
+     * @return
      */
-    public String redeemItem(Customer customer) {
+    public RewardsItem redeemItem(Customer customer) {
         if (customer.getRedeem_points() >= this.getPoints()){
-            RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());
-            rewardsItem.setRedeemed(true);
+            /*RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());*/
+            this.setRedeemed(true);
             PurchaseHistory ph = customer.getPurchaseHistory();
-            if(ph.addItemRedeemed(rewardsItem)){
-                customer.minusRedeemPoint(rewardsItem.getPoints());
-                return "A "+rewardsItem.getName()+ " is redeemed successfully. You can see it on your purchase history.";
+            if(ph.addItemRedeemed(this)){
+                customer.minusRedeemPoint(this.getPoints());
+
             }
+            return this;
         }
-        return "Fail to redeem since your points are insufficient.";
+        return null;
 
     }
     @Override
     public String toString() {
-        return this.getName() +":"+ this.getPoints()+" is needed to redeem.";
+        return this.getName() +": "+ this.getPoints()+" is needed to redeem.";
     }
 
 }

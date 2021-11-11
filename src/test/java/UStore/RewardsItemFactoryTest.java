@@ -2,7 +2,7 @@ package UStore;
 import org.junit.*;
 import static org.junit.Assert.*;
 public class RewardsItemFactoryTest {
-    RewardsItemFactory factory;
+    RewardsItemFactory factory = new RewardsItemFactory();
 
     @Test(timeout = 50)
     public void TestGetItem() {
