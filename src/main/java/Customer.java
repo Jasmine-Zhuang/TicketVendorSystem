@@ -159,7 +159,7 @@ public class Customer {
     public void changeMembership(){
         if(!this.membership){
             this.membership = true;
-            this.membership_level = this.checkMembershiplevel();
+            this.changeMembershiplevel();
         }
     }
 
