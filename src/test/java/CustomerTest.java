@@ -149,6 +149,7 @@ public class CustomerTest {
                         Balance: 0
                         Millage: 0
                         Membership statues: false
+                        Membership level: 0
                         Redeemed points: 0""";
         assertEquals(a, Maggie.toString());
     }

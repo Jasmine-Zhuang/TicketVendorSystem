@@ -191,6 +191,7 @@ public class CustomerManagerTest {
                         Balance: 0
                         Millage: 500
                         Membership statues: false
+                        Membership level: 0
                         Redeemed points: 0""";
         assertEquals(a, Ryan.displayInfo(Maggie));
     }
