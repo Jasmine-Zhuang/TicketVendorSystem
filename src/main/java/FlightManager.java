@@ -2,6 +2,7 @@
 This is the class that manages all scheduled flights information
  */
 
+
 import java.time.LocalDateTime;
 import java.util.*;
 import java.time.format.DateTimeFormatter;
@@ -81,6 +82,7 @@ public class FlightManager {
      * return a string of the flight information if the flight is scheduled, otherwise return
      * a string inform the customer that this flight is not scheduled to fly.
      */
+
     public String verifyYourFlight(String flight_num){
         if (this.idToFlight.containsKey(flight_num)) {
             return this.idToFlight.get(flight_num).toString();
@@ -135,6 +137,7 @@ public class FlightManager {
         return availableSeat;
     }
 
+
     /**
      * @param flightNum flight number
      * @param seatClass the class of the seat number
@@ -167,6 +170,5 @@ public class FlightManager {
         }
         return infoString.toString();
     }
-
 
 }
