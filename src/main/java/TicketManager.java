@@ -62,13 +62,6 @@ public class TicketManager {
         return "You have not booked this flight yet, so it cannot be canceled.";
     }
 
-//    /**
-//     * Modify a ticket from soldTicket and notify the time the change is made.
-//     * @param ticket A Ticket instance.
-//     * @return a string to indicate whether the cancellation is successful with the time.
-//     */
-//    public String changeTicket(Ticket ticket, LocalDateTime desiredDate){}
-
     public Ticket generateTicket(String flightNumber, String d_city, String a_city, LocalDateTime d_time,
                                  LocalDateTime a_time, String b_gate, String seat_num, int price,
                                  String p_name, String p_user) {
