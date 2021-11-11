@@ -15,7 +15,22 @@ public class RewardsItemTest {
         assertEquals(mug.getName(), "Mug");
         assertEquals(mug.getPoints(),800);
     }
-
+    @Test(timeout = 50)
+    public void TestGetName(){
+        assertEquals(mug.getName(), "Mug");
+    }
+    @Test(timeout = 50)
+    public void TestGetPoints(){
+        assertEquals(mug.getPoints(), 800);
+    }
+    @Test(timeout = 50)
+    public void TestIsRedeemed(){
+        assertFalse(mug.isRedeemed());
+    }
+    @Test(timeout = 50)
+    public void TestToString(){
+        assertEquals(mug.getName() +":"+ mug.getPoints()+" is needed to redeem.",mug.toString());
+    }
     @Test(timeout = 50)
     public void TestRedeemItem(){
         String new_username = "Haaa";
@@ -28,7 +43,6 @@ public class RewardsItemTest {
         assertEquals(mug1.getName(),"Mug");
         assertEquals(mug1.getPoints(),800);*/
     }
-
     @Test(timeout = 50)
     public void TestSetRedeemed(){
         if(! mug.isRedeemed()){
@@ -38,6 +52,6 @@ public class RewardsItemTest {
             mug.setRedeemed(false);
             assertFalse(mug.isRedeemed());
         }
-
     }
+
 }
