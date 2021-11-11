@@ -5,9 +5,10 @@ package Flight;/* This is an entity class named Flight.Flight.
  * destination of the flight
  * departure and arrival time of fight
  * distance traveled from departure to destination
- * seat capacity (total seat numbers) and number of available seat
+ * total seat numbers
+ * the number of available seat
  * boarding gate
- * the array of seat numbers
+ * the array list of array list of seat numbers and seat class
  */
 
 import java.time.LocalDateTime;
@@ -24,9 +25,10 @@ public class Flight {
     private LocalDateTime arrivalTime;
     private int distanceTraveled;
     private int totalSeats;
+    private int availableSeats;
     private String boardingGate;
     private ArrayList<ArrayList<String>> seatArray;
-    private int availableSeats;
+
 
     /**
      * Build an array list of arraylist of seat number and seat type.
@@ -68,7 +70,7 @@ public class Flight {
     private void CreateClassSeat(ArrayList<String> seatNumArray, ArrayList<ArrayList<String>> seatArray, int num, int index,
                                  String C) {
        // Notice num + index <= last index in seatNumArray
-        for(int i = index; i<num; i++){
+        for(int i = index; i<num+index; i++){
             ArrayList<String> seat = new ArrayList<>();
             seat.add(0,seatNumArray.get(i));
             seat.add(1,C);
@@ -81,16 +83,16 @@ public class Flight {
      * @param time arraylist of Year,Month,Day,Hour and Minute for the LocalDateTime wanted to be created.
      */
     public LocalDateTime buildTime(ArrayList<String> time){
-        if (time.size() == 5){
+        if (time.size() == 6){
             int dYear = Integer.parseInt(time.get(0));
             int dMonth = Integer.parseInt(time.get(1));
             int dDay = Integer.parseInt(time.get(2));
             int dHour = Integer.parseInt(time.get(3));
             int dMinute = Integer.parseInt(time.get(4));
-            return LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
+            int dSecond = Integer.parseInt(time.get(5));
+            return LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute,dSecond);
         }
         return null;
-
     }
 
 
