@@ -36,13 +36,30 @@ public class PurchaseHistory {
         return itemRedeemed;
     }
 
-    public Customer getOwner() { return phCustomer};
+    /**
+     * A getter method.
+     * @return The customer associated with this purchase history.
+     */
+    public Customer getOwner() { return phCustomer; }
 
-    public void addPurchasedTickets (Ticket ticket) {
+    /**
+     * Add a new ticket to the list of purchasedTickets and return true.
+     * @param ticket A ticket instance.
+     * @return true if the ticket has been successfully added.
+     */
+    public boolean addPurchasedTickets (Ticket ticket) {
         purchasedTickets.add(ticket);
+        return true;
     }
 
-    public void addItemRedeemed(RewardsItem item) {
+    /**
+     * Add a new item to the list of itemRedeemed and return true.
+     * @param item A RewardsItem instance that were redeemed by points from the U-store.
+     * @return true if the item has been successfully added.
+     */
+
+    public boolean addItemRedeemed(RewardsItem item) {
         itemRedeemed.add(item);
+        return true;
     }
 }
