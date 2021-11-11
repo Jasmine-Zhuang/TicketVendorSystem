@@ -153,6 +153,24 @@ public class CustomerManager{
 
     }
 
+
+    /**
+     * Change the current membership of this customer
+     */
+    public void changeMembershiplevel(Customer customer){
+        if(AllMember.checkMembership(customer)){
+            AllMember.changeMembershiplevel(customer);
+        }
+
+    }
+
+    /** Check this customer's current membership status
+     * @param customer The customer needed to Check current membership status.
+     */
+    public int checkMembershiplevel(Customer customer){
+        return AllMember.checkMembershiplevel(customer);
+    }
+
     /**
      * Get Reedem Points for this customer
      */

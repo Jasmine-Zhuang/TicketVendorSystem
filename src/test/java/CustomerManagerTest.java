@@ -130,6 +130,24 @@ public class CustomerManagerTest {
         assertTrue(Ryan.checkMembership(Maggie));
     }
 
+    @Test(timeout = 50)
+    public void test_checkMembershiplevel() {
+        assertFalse(Maggie.checkMembership());
+        Ryan.changeMembership(Maggie);
+        Ryan.changeMembershiplevel(Maggie);
+        Ryan.addCustomer(Maggie);
+        assertEquals(1, Ryan.checkMembershiplevel(Maggie));
+    }
+
+
+    @Test(timeout = 50)
+    public void test_changeMembershiplevel() {
+        assertFalse(Maggie.checkMembership());
+        Ryan.changeMembership(Maggie);
+        Ryan.changeMembershiplevel(Maggie);
+        Ryan.addCustomer(Maggie);
+        assertEquals(1, Ryan.checkMembershiplevel(Maggie));
+    }
 
     @Test(timeout = 50)
     public void test_getRedeemPoint() {

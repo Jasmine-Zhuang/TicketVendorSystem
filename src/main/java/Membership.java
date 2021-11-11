@@ -22,6 +22,21 @@ public class Membership {
         }
         return customer.checkMembership();
     }
+    /**
+     * Check this customer's current membership status
+     *
+     * @param customer The customer needed to Check current membership status.
+     */
+    public int checkMembershiplevel(Customer customer) {
+        if (customer.checkMembership()){
+            if (this.MembershipCustomer.containsKey(customer.getUsername())) {
+                return customer.checkMembershiplevel();}
+            else{
+                this.MembershipCustomer.put(customer.getUsername(), customer);
+                return customer.checkMembershiplevel();}
+        }
+        return customer.checkMembershiplevel();
+    }
 
     /**
      * Change the current membership of this customer
@@ -30,6 +45,15 @@ public class Membership {
         if (!customer.checkMembership()) {
             customer.changeMembership();
             this.MembershipCustomer.put(customer.getUsername(), customer);
+        }
+    }
+
+    /**
+     * Change the current membership of this customer
+     */
+    public void changeMembershiplevel(Customer customer) {
+        if (this.MembershipCustomer.containsKey(customer.getUsername())) {
+            customer.changeMembershiplevel();
         }
     }
 
