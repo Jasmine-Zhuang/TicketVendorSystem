@@ -1,12 +1,12 @@
 package Ticket;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 /*
     An entity class represents each flight ticket, which stores:
-        * Flight.Flight information(Flight.Flight number, Departure city, Arrival city, Departure time, Arrival time,
+        * Flight information(Flight number, Departure city, Arrival city, Departure time, Arrival time,
         Boarding gate, ticket id)
         * Seat information(Seat letter&number, Price for the ticket)
         * Information of passenger(Name of the passenger, Passenger username)
@@ -24,9 +24,10 @@ public class Ticket {
     private String passenger_name;
     private String passenger_username;
     private String ticket_id;
+    private String class_type;
 
     /**
-     * Construct a Flight.Flight Ticket.Ticket giving it the given flightNumber, departure city, arrival city,
+     * Construct a Flight Ticket giving it the given flightNumber, departure city, arrival city,
      * departure time, arrival time, boarding gate, seat number, distance traveled, passenger's name and username.
      *
      * @param flightNumber Sting of the flight number of the flight on the ticket.
@@ -39,10 +40,11 @@ public class Ticket {
      * @param price        Float of the price of the flight.
      * @param p_name       String of passenger's Name.
      * @param p_user       String of passenger's username when the passenger booked the flight.
+     * @param c_type       String of passenger's class type: First, Business, or Economy.
      */
     public Ticket(String flightNumber, String d_city, String a_city, LocalDateTime d_time,
                   LocalDateTime a_time, String b_gate, String seat_num, int price,
-                  String p_name, String p_user) {
+                  String p_name, String p_user, String c_type) {
         this.flightNumber = flightNumber;
         this.departure_city = d_city;
         this.arrival_city = a_city;
@@ -54,10 +56,11 @@ public class Ticket {
         this.ticket_id = flightNumber + "," + seat_num;
         this.arrivalTime = a_time;
         this.departureTime = d_time;
+        this.class_type = c_type;
     }
 
     /**
-     * Construct an empty flight Ticket.Ticket.
+     * Construct an empty flight Ticket.
      */
     public Ticket() {
     }
@@ -155,24 +158,33 @@ public class Ticket {
     /**
      * A getter method.
      *
-     * @return Ticket.Ticket's id.
+     * @return Ticket's id.
      */
     public String getTicket_id() {
         return ticket_id;
     }
 
     /**
+     * A getter method.
+     *
+     * @return Ticket's id.
+     */
+    public String getTicket_class() {
+        return class_type;
+    }
+
+    /**
      * Override the toString method.
      *
-     * @return the Air Ticket.Ticket with information.
+     * @return the Air Ticket with information.
      */
     @Override
     public String toString() {
         DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm:ss");
         String formattedArrivalTime = arrivalTime.format(FormatObj);
         String formattedDepartureTime = departureTime.format(FormatObj);
-        return "--------Air Ticket.Ticket-------- \n" + "Name of Passenger: " + passenger_name + "\nFlight.Flight: " + flightNumber +
-                "  Seat: " + seat_number +
+        return "--------Air Ticket-------- \n" + "Name of Passenger: " + passenger_name + "\nFlight: " + flightNumber +
+                "  Seat: " + seat_number + "  Class Type: " + class_type +
                 "\nFrom " + departure_city + " to " + arrival_city +
                 "\nDeparture time: " + formattedDepartureTime +
                 "\nEstimate arrival time: " + formattedArrivalTime +
@@ -183,6 +195,4 @@ public class Ticket {
                 "\nHave a nice trip!\n" +
                 "-----------------------";
     }
-
-
 }

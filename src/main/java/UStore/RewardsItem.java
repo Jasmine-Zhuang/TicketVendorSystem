@@ -7,7 +7,6 @@ public class RewardsItem implements Redeemable{
     private boolean isRedeemed;
     private final String name;
     private final int points;
-
     /**
      * Construct a rewards item
      */
@@ -16,7 +15,6 @@ public class RewardsItem implements Redeemable{
         this.name = name;
         this.points = points;
     }
-
     /**
      * A getter method.
      * @return name of the rewards item
@@ -34,7 +32,6 @@ public class RewardsItem implements Redeemable{
      * @return true if the item is redeemed, false otherwise.
      */
     public boolean isRedeemed() {return isRedeemed;}
-
     /**
      * A setter method.
      * set true if the item is redeemed, false otherwise.
@@ -45,13 +42,11 @@ public class RewardsItem implements Redeemable{
      * Redeem a rewards item if the customer has earned the points needed for the item.
      * @param points redeem points that the customer has
      */
-
     public String redeemItem(int points, Customer customer) {
         if (points >= this.getPoints()){
             RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());
             rewardsItem.setRedeemed(true);
             PurchaseHistory ph = customer.getPurchaseHistory();
-
             if(ph.addItemRedeemed(rewardsItem)){
                 customer.minusRedeemPoint(rewardsItem.getPoints());
                 return "A "+rewardsItem.getName()+ "is redeemed successfully. You can see it on your purchase history.";
