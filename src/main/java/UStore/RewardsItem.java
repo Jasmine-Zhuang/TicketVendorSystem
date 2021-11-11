@@ -49,7 +49,7 @@ public class RewardsItem implements Redeemable{
             PurchaseHistory ph = customer.getPurchaseHistory();
             if(ph.addItemRedeemed(rewardsItem)){
                 customer.minusRedeemPoint(rewardsItem.getPoints());
-                return "A "+rewardsItem.getName()+ "is redeemed successfully. You can see it on your purchase history.";
+                return "A "+rewardsItem.getName()+ " is redeemed successfully. You can see it on your purchase history.";
             }
         }
         return "Fail to redeem since your points are insufficient.";
