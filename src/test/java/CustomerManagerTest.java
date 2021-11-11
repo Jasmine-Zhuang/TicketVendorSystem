@@ -37,6 +37,13 @@ public class CustomerManagerTest {
     }
 
     @Test(timeout = 50)
+    public void test_getPurchase_History() {
+        Ryan.addCustomer(Maggie);
+        PurchaseHistory ph = Ryan.getPurchaseHistory(Maggie);
+        assertEquals(Maggie, ph.getOwner());
+    }
+
+    @Test(timeout = 50)
     public void test_changeName() {
         assertEquals("RyanMaggie", Maggie.getName());
         String new_name = "OliverJiang";

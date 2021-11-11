@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 /**
  * Represents a customer in the system.
@@ -11,6 +12,7 @@ public class Customer {
     private boolean membership;
     private int membership_level;
     private Integer redeem_points;
+    private PurchaseHistory purchase_history;
 
     /**
      * Create one Customer giving it the given username, password, name
@@ -27,6 +29,7 @@ public class Customer {
         this.membership = false;
         this.membership_level = 0;
         this.redeem_points = 0;
+        this.purchase_history = new PurchaseHistory(this);
     }
 
     /**
@@ -59,6 +62,14 @@ public class Customer {
      */
     public int getMileage(){
         return this.mileage;
+    }
+
+    /**
+     * The getter function of customer's mileage.
+     * @return return the mileage
+     */
+    public PurchaseHistory getPurchaseHistory(){
+        return this.purchase_history;
     }
 
     /**
