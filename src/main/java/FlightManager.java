@@ -2,14 +2,16 @@
 This is the class that manages all scheduled flights information
  */
 
+import java.time.LocalDateTime;
 import java.util.*;
+import java.time.format.DateTimeFormatter;
+
 
 public class FlightManager {
     private final HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
 
-    public FlightManager(){
+    public FlightManager(){}
 
-    }
 
     /**
      * Add a New Flight to the manager.
@@ -25,12 +27,12 @@ public class FlightManager {
      * @param seatNumberArray    array of all seat numbers of this flight
      */
     public void AddFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
-                            ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
+                          ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
             , String boardingGate, ArrayList<String> seatNumberArray) {
 
         Flight newFlight = new Flight(flightNumber, originCity, destinationCity, departureTime,
                 arrivalTime, totalNumSeats, numSeatAvailable, distance_traveled
-            , boardingGate, seatNumberArray);
+                , boardingGate, seatNumberArray);
         this.idToFlight.put(flightNumber, newFlight);
     }
 
@@ -59,7 +61,7 @@ public class FlightManager {
      * @return Flight
      */
     public Flight getFlightByNum(String flight_num){
-        return this.idToFlight.get(flight_num);
+        return idToFlight.get(flight_num);
     }
 
     /**
@@ -68,10 +70,10 @@ public class FlightManager {
      */
     public String reserveSeat(String flight_num, String seat_num) {
         Flight flight = this.idToFlight.get(flight_num);
-       if (flight.ReserveOneSeat(seat_num)){
-           return "You have successfully booked the flight" +  flight_num + "Have a nice trip! : )";
-       }
-       return "This seat has been reserved, please select another seat.";
+        if (flight.ReserveOneSeat(seat_num)){
+            return "You have successfully selected this seat "+ seat_num +" of flight " +  flight_num;
+        }
+        return "This seat has been reserved or does not exist, please select another seat.";
     }
 
     /**
@@ -79,7 +81,7 @@ public class FlightManager {
      * return a string of the flight information if the flight is scheduled, otherwise return
      * a string inform the customer that this flight is not scheduled to fly.
      */
-    public String verifyYouFlight(String flight_num){
+    public String verifyYourFlight(String flight_num){
         if (this.idToFlight.containsKey(flight_num)) {
             return this.idToFlight.get(flight_num).toString();
         }
@@ -87,10 +89,10 @@ public class FlightManager {
     }
 
     /**
-     * provide user a list of flight that with specified city of departure and destination
-     * @return list of flight, or empty list if there's no available flight
+     * provide user a list of flight nums that with specified city of departure and destination
+     * @return Arraylist of flight nums, or empty list if there's no available flight
      */
-    public List<String> getFlightByRoute(String dep, String des) {
+    public ArrayList<String> getFlightByRoute(String dep, String des) {
         ArrayList<String> lst = new ArrayList<>();
         for (String id: this.idToFlight.keySet()) {
             if (Objects.equals(this.idToFlight.get(id).getOriginCity(), dep) &&
@@ -100,5 +102,71 @@ public class FlightManager {
         }
         return lst;
     }
+
+    /**
+     * provide user a list of flight which departure and arrive at specific local time
+     * @return Arraylist of flight nums, or empty list if there's no available flight
+     */
+    public ArrayList<String> getFlightByLocalTime(LocalDateTime departureTime,
+                                             LocalDateTime arrivalTime) {
+        ArrayList<String> lst = new ArrayList<>();
+        for (String id: this.idToFlight.keySet()) {
+            if (Objects.equals(this.idToFlight.get(id).getDepartureTime(), departureTime) &&
+                    Objects.equals(this.idToFlight.get(id).getArrivalTime(), arrivalTime)) {
+                lst.add(id);
+            }
+        }
+        return lst;
+    }
+
+    /**
+     * @param flightNum flight number
+     * @return ArrayList of availableSeat which looks like {{“1A”, "First"}, {"2A", "First"}, {"3G", "Economic"}}
+     */
+    public ArrayList<ArrayList<String>> printAvailableSeat(String flightNum){
+        Flight flight = this.idToFlight.get(flightNum);
+        ArrayList<ArrayList<String>> availableSeat = new ArrayList<>();
+        for(ArrayList seat: flight.getSeatArray()){
+            String thisSeatNum = (String) seat.get(0);
+            if(!thisSeatNum.equals("X")){
+                availableSeat.add(seat);
+            }
+        }
+        return availableSeat;
+    }
+
+    /**
+     * @param flightNum flight number
+     * @param seatClass the class of the seat number
+     * @return ArrayList of availableSeat which looks like {{“1A”, "First"}, {"2A", "First"}}
+     */
+    public ArrayList<ArrayList<String>> printAvailableSeatByClass(String flightNum, String seatClass){
+        Flight flight = this.idToFlight.get(flightNum);
+        ArrayList<ArrayList<String>> availableSeat = new ArrayList<>();
+        for(ArrayList seat: flight.getSeatArray()){
+            String thisSeatNum = (String) seat.get(0);
+            String thisSeatClass = (String) seat.get(1);
+            if(!thisSeatNum.equals("X") && thisSeatClass.equals(seatClass)){
+                availableSeat.add(seat);
+            }
+        }
+        return availableSeat;
+    }
+
+
+    /**
+     * @param flightNumLs a list of flight number
+     * @return a string of all the information of flight numbers in the list
+     */
+    public String displayFlightInfo(ArrayList<String> flightNumLs) {
+        StringBuilder infoString = new StringBuilder();
+        for(String flightNum: flightNumLs){
+            if (this.idToFlight.containsKey(flightNum)) {
+                infoString.append(this.idToFlight.get(flightNum).toString());
+            }
+        }
+        return infoString.toString();
+    }
+
 
 }
