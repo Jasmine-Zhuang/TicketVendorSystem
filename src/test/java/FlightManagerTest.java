@@ -1,3 +1,4 @@
+import Flight.FlightManager;
 import org.junit.Before;
 import org.junit.Test;
 

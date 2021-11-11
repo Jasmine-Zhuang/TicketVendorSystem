@@ -1,3 +1,5 @@
+import Customer.Customer;
+import Customer.CustomerManager;
 import org.junit.*;
 
 import static org.junit.Assert.*;

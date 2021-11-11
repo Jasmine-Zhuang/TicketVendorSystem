@@ -1,11 +1,12 @@
 package UStore;
 
 public class RewardsItemFactory {
+    /*public RewardsItemFactory(){};*/
+
     /**
      * Get an object of type RewardsItem
      * @param itemType type of rewards item to be redeemed
      */
-
     public Redeemable getItem(String itemType){
         if ("Backpack".equals(itemType)) {
             return new Backpack();

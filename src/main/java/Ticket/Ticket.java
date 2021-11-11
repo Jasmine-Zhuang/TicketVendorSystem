@@ -1,10 +1,12 @@
+package Ticket;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
 /*
     An entity class represents each flight ticket, which stores:
-        * Flight information(Flight number, Departure city, Arrival city, Departure time, Arrival time,
+        * Flight.Flight information(Flight.Flight number, Departure city, Arrival city, Departure time, Arrival time,
         Boarding gate, ticket id)
         * Seat information(Seat letter&number, Price for the ticket)
         * Information of passenger(Name of the passenger, Passenger username)
@@ -24,7 +26,7 @@ public class Ticket {
     private String ticket_id;
 
     /**
-     * Construct a Flight Ticket giving it the given flightNumber, departure city, arrival city,
+     * Construct a Flight.Flight Ticket.Ticket giving it the given flightNumber, departure city, arrival city,
      * departure time, arrival time, boarding gate, seat number, distance traveled, passenger's name and username.
      *
      * @param flightNumber Sting of the flight number of the flight on the ticket.
@@ -55,7 +57,7 @@ public class Ticket {
     }
 
     /**
-     * Construct an empty flight Ticket.
+     * Construct an empty flight Ticket.Ticket.
      */
     public Ticket() {
     }
@@ -153,7 +155,7 @@ public class Ticket {
     /**
      * A getter method.
      *
-     * @return Ticket's id.
+     * @return Ticket.Ticket's id.
      */
     public String getTicket_id() {
         return ticket_id;
@@ -162,14 +164,14 @@ public class Ticket {
     /**
      * Override the toString method.
      *
-     * @return the Air Ticket with information.
+     * @return the Air Ticket.Ticket with information.
      */
     @Override
     public String toString() {
         DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm:ss");
         String formattedArrivalTime = arrivalTime.format(FormatObj);
         String formattedDepartureTime = departureTime.format(FormatObj);
-        return "--------Air Ticket-------- \n" + "Name of Passenger: " + passenger_name + "\nFlight: " + flightNumber +
+        return "--------Air Ticket.Ticket-------- \n" + "Name of Passenger: " + passenger_name + "\nFlight.Flight: " + flightNumber +
                 "  Seat: " + seat_number +
                 "\nFrom " + departure_city + " to " + arrival_city +
                 "\nDeparture time: " + formattedDepartureTime +

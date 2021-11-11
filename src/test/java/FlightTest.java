@@ -1,3 +1,4 @@
+import Flight.Flight;
 import org.junit.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

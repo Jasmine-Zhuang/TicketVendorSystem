@@ -1,4 +1,4 @@
-/* This is an entity class named Flight.
+package Flight;/* This is an entity class named Flight.Flight.
  * Belows are the information each class instance stores.
  * flight number
  * origin of the flight
@@ -95,7 +95,7 @@ public class Flight {
 
 
     /**
-     * Construct a Flight giving it the given flight_number, origin, destination, departureTime, arrivalTime,
+     * Construct a Flight.Flight giving it the given flight_number, origin, destination, departureTime, arrivalTime,
      * distance_traveled, totalSeats, availableSeats, and fuel_capacity.
      * @param flightNumber flight_number of this flight
      * @param originCity string of departure
@@ -124,7 +124,7 @@ public class Flight {
     }
 
     /**
-     * Construct an empty Flight
+     * Construct an empty Flight.Flight
      */
     public Flight(){}
 

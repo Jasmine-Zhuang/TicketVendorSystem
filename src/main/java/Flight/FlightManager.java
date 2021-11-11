@@ -1,4 +1,4 @@
-/*
+package Flight;/*
 This is the class that manages all scheduled flights information
  */
 
@@ -11,7 +11,7 @@ public class FlightManager {
 
 
     /**
-     * Add a New Flight to the manager.
+     * Add a New Flight.Flight to the manager.
      * @param flightNumber flight_number of this flight
      * @param originCity string of departure
      * @param destinationCity string of destination
@@ -55,7 +55,7 @@ public class FlightManager {
 
     /**
      * get a flight by flight number
-     * @return Flight
+     * @return Flight.Flight
      */
     public Flight getFlightByNum(String flight_num){
         return idToFlight.get(flight_num);
@@ -114,11 +114,4 @@ public class FlightManager {
         }
         return availableSeat;
     }
-
-    public int getPriceByFlight(Flight flight){
-        return flight.getPrice();
-    }
-
-
-
 }

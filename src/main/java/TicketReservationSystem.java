@@ -1,3 +1,7 @@
+import Customer.Customer;
+import Flight.Flight;
+import Ticket.Ticket;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -15,7 +19,7 @@ public class TicketReservationSystem {
         this.tm = tm;
     }
 
-    //CustomerManager
+    //Customer.CustomerManager
     /**
      * Ask one customer to create an account is this customer does not exit in the customer system.
      * @param username the username of this customer
@@ -47,7 +51,7 @@ public class TicketReservationSystem {
     /**
      * match name with customer and return to correspond customer
      * @param username the name of this customer
-     * @return Customer The corresponding customer with this customer's name.
+     * @return Customer.Customer The corresponding customer with this customer's name.
      */
     public Customer showCustomer(String username){
         return cm.showCustomer(username);
@@ -88,7 +92,7 @@ public class TicketReservationSystem {
         return cm.decrBalance(dec_balance, cm.showCustomer(username));
     }
 
-    //FlightManager
+    //Flight.FlightManager
 
     /**
      * match routes with flight and return list of flight nums
@@ -112,7 +116,7 @@ public class TicketReservationSystem {
     /**
      * select flight by flight num
      * @param flight_num flight number
-     * @return Flight
+     * @return Flight.Flight
      */
     public Flight selectFlight(String flight_num){
         return fm.getFlightByNum(flight_num);

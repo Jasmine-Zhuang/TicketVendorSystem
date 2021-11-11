@@ -1,3 +1,4 @@
+import Ticket.Ticket;
 import org.junit.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

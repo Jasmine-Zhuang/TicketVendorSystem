@@ -1,3 +1,7 @@
+import Customer.CustomerManager;
+import Flight.Flight;
+import Ticket.Ticket;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 public class UI {
@@ -43,7 +47,7 @@ public class UI {
                 10, 2000, "A1", seatNumArray);
 
 
-        // beginning of CustomerManager Part
+        // beginning of Customer.CustomerManager Part
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to U-ticket! \n To start, you need to have an account. \n" +
                 "Already have an account? \n Please enter 1. Yes 2. No");

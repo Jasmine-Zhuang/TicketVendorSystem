@@ -1,8 +1,10 @@
+package Flight;
+
 import java.util.ArrayList;
 
-public class SmallFlight extends Flight{
+public class SmallFlight extends Flight {
     /**
-     * Construct a small Flight
+     * Construct a small Flight.Flight
      */
     public SmallFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
                        ArrayList<String> arrivalTime, int numSeatAvailable, int distance_traveled, String boardingGate,
