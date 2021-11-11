@@ -157,7 +157,7 @@ public class CustomerManager{
      * Get Reedem Points for this customer
      */
 
-    public double getRedeemPoint(Customer customer){
+    public Integer getRedeemPoint(Customer customer){
         if(AllMember.checkCustomer(customer.getUsername())){
             return AllMember.getRedeemPoint(customer);
         }

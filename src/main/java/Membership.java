@@ -152,7 +152,7 @@ public class Membership {
      * Get Reedem Points for this customer
      */
 
-    public double getRedeemPoint(Customer customer) {
+    public Integer getRedeemPoint(Customer customer) {
         if (this.MembershipCustomer.containsKey(customer.getUsername())) {
             if (customer.checkMembership()) {
                 customer.getRedeemPoint();

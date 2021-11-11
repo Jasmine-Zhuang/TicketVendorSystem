@@ -173,7 +173,7 @@ public class CustomerManagerTest {
                         Balance: 0
                         Millage: 500
                         Membership statues: false
-                        Redeemed points: 0.0""";
+                        Redeemed points: 0""";
         assertEquals(a, Ryan.displayInfo(Maggie));
     }
 }
