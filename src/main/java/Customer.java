@@ -149,13 +149,13 @@ public class Customer {
      */
     public void changeMembershiplevel(){
         if(this.membership){
-            if ( this.balance >=0 && this.balance <= 1000) {
+            if ( this.millage >=0 && this.millage <= 1000 ) {
                 this.membership_level = 1;
             }
-            if (1000 <= this.balance && this.balance <= 5000) {
+            if (1000 <= this.millage && this.millage <= 5000) {
                 this.membership_level = 2;
             }
-            if (this.balance > 5000) {
+            if (this.millage > 5000) {
                 this.membership_level = 3;
             }
         }

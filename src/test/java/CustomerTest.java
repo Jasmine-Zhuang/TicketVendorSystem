@@ -113,7 +113,7 @@ public class CustomerTest {
     public void test_changeMembershiplevel() {
         Maggie.changeMembership();
         Maggie.changeMembershiplevel();
-        Maggie.incrBalance(100);
+        Maggie.incrMillage(900);
         assertEquals(1, Maggie.checkMembershiplevel());
     }
 
