@@ -10,7 +10,7 @@ public class Frame2Demo {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500,500);
-        frame.setLayout(new FlowLayout());//flow layout allows components to flows to next rows if it runs out of room
+        frame.setLayout(new FlowLayout(FlowLayout.LEADING, 5,5));//flow layout allows components to flows to next rows if it runs out of room
         JButton b1 = new JButton("1");
         JButton b2 = new JButton("2");
         JButton b3 = new JButton("3");
