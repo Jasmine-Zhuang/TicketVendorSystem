@@ -99,9 +99,22 @@ public class CustomerTest {
     }
 
     @Test(timeout = 50)
+    public void test_checkMembershiplevel() {
+        assertEquals(0, Maggie.checkMembershiplevel());
+    }
+
+    @Test(timeout = 50)
     public void test_changeMembership() {
         Maggie.changeMembership();
         assertTrue(Maggie.checkMembership());
+    }
+
+    @Test(timeout = 50)
+    public void test_changeMembershiplevel() {
+        Maggie.changeMembership();
+        Maggie.changeMembershiplevel();
+        Maggie.incrBalance(100);
+        assertEquals(1, Maggie.checkMembershiplevel());
     }
 
     @Test(timeout = 50)

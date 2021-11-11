@@ -19,6 +19,15 @@ public class MembershipTest {
     }
 
     @Test(timeout = 50)
+    public void test_checkMembershiplevel() {
+        assertFalse(Maggie.checkMembership());
+        AllMember.changeMembership(Maggie);
+        AllMember.changeMembershiplevel(Maggie);
+        AllMember.addCustomer(Maggie);
+        assertEquals(1, AllMember.checkMembershiplevel(Maggie));
+    }
+
+    @Test(timeout = 50)
     public void test_changeMembership() {
         assertFalse(Maggie.checkMembership());
         AllMember.changeMembership(Maggie);

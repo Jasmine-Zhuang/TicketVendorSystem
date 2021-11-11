@@ -9,6 +9,7 @@ public class Customer {
     private int balance;
     private int millage;
     private boolean membership;
+    private int membership_level;
     private Integer redeem_points;
 
     /**
@@ -24,6 +25,7 @@ public class Customer {
         this.balance = 0;
         this.millage = 0;
         this.membership = false;
+        this.membership_level = 0;
         this.redeem_points = 0;
     }
 
@@ -121,7 +123,6 @@ public class Customer {
             this.millage -= redeem_points * 100;}
     }
 
-
     /**
      * Check the current membership of this customer
      * @return return true if this customer has membership status
@@ -129,11 +130,34 @@ public class Customer {
     public boolean checkMembership(){return this.membership;}
 
     /**
+     * Check the current membership of this customer
+     * @return return true if this customer has membership status
+     */
+    public int checkMembershiplevel(){return this.membership_level;}
+
+    /**
      * Change the current membership of this customer
      */
     public void changeMembership(){
         if(!this.membership){
             this.membership = true;
+        }
+    }
+
+    /**
+     * Change the current membership of this customer
+     */
+    public void changeMembershiplevel(){
+        if(this.membership){
+            if ( this.balance >=0 && this.balance <= 1000) {
+                this.membership_level = 1;
+            }
+            if (1000 <= this.balance && this.balance <= 5000) {
+                this.membership_level = 2;
+            }
+            if (this.balance > 5000) {
+                this.membership_level = 3;
+            }
         }
     }
 
