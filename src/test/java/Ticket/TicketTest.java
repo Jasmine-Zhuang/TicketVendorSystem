@@ -73,6 +73,7 @@ public class TicketTest {
         assertNull(emp.getPassenger_name());
         assertNull(emp.getPassenger_username());
         assertNull(emp.getTicket_id());
+        assertNull(emp.getTicket_class());
     }
 
     @Test(timeout = 500)
