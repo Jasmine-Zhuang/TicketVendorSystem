@@ -6,43 +6,39 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import Customer.Customer;
-import Flight.Flight;
+import Customer.CustomerManager;
+import Flight.FlightManager;
+import Ticket.TicketManager;
 import Ticket.PriceCalculator;
 
 public class DisplayPriceFrame extends JFrame implements ActionListener {
 
     PriceCalculator pc = new PriceCalculator();
-    Flight flight;
-    Customer customer;
+//    CustomerManager cm;
+//    FlightManager fm;
+//    TicketManager tm;
+    String flightNum;
+    String customerName;
+    String ticketID;
     String classType;
-
-    /**
-     * A method to receive inputs from the previous frame.
-     * @param info A list of Flight, Customer, and String instances that have info[0] = the Flight instance,
-     *             info[1] = Customer instance, info[2] = classType.
-     */
-    public void getInfo(ArrayList<Object> info) {
-        flight = (Flight) info.get(0);
-        customer = (Customer) info.get(1);
-        classType = (String) info.get(2);
-    }
-
-    int price = pc.CalculatePrice(flight, customer, classType);
-
+    int ticketPrice;
+    int penalty = 0;
 
     JButton buttonPrev = new JButton("Prev");
     JButton buttonLoad = new JButton("Load balance");
     JButton buttonNext = new JButton("Next");
 
     JLabel label = new JLabel("Price Summary");
-    JLabel label2 = new JLabel("Air transportation charges: $" + price);
+    JLabel label2 = new JLabel();
 
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
 
     DisplayPriceFrame() {
+
+//        cm = customerManager;
+//        fm = flightManager;
 
         // set up label: Price Summary
         // label2: Air transportation charges: Ticket.PriceCalculator.calculatePrice(Flight f, Customer c, String
@@ -86,26 +82,47 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        new DisplayPriceFrame();
-
+    /**
+     * A method to receive inputs from the previous frame, so that it could calculate the ticket price and the penalty
+     * charges.
+     * @param price A list of Flight, Customer, and String instances that have info[0] = the Flight instance,
+     *             info[1] = Customer instance, info[2] = classType.
+     */
+    public void getInfo(int price) {
+//        flight = (Flight) info.get(0);
+//        customer =  (Customer) info.get(1);
+//        classType = (String) info.get(2);
+////        int price = pc.CalculatePrice(fm.getFlightByNum(flightNum), cm.showCustomer(customerName), classType);
+//        ticketPrice = price;
+//        penalty = pc.penaltyprice(tm.getTicketByID(ticketID));
+        int total = price + penalty;
+        String msg = "<html> Air transportation charges: $" + price +
+                "<br/> Late return/change charges: $" + penalty +
+                "<br/> Grand Total: $" + total +
+                "<html>";
+        label2.setText(msg);
     }
+
+//    public static void main(String[] args) {
+//        new DisplayPriceFrame();
+//
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (buttonPrev == e.getSource()) {
             this.dispose();
             // create a new instance of eg. PickSeatFrame
-            Frame1 fm1 = new Frame1();
+//            PickSeatFrame psf = new PickSeatFrame();
         }
         else if (buttonLoad == e.getSource()) {
             // create a new instance of eg. LoadBalanceFrame
+//            LoadBalanceFrame lbf = new LoadBalanceFrame();
             this.dispose();
         }
-        boolean booked = true;
         // create a new instance of BookTicketFrame
-        // a method in BookTicketFrame to receive "booked"
-        // set BookTicketFrame visible
+        // a method in BookTicketFrame to receive all info needed to call generateTicket
+        // like btf.getInfo(Flight, Customer, classType, price)
         this.dispose();
     }
 }
