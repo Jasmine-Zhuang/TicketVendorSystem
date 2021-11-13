@@ -41,10 +41,13 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         JLabel flightInfoLabel = new JLabel();
         flightInfoLabel.setText(fm.displayFlightInfo(flightArraylist));
 
+        JPanel panel = new JPanel();
+        panel.add(flightNumsComoBox);
+        panel.add(flightInfoLabel);
+        panel.add(submitButton);
+
         //frame setup
-        this.add(flightNumsComoBox);
-        this.add(flightInfoLabel);
-        this.add(submitButton);
+       this.add(panel);
         this.setTitle("Pick your flight");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setPreferredSize(new Dimension(550, 550));
