@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class PickFlightMain {
 
-    public static void main(String[] args) {
+    PickFlightMain(){
             FlightManager fm = new FlightManager();
             ArrayList<String> dTime = new ArrayList<>(Arrays.asList("2021","12","1","8","50","0"));
             ArrayList<String> aTime = new ArrayList<>(Arrays.asList("2021","12","1","10","45","0"));

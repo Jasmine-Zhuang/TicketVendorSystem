@@ -52,7 +52,7 @@ public class PickSeatFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==submitButton){
             this.dispose();
-            Window1 w1=new Window1();
+            Window1 w1=new Window1();//display price
 
 
         }
