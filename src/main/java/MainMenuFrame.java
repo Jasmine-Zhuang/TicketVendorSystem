@@ -16,8 +16,10 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         MainMenuFrame() {
             button1.setFont(new Font("Times", Font.PLAIN,25));
             button1.setForeground(darkRed);
+            button1.addActionListener(this);
             button2.setFont(new Font("Times", Font.PLAIN,25));
             button2.setForeground(darkRed);
+            button2.addActionListener(this);
 
             label.setBackground(lightPink);
             label.setFont(new Font("Times", Font.BOLD,40));
@@ -29,7 +31,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
             label.setHorizontalAlignment(JLabel.CENTER);
             label.setBounds(50,50,100,100);
 
-            panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
+            panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
             panel.add(Box.createHorizontalGlue());
             panel.add(Box.createRigidArea(new Dimension(10,10)));
             panel.add(label);
@@ -61,7 +63,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
             Window1 w1 = new Window1();//instantiate manageAccount frame
         }else if(button2 == e.getSource()){
             this.dispose();
-            Window1 w1 = new Window1();//instantiate bookTicket frame
+            BookTicketMenuFrame bookTicketMenu = new BookTicketMenuFrame();//instantiate bookTicket frame
         }
     }
 }
