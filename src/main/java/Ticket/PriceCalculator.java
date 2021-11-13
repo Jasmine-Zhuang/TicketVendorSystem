@@ -1,4 +1,4 @@
-/*
+package Ticket;/*
 Calculate the price of the flight ticket.
  */
 import Customer.Customer;
