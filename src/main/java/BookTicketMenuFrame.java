@@ -25,6 +25,7 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
         button1.addActionListener(this);
+
         button2.setFont(new Font("Times", Font.PLAIN,25));
         button2.setForeground(darkRed);
         button2.addActionListener(this);
