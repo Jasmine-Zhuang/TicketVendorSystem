@@ -24,8 +24,10 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
     BookTicketMenuFrame() {
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
+        button1.addActionListener(this);
         button2.setFont(new Font("Times", Font.PLAIN,25));
         button2.setForeground(darkRed);
+        button2.addActionListener(this);
 
         label1.setBackground(lightPink);
         label1.setFont(new Font("Times", Font.BOLD,30));
@@ -80,10 +82,10 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button1 == e.getSource()){
             this.dispose();
-            new Window1();//instantiate next page for routes picking
+            Window1 w1= new Window1();//instantiate next page for routes picking
         }else if(button2 == e.getSource()){
             this.dispose();
-            new MainMenuFrame();//instantiate main menu
+            MainMenuFrame mainMenu = new MainMenuFrame();//instantiate main menu
         }
     }
 }
