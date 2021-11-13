@@ -33,10 +33,10 @@ public class TicketManagerTest {
     LocalDateTime departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
     Ticket t1 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
             "5B", 100, "Taylor", "taylorsusername","First");
-    Ticket t2 = new Ticket("1234", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
-            "5B", 100, "Taylor", "taylorsusername","Economy");
-    Ticket t3 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
-            "5B", 100, "Mark", "mark123","Business");
+    Ticket t2 = new Ticket("4567", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
+            "12A", 100, "Taylor", "taylorsusername","Economy");
+    Ticket t3 = new Ticket("1463", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
+            "3C", 100, "Mark", "mark123","Business");
 
     @Test(timeout = 200)
     public void TestEmptyConstructor() {
@@ -52,6 +52,16 @@ public class TicketManagerTest {
         assertEquals(1, tm.getSoldTickets().size());
         assertEquals(t1, tm.getSoldTickets().get(0));
 
+    }
+
+    @Test(timeout = 1000)
+    public void TestGetTicketByID() {
+        tm.bookTickets(t1);
+        tm.bookTickets(t2);
+        tm.bookTickets(t3);
+        String ticketID = "1234,5B";
+        assertEquals(tm.getTicketByID(ticketID), t1);
+        assertEquals(tm.getTicketByID("4567,12A"), t2);
     }
 
 

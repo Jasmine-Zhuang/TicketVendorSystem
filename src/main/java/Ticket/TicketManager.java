@@ -23,11 +23,22 @@ public class TicketManager {
 
     /**
      * A getter method.
-     * @return A list of sold tickets.
+     * @return All tickets in soldTicket.
      */
 
     public ArrayList<Ticket> getSoldTickets() {
         return soldTickets;
+    }
+
+    /**
+     * A getter method.
+     * @return All tickets in soldTicket.
+     */
+    public Ticket getTicketByID(String ticketID) {
+        for (Ticket ticket:soldTickets) {
+            if (ticket.getTicket_id().equals(ticketID)) return ticket;
+        }
+        return null;
     }
 
     /**
