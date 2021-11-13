@@ -12,11 +12,16 @@ public class PickFlightFrame extends JFrame implements ActionListener {
     JButton submitButton;
     FlightManager fm;
     String flightNumPicked;
+    String dCity;
+    String aCity;
 
-    PickFlightFrame(String dCity, String aCity, FlightManager fm){
+    PickFlightFrame(String dCity,String aCity,FlightManager fm){
         this.fm = fm;
-        submitButton = new JButton("Submit flight picked");
-        submitButton.setBounds(200, 300, 100, 30);
+        this.dCity = dCity;
+        this.aCity = aCity;
+
+        submitButton = new JButton("Submit flight picked.");
+        submitButton.setSize(100,100);
         submitButton.addActionListener(this);
 
         //flightNumsComoBox setup
@@ -31,7 +36,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
 
         //flight info display setup
         flightNumPicked= flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
-        ArrayList<String> flightArraylist = new ArrayList<String>();
+        ArrayList<String> flightArraylist = new ArrayList<>();
         flightArraylist.add(flightNumPicked);
         JLabel flightInfoLabel = new JLabel();
         flightInfoLabel.setText(fm.displayFlightInfo(flightArraylist));
@@ -42,7 +47,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         this.add(submitButton);
         this.setTitle("Pick your flight");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(550, 550));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);

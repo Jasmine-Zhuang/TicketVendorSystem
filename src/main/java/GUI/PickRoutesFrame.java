@@ -19,8 +19,8 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
     JComboBox<String> aCb = new JComboBox<>(aCities);
     FlightManager fm;
 
-    PickRoutesFrame(FlightManager fm) {
-        this.fm = fm;
+    PickRoutesFrame(FlightManager flm) {
+        this.fm = flm;
 
         dCb.setBounds(50, 50, 100, 20);
         f.add(dCb);
@@ -69,13 +69,12 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
             //switch to select a flight from flights given based on routes
            this.dispose();
            PickFlightFrame pickFlightFrame= new PickFlightFrame(dCb.getItemAt(dCb.getSelectedIndex()),
-                    dCb.getItemAt(aCb.getSelectedIndex()),this.fm);
+                   dCb.getItemAt(aCb.getSelectedIndex()),this.fm);
 
         } else if (e.getSource() == button1) {
             String data1 = "Departure selected "
                     + dCb.getItemAt(dCb.getSelectedIndex());
             label1.setText(data1);
-
             String data2 = "Destination selected "
                     + dCb.getItemAt(aCb.getSelectedIndex());
             label2.setText(data2);
