@@ -104,23 +104,23 @@ public class PriceTest {
         String Bus = "Business";
         String Fir = "First";
         //Economy class test:
-        assertEquals(400, p.CalculatePrice(f, cus_0, Eco));
+        assertEquals(400, p.calculatePrice(f, cus_0, Eco));
         //Business class test:
-        assertEquals(800, p.CalculatePrice(f, cus_0, Bus));
+        assertEquals(800, p.calculatePrice(f, cus_0, Bus));
         //First class test:
-        assertEquals(1200, p.CalculatePrice(f, cus_0, Fir));
+        assertEquals(1200, p.calculatePrice(f, cus_0, Fir));
         //Membership level 1 Test:
-        assertEquals(380, p.CalculatePrice(f, cus_1, Eco));
-        assertEquals(760, p.CalculatePrice(f, cus_1, Bus));
-        assertEquals(1140, p.CalculatePrice(f, cus_1, Fir));
+        assertEquals(380, p.calculatePrice(f, cus_1, Eco));
+        assertEquals(760, p.calculatePrice(f, cus_1, Bus));
+        assertEquals(1140, p.calculatePrice(f, cus_1, Fir));
         //Membership level 2 Test:
-        assertEquals(360, p.CalculatePrice(f, cus_2, Eco));
-        assertEquals(720, p.CalculatePrice(f, cus_2, Bus));
-        assertEquals(1080, p.CalculatePrice(f, cus_2, Fir));
+        assertEquals(360, p.calculatePrice(f, cus_2, Eco));
+        assertEquals(720, p.calculatePrice(f, cus_2, Bus));
+        assertEquals(1080, p.calculatePrice(f, cus_2, Fir));
         //Membership level 3 Test:
-        assertEquals(320, p.CalculatePrice(f, cus_3, Eco));
-        assertEquals(640, p.CalculatePrice(f, cus_3, Bus));
-        assertEquals(960, p.CalculatePrice(f, cus_3, Fir));
+        assertEquals(320, p.calculatePrice(f, cus_3, Eco));
+        assertEquals(640, p.calculatePrice(f, cus_3, Bus));
+        assertEquals(960, p.calculatePrice(f, cus_3, Fir));
     }
 
     @Test
