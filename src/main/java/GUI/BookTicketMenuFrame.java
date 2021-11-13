@@ -8,9 +8,16 @@ import java.awt.event.ActionListener;
 public class BookTicketMenuFrame extends JFrame implements ActionListener {
 
     JPanel panel = new JPanel();
-    JLabel label = new JLabel("BOOK TICKET MENU");
-    JButton button1 = new JButton("Pick routes");
-    JButton button2 = new JButton("Help");
+    JLabel label1 = new JLabel("BOOK TICKET MENU");
+    String instruction = "<html>To book you desired ticket, you will need to:" +
+            "<br/>-> select your routes" +
+            "<br/>-> pick your flight" +
+            "<br/>-> pick seat class" +
+            "<br/>-> pick your seat" +
+            "<br/>-> submit booking<html>";
+    JLabel label2 = new JLabel(instruction);
+    JButton button1 = new JButton("Book flight ticket");
+    JButton button2 = new JButton("Back to main menu");
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
 
@@ -20,28 +27,41 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
         button2.setFont(new Font("Times", Font.PLAIN,25));
         button2.setForeground(darkRed);
 
-        label.setBackground(lightPink);
-        label.setFont(new Font("Times", Font.BOLD,40));
-        label.setForeground(darkRed);
-        label.setHorizontalTextPosition(JLabel.CENTER);
-        label.setVerticalTextPosition(JLabel.CENTER);
-        label.setOpaque(true);
-        label.setVerticalAlignment(JLabel.CENTER);
-        label.setHorizontalAlignment(JLabel.CENTER);
-        label.setBounds(50,50,100,100);
+        label1.setBackground(lightPink);
+        label1.setFont(new Font("Times", Font.BOLD,30));
+        label1.setForeground(darkRed);
+        label1.setHorizontalTextPosition(JLabel.CENTER);
+        label1.setVerticalTextPosition(JLabel.CENTER);
+        label1.setOpaque(true);
+        label1.setVerticalAlignment(JLabel.CENTER);
+        label1.setHorizontalAlignment(JLabel.CENTER);
+        label1.setBounds(50,50,100,100);
+
+        label2.setBackground(lightPink);
+        label2.setForeground(darkRed);
+        label2.setHorizontalTextPosition(JLabel.CENTER);
+        label2.setVerticalTextPosition(JLabel.CENTER);
+        label2.setOpaque(true);
+        label2.setFont(new Font("Times", Font.ITALIC,20));
+        label2.setVerticalAlignment(JLabel.CENTER);
+        label2.setHorizontalAlignment(JLabel.CENTER);
+        label2.setBounds(50,50,300,300);
 
         panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
-        panel.add(Box.createHorizontalGlue());
-        panel.add(Box.createRigidArea(new Dimension(10,10)));
-        panel.add(label);
+        panel.add(label1);
+        panel.add(Box.createRigidArea(new Dimension(20,20)));
         panel.add(button1);
+        panel.add(Box.createRigidArea(new Dimension(20,10)));
+        panel.add(label2);
+        panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(button2);
-        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.setBackground(lightPink);
+        panel.add(Box.createHorizontalGlue());
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(500, 500);
+        this.setPreferredSize(new Dimension(350, 350));
         this.pack();
         this.setVisible(true);
     }
@@ -59,10 +79,10 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button1 == e.getSource()){
             this.dispose();
-            Window1 w1 = new Window1();//instantiate next page for routes picking
+            new Window1();//instantiate next page for routes picking
         }else if(button2 == e.getSource()){
             this.dispose();
-            Window1 w1 = new Window1();//instantiate ...
+            new MainMenuFrame();//instantiate main menu
         }
     }
 }
