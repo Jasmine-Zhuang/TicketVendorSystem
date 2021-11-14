@@ -19,23 +19,6 @@ public class TicketManager implements Serializable {
     private ArrayList<Ticket> soldTickets;
     private static final long serialVersionUID = 1;
 
-   /* public void saveTM(String filePath) {
-        TicketManager tm = new TicketManager();
-
-        try {
-            FileOutputStream fileOut = new FileOutputStream(filePath);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(tm);
-            out.close();
-            fileOut.close();
-            System.out.println("Info saved.");
-        }
-        catch (IOException i) {
-            i.printStackTrace();
-        }
-    }*/
-
-
 
     /** Construct a TicketManager, giving them an empty list of soldTickets
      */

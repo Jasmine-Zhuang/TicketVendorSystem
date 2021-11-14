@@ -38,6 +38,7 @@ public class TicketManagerTest {
     Ticket t3 = new Ticket("1463", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
             "3C", 100, "Mark", "mark123","Business");
 
+
     @Test(timeout = 200)
     public void TestEmptyConstructor() {
         ArrayList<Ticket> exp = new ArrayList<>();
@@ -97,6 +98,11 @@ public class TicketManagerTest {
         Ticket new_t = tm.generateTicket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
                 "5B", 100, "Taylor", "taylorsusername", "First");
         assertEquals(new_t.toString(), t1.toString());
+    }
+
+    @Test(timeout = 500)
+    public void TestGetMileage(){
+
     }
 
     @Test(timeout = 500)
