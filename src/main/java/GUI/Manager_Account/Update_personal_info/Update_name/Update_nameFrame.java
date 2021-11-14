@@ -134,7 +134,10 @@ public class Update_nameFrame extends JFrame implements ActionListener {
                 Update_name_verifiedFrame change_name = new Update_name_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm);
             }//instantiate next page for routes picking
             if (!this.cm.checkCustomername(name)) {
-                Update_usernamefailFrame change_name = new Update_usernamefailFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+                /*
+                Update_namefailFrame change_name = new Update_namefailFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+
+                 */
             }//instantiate next page for routes picking
 
         }else if(button1 == e.getSource()){
