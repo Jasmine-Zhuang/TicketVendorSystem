@@ -445,7 +445,7 @@ public class Customer implements Serializable {
      */
     public Integer calculateRedeemPoint(){
         if(this.membership){
-            this.redeem_points = ((Integer) this.mileage /(Integer) 100);
+            this.redeem_points = ((Integer) this.mileage /(Integer) 5);
             return this.redeem_points;
         }
         return this.redeem_points;
