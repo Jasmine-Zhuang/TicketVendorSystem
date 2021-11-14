@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+import Customer.PHManager;
 import Customer.Customer;
 import Customer.CustomerManager;
 import Flight.Flight;
@@ -42,13 +42,15 @@ public class BookTicketFrame extends JFrame implements ActionListener{
         this.cm = cm;
         this.fm = fm;
         this.tm = tm;
+        this.phm=phm;
         this.flightNum = flightNum;
         this.customer = c;
         this.ticketPrice = ticketPrice;
         this.classType = classType;
         label.setFont(new Font("Times", Font.BOLD,40));
         label.setForeground(Color.white);
-        label2.setFont(new Font("Times", Font.PLAIN,20));
+        label2.setFont(new Font("Times", Font.PLAIN, 20));
+
 
         buttonBook.addActionListener(this);
         buttonBack.addActionListener(this);

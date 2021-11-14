@@ -1,6 +1,10 @@
 package GUI;
 
+import Customer.CustomerManager;
+import Customer.PHManager;
 import Flight.FlightManager;
+import Ticket.TicketManager;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,9 +22,17 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
     JComboBox<String> dCb = new JComboBox<>(dCities);
     JComboBox<String> aCb = new JComboBox<>(aCities);
     FlightManager fm;
+    TicketManager tm;
+    CustomerManager cm;
+    String username;
+    PHManager phm;
 
-    PickRoutesFrame(FlightManager flm) {
-        this.fm = flm;
+    PickRoutesFrame(FlightManager fm, CustomerManager cm, TicketManager tm, String username, PHManager phm) {
+        this.fm = fm;
+        this.tm=tm;
+        this.cm=cm;
+        this.username=username;
+        this.phm=phm;
 
         dCb.setBounds(50, 50, 100, 20);
         f.add(dCb);
@@ -69,7 +81,7 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
             //switch to select a flight from flights given based on routes
            this.dispose();
            PickFlightFrame pickFlightFrame= new PickFlightFrame(dCb.getItemAt(dCb.getSelectedIndex()),
-                   dCb.getItemAt(aCb.getSelectedIndex()),this.fm);
+                   dCb.getItemAt(aCb.getSelectedIndex()),this.fm,this.cm,this.tm,this.username,this.phm);
 
         } else if (e.getSource() == button1) {
             String data1 = "Departure selected "

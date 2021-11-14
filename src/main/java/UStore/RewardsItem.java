@@ -45,7 +45,6 @@ public class RewardsItem implements Redeemable{
      */
     public RewardsItem redeemItem(Customer customer) {
         if (customer.getRedeem_points() >= this.getPoints()){
-            /*RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());*/
             this.setRedeemed(true);
             PurchaseHistory ph = customer.getPurchaseHistory();
             if(ph.addItemRedeemed(this)){

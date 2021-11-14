@@ -2,16 +2,47 @@ package Flight;
 /*
 This is the class that manages all scheduled flights information
  */
-
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.io.*;
 
-
-public class FlightManager {
+public class FlightManager implements Serializable {
     private final HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
 
-    public FlightManager(){}
+    public boolean saveFM(FlightManager fm, String fileName){
+        try{
+            FileOutputStream fileOut = new FileOutputStream(fileName);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(fm);
+            objectOut.close();
+            return true;
+        }catch(IOException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public FlightManager restoreFM(String fileName){
+        FlightManager fm = null;
+        try{
+            FileInputStream fileIn = new FileInputStream(fileName);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            fm = (FlightManager) objectIn.readObject();
+            objectIn.close();
+            fileIn.close();
+        }catch(IOException | ClassNotFoundException e){
+            e.printStackTrace();
+            return null;
+        }
+        return fm;
 
+    }
+
+    public FlightManager(){}
+/*
+    public FlightManager(HashMap<String, Flight>idToFlight){
+        this.idToFlight = idToFlight;
+    }*/
 
     /**
      * Add a New Flight to the manager.

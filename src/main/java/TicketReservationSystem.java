@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class TicketReservationSystem {
     //setup: new manager(serialization)
-    private final CustomerManager cm;
-    private final FlightManager fm;
-    private final TicketManager tm;
+    private CustomerManager cm;
+    private FlightManager fm;
+    private TicketManager tm;
 
     public static void main(String[] args) {
 

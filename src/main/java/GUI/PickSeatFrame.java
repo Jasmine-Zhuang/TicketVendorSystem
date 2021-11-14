@@ -1,6 +1,9 @@
 package GUI;
 
+import Customer.CustomerManager;
+import Customer.PHManager;
 import Flight.FlightManager;
+import Ticket.TicketManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +13,25 @@ import java.util.ArrayList;
 
 public class PickSeatFrame extends JFrame implements ActionListener {
     JButton submitButton = new JButton();
-    PickSeatFrame(FlightManager fm, String flightNum){
+    FlightManager fm;
+    TicketManager tm;
+    CustomerManager cm;
+    String flightNum;
+    String seatNumber;
+    String username;
+    PHManager phm;
+    PickSeatFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String flightNum, String username,PHManager phm){
+        this.fm=fm;
+        this.flightNum =flightNum;
+        this.username=username;
+        this.cm=cm;
+        this.tm=tm;
+        this.phm=phm;
+
         JPanel panel = new JPanel();
         submitButton.setText("Submit seat picked");
         submitButton.setBounds(200, 300, 100, 30);
         submitButton.addActionListener(this);
-
 
         ArrayList<ArrayList<String>> availableSeatArrayList = fm.printAvailableSeat(flightNum);
         JLabel seatDisplayLabel = new JLabel(availableSeatArrayList.toString());
@@ -41,6 +57,7 @@ public class PickSeatFrame extends JFrame implements ActionListener {
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
+        this.seatNumber = SeatsComoBox.getItemAt(SeatsComoBox.getSelectedIndex()).substring(1,3);
     }
 
     /**
@@ -52,9 +69,9 @@ public class PickSeatFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==submitButton){
             this.dispose();
-            Window1 w1=new Window1();//display price
-
-
+            DisplayPriceFrame displayPriceFrame = new DisplayPriceFrame(this.cm,this.fm,this.tm,this.seatNumber,this.username,this.phm);
+            //flight num, customer usertype, seat type
+            displayPriceFrame.getInfo(flightNum);
         }
 
     }

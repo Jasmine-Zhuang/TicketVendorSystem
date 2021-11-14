@@ -39,10 +39,10 @@ public class CustomerManager{
         return this.nameToCustomer.get(username).checkPassword(password);
     }
 
-    /** A method named showCustomer that takes a String (the name of the customer).
-     *       Return Customer with corresponding name.
-     * @param username The name of this customer needed to be checked if exit in nameToCustomer.
-     * @return Customer The corresponding customer with this customer's name.
+    /** A method named showCustomer that takes a String (the username of the customer).
+     *       Return Customer with corresponding username.
+     * @param username The username of this customer needed to be checked if exit in nameToCustomer.
+     * @return Customer The corresponding customer with this customer's username.
      */
     public Customer showCustomer(String username) {
         if (AllMember.checkCustomer(username)){

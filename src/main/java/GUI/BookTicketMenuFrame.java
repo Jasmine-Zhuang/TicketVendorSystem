@@ -1,4 +1,8 @@
 package GUI;
+import Customer.CustomerManager;
+import Customer.PHManager;
+import Flight.FlightManager;
+import Ticket.TicketManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +13,7 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
 
     JPanel panel = new JPanel();
     JLabel label1 = new JLabel("BOOK TICKET MENU");
-    String instruction = "<html>To book you desired ticket, you will need to:" +
+    String instruction = "<html>To book your desired ticket, you will need to:" +
             "<br/>-> select your routes" +
             "<br/>-> pick your flight" +
             "<br/>-> pick seat class" +
@@ -20,8 +24,18 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
     JButton button2 = new JButton("Back to main menu");
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
+    FlightManager fm;
+    TicketManager tm;
+    CustomerManager cm;
+    String username;
+    PHManager phm;
 
-    BookTicketMenuFrame() {
+    BookTicketMenuFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String username,PHManager phm) {
+        this.fm =fm;
+        this.tm=tm;
+        this.cm=cm;
+        this.phm=phm;
+        this.username = username;
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
         button1.addActionListener(this);
@@ -70,10 +84,6 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new BookTicketMenuFrame();
-    }
-
     /**
      * Invoked when an action occurs.
      *
@@ -83,10 +93,10 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button1 == e.getSource()){
             this.dispose();
-            Window1 w1= new Window1();//instantiate next page for routes picking
+            PickRoutesFrame pickRoutesFrame= new PickRoutesFrame(this.fm,this.cm,this.tm,this.username,this.phm);//instantiate next page for routes picking
         }else if(button2 == e.getSource()){
             this.dispose();
-            MainMenuFrame mainMenu = new MainMenuFrame();//instantiate main menu
+            MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, this.username,this.phm);//instantiate main menu
         }
     }
 }

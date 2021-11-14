@@ -1,7 +1,8 @@
-package GUI;
+package template;
+
+import GUI.Window1;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,7 +71,7 @@ public class GreetingFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button == e.getSource()){
             this.dispose();
-            Window1 w1 = new Window1();//instantiate login frame
+        /*    Window1 w1 = new Window1();//instantiate login frame*/
 
     }
     }

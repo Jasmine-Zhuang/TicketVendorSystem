@@ -1,4 +1,9 @@
 package GUI;
+import Customer.CustomerManager;
+import Customer.PHManager;
+import Flight.FlightManager;
+import Ticket.TicketManager;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,8 +22,16 @@ public class GreetingFrame1 extends JFrame implements ActionListener {
     JLabel greetingLabel = new JLabel("Welcome to UTicket!");
     JButton button = new JButton();
     JPanel panel = new JPanel();
+    FlightManager fm;
+    TicketManager tm;
+    CustomerManager cm;
+    PHManager phm;
 
-    GreetingFrame1() {
+    GreetingFrame1(FlightManager fm, CustomerManager cm, TicketManager tm, PHManager phm) {
+        this.fm=fm;
+        this.cm=cm;
+        this.tm=tm;
+        this.phm =phm;
 
         button.setText("Start");
         button.setFont(new Font("Times", Font.PLAIN,25));
@@ -85,11 +98,8 @@ public class GreetingFrame1 extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button == e.getSource()){
             this.dispose();
-            Window1 w1 = new Window1();//instantiate login frame
+           Login login = new Login(this.fm,this.cm,this.tm,this.phm);//instantiate login frame
         }
     }
 
-    public static void main(String[] args) {
-        new GreetingFrame1();
-    }
 }

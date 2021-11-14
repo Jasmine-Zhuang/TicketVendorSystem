@@ -1,4 +1,6 @@
-package GUI;
+package template;
+
+import GUI.Window1;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +32,7 @@ public class LaunchPage implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button == e.getSource()){
             frame.dispose();
-            Window1 w1 = new Window1();
+           /* Window1 w1 = new Window1();*/
         }
 
     }

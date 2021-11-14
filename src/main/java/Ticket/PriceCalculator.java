@@ -8,9 +8,9 @@ import Ticket.Ticket;
 import java.time.LocalDateTime;
 public class PriceCalculator {
     public PriceCalculator(){}
-    public int CalculatePrice(Flight f, Customer c, String ClassType){
+    public int calculatePrice(Flight f, Customer c, String ClassType){
         int distance = f.getDistanceTraveled();
-        int price;
+        int price=0;
         if(ClassType.equals("Economy")){
             price = (int) (200 + 0.2 * distance);
         }else if(ClassType.equals("Business")){
@@ -63,9 +63,4 @@ public class PriceCalculator {
         return 150;
     }
 
-    public static void main(String[] args) {
-        String t = LocalDateTime.now().toLocalDate().toString();
-        System.out.println(t);
-
-    }
 }

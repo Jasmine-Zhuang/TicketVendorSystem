@@ -1,4 +1,10 @@
 package GUI;
+import Customer.CustomerManager;
+import Customer.PHManager;
+import Flight.FlightManager;
+import GUI.Manager_Account.ManageAccount;
+import Ticket.TicketManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,8 +18,19 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         JButton button2 = new JButton("BOOK TICKET");
         Color darkRed = new Color(101,15,43);
         Color lightPink = new Color(218,198,205);
+        FlightManager fm;
+        TicketManager tm;
+        CustomerManager cm;
+        String username;
+        PHManager phm;
 
-        MainMenuFrame() {
+        public MainMenuFrame(FlightManager fm, CustomerManager cm, TicketManager tm, String username,PHManager phm) {
+            this.fm=fm;
+            this.cm=cm;
+            this.tm=tm;
+            this.username = username;
+            this.phm=phm;
+
             button1.setFont(new Font("Times", Font.PLAIN,25));
             button1.setForeground(darkRed);
             button1.addActionListener(this);
@@ -47,10 +64,6 @@ public class MainMenuFrame extends JFrame implements ActionListener {
             this.setVisible(true);
         }
 
-    public static void main(String[] args) {
-        new MainMenuFrame();
-    }
-
     /**
      * Invoked when an action occurs.
      *
@@ -60,10 +73,10 @@ public class MainMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button1 == e.getSource()){
             this.dispose();
-            Window1 w1 = new Window1();//instantiate manageAccount frame
+            ManageAccount manageAccount = new ManageAccount(this.cm, this.fm,this.tm,this.username,this.phm);
         }else if(button2 == e.getSource()){
             this.dispose();
-            BookTicketMenuFrame bookTicketMenu = new BookTicketMenuFrame();//instantiate bookTicket frame
+            BookTicketMenuFrame bookTicketMenu = new BookTicketMenuFrame(this.fm,this.cm,this.tm,this.username,this.phm);//instantiate bookTicket frame
         }
     }
 }

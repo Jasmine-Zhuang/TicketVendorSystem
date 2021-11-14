@@ -1,6 +1,9 @@
 package GUI;
 
+import Customer.CustomerManager;
+import Customer.PHManager;
 import Flight.FlightManager;
+import Ticket.TicketManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,14 +14,22 @@ import java.util.ArrayList;
 public class PickFlightFrame extends JFrame implements ActionListener {
     JButton submitButton;
     FlightManager fm;
+    TicketManager tm;
+    CustomerManager cm;
     String flightNumPicked;
     String dCity;
     String aCity;
+    String username;
+    PHManager phm;
 
-    PickFlightFrame(String dCity,String aCity,FlightManager fm){
-        this.fm = fm;
+    PickFlightFrame(String dCity,String aCity,FlightManager fm,CustomerManager cm, TicketManager tm,String username,PHManager phm){
+        this.fm=fm;
+        this.cm=cm;
+        this.tm=tm;
         this.dCity = dCity;
         this.aCity = aCity;
+        this.username=username;
+        this.phm=phm;
 
         submitButton = new JButton("Submit flight picked.");
         submitButton.setSize(100,100);
@@ -65,7 +76,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==submitButton){
             this.dispose();
-            PickSeatFrame pickSeatFrame = new PickSeatFrame(this.fm,flightNumPicked);
+            PickSeatFrame pickSeatFrame = new PickSeatFrame(this.fm,this.cm,this.tm,flightNumPicked,this.username,this.phm);
         }
 
     }

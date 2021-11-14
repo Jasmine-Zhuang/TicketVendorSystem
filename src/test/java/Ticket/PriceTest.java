@@ -1,3 +1,5 @@
+package Ticket;
+
 import Customer.Customer;
 import Flight.Flight;
 import Ticket.Ticket;

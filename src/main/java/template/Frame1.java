@@ -1,4 +1,4 @@
-package GUI;
+package template;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +12,7 @@ public class Frame1 extends JFrame implements ActionListener {
         button = new JButton();
         button.setBounds(100,100,250,250);
         //set image for button
-        ImageIcon icon = new ImageIcon("src/main/java/flight_ticket.png");
+        ImageIcon icon = new ImageIcon("src/main/java/GUI/flight_ticket.png");
         int NEW_WIDTH = 50;
         int NEW_HEIGHT = 50;
         Image img = icon.getImage();
