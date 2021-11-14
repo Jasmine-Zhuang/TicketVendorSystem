@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
+import GUI.Manager_Account.Update_personal_info.Update_username.Update_usernamefailFrame;
 import Ticket.TicketManager;
 
 class Update_namesuccessFrame extends JFrame implements ActionListener {

@@ -14,6 +14,8 @@ import Customer.CustomerManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
+import UStore.RewardsItem;
+import UStore.RewardsItemFactory;
 
 
 public class ManageAccount extends JFrame implements ActionListener {
@@ -29,6 +31,8 @@ public class ManageAccount extends JFrame implements ActionListener {
     TicketManager tm;
     PHManager phm;
     String username;
+    RewardsItem rewardsItem;
+    RewardsItemFactory rif;
 
     public ManageAccount(CustomerManager customerManager, FlightManager flightManager,
                          TicketManager ticketManager, String username, PHManager phm){
@@ -37,6 +41,7 @@ public class ManageAccount extends JFrame implements ActionListener {
         this.tm = ticketManager;
         this.phm = phm;
         this.username=username;
+        this.rif = new RewardsItemFactory();
 
         update.setText("update personal info");
         update.setBounds(100,20,200,50);
@@ -102,7 +107,7 @@ public class ManageAccount extends JFrame implements ActionListener {
         }
         if (e.getSource() == redeem){
             this.dispose();
-            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }
         if (e.getSource() == history){
             this.dispose();

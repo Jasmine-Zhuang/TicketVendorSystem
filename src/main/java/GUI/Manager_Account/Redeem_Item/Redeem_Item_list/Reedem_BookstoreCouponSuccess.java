@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
+import UStore.RewardsItem;
+import UStore.RewardsItemFactory;
 
 public class Reedem_BookstoreCouponSuccess extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -32,12 +34,17 @@ public class Reedem_BookstoreCouponSuccess extends JFrame implements ActionListe
     TicketManager tm;
     String username;
     PHManager phm;
+    RewardsItem rewardsItem;
+    RewardsItemFactory rif;
 
     public Reedem_BookstoreCouponSuccess(CustomerManager customerManager, FlightManager flightManager,
-                                         TicketManager ticketManager, String username, PHManager phm) {
+                                         TicketManager ticketManager, String username, PHManager phm,
+                                         RewardsItem rewardsItem, RewardsItemFactory rif) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
+        this.rewardsItem = rewardsItem;
+        this.rif = rif;
         this.phm=phm;
         this.username=username;
         button1.setFont(new Font("Times", Font.PLAIN,25));
@@ -107,15 +114,16 @@ public class Reedem_BookstoreCouponSuccess extends JFrame implements ActionListe
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
+            this.rewardsItem=this.rif.getItem("Book Store Coupon").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
         }
         else if(button1 == e.getSource()){
             this.dispose();
-            Redeem_ItemListFrame list_list = new Redeem_ItemListFrame(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
+            Redeem_ItemListFrame list_list = new Redeem_ItemListFrame(this.cm, this.fm, this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }
         else if(button3 == e.getSource()){
             this.dispose();
-            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
+            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }
     }
 }

@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
+import UStore.RewardsItem;
+import UStore.RewardsItemFactory;
 
 public class Redeem_ItemListFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -33,14 +35,19 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
     TicketManager tm;
     String username;
     PHManager phm;
+    RewardsItem rewardsItem;
+    RewardsItemFactory rif;
 
     public Redeem_ItemListFrame(CustomerManager customerManager, FlightManager flightManager,
-                                TicketManager ticketManager, String username,PHManager phm) {
+                                TicketManager ticketManager, String username,PHManager phm,
+                                RewardsItem rewardsItem,RewardsItemFactory rif) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.username=username;
         this.phm=phm;
+        this.rewardsItem = rewardsItem;
+        this.rif = rif;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -139,27 +146,27 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button1 == e.getSource()){
             this.dispose();
-            Reedem_BackpackSuccess back_pack= new Reedem_BackpackSuccess(this.cm,this.fm,  this.tm, this.username,this.phm);//instantiate next page for routes picking
+            Reedem_BackpackSuccess back_pack= new Reedem_BackpackSuccess(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate next page for routes picking
         }else if(button2 == e.getSource()){
             this.dispose();
             Reedem_BookstoreCouponSuccess bookstore_coupon = new Reedem_BookstoreCouponSuccess(this.cm,this.fm,  this.tm,
-                    this.username,this.phm);//instantiate main menu
+                    this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }
         else if(button3 == e.getSource()){
             this.dispose();
-            Reedem_GiftCardSuccess giftcard = new Reedem_GiftCardSuccess(this.cm,this.fm,  this.tm, this.username,this.phm);//instantiate main menu
+            Reedem_GiftCardSuccess giftcard = new Reedem_GiftCardSuccess(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }
         else if(button4 == e.getSource()){
             this.dispose();
-            Reedem_Mug mug = new Reedem_Mug(this.cm,this.fm,  this.tm, this.username,this.phm);//instantiate main menu
+            Reedem_Mug mug = new Reedem_Mug(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }
         else if(button5 == e.getSource()){
             this.dispose();
-            Reedem_TVoucher TVoucher = new Reedem_TVoucher(this.cm,this.fm,  this.tm, this.username,this.phm);//instantiate main menu
+            Reedem_TVoucher TVoucher = new Reedem_TVoucher(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }
         else if(button6 == e.getSource()){
             this.dispose();
-            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm,this.fm,  this.tm, this.username,this.phm);//instantiate main menu
+            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }
     }
 }

@@ -121,13 +121,8 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
 
         if(submitb == e.getSource()) {
             this.dispose();
-            String name = initalttext.getText();
-            if (this.cm.checkCustomername(name)) {
-                Update_namesuccessFrame change_name = new Update_namesuccessFrame(this.cm, this.fm, this.tm, this.username, this.phm);
-            }//instantiate next page for routes picking
-            if (!this.cm.checkCustomername(name)) {
-                Update_usernamefailFrame change_name = new Update_usernamefailFrame(this.cm, this.fm, this.tm, this.username, this.phm);
-            }//instantiate next page for routes picking
+            String newname = initalttext.getText();
+            this.cm.showCustomer(this.username).changeName(newname);
         } else if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,

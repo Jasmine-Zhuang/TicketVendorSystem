@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
+import UStore.RewardsItem;
+import UStore.RewardsItemFactory;
 
 public class ReedemItem_ReedemItemFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -29,14 +31,19 @@ public class ReedemItem_ReedemItemFrame extends JFrame implements ActionListener
     TicketManager tm;
     String username;
     PHManager phm;
+    RewardsItem rewardsItem;
+    RewardsItemFactory rif;
 
     ReedemItem_ReedemItemFrame(CustomerManager customerManager, FlightManager flightManager,
-                               TicketManager ticketManager, String username, PHManager phm) {
+                               TicketManager ticketManager, String username, PHManager phm,
+                               RewardsItem rewardsItem,RewardsItemFactory rif) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.username=username;
         this.phm=phm;
+        this.rewardsItem = rewardsItem;
+        this.rif = rif;
 
         back_pre.setFont(new Font("Times", Font.PLAIN,25));
         back_pre.setForeground(darkRed);
@@ -105,7 +112,7 @@ public class ReedemItem_ReedemItemFrame extends JFrame implements ActionListener
         }
         else if(back_pre == e.getSource()){
             this.dispose();
-            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
+            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }
     }
 }
