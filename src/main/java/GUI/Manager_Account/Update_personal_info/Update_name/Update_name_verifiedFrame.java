@@ -13,6 +13,7 @@ import Customer.PHManager;
 
 import Flight.FlightManager;
 import GUI.Manager_Account.Update_personal_info.Update_username.Update_usernamefailFrame;
+import GUI.Manager_Account.Update_personal_info.Update_username.Update_usernamesuccessFrame;
 import Ticket.TicketManager;
 
 public class Update_name_verifiedFrame extends JFrame implements ActionListener {
@@ -123,13 +124,16 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
             this.dispose();
             String newname = initalttext.getText();
             this.cm.showCustomer(this.username).changeName(newname);
+            Update_namesuccessFrame change_username= new Update_namesuccessFrame(this.cm, this.fm, this.tm,
+                    this.username, this.phm);//instantiate next page for routes picking
         } else if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
                     this.username, this.phm);//instantiate main menu
         } else if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,
+                    this.phm);//instantiate main menu
         }
         String s = e.getActionCommand();
         if (s.equals("submit")) {

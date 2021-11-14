@@ -127,12 +127,11 @@ class Update_namefailFrame extends JFrame implements ActionListener {
             this.dispose();
             String name = initalttext.getText();
             if (this.cm.checkCustomername(name)) {
-                Update_namesuccessFrame change_name = new Update_namesuccessFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+                Update_name_verifiedFrame change_name = new Update_name_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm);
             }//instantiate next page for routes picking
             if (!this.cm.checkCustomername(name)) {
                 Update_usernamefailFrame change_name = new Update_usernamefailFrame(this.cm, this.fm, this.tm, this.username, this.phm);
             }//instantiate next page for routes picking
-            Update_name_verifiedFrame truename= new Update_name_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate next page for routes picking
         }else if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu

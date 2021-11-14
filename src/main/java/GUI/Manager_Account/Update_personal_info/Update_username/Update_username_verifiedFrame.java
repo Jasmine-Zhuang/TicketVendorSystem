@@ -126,6 +126,9 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
     public void actionPerformed(ActionEvent e) {
         if(submitb == e.getSource()){
             this.dispose();
+            String newname = initalttext.getText();
+            this.cm.showCustomer(this.username).changeUsername(newname);
+
             Update_usernamesuccessFrame change_username= new Update_usernamesuccessFrame(this.cm, this.fm, this.tm,
                     this.username, this.phm);//instantiate next page for routes picking
         }else if(button1 == e.getSource()){

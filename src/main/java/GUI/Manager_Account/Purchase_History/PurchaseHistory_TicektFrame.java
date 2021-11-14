@@ -7,10 +7,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
+import Ticket.Ticket;
+
 
 public class PurchaseHistory_TicektFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -37,6 +40,22 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
         this.tm = ticketManager;
         this.username=username;
         this.phm=phm;
+
+        ArrayList<Ticket> Ticket_historylist = this.phm.getTickets(this.cm.showCustomer(this.username));
+        JLabel Ticket_Label = new JLabel(Ticket_historylist.toString());
+        String[] Ticket_Array = new String[Ticket_historylist.size()];
+        for(int i = 0; i < Ticket_historylist.size(); i++) {
+            Ticket_Array[i] = String.valueOf(Ticket_historylist.get(i));
+        }
+        JComboBox<String> Ticket_Box = new JComboBox<>(Ticket_Array);
+        Ticket_Box.setBounds(50, 50, 100, 20);
+
+        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+        panel.add(Box.createHorizontalGlue());
+        panel.add(Ticket_Label);
+        panel.add(Box.createRigidArea(new Dimension(10,10)));
+        panel.add(Ticket_Box);
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         button2.setFont(new Font("Times", Font.PLAIN,25));
         button2.setForeground(darkRed);

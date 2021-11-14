@@ -146,6 +146,9 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button1 == e.getSource()){
             this.dispose();
+            this.rewardsItem = this.rif.getItem("Back Pack").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
+
+
             Reedem_BackpackSuccess back_pack= new Reedem_BackpackSuccess(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate next page for routes picking
         }else if(button2 == e.getSource()){
             this.dispose();

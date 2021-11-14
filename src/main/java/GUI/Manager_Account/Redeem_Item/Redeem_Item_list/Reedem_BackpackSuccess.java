@@ -113,7 +113,10 @@ public class Reedem_BackpackSuccess extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
+            /*
             this.rewardsItem=this.rif.getItem("Back Pack").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
+
+             */
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
         }
 

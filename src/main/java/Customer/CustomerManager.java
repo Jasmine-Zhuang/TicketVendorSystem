@@ -1,6 +1,7 @@
 package Customer;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 public class CustomerManager{
 
@@ -26,7 +27,10 @@ public class CustomerManager{
      * @param name The name of this customer needed to be checked if exit in nameToCustomer.
      */
     public boolean checkCustomername(String name) {
-        return nameToCustomer.containsKey(name);
+        for(Customer customer : nameToCustomer.values()) {
+            return Objects.equals(customer.getName(), name);
+        }
+        return false;
     }
 
 

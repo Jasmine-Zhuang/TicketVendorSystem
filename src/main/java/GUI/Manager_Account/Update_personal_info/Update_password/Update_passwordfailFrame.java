@@ -130,8 +130,14 @@ class Update_passwordfailFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(submitb == e.getSource()){
             this.dispose();
-            Update_password_verifiedFrame truepassword= new Update_password_verifiedFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate next page for routes picking
+            String password = initalttext.getText();
+            if (this.cm.checkPassword(this.username, password)) {
+                Update_password_verifiedFrame true_password= new Update_password_verifiedFrame(this.cm, this.fm, this.tm,
+                        this.username, this.phm);//instantiate next page for routes picking
+                if (!this.cm.checkPassword(this.username, password)) {
+                    Update_passwordfailFrame fail_password = new Update_passwordfailFrame(this.cm, this.fm, this.tm,
+                            this.username, this.phm);//instantiate next page for routes picking
+                }//instantiate next page for routes picking
         }else if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
@@ -149,5 +155,6 @@ class Update_passwordfailFrame extends JFrame implements ActionListener {
             nothinglabel.setText("  ");
         }
     }
+}
 }
 

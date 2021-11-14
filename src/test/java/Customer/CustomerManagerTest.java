@@ -32,7 +32,7 @@ public class CustomerManagerTest {
     @Test(timeout = 50)
     public void test_checkCustomer() {
         Ryan.addCustomer(Maggie);
-        assertTrue(Ryan.checkCustomername("Name1203"));
+        assertTrue(Ryan.checkCustomer("Name1203"));
     }
 
     @Test(timeout = 50)

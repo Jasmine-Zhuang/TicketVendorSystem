@@ -7,9 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
+import UStore.RewardsItem;
 
 public class PurchaseHistory_ReedemItemFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -36,6 +39,23 @@ public class PurchaseHistory_ReedemItemFrame extends JFrame implements ActionLis
         this.tm = ticketManager;
         this.username=username;
         this.phm=phm;
+
+        ArrayList<RewardsItem> RewardsItem_historylist = this.phm.getRewardsItems(this.cm.showCustomer(this.username));
+        JLabel RewardsItem_Label = new JLabel(RewardsItem_historylist.toString());
+        String[] RewardsItem_Array = new String[RewardsItem_historylist.size()];
+        for(int i = 0; i < RewardsItem_historylist.size(); i++) {
+            RewardsItem_Array[i] = String.valueOf(RewardsItem_historylist.get(i));
+        }
+        JComboBox<String> RewardsItem_Box = new JComboBox<>(RewardsItem_Array);
+        RewardsItem_Box.setBounds(50, 50, 100, 20);
+
+        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+        panel.add(Box.createHorizontalGlue());
+        panel.add(RewardsItem_Label);
+        panel.add(Box.createRigidArea(new Dimension(10,10)));
+        panel.add(RewardsItem_Box);
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         back_pre.setFont(new Font("Times", Font.PLAIN,25));
         back_pre.setForeground(darkRed);

@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
+import GUI.Manager_Account.Update_personal_info.Update_username.Update_username_verifiedFrame;
+import GUI.Manager_Account.Update_personal_info.Update_username.Update_usernamefailFrame;
 import Ticket.TicketManager;
 import Customer.PHManager;
 
@@ -130,8 +132,16 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(submitb == e.getSource()){
             this.dispose();
+
+        String password = initalttext.getText();
+        if (this.cm.checkPassword(this.username, password)) {
             Update_password_verifiedFrame true_password= new Update_password_verifiedFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate next page for routes picking
+                this.username, this.phm);//instantiate next page for routes picking
+        if (!this.cm.checkPassword(this.username, password)) {
+            Update_passwordfailFrame fail_password = new Update_passwordfailFrame(this.cm, this.fm, this.tm,
+                this.username, this.phm);//instantiate next page for routes picking
+        }//instantiate next page for routes picking
+
 
         }else if(button1 == e.getSource()){
             this.dispose();

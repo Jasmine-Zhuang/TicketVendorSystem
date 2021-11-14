@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
+import GUI.Manager_Account.Update_personal_info.Update_name.Update_name_verifiedFrame;
 import Ticket.TicketManager;
 import Customer.PHManager;
 
@@ -128,8 +129,14 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(submitb == e.getSource()){
             this.dispose();
-            Update_username_verifiedFrame true_username= new Update_username_verifiedFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate next page for routes picking
+            String username = initalttext.getText();
+            if (this.cm.checkCustomer(username)) {
+                Update_username_verifiedFrame change_name = new Update_username_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+            }//instantiate next page for routes picking
+            if (!this.cm.checkCustomer(username)) {
+                Update_usernamefailFrame change_name = new Update_usernamefailFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+            }//instantiate next page for routes picking
+
 
         }else if(button1 == e.getSource()){
             this.dispose();

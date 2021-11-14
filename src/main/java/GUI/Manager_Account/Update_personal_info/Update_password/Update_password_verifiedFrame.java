@@ -129,6 +129,8 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
     public void actionPerformed(ActionEvent e) {
         if(submitb == e.getSource()){
             this.dispose();
+            String newpassword = initalttext.getText();
+            this.cm.showCustomer(this.username).checkPassword(newpassword);
             Update_passwordsuccessFrame change_password= new Update_passwordsuccessFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate next page for routes picking
         }else if(button1 == e.getSource()){
             this.dispose();
