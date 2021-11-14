@@ -8,7 +8,7 @@ import java.util.*;
 import java.io.*;
 
 public class FlightManager implements Serializable {
-    private final HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
+    private HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
 
     public boolean saveFM(FlightManager fm, String fileName){
         try{

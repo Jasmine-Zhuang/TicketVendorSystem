@@ -1,4 +1,7 @@
-package Ticket;import java.time.LocalDateTime;
+package Ticket;
+
+import java.io.*;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -11,7 +14,7 @@ import java.util.ArrayList;
         * Information of passenger(Name of the passenger, Passenger username)
 
  */
-public class Ticket {
+public class Ticket implements Serializable {
     private String flightNumber;
     private String departure_city;
     private String arrival_city;

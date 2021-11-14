@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
+import UStore.RewardsItem;
+import UStore.RewardsItemFactory;
 
 public class Reedem_GiftCardSuccess extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -30,14 +32,19 @@ public class Reedem_GiftCardSuccess extends JFrame implements ActionListener {
     CustomerManager cm;
     FlightManager fm;
     TicketManager tm;
+    RewardsItem rewardsItem;
+    RewardsItemFactory rif;
     String username;
     PHManager phm;
 
     public Reedem_GiftCardSuccess(CustomerManager customerManager, FlightManager flightManager,
-                                  TicketManager ticketManager, String username, PHManager phm) {
+                                  TicketManager ticketManager, String username, PHManager phm,
+                                  RewardsItem rewardsItem, RewardsItemFactory rif) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
+        this.rewardsItem = rewardsItem;
+        this.rif = rif;
         this.username=username;
         this.phm=phm;
 

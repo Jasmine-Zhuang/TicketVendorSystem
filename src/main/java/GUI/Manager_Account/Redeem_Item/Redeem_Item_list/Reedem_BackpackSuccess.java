@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
+import UStore.RewardsItem;
+import UStore.RewardsItemFactory;
 
 public class Reedem_BackpackSuccess extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -36,12 +38,18 @@ public class Reedem_BackpackSuccess extends JFrame implements ActionListener {
     TicketManager tm;
     String username;
     PHManager phm;
+    RewardsItem rewardsItem;
+    RewardsItemFactory rif;
+
 
     public Reedem_BackpackSuccess(CustomerManager customerManager, FlightManager flightManager,
-                                  TicketManager ticketManager, String username,PHManager phm) {
+                                  TicketManager ticketManager, String username,PHManager phm,
+                                  RewardsItem rewardsItem, RewardsItemFactory rif) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
+        this.rewardsItem = rewardsItem;
+        this.rif = rif;
         this.username=username;
         this.phm=phm;
 
