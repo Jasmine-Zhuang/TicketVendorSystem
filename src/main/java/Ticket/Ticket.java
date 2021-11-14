@@ -32,7 +32,7 @@ public class Ticket implements Serializable {
      * Construct a Flight Ticket giving it the given flightNumber, departure city, arrival city,
      * departure time, arrival time, boarding gate, seat number, distance traveled, passenger's name and username.
      *
-     * @param flightNumber Sting of the flight number of the flight on the ticket.
+     * @param flightNumber String of the flight number of the flight on the ticket.
      * @param d_city       String of the departure city's name.
      * @param a_city       String of the arrival city's name.
      * @param d_time       Departure time in the format of [year,month,day,hour,minute].

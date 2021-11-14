@@ -5,6 +5,7 @@ This is the class that manages all sold tickets.
 
 
 import Flight.FlightManager;
+import Flight.Flight;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -96,10 +97,27 @@ public class TicketManager implements Serializable {
         return "You have not booked this flight yet, so it cannot be canceled.";
     }
 
+    /**
+     * Generate a Ticket instance.
+     * @param flightNumber A String that is associated with the flight in this ticket.
+     * @param d_city A String that indicates the departure city.
+     * @param a_city A String that indicates the arrival city.
+     * @param d_time A LocalDateTime instance that indicates the departure time.
+     * @param a_time A LocalDateTime instance that indicates the arrival time.
+     * @param b_gate A String that represents the boarding gate.
+     * @param seat_num A String that represents the seat number.
+     * @param price A int that represents the ticket price.
+     * @param p_name A String that represents the customer's name associated with this ticket.
+     * @param p_user A String that represents the customer's username associated with this ticket.
+     * @param Class_tp A String that represents the seat type associated with this ticket.
+     * @return a list of tickets that this customer has booked under this username.
+     */
+
     public Ticket generateTicket(String flightNumber, String d_city, String a_city, LocalDateTime d_time,
                                  LocalDateTime a_time, String b_gate, String seat_num, int price,
                                  String p_name, String p_user, String Class_tp) {
-        return new Ticket(flightNumber, d_city, a_city, d_time, a_time, b_gate, seat_num, price, p_name, p_user, Class_tp);
+        return new Ticket(flightNumber, d_city, a_city, d_time, a_time, b_gate, seat_num, price, p_name, p_user,
+                Class_tp);
 
     }
 
@@ -115,6 +133,18 @@ public class TicketManager implements Serializable {
             if (ticket.getPassenger_username().equals(username)) ticketHistory.add(ticket);
         }
         return ticketHistory;
+    }
+
+    /**
+     * Display the distance traveled of the flight associated with a certain ticket.
+     * @param ticket A Ticket instance, a customer's ticket.
+     * @param fm A FlightManager instance that contains information of all flights.
+     * @return an int represents mileage.
+     */
+    public int getMileage(Ticket ticket, FlightManager fm) {
+        String flightNum = ticket.getFlightNumber();
+        Flight flight = fm.getFlightByNum(flightNum);
+        return flight.getDistanceTraveled();
     }
 
 
