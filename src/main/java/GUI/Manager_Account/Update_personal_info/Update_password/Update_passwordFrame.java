@@ -146,7 +146,7 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
         }else if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
-                    this.username);//instantiate main menu
+                    this.username,this.phm);//instantiate main menu
         }else if(button2 == e.getSource()){
             this.dispose();
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
@@ -162,5 +162,5 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
             nothinglabel.setText("  ");
         }
     }
-}
+}}
 

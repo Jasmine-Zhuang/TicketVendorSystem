@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class GreetingFrame1 extends JFrame implements ActionListener {
+public class GreetingFrame extends JFrame implements ActionListener {
     //logo img resize
     int NEW_WIDTH = 250;
     int NEW_HEIGHT = 250;
@@ -27,7 +27,7 @@ public class GreetingFrame1 extends JFrame implements ActionListener {
     CustomerManager cm;
     PHManager phm;
 
-    GreetingFrame1(FlightManager fm, CustomerManager cm, TicketManager tm, PHManager phm) {
+    GreetingFrame(FlightManager fm, CustomerManager cm, TicketManager tm, PHManager phm) {
         this.fm=fm;
         this.cm=cm;
         this.tm=tm;
@@ -81,7 +81,7 @@ public class GreetingFrame1 extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setBackground(LightBlue);
-        this.setPreferredSize(new Dimension(500, 300));
+        this.setPreferredSize(new Dimension(500, 800));
         this.setLocation(new Point(500, 400));
         this.add(panel);
         this.pack();

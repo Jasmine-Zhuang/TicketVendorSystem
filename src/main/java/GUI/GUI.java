@@ -8,7 +8,7 @@ public class GUI {
 
     GUI(FlightManager fm, CustomerManager cm, TicketManager tm, PHManager phm){
 
-        new GreetingFrame1(fm,cm,tm,phm);
+        new GreetingFrame(fm,cm,tm,phm);
         //save managers' state
 
     }

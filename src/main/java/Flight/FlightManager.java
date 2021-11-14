@@ -10,31 +10,58 @@ import java.io.*;
 public class FlightManager implements Serializable {
     private HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
 
-    public boolean saveFM(FlightManager fm, String fileName){
-        try{
-            FileOutputStream fileOut = new FileOutputStream(fileName);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(fm);
-            objectOut.close();
-            return true;
+    public void saveFM(FlightManager fm,String filePath){
+       /* try{
+            OutputStream file = new FileOutputStream(filePath);
+            OutputStream buffer = new BufferedOutputStream(file);
+            ObjectOutput output = new ObjectOutputStream(buffer);
+            output.writeObject(fm);
+            output.close();
         }catch(IOException e){
             e.printStackTrace();
-            return false;
+
+        }*/
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject((FlightManager)fm);
+            out.close();
+            fileOut.close();
+            System.out.println("FM saved!");
+        } catch (IOException i) {
+            i.printStackTrace();
         }
     }
-    public FlightManager restoreFM(String fileName){
-        FlightManager fm = null;
-        try{
-            FileInputStream fileIn = new FileInputStream(fileName);
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-            fm = (FlightManager) objectIn.readObject();
+    public void restoreFM(FlightManager fm, String filePath){
+/*        try{
+            InputStream fileIn = new FileInputStream(filePath);
+            InputStream buffer = new BufferedInputStream(fileIn);
+            ObjectInput objectIn = new ObjectInputStream(buffer);
+            fm=(FlightManager) objectIn.readObject();
             objectIn.close();
             fileIn.close();
         }catch(IOException | ClassNotFoundException e){
             e.printStackTrace();
-            return null;
+
+        }*/
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            fm = (FlightManager) in.readObject();
+            System.out.println(fm.sortFlightsDistance());
+
+            in.close();
+            fileIn.close();
+            System.out.println("Restored FM");
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        return fm;
+
+
+        long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+        System.out.println("serialVersionUID: "+serialVersionUID);
 
     }
 

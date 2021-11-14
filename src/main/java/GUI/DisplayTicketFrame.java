@@ -58,6 +58,9 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
                 f.getArrivalTime(), b_gate, seat_num, ticketPrice, c.getName(), c.getUsername(), classType);
         tm.bookTickets(t);
         fm.reserveSeat(t.getFlightNumber(), t.getSeat_number());
+        c.getPurchaseHistory().addPurchasedTickets(t);
+        this.phm.updateHistory(c.getPurchaseHistory());
+        this.fm.saveFM(this.fm,"FlightManager.ser");
 
         String msg = t.toString();
         label2.setText(msg);
@@ -88,6 +91,8 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         this.add(panel1);
         this.add(panel2, BorderLayout.NORTH);
         this.add(panel3, BorderLayout.SOUTH);
+
+
 
 
 

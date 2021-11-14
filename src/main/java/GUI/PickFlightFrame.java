@@ -37,6 +37,8 @@ public class PickFlightFrame extends JFrame implements ActionListener {
 
         //flightNumsComoBox setup
         ArrayList<String> matchedFlights = fm.getFlightByRoute(dCity,aCity);//array list of flight nums
+        JLabel la= new JLabel(matchedFlights.toString());
+
         String[] matchedFlightNums = new String[matchedFlights.size()];
         for(int i = 0; i < matchedFlights.size(); i++) {
             matchedFlightNums[i] = matchedFlights.get(i);
@@ -56,6 +58,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         panel.add(flightNumsComoBox);
         panel.add(flightInfoLabel);
         panel.add(submitButton);
+        panel.add(la);
 
         //frame setup
         this.add(panel);

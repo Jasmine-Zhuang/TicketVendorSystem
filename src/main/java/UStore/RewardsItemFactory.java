@@ -1,7 +1,9 @@
 package UStore;
 
 public class RewardsItemFactory {
-    /*public RewardsItemFactory(){};*/
+    public RewardsItemFactory() {
+
+    }
 
     /**
      * Get an object of type RewardsItem

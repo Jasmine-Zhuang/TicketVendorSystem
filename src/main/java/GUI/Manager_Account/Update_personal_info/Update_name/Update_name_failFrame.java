@@ -47,6 +47,7 @@ class Update_namefailFrame extends JFrame implements ActionListener {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
+        this.phm=phm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
