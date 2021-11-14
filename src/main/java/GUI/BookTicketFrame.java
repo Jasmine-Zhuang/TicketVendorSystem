@@ -93,11 +93,18 @@ public class BookTicketFrame extends JFrame implements ActionListener {
             this.dispose();
             DisplayPriceFrame dpf = new DisplayPriceFrame(cm, fm, tm, seatNum, customer.getUsername(),this.phm);
         } else {
-            this.dispose();
-            DisplayTicketFrame dtf = new DisplayTicketFrame(fm, cm, tm, flightNum,
-                    fm.getFlightByNum(flightNum).getOriginCity(), fm.getFlightByNum(flightNum).getDestinationCity(),
-                    fm.getFlightByNum(flightNum).getDepartureTime(), fm.getFlightByNum(flightNum).getArrivalTime(),
-                    fm.getFlightByNum(flightNum).getBoardingGate(), seatNum, customer, classType, ticketPrice,this.phm);
+            if(customer.getBalance()>=ticketPrice){
+                this.dispose();
+                DisplayTicketFrame dtf = new DisplayTicketFrame(fm, cm, tm, flightNum,
+                        fm.getFlightByNum(flightNum).getOriginCity(), fm.getFlightByNum(flightNum).getDestinationCity(),
+                        fm.getFlightByNum(flightNum).getDepartureTime(), fm.getFlightByNum(flightNum).getArrivalTime(),
+                        fm.getFlightByNum(flightNum).getBoardingGate(), seatNum, customer, classType, ticketPrice,this.phm);
+            }else{
+                // TODO: Pop up a window to show balance is not enough...
+                this.dispose();
+                MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, customer.getUsername(),this.phm);
+            }
+
         }
 
     }

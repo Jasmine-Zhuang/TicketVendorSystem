@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import Customer.PHManager;
 import Customer.Customer;
@@ -62,7 +63,24 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         this.phm.updateHistory(c.getPurchaseHistory());
         this.fm.saveFM(this.fm,"FlightManager.ser");
 
-        String msg = t.toString();
+        DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm:ss");
+        String formattedArrivalTime = t.getArrivalTime().format(FormatObj);
+        String formattedDepartureTime = t.getDepartureTime().format(FormatObj);
+
+//        String msg = t.toString();
+        String msg = "<html> --------Air Ticket--------" +
+                "<br/> Name of Passenger: " + t.getPassenger_name() +
+                "<br/> Flight: " + t.getFlightNumber() +
+                "  Seat: " + t.getSeat_number() + "  Class Type: " + t.getTicket_class() +
+                "<br/> From " + t.getDeparture_city() + " to " + t.getArrival_city() +
+                "<br/> Departure time: " + formattedDepartureTime +
+                "<br/> Estimate arrival time: " + formattedArrivalTime +
+                "<br/> Boarding Gate: " + t.getBoardingGate() +
+                "<br/> Price: $" + t.getPrice() +
+                "<br/> Boarding time will be one hour before departure." +
+                "<br/> And gate closes 20 minutes before departure." +
+                "<br/> Have a nice trip!" +
+                "-----------------------<html>";
         label2.setText(msg);
 
         label.setFont(new Font("Times", Font.BOLD,40));
