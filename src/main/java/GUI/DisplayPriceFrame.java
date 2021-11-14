@@ -25,7 +25,7 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
     String flightNum;
     String seat;
     String username;
-    String ticketID;
+//    String ticketID;
     String classType;
     int ticketPrice;
     int penalty = 0;
@@ -85,6 +85,7 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
         this.setTitle("U-Ticket Booking System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500, 300);
+        this.setLocation(500, 300);
         this.setLayout(new BorderLayout());
         this.setVisible(true);
         this.add(panel1);
@@ -109,8 +110,8 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
 //        penalty = pc.penaltyprice(tm.getTicketByID(ticketID));
         int total = ticketPrice + penalty;
         String msg = "<html> Air transportation charges: $" + ticketPrice +
-                "<br/> Late return/change charges: $" + penalty +
-                "<br/> Grand Total: $" + total +
+//                "<br/> Late return/change charges: $" + penalty +
+//                "<br/> Grand Total: $" + total +
                 "<html>";
         label2.setText(msg);
     }

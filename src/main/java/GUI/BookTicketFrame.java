@@ -89,15 +89,22 @@ public class BookTicketFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonBack) {
-
             this.dispose();
             DisplayPriceFrame dpf = new DisplayPriceFrame(cm, fm, tm, seatNum, customer.getUsername(),this.phm);
-        } else {
+        }
+        else {
+            if (cm.showCustomerBalance(customer_user) >= ticketPrice) {
+                DisplayTicketFrame dtf = new DisplayTicketFrame(fm, cm, tm, flightNum,
+                        fm.getFlightByNum(flightNum).getOriginCity(), fm.getFlightByNum(flightNum).getDestinationCity(),
+                        fm.getFlightByNum(flightNum).getDepartureTime(), fm.getFlightByNum(flightNum).getArrivalTime(),
+                        fm.getFlightByNum(flightNum).getBoardingGate(), seatNum, customer, classType, ticketPrice,
+                        this.phm);
+            }
             this.dispose();
-            DisplayTicketFrame dtf = new DisplayTicketFrame(fm, cm, tm, flightNum,
-                    fm.getFlightByNum(flightNum).getOriginCity(), fm.getFlightByNum(flightNum).getDestinationCity(),
-                    fm.getFlightByNum(flightNum).getDepartureTime(), fm.getFlightByNum(flightNum).getArrivalTime(),
-                    fm.getFlightByNum(flightNum).getBoardingGate(), seatNum, customer, classType, ticketPrice,this.phm);
+            JOptionPane.showMessageDialog(null,"Warning: insufficient balance.","warning",
+                    JOptionPane.WARNING_MESSAGE);
+            MainMenuFrame mainMenuFrame = new MainMenuFrame(fm,cm,tm,this.customer_user,phm);
+
         }
 
     }
