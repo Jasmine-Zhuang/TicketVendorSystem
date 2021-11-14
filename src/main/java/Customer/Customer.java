@@ -257,12 +257,13 @@ public class Customer {
     }}
 */
 package Customer;
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Represents a customer in the system.
  */
-public class Customer {
+public class Customer implements Serializable {
     private String username;
     private String password;
     private String name;

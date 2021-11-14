@@ -1,12 +1,15 @@
 package Customer;
+import Flight.FlightManager;
+
+import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
-public class CustomerManager{
+public class CustomerManager implements Serializable {
 
     Membership AllMember = new Membership();
-
+    private static final long serialVersionUID = 3;
     private final HashMap<String, Customer> nameToCustomer = new LinkedHashMap<>();
     public CustomerManager(){
     }
