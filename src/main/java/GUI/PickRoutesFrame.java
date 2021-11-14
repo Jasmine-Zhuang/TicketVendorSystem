@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PickRoutesFrame extends JFrame implements ActionListener {
-    JFrame f = new JFrame("Pick your routes");
     JLabel label1 = new JLabel();
     JLabel label2 = new JLabel();
     JLabel labelDepartureDis = new JLabel("Please select departure city");
@@ -34,17 +33,15 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
         this.username=username;
         this.phm=phm;
 
+
         dCb.setBounds(50, 50, 100, 20);
-        f.add(dCb);
-        f.setLayout(null);
-        f.setSize(400, 500);
-        f.setVisible(true);
+        this.add(dCb);
+        this.setLayout(null);
+        this.setSize(400, 500);
+        this.setVisible(true);
 
         aCb.setBounds(50, 100, 100, 20);
-        f.add(aCb);
-        f.setLayout(null);
-        f.setSize(400, 500);
-        f.setVisible(true);
+        this.add(aCb);
 
         label2.setHorizontalAlignment(JLabel.CENTER);
         label1.setHorizontalAlignment(JLabel.CENTER);
@@ -60,13 +57,14 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
         confirmButton.setBounds(200, 350, 100, 30);
         confirmButton.addActionListener(this);
 
-        f.add(label2);
-        f.add(label1);
-        f.add(button1);
-        f.add(labelArrivalDis);
-        f.add(labelDepartureDis);
-        f.add(confirmButton);
+        this.add(label2);
+        this.add(label1);
+        this.add(button1);
+        this.add(labelArrivalDis);
+        this.add(labelDepartureDis);
+        this.add(confirmButton);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Pick your routes");
     }
 
 
@@ -83,7 +81,7 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
            PickFlightFrame pickFlightFrame= new PickFlightFrame(dCb.getItemAt(dCb.getSelectedIndex()),
                    dCb.getItemAt(aCb.getSelectedIndex()),this.fm,this.cm,this.tm,this.username,this.phm);
 
-        } else if (e.getSource() == button1) {
+        } else if (e.getSource() == button1) {//show routes picked
             String data1 = "Departure selected "
                     + dCb.getItemAt(dCb.getSelectedIndex());
             label1.setText(data1);

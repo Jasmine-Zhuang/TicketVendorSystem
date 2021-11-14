@@ -34,8 +34,7 @@ public class Controller {
         FlightDeserialization flightDeserialization = new FlightDeserialization();
         FlightManager fm = flightDeserialization.restoreFM("FlightManager.ser");
         CMDeserialization cmDeserialization=new CMDeserialization();
-        CustomerManager cm =  cmDeserialization.restoreCM("CMManager");
-
+        CustomerManager cm =  cmDeserialization.restoreCM("CMManager.ser");
         PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
         PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
         try {
