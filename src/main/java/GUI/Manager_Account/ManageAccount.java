@@ -84,7 +84,7 @@ public class ManageAccount extends JFrame implements ActionListener {
         this.setLayout(null);
         this.setFocusable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400,400);
+        this.setSize(400,500);
         this.setLocation(new Point( 500,200));
 
         this.add(check);
