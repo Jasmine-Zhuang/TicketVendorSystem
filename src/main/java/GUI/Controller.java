@@ -23,9 +23,25 @@ public class Controller {
         }
         return CM;
     }
+/*    public static void restoreFM(FlightManager fm, String filePath){
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            fm = (FlightManager) in.readObject();
+            System.out.println(fm.sortFlightsDistance());
+            in.close();
+            fileIn.close();
+            System.out.println("Restored FM");
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+        System.out.println("serialVersionUID: "+serialVersionUID);
+    }*/
 
     public static void main(String[] args) {
-        FlightManager fm=  new FlightManager();
+        FlightManager fm = new FlightManager();
         TicketManager tm = new TicketManager();
         CustomerManager cm =  new CustomerManager();
         PHManager phm = new PHManager();
@@ -36,10 +52,32 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         // TODO:restore managers' state
-        fm.restoreFM(fm,"FlightManager.ser");
+        String filePath = "FlightManager.ser";
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            fm = (FlightManager) in.readObject();
+            System.out.println(fm.sortFlightsDistance());
+            in.close();
+            fileIn.close();
+            System.out.println("Restored FM");
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
         System.out.println("serialVersionUID: "+serialVersionUID);
+
+      /*  *//*restoreFM(fm,"FlightManager.ser");*//*
+        long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+        System.out.println("serialVersionUID: "+serialVersionUID);*/
+
+
+        /*this.restoreFM(fm,"FlightManager.ser");
+        long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+        System.out.println("serialVersionUID: "+serialVersionUID);*/
 
 
 /*
@@ -55,9 +93,11 @@ public class Controller {
                 10, 3600, "10A", seatNumArray1);*/
 
 
-        GUI gui = new GUI(fm,cm,tm,phm);}
-
+        GUI gui = new GUI(fm,cm,tm,phm);
     }
+}
+
+
 
 
 
