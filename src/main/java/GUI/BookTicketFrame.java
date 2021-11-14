@@ -40,7 +40,7 @@ public class BookTicketFrame extends JFrame implements ActionListener {
         this.flightNum = flightNum;
         this.customer_user = c;
         this.ticketPrice = ticketPrice;
-        this.classType = classType;
+        this.classType = classType;//seat type
         this.seatNum = seatNum;
         this.customer = cm.showCustomer(c);
         String msg = "<html> Passenger Name: " + customer.getName() +
@@ -99,10 +99,9 @@ public class BookTicketFrame extends JFrame implements ActionListener {
                         fm.getFlightByNum(flightNum).getDepartureTime(), fm.getFlightByNum(flightNum).getArrivalTime(),
                         fm.getFlightByNum(flightNum).getBoardingGate(), seatNum, customer, classType, ticketPrice,
                         this.phm);
-            }
+            }else{JOptionPane.showMessageDialog(null,"Warning: insufficient balance.","warning",
+                    JOptionPane.WARNING_MESSAGE);}
             this.dispose();
-            JOptionPane.showMessageDialog(null,"Warning: insufficient balance.","warning",
-                    JOptionPane.WARNING_MESSAGE);
             MainMenuFrame mainMenuFrame = new MainMenuFrame(fm,cm,tm,this.customer_user,phm);
 
         }

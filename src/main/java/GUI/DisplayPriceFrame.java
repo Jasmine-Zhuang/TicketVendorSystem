@@ -4,10 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import Customer.CustomerManager;
-import Customer.Customer;
 import Flight.FlightManager;
 import GUI.Manager_Account.Load_Balance.Load_BalanceFrame;
 import Ticket.TicketManager;

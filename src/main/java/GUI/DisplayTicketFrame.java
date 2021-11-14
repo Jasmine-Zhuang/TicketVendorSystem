@@ -65,6 +65,9 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         Ticket t = tm.generateTicket(flightNum, d_city, a_city, f.getDepartureTime(),
                 f.getArrivalTime(), b_gate, seat_num, ticketPrice, c.getName(), c.getUsername(), classType);
         tm.bookTickets(t);
+        this.cm.decrBalance(ticketPrice,cm.showCustomer(c.getUsername()));
+        this.cm.incrMillage(this.tm.getMileage(t,this.fm),cm.showCustomer(c.getUsername()));
+        this.cm.calculateRedeemPoint(cm.showCustomer(c.getUsername()));
         fm.reserveSeat(t.getFlightNumber(), t.getSeat_number());
         c.getPurchaseHistory().addPurchasedTickets(t);
         this.phm.updateHistory(c.getPurchaseHistory());// update purchase history
