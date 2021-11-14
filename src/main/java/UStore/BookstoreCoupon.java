@@ -1,6 +1,8 @@
 package UStore;
 
-public class BookstoreCoupon extends RewardsItem implements Redeemable {
+import java.io.Serializable;
+
+public class BookstoreCoupon extends RewardsItem implements Redeemable, Serializable {
 
     /**
      * Construct a UofT bookstore $20 coupon

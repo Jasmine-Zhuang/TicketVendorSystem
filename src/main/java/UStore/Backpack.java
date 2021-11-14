@@ -1,6 +1,8 @@
 package UStore;
 
-public class Backpack extends RewardsItem implements Redeemable {
+import java.io.Serializable;
+
+public class Backpack extends RewardsItem implements Redeemable, Serializable {
     /**
      * Construct a UofT limited edition backpack
      */

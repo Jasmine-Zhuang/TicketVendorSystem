@@ -1,6 +1,8 @@
 package UStore;
 
-public class Mug extends RewardsItem implements Redeemable {
+import java.io.Serializable;
+
+public class Mug extends RewardsItem implements Redeemable, Serializable {
     /**
      * Construct a mug
      */
