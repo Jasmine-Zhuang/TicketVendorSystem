@@ -16,8 +16,9 @@ public class TicketManager implements Serializable {
 
 
     private ArrayList<Ticket> soldTickets;
+    private static final long serialVersionUID = 1;
 
-    public void saveTM(String filePath) {
+   /* public void saveTM(String filePath) {
         TicketManager tm = new TicketManager();
 
         try {
@@ -31,7 +32,7 @@ public class TicketManager implements Serializable {
         catch (IOException i) {
             i.printStackTrace();
         }
-    }
+    }*/
 
 
 

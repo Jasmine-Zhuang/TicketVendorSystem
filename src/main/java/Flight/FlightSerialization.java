@@ -16,7 +16,7 @@ public class FlightSerialization {
             fileOut.close();
             System.out.println("FM saved!");
             long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-            System.out.println("serialVersionUID: "+serialVersionUID);
+            System.out.println("serialVersionUID: "+serialVersionUID);//id=2 here
         } catch (IOException i) {
             i.printStackTrace();
         }

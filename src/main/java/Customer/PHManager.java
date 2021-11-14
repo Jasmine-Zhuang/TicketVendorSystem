@@ -7,12 +7,14 @@ This class contains a map of purchase history of all customers regarding tickets
 This class contains a map of purchase history of all customers regarding tickets and redeemed items.
  */
 
+import java.io.Serializable;
 import java.util.*;
 import Ticket.Ticket;
 import UStore.RewardsItem;
 
 
-public class PHManager {
+public class PHManager implements Serializable {
+    private static final long serialVersionUID =4;
 
     private HashMap<Customer, PurchaseHistory> phMap;
 

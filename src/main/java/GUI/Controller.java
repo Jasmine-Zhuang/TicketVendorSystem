@@ -1,12 +1,15 @@
+
 package GUI;
 
 import Customer.Customer;
 import Customer.CustomerManager;
+import Customer.CMDeserialization;
 import Customer.PHManager;
+import Customer.PHMDeserialiazation;
 import Flight.FlightDeserialization;
 import Flight.FlightManager;
 import Ticket.TicketManager;
-
+import Ticket.TicketDeserialization;
 import java.io.*;
 
 public class Controller {
@@ -23,42 +26,23 @@ public class Controller {
         }
         return CM;
     }
-/*    public static FlightManager restoreFM(String filePath){
-        try {
-
-            FileInputStream fileIn = new FileInputStream(filePath);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            FlightManager fm = (FlightManager) in.readObject();
-            System.out.println(fm.sortFlightsDistance());
-            in.close();
-            fileIn.close();
-            System.out.println("Restored FM");
-            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-            System.out.println("serialVersionUID: "+serialVersionUID);
-            return fm;
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-
-    }*/
-
 
     public static void main(String[] args) {
-        TicketManager tm = new TicketManager();
+
+        TicketDeserialization ticketDeserialization =new TicketDeserialization();
+        TicketManager tm = ticketDeserialization.restoreTM("TicketManager.ser");
         FlightDeserialization flightDeserialization = new FlightDeserialization();
-        FlightManager fm = flightDeserialization.restoreFM("FlightManager.ser"); //restore managers' state
-        CustomerManager cm =  new CustomerManager();
-        PHManager phm = new PHManager();
-//        Customer customer = new Customer("amy","12","Amy");
-//        cm.addCustomer(customer);
+        FlightManager fm = flightDeserialization.restoreFM("FlightManager.ser");
+        CMDeserialization cmDeserialization=new CMDeserialization();
+        CustomerManager cm =  cmDeserialization.restoreCM("CMManager");
+
+        PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
+        PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
         try {
             cm = PutUsersInCM("users.csv");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
 
         GUI gui = new GUI(fm,cm,tm,phm);
 
@@ -78,7 +62,6 @@ public class Controller {
 
     }
 }
-
 
 
 

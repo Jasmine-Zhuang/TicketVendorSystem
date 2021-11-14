@@ -14,11 +14,11 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
     JLabel label1 = new JLabel("BOOK TICKET MENU");
     String instruction = "<html>To book your desired ticket, you will need to:" +
-            "<br/>-> select your routes" +
-            "<br/>-> pick your flight" +
-            "<br/>-> pick seat class" +
-            "<br/>-> pick your seat" +
-            "<br/>-> submit booking<html>";
+            "<br/> -> select your routes" +
+            "<br/> -> pick your flight" +
+            "<br/> -> pick seat class" +
+            "<br/> -> pick your seat" +
+            "<br/> -> submit booking<html>";
     JLabel label2 = new JLabel(instruction);
     JButton button1 = new JButton("Book flight ticket");
     JButton button2 = new JButton("Back to main menu");

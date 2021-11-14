@@ -6,13 +6,16 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 
 import Customer.PHManager;
+import Customer.PHMSerialiazation;
 import Customer.Customer;
+import Customer.CMSerialization;
 import Customer.CustomerManager;
 import Flight.Flight;
 import Flight.FlightManager;
 import Flight.FlightSerialization;
 import Ticket.Ticket;
 import Ticket.TicketManager;
+import Ticket.TicketSerialization;
 
 public class DisplayTicketFrame extends JFrame implements ActionListener{
     CustomerManager cm;
@@ -36,6 +39,9 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
     FlightSerialization flightSerialization = new FlightSerialization();
+    TicketSerialization ticketSerialization = new TicketSerialization();
+    PHMSerialiazation phmSerialiazation = new PHMSerialiazation();
+    CMSerialization cmSerialization = new CMSerialization();
 
     DisplayTicketFrame(FlightManager fm, CustomerManager cm, TicketManager tm,
                        String flightNum, String d_city, String a_city, LocalDateTime d_time,
@@ -61,8 +67,12 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         tm.bookTickets(t);
         fm.reserveSeat(t.getFlightNumber(), t.getSeat_number());
         c.getPurchaseHistory().addPurchasedTickets(t);
-        this.phm.updateHistory(c.getPurchaseHistory());
+        this.phm.updateHistory(c.getPurchaseHistory());// update purchase history
+
         flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
+        ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
+        phmSerialiazation.savePHM(this.phm,"PHManager.ser");//save PHM
+        cmSerialization.saveCM(this.cm, "CMManager.ser");
 
         String msg = t.toString();
         label2.setText(msg);

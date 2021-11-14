@@ -9,7 +9,7 @@ import java.io.*;
 
 public class FlightManager implements Serializable {
     private HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
-    private static final long serialVersionUID = 65;
+    private static final long serialVersionUID = 2;
 
 /*
     public void saveFM(FlightManager fm,String filePath){

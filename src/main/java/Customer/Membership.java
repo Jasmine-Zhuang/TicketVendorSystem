@@ -1,8 +1,9 @@
 package Customer;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class Membership {
+public class Membership implements Serializable {
     private final HashMap<String, Customer> MembershipCustomer = new LinkedHashMap<>();
 
     public Membership() {
