@@ -58,7 +58,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         panel.add(submitButton);
 
         //frame setup
-       this.add(panel);
+        this.add(panel);
         this.setTitle("Pick your flight");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setPreferredSize(new Dimension(550, 550));
