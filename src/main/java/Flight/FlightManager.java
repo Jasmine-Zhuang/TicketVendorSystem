@@ -21,7 +21,6 @@ public class FlightManager implements Serializable {
             e.printStackTrace();
 
         }*/
-
         try {
             FileOutputStream fileOut = new FileOutputStream(filePath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -33,36 +32,24 @@ public class FlightManager implements Serializable {
             i.printStackTrace();
         }
     }
-   /* public void restoreFM(FlightManager fm, String filePath){
-*//*        try{
-            InputStream fileIn = new FileInputStream(filePath);
-            InputStream buffer = new BufferedInputStream(fileIn);
-            ObjectInput objectIn = new ObjectInputStream(buffer);
-            fm=(FlightManager) objectIn.readObject();
-            objectIn.close();
-            fileIn.close();
-        }catch(IOException | ClassNotFoundException e){
-            e.printStackTrace();
-
-        }*//*
+    public FlightManager restoreFM(String filePath){
         try {
             FileInputStream fileIn = new FileInputStream(filePath);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            fm = (FlightManager) in.readObject();
+            FlightManager fm = (FlightManager) in.readObject();
             System.out.println(fm.sortFlightsDistance());
             in.close();
             fileIn.close();
             System.out.println("Restored FM");
-
+            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+            System.out.println("serialVersionUID: "+serialVersionUID);
+            return fm;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return null;
 
-
-        long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-        System.out.println("serialVersionUID: "+serialVersionUID);
-
-    }*/
+    }
 
     public FlightManager(){}
 /*

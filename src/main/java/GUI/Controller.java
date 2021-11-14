@@ -41,8 +41,8 @@ public class Controller {
     }*/
 
     public static void main(String[] args) {
-        FlightManager fm = new FlightManager();
         TicketManager tm = new TicketManager();
+        FlightManager fm = new FlightManager();
         CustomerManager cm =  new CustomerManager();
         PHManager phm = new PHManager();
 //        Customer customer = new Customer("amy","12","Amy");
@@ -54,7 +54,7 @@ public class Controller {
         }
 
         // TODO:restore managers' state
-        String filePath = "FlightManager.ser";
+        /*String filePath = "FlightManager.ser";
         try {
             FileInputStream fileIn = new FileInputStream(filePath);
             ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -69,15 +69,16 @@ public class Controller {
         }
         long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
         System.out.println("serialVersionUID: "+serialVersionUID);
-
+*/
       /*  *//*restoreFM(fm,"FlightManager.ser");*//*
         long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
         System.out.println("serialVersionUID: "+serialVersionUID);*/
 
 
-        /*this.restoreFM(fm,"FlightManager.ser");
-        long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+
+   /*     long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
         System.out.println("serialVersionUID: "+serialVersionUID);*/
+        GUI gui = new GUI(fm.restoreFM("FlightManager.ser"),cm,tm,phm);
 
 
 /*
@@ -93,7 +94,7 @@ public class Controller {
                 10, 3600, "10A", seatNumArray1);*/
 
 
-        GUI gui = new GUI(fm,cm,tm,phm);
+
     }
 }
 
