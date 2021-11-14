@@ -43,8 +43,11 @@ public class PurchaseHistory_ReedemItemFrame extends JFrame implements ActionLis
         ArrayList<RewardsItem> RewardsItem_historylist = this.phm.getRewardsItems(this.cm.showCustomer(this.username));
         JLabel RewardsItem_Label = new JLabel(RewardsItem_historylist.toString());
         String[] RewardsItem_Array = new String[RewardsItem_historylist.size()];
+
         for(int i = 0; i < RewardsItem_historylist.size(); i++) {
-            RewardsItem_Array[i] = String.valueOf(RewardsItem_historylist.get(i));
+            String RewardsItem = "<html> Passenger Name: " + RewardsItem_historylist.get(i).getName()+
+                    "<html>";
+            RewardsItem_Array[i] = RewardsItem;
         }
         JComboBox<String> RewardsItem_Box = new JComboBox<>(RewardsItem_Array);
         RewardsItem_Box.setBounds(50, 50, 100, 20);

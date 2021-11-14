@@ -31,7 +31,9 @@ public class CustomerManager implements Serializable {
      */
     public boolean checkCustomername(String name) {
         for(Customer customer : nameToCustomer.values()) {
-            return Objects.equals(customer.getName(), name);
+            if (Objects.equals(customer.getName(), name)){
+                return true;
+            }
         }
         return false;
     }
