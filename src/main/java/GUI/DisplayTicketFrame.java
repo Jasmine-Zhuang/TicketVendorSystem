@@ -4,13 +4,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import Customer.PHManager;
 import Customer.PHMSerialiazation;
 import Customer.Customer;
 import Customer.CMSerialization;
 import Customer.CustomerManager;
-import Flight.Flight;
 import Flight.FlightManager;
 import Flight.FlightSerialization;
 import Ticket.Ticket;
@@ -61,9 +61,10 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         this.a_time = a_time;
         this.boardingGate = b_gate;
         this.seatNum = seat_num;
-        Flight f = fm.getFlightByNum(flightNum);
-        Ticket t = tm.generateTicket(flightNum, d_city, a_city, f.getDepartureTime(),
-                f.getArrivalTime(), b_gate, seat_num, ticketPrice, c.getName(), c.getUsername(), classType);
+
+        Ticket t = tm.generateTicket(flightNum, d_city, a_city, fm.getFlightByNum(flightNum).getDepartureTime(),
+                fm.getFlightByNum(flightNum).getArrivalTime(), b_gate, seat_num,
+                ticketPrice, cm.showCustomer(username).getName(), username, classType);
         tm.bookTickets(t);
         this.cm.decrBalance(ticketPrice,cm.showCustomer(c.getUsername()));
         this.cm.incrMillage(this.tm.getMileage(t,this.fm),cm.showCustomer(c.getUsername()));
@@ -77,7 +78,23 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         phmSerialiazation.savePHM(this.phm,"PHManager.ser");//save PHM
         cmSerialization.saveCM(this.cm, "CMManager.ser");
 
-        String msg = t.toString();
+        //        String msg = t.toString();
+        DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm:ss");
+        String formattedArrivalTime = fm.getFlightByNum(flightNum).getArrivalTime().format(FormatObj);
+        String formattedDepartureTime = fm.getFlightByNum(flightNum).getDepartureTime().format(FormatObj);
+        String msg = "<html> --------Air Ticket--------" +
+                "<br/> Name of Passenger: " + cm.showCustomer(username).getName() +
+                "<br/> Flight: " + flightNum +
+                "  Seat: " + seat_num + "  Class Type: " + classType +
+                "<br/> From " + d_city + " to " + a_city +
+                "<br/> Departure time: " + formattedDepartureTime +
+                "<br/> Estimate arrival time: " + formattedArrivalTime +
+                "<br/> Boarding Gate: " + b_gate +
+                "<br/> Price: $" + ticketPrice +
+                "<br/> Boarding time will be one hour before departure." +
+                "<br/> And gate closes 20 minutes before departure." +
+                "<br/> Have a nice trip!" +
+                "-----------------------<html>";
         label2.setText(msg);
 
         label.setFont(new Font("Times", Font.BOLD,40));
@@ -118,7 +135,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         this.dispose();
-        MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, customer.getUsername(),this.phm);
+        MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, username,this.phm);
     }
 
 }

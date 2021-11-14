@@ -19,7 +19,7 @@ public class BookTicketFrame extends JFrame implements ActionListener {
     String classType;
     int ticketPrice;
     String seatNum;
-    Customer customer;
+//    Customer customer;
     PHManager phm;
 
 
@@ -36,20 +36,20 @@ public class BookTicketFrame extends JFrame implements ActionListener {
         this.cm = cm;
         this.fm = fm;
         this.tm = tm;
-        this.phm=phm;
+        this.phm = phm;
         this.flightNum = flightNum;
         this.customer_user = c;
         this.ticketPrice = ticketPrice;
         this.classType = classType;//seat type
         this.seatNum = seatNum;
-        this.customer = cm.showCustomer(c);
-        String msg = "<html> Passenger Name: " + customer.getName() +
+//        this.customer = cm.showCustomer(c);
+        String msg = "<html> Passenger Name: " + cm.showCustomer(customer_user).getName() +
                 "<br/> Flight Number: " + flightNum +
                 "<br/> From: " + fm.getFlightByNum(flightNum).getOriginCity() +
                 "<br/> To: " + fm.getFlightByNum(flightNum).getDestinationCity() +
                 "<br/> Class: " + classType +
                 "<br/> Ticket Price: $" + ticketPrice +
-                "<br/> Balance after consumption: $" + (customer.getBalance() - ticketPrice) +
+                "<br/> Balance after consumption: $" + (cm.showCustomer(customer_user).getBalance() - ticketPrice) +
                 "<br/> Please confirm your Ticket  information." +
                 "<html>";
         label2.setText(msg);
@@ -90,14 +90,15 @@ public class BookTicketFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonBack) {
             this.dispose();
-            DisplayPriceFrame dpf = new DisplayPriceFrame(cm, fm, tm, seatNum, customer.getUsername(),this.phm);
+            DisplayPriceFrame dpf = new DisplayPriceFrame(cm, fm, tm, seatNum, customer_user,this.phm);
         }
         else {
             if (cm.showCustomerBalance(customer_user) >= ticketPrice) {
                 DisplayTicketFrame dtf = new DisplayTicketFrame(fm, cm, tm, flightNum,
                         fm.getFlightByNum(flightNum).getOriginCity(), fm.getFlightByNum(flightNum).getDestinationCity(),
                         fm.getFlightByNum(flightNum).getDepartureTime(), fm.getFlightByNum(flightNum).getArrivalTime(),
-                        fm.getFlightByNum(flightNum).getBoardingGate(), seatNum, customer, classType, ticketPrice,
+                        fm.getFlightByNum(flightNum).getBoardingGate(), seatNum,
+                        this.customer_user, classType, ticketPrice,
                         this.phm);
             }else{JOptionPane.showMessageDialog(null,"Warning: insufficient balance.","warning",
                     JOptionPane.WARNING_MESSAGE);}
