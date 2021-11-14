@@ -4,27 +4,31 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import Customer.CustomerManager;
 import Flight.FlightManager;
+//import GUI.Manager_Account.Load_Balance.Load_BalanceFrame;
 import Ticket.TicketManager;
 import Ticket.PriceCalculator;
+import Customer.PHManager;
 
 public class DisplayPriceFrame extends JFrame implements ActionListener {
 
     PriceCalculator pc = new PriceCalculator();
-//    CustomerManager cm;
-//    FlightManager fm;
-//    TicketManager tm;
+    CustomerManager cm;
+    FlightManager fm;
+    //    Customer c = new Customer("abcdedf", "sdcsjdhc36273", "Olivia");
+    TicketManager tm;
+    PHManager phm;
     String flightNum;
-    String customerName;
-    String ticketID;
+    String seat;
+    String username;
+    //    String ticketID;
     String classType;
     int ticketPrice;
     int penalty = 0;
 
-    JButton buttonPrev = new JButton("Prev");
+    JButton buttonPrev = new JButton("Back to Book Ticket");
     JButton buttonLoad = new JButton("Load balance");
     JButton buttonNext = new JButton("Next");
 
@@ -35,10 +39,15 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
 
-    DisplayPriceFrame() {
+    DisplayPriceFrame(CustomerManager customerManager, FlightManager flightManager, TicketManager ticketManager,
+                      String seatNum, String username, PHManager phm) {
 
-//        cm = customerManager;
-//        fm = flightManager;
+        this.cm = customerManager;
+        this.fm = flightManager;
+        this.tm = ticketManager;
+        this.phm = phm;
+        this.seat = seatNum;
+        this.username = username;
 
         // set up label: Price Summary
         // label2: Air transportation charges: Ticket.PriceCalculator.calculatePrice(Flight f, Customer c, String
@@ -74,6 +83,7 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
         this.setTitle("U-Ticket Booking System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500, 300);
+        this.setLocation(500, 300);
         this.setLayout(new BorderLayout());
         this.setVisible(true);
         this.add(panel1);
@@ -85,20 +95,21 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
     /**
      * A method to receive inputs from the previous frame, so that it could calculate the ticket price and the penalty
      * charges.
-     * @param price A list of Flight, Customer, and String instances that have info[0] = the Flight instance,
+     * @param flightNum A list of Flight, Customer, and String instances that have info[0] = the Flight instance,
      *             info[1] = Customer instance, info[2] = classType.
      */
-    public void getInfo(int price) {
+    public void getInfo(String flightNum) {
 //        flight = (Flight) info.get(0);
-//        customer =  (Customer) info.get(1);
-//        classType = (String) info.get(2);
-////        int price = pc.CalculatePrice(fm.getFlightByNum(flightNum), cm.showCustomer(customerName), classType);
+        this.classType = "First";
+        this.flightNum=flightNum;
+
+        ticketPrice = pc.calculatePrice(fm.getFlightByNum(flightNum), cm.showCustomer(this.username), classType);
 //        ticketPrice = price;
 //        penalty = pc.penaltyprice(tm.getTicketByID(ticketID));
-        int total = price + penalty;
-        String msg = "<html> Air transportation charges: $" + price +
-                "<br/> Late return/change charges: $" + penalty +
-                "<br/> Grand Total: $" + total +
+        int total = ticketPrice + penalty;
+        String msg = "<html> Air transportation charges: $" + ticketPrice +
+//                "<br/> Late return/change charges: $" + penalty +
+//                "<br/> Grand Total: $" + total +
                 "<html>";
         label2.setText(msg);
     }
@@ -110,19 +121,25 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (buttonPrev == e.getSource()) {
-            this.dispose();
-            // create a new instance of eg. PickSeatFrame
-//            PickSeatFrame psf = new PickSeatFrame();
-        }
-        else if (buttonLoad == e.getSource()) {
-            // create a new instance of eg. LoadBalanceFrame
-//            LoadBalanceFrame lbf = new LoadBalanceFrame();
-            this.dispose();
-        }
-        // create a new instance of BookTicketFrame
-        // a method in BookTicketFrame to receive all info needed to call generateTicket
-        // like btf.getInfo(Flight, Customer, classType, price)
-        this.dispose();
+//        if (buttonPrev == e.getSource()) {
+//            BookTicketMenuFrame bookTicketMenuFrame = new BookTicketMenuFrame(fm, cm, tm,this.username,this.phm);
+//            bookTicketMenuFrame.setVisible(true);
+//            this.dispose();
+//            /*            PickSeatFrame psf = new PickSeatFrame();*/
+//        }
+//        else if (buttonLoad == e.getSource()) {
+//            // create a new instance of eg. LoadBalanceFrame
+//            Load_BalanceFrame lbf = new Load_BalanceFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+//            this.dispose();
+//        }else if (buttonNext == e.getSource()){
+//            // create a new instance of BookTicketFrame
+//            // a method in BookTicketFrame to receive all info needed to call generateTicket
+//            // like btf.getInfo(Flight, Customer, classType, price)
+//            this.dispose();
+//            BookTicketFrame btf = new BookTicketFrame(fm, cm, tm, flightNum, this.username, classType, ticketPrice,
+//                    seat, this.phm);
+//            btf.setVisible(true);
+//        }
     }
 }
+

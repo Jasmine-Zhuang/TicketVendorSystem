@@ -1,4 +1,4 @@
-/*
+package Ticket;/*
 Calculate the price of the flight ticket.
  */
 import Customer.Customer;
@@ -6,12 +6,11 @@ import Flight.Flight;
 import Ticket.Ticket;
 
 import java.time.LocalDateTime;
-import java.time.LocalDate;
 public class PriceCalculator {
     public PriceCalculator(){}
-    public int CalculatePrice(Flight f, Customer c, String ClassType){
+    public int calculatePrice(Flight f, Customer c, String ClassType){
         int distance = f.getDistanceTraveled();
-        int price = 0;
+        int price;
         if(ClassType.equals("Economy")){
             price = (int) (200 + 0.2 * distance);
         }else if(ClassType.equals("Business")){
@@ -30,7 +29,7 @@ public class PriceCalculator {
         }
         return price;
     }
-    public int penaltyprice(Ticket ticket) {
+    public int penaltyPrice(Ticket ticket) {
         String now_t = LocalDateTime.now().toString();
         String t = ticket.getDepartureTime().toLocalDate().toString();
         String[] now = now_t.split("-");
@@ -39,16 +38,17 @@ public class PriceCalculator {
         int now_m = Integer.parseInt(now[1]);
         int t_y = Integer.parseInt(t_t[0]);
         int t_m = Integer.parseInt(t_t[1]);
-        if(t_y>now_y&&t_m>now_m){
-            return 0;
-        }
-        if(t_y>now_y&&t_m<now_m){
-            if(12-now_m+t_m>2){
+        if(t_y>now_y){
+            if(t_m>=now_m){
                 return 0;
-            }else if (12-now_m+t_m<=2&&12-now_m+t_m>=1){
-                return 75;
             }else{
-                return 150;
+                if(12-now_m+t_m>2){
+                    return 0;
+                }else if (12-now_m+t_m<=2&&12-now_m+t_m>=1){
+                    return 75;
+                }else{
+                    return 150;
+                }
             }
         }
         if (t_y==now_y&&t_m>now_m){
@@ -63,9 +63,4 @@ public class PriceCalculator {
         return 150;
     }
 
-    public static void main(String[] args) {
-        String t = LocalDateTime.now().toLocalDate().toString();
-        System.out.println(t);
-
-    }
 }
