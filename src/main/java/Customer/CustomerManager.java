@@ -23,6 +23,15 @@ public class CustomerManager{
 
     /** A method named checkCustomer that takes a String (the name of the customer).
      *  Return true if username exists in the nameToCustomer, return false otherwise.
+     * @param name The name of this customer needed to be checked if exit in nameToCustomer.
+     */
+    public boolean checkCustomername(String name) {
+        return nameToCustomer.containsKey(name);
+    }
+
+
+    /** A method named checkCustomer that takes a String (the name of the customer).
+     *  Return true if username exists in the nameToCustomer, return false otherwise.
      * @param username The name of this customer needed to be checked if exit in nameToCustomer.
      */
     public boolean checkCustomer(String username) {

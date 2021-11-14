@@ -24,6 +24,18 @@ public class CustomerManagerTest {
     }
 
     @Test(timeout = 50)
+    public void test_checkCustomername() {
+        Ryan.addCustomer(Maggie);
+        assertTrue(Ryan.checkCustomername("RyanMaggie"));
+    }
+
+    @Test(timeout = 50)
+    public void test_checkCustomer() {
+        Ryan.addCustomer(Maggie);
+        assertTrue(Ryan.checkCustomername("Name1203"));
+    }
+
+    @Test(timeout = 50)
     public void test_checkPassword() {
         Ryan.addCustomer(Maggie);
         assertTrue(Ryan.checkPassword("Name1203", "1203"));

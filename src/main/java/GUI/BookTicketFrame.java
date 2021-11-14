@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import Customer.PHManager;
 import Customer.Customer;
 import Customer.CustomerManager;
-import Flight.Flight;
 import Flight.FlightManager;
 import Ticket.TicketManager;
 
