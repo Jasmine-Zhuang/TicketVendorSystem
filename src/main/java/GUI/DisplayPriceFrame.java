@@ -136,7 +136,8 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
         // a method in BookTicketFrame to receive all info needed to call generateTicket
         // like btf.getInfo(Flight, Customer, classType, price)
         this.dispose();
-        BookTicketFrame btf = new BookTicketFrame(fm, cm, tm, flightNum, this.username, classType, ticketPrice, seat,this.phm);
+        BookTicketFrame btf = new BookTicketFrame(fm, cm, tm, flightNum, this.username, classType, ticketPrice,
+                seat, this.phm);
         btf.setVisible(true);
         }
     }

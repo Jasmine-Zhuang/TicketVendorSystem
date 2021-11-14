@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import Flight.FlightManager;
+import Flight.Flight;
 
 import static org.junit.Assert.*;
 
@@ -37,6 +39,10 @@ public class TicketManagerTest {
             "12A", 100, "Taylor", "taylorsusername","Economy");
     Ticket t3 = new Ticket("1463", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
             "3C", 100, "Mark", "mark123","Business");
+    ArrayList<String> seatArray = new ArrayList<>(Arrays.asList("1A","1B","2A","2B","3A","3B","4A","4B","5A","5B"));
+    Flight f1 = new Flight("1234", "Toronto", "Vancouver", dt, at, 10,
+            10, 3600, "10A", seatArray);
+    FlightManager fm = new FlightManager();
 
 
     @Test(timeout = 200)
@@ -102,6 +108,9 @@ public class TicketManagerTest {
 
     @Test(timeout = 500)
     public void TestGetMileage(){
+        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, 10,
+                10, 3600, "10A", seatArray);
+        assertEquals(tm.getMileage(t1, fm), 3600);
 
     }
 

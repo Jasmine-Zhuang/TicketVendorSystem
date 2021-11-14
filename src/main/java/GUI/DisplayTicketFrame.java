@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 
 import Customer.PHManager;
 import Customer.PHMSerialiazation;
-import Customer.Customer;
 import Customer.CMSerialization;
 import Customer.CustomerManager;
 import Flight.FlightManager;
@@ -23,7 +22,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     TicketManager tm;
     PHManager phm;
     String flightNum;
-    Customer customer;
+    String username;
     String classType;
     int ticketPrice;
     String d_city;
@@ -45,14 +44,14 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
 
     DisplayTicketFrame(FlightManager fm, CustomerManager cm, TicketManager tm,
                        String flightNum, String d_city, String a_city, LocalDateTime d_time,
-                       LocalDateTime a_time, String b_gate, String seat_num,
-                       Customer c, String classType, int ticketPrice, PHManager phm){
+                       LocalDateTime a_time, String b_gate, String seat_num, String username,
+                       String classType, int ticketPrice, PHManager phm){
         this.cm = cm;
         this.fm = fm;
         this.tm = tm;
         this.phm=phm;
+        this.username = username;
         this.flightNum = flightNum;
-        this.customer = c;
         this.ticketPrice = ticketPrice;
         this.classType = classType;
         this.d_city = d_city;
@@ -66,12 +65,12 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
                 fm.getFlightByNum(flightNum).getArrivalTime(), b_gate, seat_num,
                 ticketPrice, cm.showCustomer(username).getName(), username, classType);
         tm.bookTickets(t);
-        this.cm.decrBalance(ticketPrice,cm.showCustomer(c.getUsername()));
-        this.cm.incrMillage(this.tm.getMileage(t,this.fm),cm.showCustomer(c.getUsername()));
-        this.cm.calculateRedeemPoint(cm.showCustomer(c.getUsername()));
-        fm.reserveSeat(t.getFlightNumber(), t.getSeat_number());
-        c.getPurchaseHistory().addPurchasedTickets(t);
-        this.phm.updateHistory(c.getPurchaseHistory());// update purchase history
+        this.cm.decrBalance(ticketPrice,cm.showCustomer(this.username));
+        this.cm.incrMillage(this.tm.getMileage(t,this.fm),cm.showCustomer(username));
+        this.cm.calculateRedeemPoint(cm.showCustomer(username));
+        fm.reserveSeat(flightNum, seat_num);
+        cm.showCustomer(this.username).getPurchaseHistory().addPurchasedTickets(t);
+        this.phm.updateHistory(cm.showCustomer(this.username).getPurchaseHistory());// update purchase history
 
         flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
         ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM

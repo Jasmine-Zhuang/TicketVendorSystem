@@ -3,14 +3,13 @@ Calculate the price of the flight ticket.
  */
 import Customer.Customer;
 import Flight.Flight;
-import Ticket.Ticket;
 
 import java.time.LocalDateTime;
 public class PriceCalculator {
     public PriceCalculator(){}
     public int calculatePrice(Flight f, Customer c, String ClassType){
         int distance = f.getDistanceTraveled();
-        int price=0;
+        int price;
         if(ClassType.equals("Economy")){
             price = (int) (200 + 0.2 * distance);
         }else if(ClassType.equals("Business")){

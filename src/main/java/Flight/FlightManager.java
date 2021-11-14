@@ -5,7 +5,6 @@ This is the class that manages all scheduled flights information
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.io.*;
 
 public class FlightManager implements Serializable {
     private HashMap<String, Flight> idToFlight = new LinkedHashMap<>();

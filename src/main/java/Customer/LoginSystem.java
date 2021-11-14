@@ -3,7 +3,7 @@ package Customer;
 import java.io.*;
 import java.util.Objects;
 
-public class LoginSystem {
+public class LoginSystem implements Serializable{
     static String path;
     /**
      *Check if the username matches the password in users.csv.
