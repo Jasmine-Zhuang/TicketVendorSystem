@@ -1,6 +1,6 @@
 package Ticket;
 
-import Flight.FlightManager;
+//import Flight.FlightManager;
 
 import java.io.FileInputStream;
 import java.io.IOException;

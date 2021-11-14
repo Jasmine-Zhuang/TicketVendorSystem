@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Customer.PHManager;
-import Customer.Customer;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
@@ -19,7 +18,6 @@ public class BookTicketFrame extends JFrame implements ActionListener {
     String classType;
     int ticketPrice;
     String seatNum;
-//    Customer customer;
     PHManager phm;
 
 

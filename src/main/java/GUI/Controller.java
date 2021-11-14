@@ -1,7 +1,7 @@
 
 package GUI;
 
-import Customer.Customer;
+
 import Customer.CustomerManager;
 import Customer.CMDeserialization;
 import Customer.PHManager;
@@ -10,9 +10,7 @@ import Flight.FlightDeserialization;
 import Flight.FlightManager;
 import Ticket.TicketManager;
 import Ticket.TicketDeserialization;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class Controller {
 
