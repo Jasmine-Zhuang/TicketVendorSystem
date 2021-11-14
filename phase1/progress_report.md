@@ -4,7 +4,8 @@
 We currently are making the class instances that can save and process information be passed through each frame so that information can be passed along, however, this seems to be quite redundant and takes a lot of effort. If more frames are added in the future, this could take much time. Especially imagining if we were actually working in the industry, the scale of a project would be much larger. How do programmers transmit data from frames to frames? We were wondering whether there could be any tips or tricks on achieving this in a more clean and convenient way?
 
 ### What Has Worked Well So Far
-We illustrated our program’s functionality with the help of the GUI made, such that users can use our program easily by clicking and inputting information, to proceed with the functionality like ticket booking. 
+We illustrated our program’s functionality with the help of the GUI made, such that users can use our program easily by clicking and inputting information, to proceed with the functionality like ticket booking. \
+Moreover, we added a class PurchaseHistory that stores all purchases of a customer and implemented this feature to GUI so that users of this program can easily access and check their purchase history after they logged in. 
 
 ### Individual summary
 * Jasmine Zhuang \
@@ -18,3 +19,4 @@ was responsible for implementing the login function for a user. By creating an a
 was responsible for updating the get flights by route and get flights by time methods in the flight manager. I also updated the get seat by flight number and get flight by flight and class methods, now they would return a nested array list containing flight number and their class type. I updated the flight manager test to match all the changes in new methods. I constructed part of the GUI which related to flight routes display and was later upgraded by other teammates. I wrote a gateway method to serialize and deserialize managers but was not later used in our program.
 * Chuan Liu \
 was responsible for updating the ticket class by adding new features like class type to the ticket class, and adding a new class to calculate the ticket’s price according to the class type and membership level discount; and penalty for buying/refunding tickets according to the departure date compared to the local date. Also, I build part of the GUI, frame related to booking tickets(with storing tickets into customer’s purchase history, sold ticket list, add miles to customer's account...) and show the display ticket information of the ticket the customer booked. In the future, I hope we can add more functionalities like refund/change tickets, apply discounts by membership level, and beautify GUI.etc.
+* Qiaoru Zhang \
