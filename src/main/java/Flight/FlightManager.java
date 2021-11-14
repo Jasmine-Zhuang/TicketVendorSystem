@@ -9,18 +9,10 @@ import java.io.*;
 
 public class FlightManager implements Serializable {
     private HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
+    private static final long serialVersionUID = 65;
 
+/*
     public void saveFM(FlightManager fm,String filePath){
-       /* try{
-            OutputStream file = new FileOutputStream(filePath);
-            OutputStream buffer = new BufferedOutputStream(file);
-            ObjectOutput output = new ObjectOutputStream(buffer);
-            output.writeObject(fm);
-            output.close();
-        }catch(IOException e){
-            e.printStackTrace();
-
-        }*/
         try {
             FileOutputStream fileOut = new FileOutputStream(filePath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -28,11 +20,13 @@ public class FlightManager implements Serializable {
             out.close();
             fileOut.close();
             System.out.println("FM saved!");
+            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+            System.out.println("serialVersionUID: "+serialVersionUID);
         } catch (IOException i) {
             i.printStackTrace();
         }
-    }
-    public FlightManager restoreFM(String filePath){
+    }*/
+   /* public FlightManager restoreFM(String filePath){
         try {
             FileInputStream fileIn = new FileInputStream(filePath);
             ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -49,7 +43,7 @@ public class FlightManager implements Serializable {
         }
         return null;
 
-    }
+    }*/
 
     public FlightManager(){}
 /*

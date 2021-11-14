@@ -3,12 +3,12 @@ package GUI;
 import Customer.Customer;
 import Customer.CustomerManager;
 import Customer.PHManager;
+import Flight.FlightDeserialization;
 import Flight.FlightManager;
 import Ticket.TicketManager;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 public class Controller {
 
     public static CustomerManager PutUsersInCM(String path) throws IOException {
@@ -23,26 +23,31 @@ public class Controller {
         }
         return CM;
     }
-/*    public static void restoreFM(FlightManager fm, String filePath){
+/*    public static FlightManager restoreFM(String filePath){
         try {
+
             FileInputStream fileIn = new FileInputStream(filePath);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            fm = (FlightManager) in.readObject();
+            FlightManager fm = (FlightManager) in.readObject();
             System.out.println(fm.sortFlightsDistance());
             in.close();
             fileIn.close();
             System.out.println("Restored FM");
-
+            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+            System.out.println("serialVersionUID: "+serialVersionUID);
+            return fm;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-        System.out.println("serialVersionUID: "+serialVersionUID);
+        return null;
+
     }*/
+
 
     public static void main(String[] args) {
         TicketManager tm = new TicketManager();
-        FlightManager fm = new FlightManager();
+        FlightDeserialization flightDeserialization = new FlightDeserialization();
+        FlightManager fm = flightDeserialization.restoreFM("FlightManager.ser"); //restore managers' state
         CustomerManager cm =  new CustomerManager();
         PHManager phm = new PHManager();
 //        Customer customer = new Customer("amy","12","Amy");
@@ -53,33 +58,9 @@ public class Controller {
             e.printStackTrace();
         }
 
-        // TODO:restore managers' state
-        /*String filePath = "FlightManager.ser";
-        try {
-            FileInputStream fileIn = new FileInputStream(filePath);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            fm = (FlightManager) in.readObject();
-            System.out.println(fm.sortFlightsDistance());
-            in.close();
-            fileIn.close();
-            System.out.println("Restored FM");
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-        System.out.println("serialVersionUID: "+serialVersionUID);
-*/
-      /*  *//*restoreFM(fm,"FlightManager.ser");*//*
-        long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-        System.out.println("serialVersionUID: "+serialVersionUID);*/
 
 
-
-   /*     long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-        System.out.println("serialVersionUID: "+serialVersionUID);*/
-        GUI gui = new GUI(fm.restoreFM("FlightManager.ser"),cm,tm,phm);
-
+        GUI gui = new GUI(fm,cm,tm,phm);
 
 /*
         ArrayList<String> dTime = new ArrayList<>(Arrays.asList("2021","12","1","8","50","0"));

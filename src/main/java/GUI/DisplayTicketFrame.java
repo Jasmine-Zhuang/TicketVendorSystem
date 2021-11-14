@@ -10,6 +10,7 @@ import Customer.Customer;
 import Customer.CustomerManager;
 import Flight.Flight;
 import Flight.FlightManager;
+import Flight.FlightSerialization;
 import Ticket.Ticket;
 import Ticket.TicketManager;
 
@@ -34,6 +35,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
+    FlightSerialization flightSerialization = new FlightSerialization();
 
     DisplayTicketFrame(FlightManager fm, CustomerManager cm, TicketManager tm,
                        String flightNum, String d_city, String a_city, LocalDateTime d_time,
@@ -60,7 +62,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         fm.reserveSeat(t.getFlightNumber(), t.getSeat_number());
         c.getPurchaseHistory().addPurchasedTickets(t);
         this.phm.updateHistory(c.getPurchaseHistory());
-        this.fm.saveFM(this.fm,"FlightManager.ser");
+        flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
 
         String msg = t.toString();
         label2.setText(msg);
