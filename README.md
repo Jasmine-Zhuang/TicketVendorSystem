@@ -1,7 +1,7 @@
 ## Happy207 course project!
 
 
-Our progress report and crc model are located under the folder "phase1".
+Our progress report, crc model, design document, Scenario and specification are located under the folder "phase1".
 
 
 Our program code are under the folder src-main-java.
