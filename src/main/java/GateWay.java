@@ -1,4 +1,6 @@
+
 import java.io.*;
+
 
 public class GateWay<T> {
     protected String filePath;
