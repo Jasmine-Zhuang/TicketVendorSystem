@@ -102,7 +102,7 @@ public class UI {
 
         //Once login succeeds:
         System.out.println("Login succeeds! \n Please select 1.manage your account first (once finished, you will be "
-                + "able to book ticket" + "  2.exit");
+                + "able to book ticket)  2.exit");
         int option1 = scanner.nextInt();
         while (option1 != 1 && option1 != 2) {
             System.out.println("Sorry, your option is invalid, please make sure to enter either 1 or 2");
