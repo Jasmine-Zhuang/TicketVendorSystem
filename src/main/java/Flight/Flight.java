@@ -11,13 +11,14 @@ package Flight;/* This is an entity class named Flight.Flight.
  * the array list of array list of seat numbers and seat class
  */
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
 
-public class Flight {
+public class Flight implements Serializable {
     private String flightNumber;
     private String originCity;
     private String destinationCity;

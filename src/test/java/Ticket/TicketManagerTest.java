@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import Flight.FlightManager;
+import Flight.Flight;
 
 import static org.junit.Assert.*;
 
@@ -33,10 +35,15 @@ public class TicketManagerTest {
     LocalDateTime departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
     Ticket t1 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
             "5B", 100, "Taylor", "taylorsusername","First");
-    Ticket t2 = new Ticket("1234", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
-            "5B", 100, "Taylor", "taylorsusername","Economy");
-    Ticket t3 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
-            "5B", 100, "Mark", "mark123","Business");
+    Ticket t2 = new Ticket("4567", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
+            "12A", 100, "Taylor", "taylorsusername","Economy");
+    Ticket t3 = new Ticket("1463", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
+            "3C", 100, "Mark", "mark123","Business");
+    ArrayList<String> seatArray = new ArrayList<>(Arrays.asList("1A","1B","2A","2B","3A","3B","4A","4B","5A","5B"));
+    Flight f1 = new Flight("1234", "Toronto", "Vancouver", dt, at, 10,
+            10, 3600, "10A", seatArray);
+    FlightManager fm = new FlightManager();
+
 
     @Test(timeout = 200)
     public void TestEmptyConstructor() {
@@ -52,6 +59,16 @@ public class TicketManagerTest {
         assertEquals(1, tm.getSoldTickets().size());
         assertEquals(t1, tm.getSoldTickets().get(0));
 
+    }
+
+    @Test(timeout = 1000)
+    public void TestGetTicketByID() {
+        tm.bookTickets(t1);
+        tm.bookTickets(t2);
+        tm.bookTickets(t3);
+        String ticketID = "1234,5B";
+        assertEquals(tm.getTicketByID(ticketID), t1);
+        assertEquals(tm.getTicketByID("4567,12A"), t2);
     }
 
 
@@ -87,6 +104,14 @@ public class TicketManagerTest {
         Ticket new_t = tm.generateTicket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
                 "5B", 100, "Taylor", "taylorsusername", "First");
         assertEquals(new_t.toString(), t1.toString());
+    }
+
+    @Test(timeout = 500)
+    public void TestGetMileage(){
+        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, 10,
+                10, 3600, "10A", seatArray);
+        assertEquals(tm.getMileage(t1, fm), 3600);
+
     }
 
     @Test(timeout = 500)

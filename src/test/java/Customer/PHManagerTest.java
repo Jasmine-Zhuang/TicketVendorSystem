@@ -25,7 +25,7 @@ public class PHManagerTest {
     public void TestEmptyUpdateHistory() {
         // empty map
         HashMap<Customer, PurchaseHistory> hm1 = new HashMap<>();
-        assertTrue(hm1.equals(phm.getPhMap()));
+        assertEquals(hm1, phm.getPhMap());
 
     }
 
