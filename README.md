@@ -10,7 +10,7 @@ Our program code are under the folder src-main-java.
 Our test code are under the folder src-test-java.
 
 
-Please run the "Controller" file under src-java-main  to assess our U-Ticket program.
+Please run the "Controller" file under src-java-main-GUI to assess our U-Ticket program.
 
 Group Member:
 
