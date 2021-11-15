@@ -132,7 +132,7 @@ public class CustomerTest {
         Maggie.changeMembership();
         int new_Millage = 525;
         Maggie.incrMillage(new_Millage);
-        double redeem_point = 5.0;
+        double redeem_point = 105.0;
         assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
     }
 
@@ -152,7 +152,7 @@ public class CustomerTest {
         Maggie.changeMembership();
         int new_Millage = 525;
         Maggie.incrMillage(new_Millage);
-        double redeem_point = 5.0;
+        double redeem_point = 105.0;
         Maggie.calculateRedeemPoint();
         assertEquals(redeem_point, Maggie.getRedeem_points(),0);
     }
@@ -162,11 +162,11 @@ public class CustomerTest {
         Maggie.changeMembership();
         int new_Millage = 525;
         Maggie.incrMillage(new_Millage);
-        double redeem_point = 5.0;
+        double redeem_point = 105.0;
         assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
         Integer redeemed_points = 1;
         Maggie.minusRedeemPoint(redeemed_points);
-        assertEquals(4, Maggie.getRedeem_points(),0);
+        assertEquals(104, Maggie.getRedeem_points(),0);
     }
 
     @Test(timeout = 50)
@@ -174,7 +174,7 @@ public class CustomerTest {
         Maggie.changeMembership();
         int new_Millage = 525;
         Maggie.incrMillage(new_Millage);
-        double redeem_point = 5.0;
+        double redeem_point = 105.0;
         assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
         int remain_Millage = 425;
         double redeem_points = 1;

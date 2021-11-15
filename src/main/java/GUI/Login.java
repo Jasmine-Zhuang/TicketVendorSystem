@@ -95,6 +95,7 @@ public class Login extends JFrame implements ActionListener {
 
         }
         if (e.getSource() == createBT){
+            this.dispose();
             CreateAccount ca = new CreateAccount(this.fm, this.cm, this.tm, this.phm);
 
         }
