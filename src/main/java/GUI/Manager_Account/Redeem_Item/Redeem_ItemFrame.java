@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Customer.CustomerManager;
+import GUI.Manager_Account.Purchase_History.PurchaseHistory_ReedemItemFrame;
 import Ticket.TicketManager;
 import UStore.RewardsItem;
 import UStore.RewardsItemFactory;
@@ -128,8 +129,7 @@ public class Redeem_ItemFrame extends JFrame implements ActionListener {
         }
         else if(button3 == e.getSource()){
             this.dispose();
-            ReedemItem_ReedemItemFrame reedem_item_history = new ReedemItem_ReedemItemFrame(this.cm, this.fm, this.tm,
-                    this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
-           }
-    }
-}
+            PurchaseHistory_ReedemItemFrame reedem_item_history = new PurchaseHistory_ReedemItemFrame(this.cm, this.fm,
+                    this.tm, this.username,this.phm);//instantiate main menu
+        }}}
+
