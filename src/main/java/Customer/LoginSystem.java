@@ -1,6 +1,9 @@
 package Customer;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class LoginSystem implements Serializable{
@@ -74,80 +77,122 @@ public class LoginSystem implements Serializable{
         }
     }
 
-//    public static void changeUsername(String Old, String New){
-//        path = "users.csv";
-//        String new_path = "temp.csv";
-//
-//        File old_file = new File(path);
-//        File new_file = new File(new_path);
-//        try{
-//        FileWriter fw = new FileWriter(new_file, true);
-//        BufferedWriter bw = new BufferedWriter(fw);
-//        PrintWriter pw = new PrintWriter(bw);
-//
-//        BufferedReader br =new BufferedReader(new FileReader(path));
-//        String line = br.readLine();
-//        pw.println(line);
-//
-//        while ((line = br.readLine()) != null){
-//            String[] data = line.split(",");
-//            if (Objects.equals(data[0], Old)){
-//                pw.println(New +"," + data[1] + "," + data[2]);
-//            }else {
-//                pw.println(line);
-//            }
-//        }
-//        pw.flush();
-//        pw.close();
-//        old_file.delete();
-//        File dump = new File(path);
-//        new_file.renameTo(dump);}
-//        catch (IOException e){
-//            System.out.println("error");
-//        }
-//
-//    }
-//
-//    public static void changePassword(String Username, String old_password, String new_password){
-//        path = "users.csv";
-//        String new_path = "temp.csv";
-//
-//        File old_file = new File(path);
-//        File new_file = new File(new_path);
-//        try{
-//            FileWriter fw = new FileWriter(new_file, true);
-//            BufferedWriter bw = new BufferedWriter(fw);
-//            PrintWriter pw = new PrintWriter(bw);
-//
-//            BufferedReader br =new BufferedReader(new FileReader(path));
-//            String line = br.readLine();
-//            pw.println(line);
-//
-//            while ((line = br.readLine()) != null){
-//                String[] data = line.split(",");
-//                if (Objects.equals(data[0], Username) && Objects.equals((data[1]), old_password)){
-//                    pw.println(Username +"," + new_password + "," + data[2]);
-//                }else {
-//                    pw.println(line);
-//                }
-//            }
-//            pw.flush();
-//            pw.close();
-//            old_file.delete();
-//            File dump = new File(path);
-//            new_file.renameTo(dump);}
-//        catch (IOException e){
-//            System.out.println("error");
-//        }
+    public static boolean changeUsername(String Old, String New){
+        path = "users.csv";
+        String new_path = "temp.csv";
+
+        File old_file = new File(path);
+        File new_file = new File(new_path);
+        try{
+        FileWriter fw = new FileWriter(new_file, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pw = new PrintWriter(bw);
+
+        BufferedReader br =new BufferedReader(new FileReader(path));
+        String line = br.readLine();
+        pw.println(line);
+
+        while ((line = br.readLine()) != null){
+            String[] data = line.split(",");
+            if (Objects.equals(data[0], Old)){
+                pw.println(New +"," + data[1] + "," + data[2]);
+            }else {
+                pw.println(line);
+            }
+        }
+        pw.flush();
+        pw.close();
+        br.close();
+
+        if(!Arrays.equals(Files.readAllBytes(Path.of(path)), Files.readAllBytes(Path.of(new_path)))){
+            old_file.delete();
+            File dump = new File(path);
+            return new_file.renameTo(dump);
+        } else{
+            new_file.delete();
+            return false;
+            }
+        }
+        catch (IOException e){
+            System.out.println("error");
+        }
+        return false;
+    }
+
+    public static void changePassword(String Username, String old_password, String new_password){
+        path = "users.csv";
+        String new_path = "temp.csv";
+
+        File old_file = new File(path);
+        File new_file = new File(new_path);
+        try{
+            FileWriter fw = new FileWriter(new_file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            BufferedReader br =new BufferedReader(new FileReader(path));
+            String line = br.readLine();
+            pw.println(line);
+
+            while ((line = br.readLine()) != null){
+                String[] data = line.split(",");
+                if (Objects.equals(data[0], Username) && Objects.equals((data[1]), old_password)){
+                    pw.println(Username +"," + new_password + "," + data[2]);
+                }else {
+                    pw.println(line);
+                }
+            }
+            pw.flush();
+            pw.close();
+            br.close();
+            old_file.delete();
+            File dump = new File(path);
+            new_file.renameTo(dump);}
+        catch (IOException e){
+            System.out.println("error");
+        }
 
     }
 
-//    public static void main(String[] args) {
-//            changeUsername("Ryan", "RARA");
-//            changePassword("Olivia", "paswd", "pswd");
-//    }
+    public static void changeName(String Username, String old_name, String new_name){
+        path = "users.csv";
+        String new_path = "temp.csv";
 
-//    public static void changePassword(String username, String password){
-//
-//    }
-//}
+        File old_file = new File(path);
+        File new_file = new File(new_path);
+        try{
+            FileWriter fw = new FileWriter(new_file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            BufferedReader br =new BufferedReader(new FileReader(path));
+            String line = br.readLine();
+            pw.println(line);
+
+            while ((line = br.readLine()) != null){
+                String[] data = line.split(",");
+                if (Objects.equals(data[0], Username) && Objects.equals((data[2]), old_name)){
+                    pw.println(Username +"," + data[1] + "," + new_name);
+                }else {
+                    pw.println(line);
+                }
+            }
+            pw.flush();
+            pw.close();
+            br.close();
+            old_file.delete();
+            File dump = new File(path);
+            new_file.renameTo(dump);
+        }
+        catch (IOException e){
+            System.out.println("error");
+        }
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(changeUsername("RYAN", "ryan"));
+//            changePassword("Olivia", "paswd", "pswd");
+//            changeName("r", "r1", "rrr");
+    }
+}
