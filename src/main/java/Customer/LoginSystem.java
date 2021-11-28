@@ -35,7 +35,7 @@ public class LoginSystem implements Serializable{
     /**
      * Check if the username exist in users.csv.
      * @param username the username to be checked.
-     * @return return false username exist, return true otherwise.
+     * @return return false if username exists, return true otherwise.
      * @throws IOException throws exception if error occurs during file reading.
      */
 
@@ -48,9 +48,11 @@ public class LoginSystem implements Serializable{
         while ((line = br.readLine()) != null){
             String[] data = line.split(",");
             if (Objects.equals(data[0], username)){
+                br.close();
                 return false;
             }
         }
+        br.close();
         return true;
     }
 
@@ -77,46 +79,41 @@ public class LoginSystem implements Serializable{
         }
     }
 
-    public static boolean changeUsername(String Old, String New){
-        path = "users.csv";
-        String new_path = "temp.csv";
+    public static boolean changeUsername(String Old, String New) throws IOException {
+        if(checkUsername(New)){
+            path = "users.csv";
+            String new_path = "temp.csv";
 
-        File old_file = new File(path);
-        File new_file = new File(new_path);
-        try{
-        FileWriter fw = new FileWriter(new_file, true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        PrintWriter pw = new PrintWriter(bw);
+            File old_file = new File(path);
+            File new_file = new File(new_path);
 
-        BufferedReader br =new BufferedReader(new FileReader(path));
-        String line = br.readLine();
-        pw.println(line);
+            FileWriter fw = new FileWriter(new_file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
 
-        while ((line = br.readLine()) != null){
-            String[] data = line.split(",");
-            if (Objects.equals(data[0], Old)){
-                pw.println(New +"," + data[1] + "," + data[2]);
-            }else {
-                pw.println(line);
+            BufferedReader br =new BufferedReader(new FileReader(path));
+            String line = br.readLine();
+            pw.println(line);
+            while ((line = br.readLine()) != null){
+                String[] data = line.split(",");
+                if (Objects.equals(data[0], Old)){
+                    pw.println(New +"," + data[1] + "," + data[2]);
+                }else {
+                    pw.println(line);
+                }
             }
-        }
-        pw.flush();
-        pw.close();
-        br.close();
 
-        if(!Arrays.equals(Files.readAllBytes(Path.of(path)), Files.readAllBytes(Path.of(new_path)))){
+            pw.flush();
+            pw.close();
+            br.close();
+
             old_file.delete();
             File dump = new File(path);
             return new_file.renameTo(dump);
-        } else{
-            new_file.delete();
+
+        }else {
             return false;
-            }
         }
-        catch (IOException e){
-            System.out.println("error");
-        }
-        return false;
     }
 
     public static void changePassword(String Username, String old_password, String new_password){
@@ -190,7 +187,7 @@ public class LoginSystem implements Serializable{
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println(changeUsername("RYAN", "ryan"));
 //            changePassword("Olivia", "paswd", "pswd");
 //            changeName("r", "r1", "rrr");

@@ -1,5 +1,6 @@
 package GUI.Manager_Account.Update_personal_info.Update_username;
 import Customer.CMSerialization;
+import Customer.LoginSystem;
 import Flight.FlightManager;
 import GUI.Manager_Account.ManageAccount;
 import GUI.Manager_Account.Update_personal_info.Update_PersonalinfoFrame;
@@ -8,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
@@ -19,8 +22,8 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
 
     String instruction = "<html>Verified! Your username is in system, please enter your new username below:";
     JLabel label2 = new JLabel(instruction);
-    JButton button1 = new JButton("Back to Personal Information Menu");
-    JButton button2 = new JButton("Back to Manage Account Menu");
+    JButton to_personal_information_menu = new JButton("Back to Personal Information Menu");
+    JButton to_manage_account_menu = new JButton("Back to Manage Account Menu");
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
 
@@ -33,8 +36,8 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
     // create a new button
     JButton submitb = new JButton("submit");
 
-    // create a object of JTextField with 16 columns and a given initial text
-    JTextField initalttext = new JTextField("Please enter your new username", 16);
+    // create an object of JTextField with 16 columns and a given initial text
+    JTextField initialText = new JTextField("Please enter your new username", 16);
     CustomerManager cm;
     FlightManager fm;
     TicketManager tm;
@@ -50,13 +53,13 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
         this.phm = phm;
         this.username=username;
 
-        button1.setFont(new Font("Times", Font.PLAIN,25));
-        button1.setForeground(darkRed);
-        button1.addActionListener(this);
+        to_personal_information_menu.setFont(new Font("Times", Font.PLAIN,25));
+        to_personal_information_menu.setForeground(darkRed);
+        to_personal_information_menu.addActionListener(this);
 
-        button2.setFont(new Font("Times", Font.PLAIN,25));
-        button2.setForeground(darkRed);
-        button2.addActionListener(this);
+        to_manage_account_menu.setFont(new Font("Times", Font.PLAIN,25));
+        to_manage_account_menu.setForeground(darkRed);
+        to_manage_account_menu.addActionListener(this);
 
         label1.setBackground(lightPink);
         label1.setFont(new Font("Times", Font.BOLD,30));
@@ -84,7 +87,7 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
         panel.add(Box.createRigidArea(new Dimension(10,10)));
-        panel.add(initalttext);
+        panel.add(initialText);
         panel.add(submitb);
         submitb.addActionListener(this);
         panel.add(nothinglabel);
@@ -93,10 +96,10 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
 
 
         panel.add(Box.createRigidArea(new Dimension(20,20)));
-        panel.add(button1);
+        panel.add(to_personal_information_menu);
 
         panel.add(Box.createRigidArea(new Dimension(20,10)));
-        panel.add(button2);
+        panel.add(to_manage_account_menu);
 
         panel.setBackground(lightPink);
         panel.add(Box.createHorizontalGlue());
@@ -126,25 +129,35 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
     @Override
     public void actionPerformed(ActionEvent e) {
         if(submitb == e.getSource()){
-            this.dispose();
-            String newname = initalttext.getText();
-            this.cm.showCustomer(this.username).changeUsername(newname);
-            CMSerialization cmSerialization = new CMSerialization();
-            cmSerialization.saveCM(this.cm, "CMManager.ser");
-            Update_usernamesuccessFrame change_username= new Update_usernamesuccessFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate next page for routes picking
-        }else if(button1 == e.getSource()){
+            String newName = initialText.getText();
+            try {
+                if (LoginSystem.changeUsername(this.username,newName)){
+                    this.dispose();
+
+                    this.cm.showCustomer(this.username).changeUsername(newName);
+                    CMSerialization cmSerialization = new CMSerialization();
+                    cmSerialization.saveCM(this.cm, "CMManager.ser");
+                    Update_usernamesuccessFrame change_username= new Update_usernamesuccessFrame(this.cm, this.fm, this.tm,
+                            this.username, this.phm);//instantiate next page for routes picking
+                    }else{
+                    System.out.println("error");
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        }else if(to_personal_information_menu == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
                     this.username, this.phm);//instantiate main menu
-        }else if(button2 == e.getSource()){
+        }else if(to_manage_account_menu == e.getSource()){
             this.dispose();
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
         }
         String s = e.getActionCommand();
         if (s.equals("submit")) {
             // set the text of the label to the text of the field
-            nothinglabel.setText(initalttext.getText());
+            nothinglabel.setText(initialText.getText());
 
             // set the text of field to blank
             nothinglabel.setText("  ");

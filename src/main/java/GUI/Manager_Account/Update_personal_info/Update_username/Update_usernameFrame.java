@@ -1,6 +1,7 @@
 package GUI.Manager_Account.Update_personal_info.Update_username;
 
 
+import Customer.LoginSystem;
 import Flight.FlightManager;
 import GUI.Manager_Account.ManageAccount;
 import GUI.Manager_Account.Update_personal_info.Update_PersonalinfoFrame;
@@ -9,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
@@ -127,14 +130,18 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(submit == e.getSource()){
-            this.dispose();
             String username = initialText.getText();
-            if (this.cm.checkCustomer(username)) {
-                Update_username_verifiedFrame change_name = new Update_username_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm);
-            }//instantiate next page for routes picking
-            if (!this.cm.checkCustomer(username)) {
-                Update_usernamefailFrame change_name = new Update_usernamefailFrame(this.cm, this.fm, this.tm, this.username, this.phm);
-            }//instantiate next page for routes picking
+            try {
+                if (this.cm.checkCustomer(username) && !LoginSystem.checkUsername(username)) {
+                    this.dispose();
+                    Update_username_verifiedFrame change_name = new Update_username_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+                }//instantiate next page for routes picking
+                else{
+                   label2.setText("<html>Sorry! Your username is not in system, please enter your username below again:");
+                }//instantiate next page for routes picking
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
 
 
         }else if(to_personal_information_menu == e.getSource()){
