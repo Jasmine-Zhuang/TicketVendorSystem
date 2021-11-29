@@ -123,6 +123,9 @@ public class CustomerManager implements Serializable {
      * @param new_username The new username of this customer.
      */
     public void changeUsername(String new_username, Customer customer){
+        Customer new_data = this.nameToCustomer.get(customer.getUsername());
+        this.nameToCustomer.put(new_username,new_data);
+        this.nameToCustomer.remove(customer.getUsername());
         customer.changeUsername(new_username);}
 
     /** Modify this customer's current balance.

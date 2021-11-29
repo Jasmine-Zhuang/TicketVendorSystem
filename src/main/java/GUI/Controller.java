@@ -28,12 +28,12 @@ public class Controller {
     }*/
 
     public static void main(String[] args) {
-/*       Customer c = new Customer("amy","12","Amy");
-        CustomerManager cm = new CustomerManager();
-        cm.addCustomer(c);
-        TicketManager tm=new TicketManager();
-        FlightManager fm=new FlightManager();
-        PHManager phm=new PHManager();*/
+//        Customer c = new Customer("amy","12","Amy");
+//        CustomerManager cm = new CustomerManager();
+//        cm.addCustomer(c);
+//        TicketManager tm=new TicketManager();
+//        FlightManager fm=new FlightManager();
+//        PHManager phm=new PHManager();
         TicketDeserialization ticketDeserialization =new TicketDeserialization();
         TicketManager tm = ticketDeserialization.restoreTM("TicketManager.ser");
         FlightDeserialization flightDeserialization = new FlightDeserialization();

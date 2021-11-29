@@ -130,7 +130,7 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
                 if (LoginSystem.changeUsername(this.username, newName)){
                     this.dispose();
 
-                    this.cm.showCustomer(this.username).changeUsername(newName);
+                    this.cm.changeUsername(newName, this.cm.showCustomer(this.username));
                     CMSerialization cmSerialization = new CMSerialization();
                     cmSerialization.saveCM(this.cm, "CMManager.ser");
                     Update_usernamesuccessFrame change_username= new Update_usernamesuccessFrame(this.cm, this.fm, this.tm,
