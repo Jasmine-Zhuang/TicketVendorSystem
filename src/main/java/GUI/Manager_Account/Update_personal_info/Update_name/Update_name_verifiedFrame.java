@@ -2,6 +2,7 @@ package GUI.Manager_Account.Update_personal_info.Update_name;
 
 
 import Customer.CMSerialization;
+import Customer.LoginSystem;
 import GUI.Manager_Account.ManageAccount;
 import GUI.Manager_Account.Update_personal_info.Update_PersonalinfoFrame;
 
@@ -29,28 +30,27 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
     TicketManager tm;
     PHManager phm;
     String username;
+    String name;
 
     // create a new frame to store text field and button
     JFrame textfield = new JFrame("textfield");
 
-    // create a label to display text
-    JLabel nothinglabel = new JLabel("nothing entered");
-
     // create a new button
     JButton submitb = new JButton("submit");
 
-    // create a object of JTextField with 16 columns and a given initial text
-    JTextField initalttext = new JTextField("Please enter your new name", 16);
+    // create an object of JTextField with 16 columns and a given initial text
+    JTextField initialText = new JTextField("Please enter your new name", 16);
 
 
     // default constructor
     Update_name_verifiedFrame(CustomerManager customerManager, FlightManager flightManager,
-                              TicketManager ticketManager, String username, PHManager phm) {
+                              TicketManager ticketManager, String username, String name, PHManager phm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.phm = phm;
         this.username=username;
+        this.name = name;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -80,16 +80,14 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
         label2.setHorizontalAlignment(JLabel.CENTER);
         label2.setBounds(50,50,300,300);
 
-        nothinglabel.setBounds(50,50,300,300);
         panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
         panel.add(label1);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
         panel.add(Box.createRigidArea(new Dimension(10,10)));
-        panel.add(initalttext);
+        panel.add(initialText);
         panel.add(submitb);
         submitb.addActionListener(this);
-        panel.add(nothinglabel);
         textfield.setSize(new Dimension(2,2));
         textfield.add(panel);
 
@@ -119,30 +117,27 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
     public void actionPerformed(ActionEvent e) {
 
         if(submitb == e.getSource()) {
-            this.dispose();
-            String newname = initalttext.getText();
-            this.cm.showCustomer(this.username).changeName(newname);
-            CMSerialization cmSerialization = new CMSerialization();
-            cmSerialization.saveCM(this.cm, "CMManager.ser");
-            Update_namesuccessFrame change_username= new Update_namesuccessFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate next page for routes picking
-        } else if(button1 == e.getSource()){
+            String newName = initialText.getText();
+            if (LoginSystem.changeName(this.username, this.name, newName)){
+                this.dispose();
+                this.cm.showCustomer(this.username).changeName(newName);
+                CMSerialization cmSerialization = new CMSerialization();
+                cmSerialization.saveCM(this.cm, "CMManager.ser");
+                Update_namesuccessFrame change_username= new Update_namesuccessFrame(this.cm, this.fm, this.tm,
+                        this.username, this.phm);
+            }//instantiate next page for routes picking
+        }
+        if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
                     this.username, this.phm);//instantiate main menu
-        } else if(button2 == e.getSource()){
+        }
+        if(button2 == e.getSource()){
             this.dispose();
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,
                     this.phm);//instantiate main menu
         }
-        String s = e.getActionCommand();
-        if (s.equals("submit")) {
-            // set the text of the label to the text of the field
-            nothinglabel.setText(initalttext.getText());
-
-            // set the text of field to blank
-            nothinglabel.setText("  ");
-        }
-    }}
+    }
+}
 
 

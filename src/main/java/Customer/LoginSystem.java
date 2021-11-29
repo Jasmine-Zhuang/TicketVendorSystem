@@ -112,9 +112,7 @@ public class LoginSystem implements Serializable{
             File dump = new File(path);
             return new_file.renameTo(dump);
 
-        }else {
-            return false;
-        }
+        }return false;
     }
 
     public static boolean changePassword(String Username, String old_password, String new_password){
@@ -150,11 +148,11 @@ public class LoginSystem implements Serializable{
             return new_file.renameTo(dump);}
         catch (IOException e){
             System.out.println("error");
-        } return false;
+        }return false;
 
     }
 
-    public static void changeName(String Username, String old_name, String new_name){
+    public static boolean changeName(String Username, String old_name, String new_name){
         path = "users.csv";
         String new_path = "temp.csv";
 
@@ -184,17 +182,17 @@ public class LoginSystem implements Serializable{
             System.gc();
             old_file.delete();
             File dump = new File(path);
-            new_file.renameTo(dump);
+            return new_file.renameTo(dump);
         }
         catch (IOException e){
             System.out.println("error");
-        }
+        }return false;
 
     }
 
     public static void main(String[] args) throws IOException {
 //        System.out.println(changeUsername("RYAN", "ryan"));
-            changePassword("1", "1", "2");
-//            changeName("r", "r1", "rrr");
+//            changePassword("1", "1", "2");
+            changeName("r", "r1", "rrr");
     }
 }
