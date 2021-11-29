@@ -11,28 +11,20 @@ import Flight.FlightManager;
 import Ticket.TicketManager;
 import Ticket.TicketDeserialization;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 
 public class Controller {
 
-/*    public static CustomerManager PutUsersInCM(String path) throws IOException {
-        CustomerManager CM = new CustomerManager();
 
-        BufferedReader br =new BufferedReader(new FileReader(path));
-        String line = br.readLine();
-
-        while ((line = br.readLine()) != null){
-            String[] data = line.split(",");
-            CM.addCustomer(new Customer(data[0],data[1],data[2]));
-        }
-        return CM;
-    }*/
 
     public static void main(String[] args) {
 //        Customer c = new Customer("amy","12","Amy");
-//        CustomerManager cm = new CustomerManager();
+        CustomerManager cm = new CustomerManager();
 //        cm.addCustomer(c);
 //        TicketManager tm=new TicketManager();
 //        FlightManager fm=new FlightManager();
@@ -42,16 +34,16 @@ public class Controller {
         FlightDeserialization flightDeserialization = new FlightDeserialization();
         FlightManager fm = flightDeserialization.restoreFM("FlightManager.ser");
         CMDeserialization cmDeserialization=new CMDeserialization();
-        CustomerManager cm =  cmDeserialization.restoreCM("CMManager.ser");
+        cm =  cmDeserialization.restoreCM("CMManager.ser");
         PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
         PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
-/*
+
         try {
-            cm = PutUsersInCM("users.csv");
+            cm = cm.PutUsersInCM("users.csv");
         } catch (IOException e) {
             e.printStackTrace();
         }
-*/
+
 
 
 
