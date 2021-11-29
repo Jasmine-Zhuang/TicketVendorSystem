@@ -132,5 +132,11 @@ public class PriceTest {
         assertEquals(75, p.penaltyPrice(t_3));
         assertEquals(150, p.penaltyPrice(t_4));
     }
-
+    @Test
+    public void TestLuggagePenalty() {
+        assertEquals(0, p.luggagePenalty(22, t_1));
+        assertEquals(45, p.luggagePenalty(25, t_1));
+        assertEquals(157, p.luggagePenalty(30, t_1));
+        assertEquals(-1, p.luggagePenalty(35, t_1));
+    }
 }
