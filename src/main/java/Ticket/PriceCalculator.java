@@ -7,6 +7,14 @@ import Flight.Flight;
 import java.time.LocalDateTime;
 public class PriceCalculator {
     public PriceCalculator(){}
+
+    /**
+     * Calculate the price of a ticket.
+     * @param f The flight of the price we need to calculate.
+     * @param c The customer who want to buy the ticket.
+     * @param ClassType The class type that the customer want to have.
+     * @return The price of the ticket.
+     */
     public int calculatePrice(Flight f, Customer c, String ClassType){
         int distance = f.getDistanceTraveled();
         int price;
@@ -28,6 +36,12 @@ public class PriceCalculator {
         }
         return price;
     }
+
+    /**
+     * Calculate the time penalty the ticket owner will have.
+     * @param ticket The ticket that the ticket owner will have penalty due to refunding/exchanging.
+     * @return The penalty that the ticket owner will have.
+     */
     public int penaltyPrice(Ticket ticket) {
         String now_t = LocalDateTime.now().toString();
         String t = ticket.getDepartureTime().toLocalDate().toString();
@@ -62,4 +76,20 @@ public class PriceCalculator {
         return 150;
     }
 
+    /**
+     * Calculate the penalty of overweight luggage.
+     * @param weight The weight of the luggage.
+     * @param ticket The Ticket of luggage-owner.
+     * @return The penalty of
+     */
+    public int luggagePenalty(int weight, Ticket ticket){
+        int ticket_price = ticket.getPrice();
+        if(weight <= 23){
+            return 0;
+        }else if(weight <= 30){
+            return (int) ((weight-23) * ticket_price * 0.015);
+        }
+        return -1;
+
+    }
 }
