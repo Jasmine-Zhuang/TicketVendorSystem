@@ -19,6 +19,7 @@ public class PriceTest {
     Customer cus_1;
     Customer cus_2;
     Customer cus_3;
+    Customer cus_4;
     Ticket t_1;
     Ticket t_2;
     Ticket t_3;
@@ -47,7 +48,13 @@ public class PriceTest {
         cus_3 = new Customer(new_username,new_password,new_name);
         cus_3.changeMembership();
         cus_3.incrMillage(6000);
+        cus_3.calculateRedeemPoint();
         cus_3.changeMembershiplevel();
+        //customer 4 has negative redeem point
+        cus_4 = new Customer(new_username,new_password,new_name);
+        cus_4.changeMembership();
+        cus_4.calculateRedeemPoint();
+        cus_4.minusRedeemPoint(2000);
 
         //set up flight info
         ArrayList<String> dTime = new ArrayList<>(Arrays.asList("2021","12","1","8","50","0"));
@@ -139,4 +146,14 @@ public class PriceTest {
         assertEquals(157, p.luggagePenalty(30, t_1));
         assertEquals(-1, p.luggagePenalty(35, t_1));
     }
+
+    @Test
+    public void TestPointPenalty() {
+        assertEquals(0, p.pointPenalty(cus_0));
+        assertEquals(0, p.pointPenalty(cus_2));
+        assertEquals(0, p.pointPenalty(cus_3));
+        assertEquals(50, p.pointPenalty(cus_4));
+    }
+
+
 }
