@@ -1,6 +1,7 @@
 package GUI.Manager_Account.Update_personal_info.Update_password;
 
 import Customer.Customer;
+import Customer.LoginSystem;
 import Flight.FlightManager;
 import GUI.Manager_Account.ManageAccount;
 import GUI.Manager_Account.Update_personal_info.Update_PersonalinfoFrame;
@@ -9,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
@@ -34,7 +37,7 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
     JButton submitb = new JButton("submit");
 
     // create a object of JTextField with 16 columns and a given initial text
-    JTextField initalttext = new JTextField("Please enter your original password", 16);
+    JTextField initialText = new JTextField("Please enter your original password", 16);
 
     CustomerManager cm;
     FlightManager fm;
@@ -87,7 +90,7 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
         panel.add(Box.createRigidArea(new Dimension(10,10)));
-        panel.add(initalttext);
+        panel.add(initialText);
         panel.add(submitb);
         submitb.addActionListener(this);
         panel.add(nothinglabel);
@@ -129,36 +132,30 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(submitb == e.getSource()){
-            this.dispose();
-
-        String password = initalttext.getText();
-        if (this.cm.checkPassword(this.username, password)) {
-            Update_password_verifiedFrame true_password= new Update_password_verifiedFrame(this.cm, this.fm, this.tm,
-                this.username, this.phm);//instantiate next page for routes picking
-        if (!this.cm.checkPassword(this.username, password)) {
-            Update_passwordfailFrame fail_password = new Update_passwordfailFrame(this.cm, this.fm, this.tm,
-                this.username, this.phm);//instantiate next page for routes picking
-        }//instantiate next page for routes picking
-
-
-        }else if(button1 == e.getSource()){
+            String password = initialText.getText();
+            try {
+                if (this.cm.checkPassword(this.username, password) && LoginSystem.checkUser(this.username,password)) {
+                    this.dispose();
+                    Update_password_verifiedFrame true_password = new Update_password_verifiedFrame(this.cm, this.fm, this.tm,
+                            this.username, password, this.phm);}//instantiate next page for routes picking
+                else{
+                    label2.setText("<html>Sorry! Your password is not in system, please enter your password below again:");
+                    }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
                     this.username,this.phm);//instantiate main menu
-        }else if(button2 == e.getSource()){
+        }
+        if(button2 == e.getSource()){
             this.dispose();
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
         }
 
 
-        String s = e.getActionCommand();
-        if (s.equals("submit")) {
-            // set the text of the label to the text of the field
-            nothinglabel.setText(initalttext.getText());
 
-            // set the text of field to blank
-            nothinglabel.setText("  ");
-        }
-    }
 }}
 

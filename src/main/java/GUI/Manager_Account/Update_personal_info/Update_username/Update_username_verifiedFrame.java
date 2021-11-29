@@ -30,8 +30,6 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
     // create a new frame to store text field and button
     JFrame textfield = new JFrame("textfield");
 
-    // create a label to display text
-    JLabel nothinglabel = new JLabel("nothing entered");
 
     // create a new button
     JButton submitb = new JButton("submit");
@@ -81,7 +79,6 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
         label2.setHorizontalAlignment(JLabel.CENTER);
         label2.setBounds(50,50,300,300);
 
-        nothinglabel.setBounds(50,50,300,300);
         panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
         panel.add(label1);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
@@ -90,7 +87,6 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
         panel.add(initialText);
         panel.add(submitb);
         submitb.addActionListener(this);
-        panel.add(nothinglabel);
         textfield.setSize(new Dimension(2,2));
         textfield.add(panel);
 
@@ -155,13 +151,7 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
         }
         String s = e.getActionCommand();
-        if (s.equals("submit")) {
-            // set the text of the label to the text of the field
-            nothinglabel.setText(initialText.getText());
 
-            // set the text of field to blank
-            nothinglabel.setText("  ");
-        }
     }
 }
 

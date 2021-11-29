@@ -30,8 +30,6 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
     // create a new frame to store text field and button
     JFrame textfield = new JFrame("textfield");
 
-    // create a label to display text
-    JLabel nothinglabel = new JLabel("nothing entered");
 
     // create a new button
     JButton submit = new JButton("submit");
@@ -82,7 +80,6 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
         label2.setHorizontalAlignment(JLabel.CENTER);
         label2.setBounds(50,50,300,300);
 
-        nothinglabel.setBounds(50,50,300,300);
         panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
         panel.add(label1);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
@@ -91,7 +88,6 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
         panel.add(initialText);
         panel.add(submit);
         submit.addActionListener(this);
-        panel.add(nothinglabel);
         textfield.setSize(new Dimension(2,2));
         textfield.add(panel);
 
@@ -144,23 +140,17 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
             }
 
 
-        }else if(to_personal_information_menu == e.getSource()){
+        }
+        if(to_personal_information_menu == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
                     this.username, this.phm);//instantiate main menu
-        }else if(to_manage_account_menu == e.getSource()){
+        }
+        if(to_manage_account_menu == e.getSource()){
             this.dispose();
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
         }
 
-        String s = e.getActionCommand();
-        if (s.equals("submit")) {
-            // set the text of the label to the text of the field
-            nothinglabel.setText(initialText.getText());
-
-            // set the text of field to blank
-            nothinglabel.setText("  ");
-        }
     }
 }
 
