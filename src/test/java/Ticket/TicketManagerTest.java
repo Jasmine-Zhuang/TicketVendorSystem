@@ -86,7 +86,7 @@ public class TicketManagerTest {
 
     }
 
-    @Test(timeout = 200)
+/*    @Test(timeout = 200)
     public void TestCancelTickets() {
         tm.bookTickets(t1);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -97,7 +97,7 @@ public class TicketManagerTest {
         assertEquals(exp1, tm.cancelTickets(t1));
         String exp2 = "You have not booked this flight yet, so it cannot be canceled.";
         assertEquals(exp2, tm.cancelTickets(t2));
-    }
+    }*/
 
     @Test(timeout = 500)
     public void TestGenerateTicket(){
