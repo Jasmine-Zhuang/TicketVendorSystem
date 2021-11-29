@@ -7,7 +7,7 @@ public class Luggage implements Serializable {
     private int luggageWeight;
     private String luggageNum;
 
-    /**Construct a Luggage.Luggage giving the total weight,
+    /**Construct Luggage. Luggage giving the total weight,
      * @param luggageNumber luggage number of this flight
      * @param luggageWeight the weight of this luggage
      */
