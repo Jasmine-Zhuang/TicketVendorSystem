@@ -69,7 +69,8 @@ public class PickSeatFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==submitButton){
             this.dispose();
-            DisplayPriceFrame displayPriceFrame = new DisplayPriceFrame(this.cm,this.fm,this.tm,this.seatNumber,this.username,this.phm);
+            DisplayPriceFrame displayPriceFrame = new DisplayPriceFrame(
+                    this.cm,this.fm,this.tm,this.seatNumber,this.username,this.phm);
             //flight num, customer usertype, seat type
             displayPriceFrame.getInfo(flightNum);
         }

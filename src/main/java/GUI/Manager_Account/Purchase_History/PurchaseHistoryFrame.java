@@ -21,6 +21,8 @@ public class PurchaseHistoryFrame extends JFrame implements ActionListener {
     JButton button1 = new JButton("Check Booked Ticket History");
     JButton button2 = new JButton("Check Redeemed Items History");
     JButton button3 = new JButton("Back to Manage Account Menu");
+
+
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
     CustomerManager cm;

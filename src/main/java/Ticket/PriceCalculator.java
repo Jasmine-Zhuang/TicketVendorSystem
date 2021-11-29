@@ -7,7 +7,6 @@ import Flight.Flight;
 import java.time.LocalDateTime;
 public class PriceCalculator {
     public PriceCalculator(){}
-
     /**
      * Calculate the price of a ticket.
      * @param f The flight of the price we need to calculate.
@@ -91,5 +90,19 @@ public class PriceCalculator {
         }
         return -1;
 
+    }
+
+
+    /**
+     * Calculate the penalty if redeem point < 0 after refunding/exchanging ticket according to its rate.
+     * @param c The customer who will have the penalty.
+     * @return The penalty price.
+     */
+    public int pointPenalty(Customer c){
+        int point = c.getRedeem_points();
+        if(point >= 0){
+            return 0;
+        }
+        return - (point /40);
     }
 }

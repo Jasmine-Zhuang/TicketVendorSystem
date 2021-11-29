@@ -24,6 +24,8 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
     JButton button2 = new JButton("Back to Manage Account Menu");
 
     JButton back_pre = new JButton("Back to Purchase History Menu");
+    JButton button4 = new JButton("Cancel Ticket");
+    JButton button5 = new JButton("Change Ticket");
 
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
