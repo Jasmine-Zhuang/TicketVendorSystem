@@ -73,6 +73,7 @@ public class FlightManager implements Serializable {
         this.idToFlight.put(flightNumber, newFlight);
     }
 
+
     /**
      * sort the Scheduled_flight list by travel distance, from shorter to longer
      * @return an arraylist of flights in sorted order
@@ -111,6 +112,17 @@ public class FlightManager implements Serializable {
             return "You have successfully selected this seat "+ seat_num +" of flight " +  flight_num;
         }
         return "This seat has been reserved or does not exist, please select another seat.";
+    }
+
+    /**
+     * Cancel reserved seat
+     */
+    public String cancelSeat(String flightNum, String seatNum) {
+        Flight flight = this.idToFlight.get(flightNum);
+        if (flight.CancelOneSeat(seatNum)) {
+            return "You have successfully canceled seat" + seatNum +" of flight " + flightNum;
+        }
+        return "This seat has not been reserved or does not exist.";
     }
 
     /**
