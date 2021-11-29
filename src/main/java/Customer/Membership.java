@@ -151,14 +151,14 @@ public class Membership implements Serializable {
     }
 
     /**
-     * Modify this customer's current millage
+     * Modify this customer's current Mileage
      *
-     * @param customer       The customer needed to Modify current millage.
-     * @param millage_update The new millage of this customer to be added to this customer's current millage.
+     * @param customer       The customer needed to Modify current Mileage.
+     * @param Mileage_update The new Mileage of this customer to be added to this customer's current Mileage.
      */
-    public void incrMillage(int millage_update, Customer customer) {
+    public void incrMileage(int Mileage_update, Customer customer) {
         if (this.MembershipCustomer.containsKey(customer.getUsername())) {
-            customer.incrMillage(millage_update);
+            customer.incrMileage(Mileage_update);
         }
     }
 
@@ -166,10 +166,10 @@ public class Membership implements Serializable {
      * Get Reedem Points for this customer
      */
 
-    public void decrMillage(Customer customer, double redeem_points) {
+    public void decrMileage(Customer customer, double redeem_points) {
         if (this.MembershipCustomer.containsKey(customer.getUsername())) {
             if (customer.checkMembership()) {
-                customer.decrMillage(redeem_points);
+                customer.decrMileage(redeem_points);
             }
         }
     }
