@@ -1,9 +1,10 @@
 package Luggage;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class LuggageManager {
+public class LuggageManager implements Serializable {
 
     private HashMap<String, Luggage> idToLuggage = new LinkedHashMap<>();
     private static final long serialVersionUID = 7;
