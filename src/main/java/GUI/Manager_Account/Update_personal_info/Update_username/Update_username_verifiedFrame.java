@@ -131,7 +131,7 @@ public class Update_username_verifiedFrame extends JFrame implements ActionListe
         if(submitb == e.getSource()){
             String newName = initialText.getText();
             try {
-                if (LoginSystem.changeUsername(this.username,newName)){
+                if (LoginSystem.changeUsername(this.username, newName)){
                     this.dispose();
 
                     this.cm.showCustomer(this.username).changeUsername(newName);

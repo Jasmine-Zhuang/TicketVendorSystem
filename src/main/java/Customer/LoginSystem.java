@@ -107,6 +107,7 @@ public class LoginSystem implements Serializable{
             pw.close();
             br.close();
 
+            System.gc();
             old_file.delete();
             File dump = new File(path);
             return new_file.renameTo(dump);
@@ -142,6 +143,7 @@ public class LoginSystem implements Serializable{
             pw.flush();
             pw.close();
             br.close();
+
             old_file.delete();
             File dump = new File(path);
             new_file.renameTo(dump);}
@@ -177,6 +179,7 @@ public class LoginSystem implements Serializable{
             pw.flush();
             pw.close();
             br.close();
+
             old_file.delete();
             File dump = new File(path);
             new_file.renameTo(dump);
