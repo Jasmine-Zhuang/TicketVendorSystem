@@ -109,4 +109,3 @@ class Update_namesuccessFrame extends JFrame implements ActionListener {
 
     }
 }
-
