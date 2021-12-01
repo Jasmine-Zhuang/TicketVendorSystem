@@ -57,21 +57,34 @@ public class FlightManager implements Serializable {
      * @param destinationCity string of destination
      * @param departureTime departure time in the format of [year,month,day,hour,minute]
      * @param arrivalTime arrival time in the format of [year,month,day,hour,minute]
-     * @param totalNumSeats the number of seats that this flight can have
-     * @param numSeatAvailable number of seats booked
+     * @param flightType the type of the flight, small: 10 seats, median: 20 seats, large: 30 seats;
      * @param distance_traveled The flight's length
      * @param boardingGate the boarding gate of this flight
      * @param seatNumberArray    array of all seat numbers of this flight
      */
     public void AddFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
-                          ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
+                          ArrayList<String> arrivalTime, String flightType, int distance_traveled
             , String boardingGate, ArrayList<String> seatNumberArray) {
 
+        int numSeatAvailable = seatNumchecker(flightType);
+        int totalNumSeats = seatNumchecker(flightType);
         Flight newFlight = new Flight(flightNumber, originCity, destinationCity, departureTime,
                 arrivalTime, totalNumSeats, numSeatAvailable, distance_traveled
                 , boardingGate, seatNumberArray);
         this.idToFlight.put(flightNumber, newFlight);
     }
+
+    public int seatNumchecker(String flightType) {
+        if (Objects.equals(flightType, "Small")) {
+            return 10;
+        } else if (Objects.equals(flightType, "Medium")) {
+            return 20;
+        } else if (Objects.equals(flightType, "Large")) {
+            return 30;
+        }
+        else return -1;
+    }
+
 
     /**
      * sort the Scheduled_flight list by travel distance, from shorter to longer
@@ -111,6 +124,17 @@ public class FlightManager implements Serializable {
             return "You have successfully selected this seat "+ seat_num +" of flight " +  flight_num;
         }
         return "This seat has been reserved or does not exist, please select another seat.";
+    }
+
+    /**
+     * Cancel reserved seat
+     */
+    public String cancelSeat(String flightNum, String seatNum) {
+        Flight flight = this.idToFlight.get(flightNum);
+        if (flight.CancelOneSeat(seatNum)) {
+            return "You have successfully canceled seat" + seatNum +" of flight " + flightNum;
+        }
+        return "This seat has not been reserved or does not exist.";
     }
 
     /**
@@ -165,7 +189,7 @@ public class FlightManager implements Serializable {
         ArrayList<ArrayList<String>> availableSeat = new ArrayList<>();
         for(ArrayList<String> seat: flight.getSeatArray()){
             String thisSeatNum = seat.get(0);
-            if(!thisSeatNum.equals("X")){
+            if(!thisSeatNum.contains("X")){
                 availableSeat.add(seat);
             }
         }
@@ -183,7 +207,7 @@ public class FlightManager implements Serializable {
         for(ArrayList<String> seat: flight.getSeatArray()){
             String thisSeatNum = seat.get(0);
             String thisSeatClass = seat.get(1);
-            if(!thisSeatNum.equals("X") && thisSeatClass.equals(seatClass)){
+            if(!thisSeatNum.contains("X") && thisSeatClass.equals(seatClass)){
                 availableSeat.add(seat);
             }
         }
