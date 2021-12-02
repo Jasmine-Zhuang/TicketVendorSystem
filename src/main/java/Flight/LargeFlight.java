@@ -11,7 +11,7 @@ public class LargeFlight extends Flight {
             "5A","5B","6A","6B","7A","7B","8A","8B","9A","9B","10A","10B","11A","11B","12A","12B","13A","13B","14A",
             "14B","15A","15B"));
     public LargeFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
-                       ArrayList<String> arrivalTime, int numSeatAvailable, int distance_traveled, String boardingGate){
+                       ArrayList<String> arrivalTime, int distance_traveled, String boardingGate){
         super(flightNumber, originCity, destinationCity, departureTime,
                 arrivalTime, 30, 30, distance_traveled, boardingGate,largeSeatNumArray);
     }
