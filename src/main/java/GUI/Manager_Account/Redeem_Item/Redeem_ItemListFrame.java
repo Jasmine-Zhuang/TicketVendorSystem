@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import UStore.RewardsItem;
 import UStore.RewardsItemFactory;
@@ -39,10 +40,11 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
     PHManager phm;
     RewardsItem rewardsItem;
     RewardsItemFactory rif;
+    LuggageManager lm;
 
     public Redeem_ItemListFrame(CustomerManager customerManager, FlightManager flightManager,
                                 TicketManager ticketManager, String username,PHManager phm,
-                                RewardsItem rewardsItem,RewardsItemFactory rif) {
+                                RewardsItem rewardsItem,RewardsItemFactory rif, LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
@@ -50,6 +52,7 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
         this.phm=phm;
         this.rewardsItem = rewardsItem;
         this.rif = rif;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -155,11 +158,11 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             PHMSerialiazation phmSerialization = new PHMSerialiazation();
             phmSerialization.savePHM(this.phm, "PHManager.ser");
             if (this.rewardsItem != null){
-                Reedem_BackpackSuccess back_pack= new Reedem_BackpackSuccess(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
+                Reedem_BackpackSuccess back_pack= new Reedem_BackpackSuccess(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);
                 //instantiate next page for routes picking
             }
             else{
-                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
+                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);
             }
         }else if(button2 == e.getSource()){
             this.dispose();
@@ -170,10 +173,10 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             phmSerialization.savePHM(this.phm, "PHManager.ser");
             if (this.rewardsItem != null){
                 Reedem_BookstoreCouponSuccess bookstore_coupon = new Reedem_BookstoreCouponSuccess(this.cm,this.fm,  this.tm,
-                        this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
+                        this.username,this.phm, this.rewardsItem, this.rif, this.lm);//instantiate main menu
             }
             else{
-                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
+                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);
             }
         }
         else if(button3 == e.getSource()){
@@ -184,10 +187,10 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             PHMSerialiazation phmSerialization = new PHMSerialiazation();
             phmSerialization.savePHM(this.phm, "PHManager.ser");
             if (this.rewardsItem != null){
-                Reedem_GiftCardSuccess giftcard = new Reedem_GiftCardSuccess(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
+                Reedem_GiftCardSuccess giftcard = new Reedem_GiftCardSuccess(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif,this.lm);//instantiate main menu
             }
             else{
-                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
+                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif,this.lm);
             }
         }
         else if(button4 == e.getSource()){
@@ -198,10 +201,10 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             PHMSerialiazation phmSerialization = new PHMSerialiazation();
             phmSerialization.savePHM(this.phm, "PHManager.ser");
             if (this.rewardsItem != null){
-                Reedem_Mug mug = new Reedem_Mug(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
+                Reedem_Mug mug = new Reedem_Mug(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);//instantiate main menu
             }
             else{
-                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
+                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);
             }
         }
         else if(button5 == e.getSource()){
@@ -212,15 +215,15 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             PHMSerialiazation phmSerialization = new PHMSerialiazation();
             phmSerialization.savePHM(this.phm, "PHManager.ser");
             if (this.rewardsItem != null){
-                Reedem_TVoucher TVoucher = new Reedem_TVoucher(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
+                Reedem_TVoucher TVoucher = new Reedem_TVoucher(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);//instantiate main menu
             }
             else{
-                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
+                Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);
             }
         }
         else if(button6 == e.getSource()){
             this.dispose();
-            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
+            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);//instantiate main menu
         }
     }
 }

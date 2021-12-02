@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import GUI.Manager_Account.Purchase_History.PurchaseHistory_ReedemItemFrame;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import UStore.RewardsItem;
 import UStore.RewardsItemFactory;
@@ -34,10 +35,11 @@ public class Redeem_ItemFrame extends JFrame implements ActionListener {
     PHManager phm;
     RewardsItem rewardsItem;
     RewardsItemFactory rif;
+    LuggageManager lm;
 
     public Redeem_ItemFrame(CustomerManager customerManager, FlightManager flightManager,
                             TicketManager ticketManager, String username, PHManager phm,
-                            RewardsItem rewardsItem,RewardsItemFactory rif) {
+                            RewardsItem rewardsItem,RewardsItemFactory rif, LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
@@ -45,6 +47,7 @@ public class Redeem_ItemFrame extends JFrame implements ActionListener {
         this.phm=phm;
         this.rewardsItem = rewardsItem;
         this.rif = rif;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -122,14 +125,14 @@ public class Redeem_ItemFrame extends JFrame implements ActionListener {
         if(button1 == e.getSource()){
             this.dispose();
             Redeem_ItemListFrame reedem_item_list= new Redeem_ItemListFrame(this.cm, this.fm, this.tm, this.username,
-                    this.phm, this.rewardsItem, this.rif);//instantiate next page for routes picking
+                    this.phm, this.rewardsItem, this.rif, this.lm);//instantiate next page for routes picking
         }else if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
         }
         else if(button3 == e.getSource()){
             this.dispose();
             PurchaseHistory_ReedemItemFrame reedem_item_history = new PurchaseHistory_ReedemItemFrame(this.cm, this.fm,
-                    this.tm, this.username,this.phm);//instantiate main menu
+                    this.tm, this.username,this.phm, this.lm);//instantiate main menu
         }}}
 

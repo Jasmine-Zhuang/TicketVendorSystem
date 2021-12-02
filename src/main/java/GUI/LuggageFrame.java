@@ -110,7 +110,7 @@ public class LuggageFrame extends JFrame implements ActionListener {
                     ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
                     luggageSerialization.saveLM(this.lm, "LuggageManager.ser");
                     this.dispose();
-            }else{
+                }else{
                 JOptionPane.showMessageDialog(null, "Warning: insufficient input.", "warning",
                         JOptionPane.WARNING_MESSAGE);
             }
