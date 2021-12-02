@@ -9,7 +9,7 @@ public class diabetic extends Meal_choice implements Meal_selection, Serializabl
      * Construct a meal selection diabetic
      */
     public diabetic() {
-        super("Meal selection diabetic");
+        super("Diabetic");
     }
 
 }

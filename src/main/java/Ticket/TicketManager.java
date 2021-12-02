@@ -14,6 +14,8 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import Meal.Meal_choice;
+
 
 public class TicketManager implements Serializable {
 
@@ -168,5 +170,12 @@ public class TicketManager implements Serializable {
 
 
 
+    /**
+     * A setter method.
+     * Set the ticket meal
+     */
+    public void setMeal(Ticket ticket, Meal_choice meal) {
+        ticket.setMeal(meal);
+    }
 
 }

@@ -253,6 +253,7 @@ public class Ticket implements Serializable {
                 "\nEstimate arrival time: " + formattedArrivalTime +
                 "\nBoarding Gate: " + boardingGate +
                 "\nPrice: $" + price +
+                "\nMeal: " + meal +
                 "\nBoarding time will be one hour before departure." +
                 "\nAnd gate closes 20 minutes before departure." +
                 "\nHave a nice trip!\n" +

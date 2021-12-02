@@ -10,6 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 import Flight.FlightManager;
 import Flight.Flight;
+import Customer.Customer;
+import Customer.CustomerManager;
+import Customer.PHManager;
+import Customer.PurchaseHistory;
+import Luggage.LuggageManager;
+import Meal.*;
 
 import static org.junit.Assert.*;
 
@@ -43,7 +49,13 @@ public class TicketManagerTest {
     Flight f1 = new Flight("1234", "Toronto", "Vancouver", dt, at, 10,
             10, 3600, "10A", seatArray);
     FlightManager fm = new FlightManager();
-
+    LuggageManager lm = new LuggageManager();
+    PHManager phm = new PHManager();
+    CustomerManager cm = new CustomerManager();
+    PriceCalculator pc = new PriceCalculator();
+    Customer olivia = new Customer("oliviaj", "abcdef", "OLIVIAJ");
+    PurchaseHistory ph = new PurchaseHistory(olivia);
+    diabetic diabetic = new diabetic();
 
     @Test(timeout = 200)
     public void TestEmptyConstructor() {
@@ -125,5 +137,18 @@ public class TicketManagerTest {
         List<Ticket> marksTicketInfo = tm.ticketDisplay("mark123");
         List<Ticket> res2 = new ArrayList<>(List.of(t3));
         assertEquals(res2, marksTicketInfo);
+    }
+
+
+    @Test(timeout = 500)
+    public void TestgetTicket_Meal() {
+        assertNull(tm.getTicket_Meal(t1));
+    }
+
+    @Test(timeout = 500)
+    public void TestsetMeall() {
+        assertNull(tm.getTicket_Meal(t1));
+        tm.setMeal(t1, diabetic);
+        assertEquals(tm.getTicket_Meal(t1).getName(),"Diabetic");
     }
 }

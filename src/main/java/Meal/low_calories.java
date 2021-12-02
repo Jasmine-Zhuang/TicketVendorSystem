@@ -8,7 +8,7 @@ public class low_calories extends Meal_choice implements Meal_selection, Seriali
      * Construct a meal selection low calories
      */
     public low_calories() {
-        super("Meal selection low calories");
+        super("Low Calories");
 
     }
 }

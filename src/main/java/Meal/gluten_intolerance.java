@@ -9,7 +9,7 @@ public class gluten_intolerance extends Meal_choice implements Meal_selection, S
      * Construct a meal selection gluten intolerance
      */
     public gluten_intolerance() {
-        super("Meal selection gluten intolerance");
+        super("Gluten Intolerance");
 
     }
 }

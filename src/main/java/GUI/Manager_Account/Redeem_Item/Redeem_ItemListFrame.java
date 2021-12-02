@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import UStore.RewardsItem;
@@ -30,8 +31,8 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
     JButton button5 = new JButton("TVoucher");
     JButton button6 = new JButton("Back to Redeem Item Menu");
 
-    Color darkRed = new Color(101,15,43);
-    Color lightPink = new Color(218,198,205);
+    Color darkRed = new Color(101, 15, 43);
+    Color lightPink = new Color(218, 198, 205);
     CustomerManager cm;
     FlightManager fm;
     TicketManager tm;
@@ -46,44 +47,44 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
-        this.username=username;
-        this.phm=phm;
+        this.username = username;
+        this.phm = phm;
         this.rewardsItem = rewardsItem;
         this.rif = rif;
 
-        button1.setFont(new Font("Times", Font.PLAIN,25));
+        button1.setFont(new Font("Times", Font.PLAIN, 25));
         button1.setForeground(darkRed);
         button1.addActionListener(this);
 
-        button2.setFont(new Font("Times", Font.PLAIN,25));
+        button2.setFont(new Font("Times", Font.PLAIN, 25));
         button2.setForeground(darkRed);
         button2.addActionListener(this);
 
-        button3.setFont(new Font("Times", Font.PLAIN,25));
+        button3.setFont(new Font("Times", Font.PLAIN, 25));
         button3.setForeground(darkRed);
         button3.addActionListener(this);
 
-        button4.setFont(new Font("Times", Font.PLAIN,25));
+        button4.setFont(new Font("Times", Font.PLAIN, 25));
         button4.setForeground(darkRed);
         button4.addActionListener(this);
 
-        button5.setFont(new Font("Times", Font.PLAIN,25));
+        button5.setFont(new Font("Times", Font.PLAIN, 25));
         button5.setForeground(darkRed);
         button5.addActionListener(this);
 
-        button6.setFont(new Font("Times", Font.PLAIN,25));
+        button6.setFont(new Font("Times", Font.PLAIN, 25));
         button6.setForeground(darkRed);
         button6.addActionListener(this);
 
         label1.setBackground(lightPink);
-        label1.setFont(new Font("Times", Font.BOLD,30));
+        label1.setFont(new Font("Times", Font.BOLD, 30));
         label1.setForeground(darkRed);
         label1.setHorizontalTextPosition(JLabel.CENTER);
         label1.setVerticalTextPosition(JLabel.CENTER);
         label1.setOpaque(true);
         label1.setVerticalAlignment(JLabel.CENTER);
         label1.setHorizontalAlignment(JLabel.CENTER);
-        label1.setBounds(50,50,100,100);
+        label1.setBounds(50, 50, 100, 100);
 
             /*
         label2.setBackground(lightPink);
@@ -98,29 +99,29 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
 
              */
 
-        panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         panel.add(label1);
         /*
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
 
          */
-        panel.add(Box.createRigidArea(new Dimension(20,20)));
+        panel.add(Box.createRigidArea(new Dimension(20, 20)));
         panel.add(button1);
 
-        panel.add(Box.createRigidArea(new Dimension(20,10)));
+        panel.add(Box.createRigidArea(new Dimension(20, 10)));
         panel.add(button2);
 
-        panel.add(Box.createRigidArea(new Dimension(20,10)));
+        panel.add(Box.createRigidArea(new Dimension(20, 10)));
         panel.add(button3);
 
-        panel.add(Box.createRigidArea(new Dimension(20,10)));
+        panel.add(Box.createRigidArea(new Dimension(20, 10)));
         panel.add(button4);
 
-        panel.add(Box.createRigidArea(new Dimension(20,10)));
+        panel.add(Box.createRigidArea(new Dimension(20, 10)));
         panel.add(button5);
 
-        panel.add(Box.createRigidArea(new Dimension(20,10)));
+        panel.add(Box.createRigidArea(new Dimension(20, 10)));
         panel.add(button6);
 
         panel.setBackground(lightPink);
@@ -134,6 +135,7 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
         this.pack();
         this.setVisible(true);
     }
+
     /*
         public static void main(String[] args) {
             new Redeem_ItemListFrame(cm,fm,tm);
@@ -146,7 +148,7 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
          */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(button1 == e.getSource()){
+        if (button1 == e.getSource()) {
             this.dispose();
             this.rif.getItem("Backpack").redeemItem(this.cm.showCustomer(this.username));
             this.rewardsItem = this.rif.getItem("Backpack").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
@@ -161,9 +163,9 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             else{
                 Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
             }
-        }else if(button2 == e.getSource()){
+        } else if (button2 == e.getSource()) {
             this.dispose();
-            this.rewardsItem=this.rif.getItem("BookstoreCoupon").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
+            this.rewardsItem = this.rif.getItem("BookstoreCoupon").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
             CMSerialization cmSerialization = new CMSerialization();
             cmSerialization.saveCM(this.cm, "CMManager.ser");
             PHMSerialiazation phmSerialization = new PHMSerialiazation();
@@ -175,10 +177,9 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             else{
                 Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
             }
-        }
-        else if(button3 == e.getSource()){
+        } else if (button3 == e.getSource()) {
             this.dispose();
-            this.rewardsItem=this.rif.getItem("GiftCard").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
+            this.rewardsItem = this.rif.getItem("GiftCard").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
             CMSerialization cmSerialization = new CMSerialization();
             cmSerialization.saveCM(this.cm, "CMManager.ser");
             PHMSerialiazation phmSerialization = new PHMSerialiazation();
@@ -189,10 +190,9 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             else{
                 Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
             }
-        }
-        else if(button4 == e.getSource()){
+        } else if (button4 == e.getSource()) {
             this.dispose();
-            this.rewardsItem=this.rif.getItem("Mug").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
+            this.rewardsItem = this.rif.getItem("Mug").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
             CMSerialization cmSerialization = new CMSerialization();
             cmSerialization.saveCM(this.cm, "CMManager.ser");
             PHMSerialiazation phmSerialization = new PHMSerialiazation();
@@ -203,8 +203,7 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             else{
                 Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
             }
-        }
-        else if(button5 == e.getSource()){
+        } else if (button5 == e.getSource()) {
             this.dispose();
             this.rewardsItem = this.rif.getItem("TVoucher").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
             CMSerialization cmSerialization = new CMSerialization();
@@ -217,8 +216,7 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
             else{
                 Redeem_fail failredeem = new Redeem_fail(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);
             }
-        }
-        else if(button6 == e.getSource()){
+        } else if (button6 == e.getSource()) {
             this.dispose();
             Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm,this.fm,  this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
         }

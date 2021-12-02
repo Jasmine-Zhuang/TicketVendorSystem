@@ -133,7 +133,8 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,
+                    this.phm, this.lm);//instantiate main menu
         }
 
         else if(back_pre == e.getSource()){
