@@ -2,6 +2,7 @@ package GUI;
 import Customer.CustomerManager;
 import Customer.PHManager;
 import Flight.FlightManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import java.awt.*;
@@ -26,12 +27,14 @@ public class GreetingFrame extends JFrame implements ActionListener {
     TicketManager tm;
     CustomerManager cm;
     PHManager phm;
+    LuggageManager lm;
 
-    GreetingFrame(FlightManager fm, CustomerManager cm, TicketManager tm, PHManager phm) {
+    GreetingFrame(FlightManager fm, CustomerManager cm, TicketManager tm, PHManager phm, LuggageManager lm) {
         this.fm=fm;
         this.cm=cm;
         this.tm=tm;
         this.phm =phm;
+        this.lm = lm;
 
         button.setText("Start");
         button.setFont(new Font("Times", Font.PLAIN,25));
@@ -98,7 +101,7 @@ public class GreetingFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button == e.getSource()){
             this.dispose();
-           Login login = new Login(this.fm,this.cm,this.tm,this.phm);//instantiate login frame
+           Login login = new Login(this.fm,this.cm,this.tm,this.phm, this.lm);//instantiate login frame
         }
     }
 

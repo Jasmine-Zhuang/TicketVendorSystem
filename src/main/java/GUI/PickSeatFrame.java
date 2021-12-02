@@ -3,6 +3,7 @@ package GUI;
 import Customer.CustomerManager;
 import Customer.PHManager;
 import Flight.FlightManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import javax.swing.*;
@@ -20,13 +21,17 @@ public class PickSeatFrame extends JFrame implements ActionListener {
     String seatNumber;
     String username;
     PHManager phm;
-    PickSeatFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String flightNum, String username,PHManager phm){
+    LuggageManager lm;
+
+    PickSeatFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String flightNum, String username,
+                  PHManager phm, LuggageManager lm){
         this.fm=fm;
         this.flightNum =flightNum;
         this.username=username;
         this.cm=cm;
         this.tm=tm;
         this.phm=phm;
+        this.lm = lm;
 
         JPanel panel = new JPanel();
         submitButton.setText("Submit seat picked");
@@ -69,7 +74,8 @@ public class PickSeatFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==submitButton){
             this.dispose();
-            DisplayPriceFrame displayPriceFrame = new DisplayPriceFrame(this.cm,this.fm,this.tm,this.seatNumber,this.username,this.phm);
+            DisplayPriceFrame displayPriceFrame = new DisplayPriceFrame(this.cm,this.fm,this.tm,this.seatNumber,
+                    this.username,this.phm, this.lm);
             //flight num, customer usertype, seat type
             displayPriceFrame.getInfo(flightNum);
         }

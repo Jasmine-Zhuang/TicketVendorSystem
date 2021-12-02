@@ -3,6 +3,7 @@ package GUI;
 import Customer.CustomerManager;
 import Customer.PHManager;
 import Flight.FlightManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import javax.swing.*;
@@ -25,13 +26,16 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
     CustomerManager cm;
     String username;
     PHManager phm;
+    LuggageManager lm;
 
-    PickRoutesFrame(FlightManager fm, CustomerManager cm, TicketManager tm, String username, PHManager phm) {
+    PickRoutesFrame(FlightManager fm, CustomerManager cm, TicketManager tm, String username, PHManager phm,
+                    LuggageManager lm) {
         this.fm = fm;
         this.tm=tm;
         this.cm=cm;
         this.username=username;
         this.phm=phm;
+        this.lm = lm;
 
 
         dCb.setBounds(50, 50, 100, 20);
@@ -79,7 +83,8 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
             //switch to select a flight from flights given based on routes
            this.dispose();
            PickFlightFrame pickFlightFrame= new PickFlightFrame(dCb.getItemAt(dCb.getSelectedIndex()),
-                   dCb.getItemAt(aCb.getSelectedIndex()),this.fm,this.cm,this.tm,this.username,this.phm);
+                   dCb.getItemAt(aCb.getSelectedIndex()),this.fm,this.cm,this.tm,this.username,this.phm,
+                   this.lm);
 
         } else if (e.getSource() == button1) {//show routes picked
             String data1 = "Departure selected "
