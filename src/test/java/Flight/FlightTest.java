@@ -86,7 +86,7 @@ public class FlightTest {
     public void TestReserveOneSeat() {
         if (flight.ReserveOneSeat("1A")) {
             assertEquals(9, flight.getAvailableSeats());
-            assertEquals("X", flight.getSeatArray().get(0).get(0));
+            assertEquals("X1A", flight.getSeatArray().get(0).get(0));
         }
         assertFalse(flight.ReserveOneSeat("10A"));
     }

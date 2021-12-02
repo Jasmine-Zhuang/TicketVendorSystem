@@ -4,6 +4,7 @@ import Customer.Customer;
 import Customer.CustomerManager;
 import Customer.LoginSystem;
 import Flight.FlightManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import javax.swing.*;
@@ -27,13 +28,15 @@ public class CreateAccount extends JFrame implements ActionListener {
     CustomerManager cm ;
     TicketManager tm;
     PHManager phm;
+    LuggageManager lm;
 
-    CreateAccount(FlightManager fm, CustomerManager cm, TicketManager tm, PHManager phm){
+    CreateAccount(FlightManager fm, CustomerManager cm, TicketManager tm, PHManager phm,LuggageManager lm){
 
         this.fm = fm;
         this.cm = cm;
         this.tm = tm;
         this.phm=phm;
+        this.lm=lm;
 
         label.setText("Please enter your Username, Password, and Full Name respectively");
         label.setVerticalAlignment(JLabel.TOP);
@@ -94,7 +97,7 @@ public class CreateAccount extends JFrame implements ActionListener {
                     Customer c = new Customer(username.getText(), password.getText(), fullName.getText());
                     this.cm.addCustomer(c);
                     this.dispose();
-                    Login login = new Login(this.fm, this.cm, this.tm,this.phm);
+                    Login login = new Login(this.fm, this.cm, this.tm,this.phm,this.lm);
                 } else {
                     System.out.println("The username already exists, please enter a new one.");
                 }
@@ -104,7 +107,7 @@ public class CreateAccount extends JFrame implements ActionListener {
         }
         if (e.getSource() == back){
             this.dispose();
-            Login login = new Login(this.fm, this.cm, this.tm,this.phm);
+            Login login = new Login(this.fm, this.cm, this.tm,this.phm,this.lm);
         }
     }
 

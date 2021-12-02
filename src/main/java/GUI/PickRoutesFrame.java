@@ -81,10 +81,10 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmButton) {
             //switch to select a flight from flights given based on routes
-           this.dispose();
-           PickFlightFrame pickFlightFrame= new PickFlightFrame(dCb.getItemAt(dCb.getSelectedIndex()),
-                   dCb.getItemAt(aCb.getSelectedIndex()),this.fm,this.cm,this.tm,this.username,this.phm,
-                   this.lm);
+            this.dispose();
+            PickFlightFrame pickFlightFrame= new PickFlightFrame(dCb.getItemAt(dCb.getSelectedIndex()),
+                    dCb.getItemAt(aCb.getSelectedIndex()),this.fm,this.cm,this.tm,this.username,this.phm,
+                    this.lm);
 
         } else if (e.getSource() == button1) {//show routes picked
             String data1 = "Departure selected "

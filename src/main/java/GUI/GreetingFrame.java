@@ -101,7 +101,7 @@ public class GreetingFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button == e.getSource()){
             this.dispose();
-           Login login = new Login(this.fm,this.cm,this.tm,this.phm, this.lm);//instantiate login frame
+            Login login = new Login(this.fm,this.cm,this.tm,this.phm, this.lm);//instantiate login frame
         }
     }
 

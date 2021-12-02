@@ -14,14 +14,18 @@ import java.util.ArrayList;
 
 public class PickSeatFrame extends JFrame implements ActionListener {
     JButton submitButton = new JButton();
+    JTextField inputSeatNum;
+    JTextField inputSeatClass;
     FlightManager fm;
     TicketManager tm;
     CustomerManager cm;
     String flightNum;
     String seatNumber;
+    String seatClass;
     String username;
     PHManager phm;
     LuggageManager lm;
+
 
     PickSeatFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String flightNum, String username,
                   PHManager phm, LuggageManager lm){
@@ -55,6 +59,9 @@ public class PickSeatFrame extends JFrame implements ActionListener {
         panel.add(Box.createRigidArea(new Dimension(10,10)));
         panel.add(submitButton);
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(inputSeatClass);
+        panel.add(inputSeatClass);
+
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -62,7 +69,8 @@ public class PickSeatFrame extends JFrame implements ActionListener {
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
-        this.seatNumber = SeatsComoBox.getItemAt(SeatsComoBox.getSelectedIndex()).substring(1,3);
+        this.seatNumber = inputSeatNum.getText();
+        this.seatClass=inputSeatClass.getText();
     }
 
     /**
@@ -77,7 +85,7 @@ public class PickSeatFrame extends JFrame implements ActionListener {
             DisplayPriceFrame displayPriceFrame = new DisplayPriceFrame(this.cm,this.fm,this.tm,this.seatNumber,
                     this.username,this.phm, this.lm);
             //flight num, customer usertype, seat type
-            displayPriceFrame.getInfo(flightNum);
+            displayPriceFrame.getInfo(flightNum,this.seatClass);
         }
 
     }

@@ -12,6 +12,7 @@ import Customer.CMSerialization;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Flight.FlightSerialization;
+import Luggage.LuggageManager;
 import Ticket.Ticket;
 import Ticket.TicketManager;
 import Ticket.TicketSerialization;
@@ -21,6 +22,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     FlightManager fm;
     TicketManager tm;
     PHManager phm;
+    LuggageManager lm;
     String flightNum;
     String username;
     String classType;
@@ -31,6 +33,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     LocalDateTime a_time;
     String boardingGate;
     String seatNum;
+    String t_id;
     JButton buttonFinish = new JButton("Finish");
     JLabel label = new JLabel("Ticket Booked!!");
     JLabel label2 = new JLabel();
@@ -45,11 +48,12 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     DisplayTicketFrame(FlightManager fm, CustomerManager cm, TicketManager tm,
                        String flightNum, String d_city, String a_city, LocalDateTime d_time,
                        LocalDateTime a_time, String b_gate, String seat_num, String username,
-                       String classType, int ticketPrice, PHManager phm){
+                       String classType, int ticketPrice, PHManager phm,LuggageManager lm){
         this.cm = cm;
         this.fm = fm;
         this.tm = tm;
         this.phm=phm;
+        this.lm=lm;
         this.username = username;
         this.flightNum = flightNum;
         this.ticketPrice = ticketPrice;
@@ -65,6 +69,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
                 fm.getFlightByNum(flightNum).getArrivalTime(), b_gate, seat_num,
                 ticketPrice, cm.showCustomer(username).getName(), username, classType);
         tm.bookTickets(t);
+        this.t_id = t.getTicket_id();
         this.cm.decrBalance(ticketPrice,cm.showCustomer(this.username));
         this.cm.incrMileage(this.tm.getMileage(t,this.fm),cm.showCustomer(username));
         this.cm.calculateRedeemPoint(cm.showCustomer(username));
@@ -134,7 +139,8 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         this.dispose();
-        MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, username,this.phm);
+        Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
+                this.username, this.phm, this.lm, t_id);
     }
 
 }
