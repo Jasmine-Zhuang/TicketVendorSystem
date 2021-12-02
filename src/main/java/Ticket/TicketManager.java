@@ -3,10 +3,12 @@ package Ticket;
 This is the class that manages all sold tickets.
  */
 
-
+import Customer.Customer;
+import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Flight.FlightManager;
 import Flight.Flight;
-
+import Customer.PHManager;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -73,7 +75,16 @@ public class TicketManager implements Serializable {
      * @return a string to indicate whether the cancellation is successful.
      */
 
-    public String cancelTickets(Ticket ticket) {
+    public String cancelTickets(Ticket ticket, LuggageManager lm, PHManager pm, CustomerManager cm, FlightManager fm,
+                               PriceCalculator pc) {
+        String username= ticket.getPassenger_username();
+        String luggageId = ticket.getLuggage_id();
+        int luggageWeight = lm.getWeightById(luggageId);
+        Customer customer = cm.showCustomer(username);
+        Flight flight = fm.getFlightByNum(ticket.getFlightNumber());
+        int mileage = this.getMileage(ticket,fm);
+        int pts_returned = mileage / 5;
+
         if (soldTickets.contains(ticket)) {
             // remove ticket from list
             soldTickets.remove(ticket);
@@ -153,6 +164,7 @@ public class TicketManager implements Serializable {
         Flight flight = fm.getFlightByNum(flightNum);
         return flight.getDistanceTraveled();
     }
+
 
 
 

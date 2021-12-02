@@ -178,6 +178,13 @@ public class Ticket implements Serializable {
     }
 
     /**
+     * A getter method.
+     *
+     * @return Ticket's luggage id.
+     */
+    public String getLuggage_id() {return luggage_id;}
+
+    /**
      * A setter method.
      * @param newDTime A LocalDateTime instance indicates a new departure time.
      */
@@ -231,4 +238,7 @@ public class Ticket implements Serializable {
                 "\nHave a nice trip!\n" +
                 "-----------------------";
     }
+
+
+
 }
