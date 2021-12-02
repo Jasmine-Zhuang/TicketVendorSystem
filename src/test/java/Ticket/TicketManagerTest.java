@@ -108,8 +108,8 @@ public class TicketManagerTest {
 
     @Test(timeout = 500)
     public void TestGetMileage(){
-        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, 10,
-                10, 3600, "10A", seatArray);
+        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, "Small",
+                 3600, "10A");
         assertEquals(tm.getMileage(t1, fm), 3600);
 
     }
