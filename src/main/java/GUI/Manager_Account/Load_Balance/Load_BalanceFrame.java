@@ -10,12 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 public class Load_BalanceFrame extends JFrame implements ActionListener {
     FlightManager fm;
     TicketManager tm;
     CustomerManager cm;
+    LuggageManager lm;
     PHManager phm;
     String username;
 
@@ -44,11 +46,12 @@ public class Load_BalanceFrame extends JFrame implements ActionListener {
 
     // default constructor
     public Load_BalanceFrame(CustomerManager customerManager, FlightManager flightManager, TicketManager ticketManager,
-                             String username, PHManager phm) {
+                             String username, PHManager phm, LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
-        this.phm=phm;
+        this.phm = phm;
+        this.lm = luggageManager;
         this.username=username;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
@@ -130,12 +133,12 @@ public class Load_BalanceFrame extends JFrame implements ActionListener {
             this.cm.incrBalance(load_amount, this.cm.showCustomer(this.username));
             CMSerialization cmSerialization = new CMSerialization();
             cmSerialization.saveCM(this.cm, "CMManager.ser");
-            Load_BalanceSuccess load_balance= new Load_BalanceSuccess(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate next page for routes picking
+            Load_BalanceSuccess load_balance= new Load_BalanceSuccess(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate next page for routes picking
 
         }else if(button2 == e.getSource()){
             this.dispose();
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm,
-                    this.username,this.phm);//instantiate main menu
+                    this.username,this.phm, this.lm);//instantiate main menu
         }
         String s = e.getActionCommand();
         if (s.equals("submit")) {

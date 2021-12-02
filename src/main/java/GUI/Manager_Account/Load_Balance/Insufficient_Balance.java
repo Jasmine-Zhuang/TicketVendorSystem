@@ -4,6 +4,7 @@ import Customer.CustomerManager;
 import Customer.PHManager;
 import Flight.FlightManager;
 import GUI.Manager_Account.ManageAccount;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import UStore.RewardsItem;
 import UStore.RewardsItemFactory;
@@ -29,16 +30,18 @@ public class Insufficient_Balance extends JFrame implements ActionListener {
     CustomerManager cm;
     FlightManager fm;
     TicketManager tm;
+    LuggageManager lm;
     PHManager phm;
     String username;
     RewardsItem rewardsItem;
     RewardsItemFactory rif;
 
     public Insufficient_Balance(CustomerManager customerManager, FlightManager flightManager,
-                                TicketManager ticketManager, String username, PHManager phm) {
+                                TicketManager ticketManager, String username, PHManager phm, LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
+        this.lm = luggageManager;
         this.username = username;
         this.phm=phm;
 
@@ -103,11 +106,11 @@ public class Insufficient_Balance extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
         }
         else if(button1 == e.getSource()){
             this.dispose();
-            Load_BalanceFrame load_balance = new Load_BalanceFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            Load_BalanceFrame load_balance = new Load_BalanceFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
         }
 
     }
