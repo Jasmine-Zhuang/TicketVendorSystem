@@ -105,10 +105,10 @@ public class TicketManager implements Serializable {
             if (cm.checkMembership(customer)){
                 cm.minusRedeemPoint(customer, pts_returned);
             }
-            cm.decrMillage(customer, pts_returned); //minus mileage
+            cm.decrMileage(customer, pts_returned); //minus mileage
             //extra penalty if redeem points<0 after above operations
             int negativePointPenalty = pc.pointPenalty(customer);//negative int or 0
-            cm.incrMillage(negativePointPenalty,customer);
+            cm.incrMileage(negativePointPenalty,customer);
 
             return "You have successfully canceled the ticket for flight " + ticket.getFlightNumber() +
                     ". The details are:" + " \n" + ticket;

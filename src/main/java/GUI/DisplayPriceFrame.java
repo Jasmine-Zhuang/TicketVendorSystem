@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import GUI.Manager_Account.Load_Balance.Load_BalanceFrame;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import Ticket.PriceCalculator;
 import Customer.PHManager;
@@ -40,7 +41,7 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
     JPanel panel3 = new JPanel();
 
     DisplayPriceFrame(CustomerManager customerManager, FlightManager flightManager, TicketManager ticketManager,
-                      String seatNum, String username, PHManager phm) {
+                      String seatNum, String username, PHManager phm, LuggageManager) {
 
         this.cm = customerManager;
         this.fm = flightManager;
@@ -98,18 +99,15 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
      * @param flightNum A list of Flight, Customer, and String instances that have info[0] = the Flight instance,
      *             info[1] = Customer instance, info[2] = classType.
      */
-    public void getInfo(String flightNum) {
+    public void getInfo(String flightNum, String classType) {
 //        flight = (Flight) info.get(0);
-        this.classType = "First";
         this.flightNum=flightNum;
 
         ticketPrice = pc.calculatePrice(fm.getFlightByNum(flightNum), cm.showCustomer(this.username), classType);
-//        ticketPrice = price;
-//        penalty = pc.penaltyprice(tm.getTicketByID(ticketID));
         int total = ticketPrice + penalty;
         String msg = "<html> Air transportation charges: $" + ticketPrice +
 //                "<br/> Late return/change charges: $" + penalty +
-//                "<br/> Grand Total: $" + total +
+                "<br/> Grand Total: $" + total +
                 "<html>";
         label2.setText(msg);
     }
