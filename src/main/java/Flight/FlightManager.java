@@ -189,7 +189,7 @@ public class FlightManager implements Serializable {
         ArrayList<ArrayList<String>> availableSeat = new ArrayList<>();
         for(ArrayList<String> seat: flight.getSeatArray()){
             String thisSeatNum = seat.get(0);
-            if(!thisSeatNum.equals("X")){
+            if(!thisSeatNum.contains("X")){
                 availableSeat.add(seat);
             }
         }
@@ -207,7 +207,7 @@ public class FlightManager implements Serializable {
         for(ArrayList<String> seat: flight.getSeatArray()){
             String thisSeatNum = seat.get(0);
             String thisSeatClass = seat.get(1);
-            if(!thisSeatNum.equals("X") && thisSeatClass.equals(seatClass)){
+            if(!thisSeatNum.contains("X") && thisSeatClass.equals(seatClass)){
                 availableSeat.add(seat);
             }
         }

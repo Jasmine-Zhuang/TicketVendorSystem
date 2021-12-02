@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import Customer.PHManager;
 import Customer.CustomerManager;
 import Flight.FlightManager;
+import GUI.Manager_Account.Load_Balance.Insufficient_Balance;
 import Ticket.TicketManager;
 
 public class BookTicketFrame extends JFrame implements ActionListener {
@@ -99,9 +100,12 @@ public class BookTicketFrame extends JFrame implements ActionListener {
                         this.customer_user, classType, ticketPrice,
                         this.phm);
             }else{JOptionPane.showMessageDialog(null,"Warning: insufficient balance.","warning",
-                    JOptionPane.WARNING_MESSAGE);}
+                    JOptionPane.WARNING_MESSAGE);
+
+                Insufficient_Balance insufficient_balance = new Insufficient_Balance(this.cm,this.fm,this.tm,customer_user,this.phm);
+            }
             this.dispose();
-            MainMenuFrame mainMenuFrame = new MainMenuFrame(fm,cm,tm,this.customer_user,phm);
+            /*MainMenuFrame mainMenuFrame = new MainMenuFrame(fm,cm,tm,this.customer_user,phm);*/
 
         }
 

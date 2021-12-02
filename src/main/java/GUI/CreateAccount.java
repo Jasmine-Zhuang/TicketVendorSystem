@@ -19,6 +19,7 @@ public class CreateAccount extends JFrame implements ActionListener {
     JLabel Password = new JLabel();
     JLabel FullName = new JLabel();
     JButton confirm = new JButton();
+    JButton back = new JButton();
     JTextField username = new JTextField();
     JTextField password = new JTextField();
     JTextField fullName = new JTextField();
@@ -36,18 +37,32 @@ public class CreateAccount extends JFrame implements ActionListener {
 
         label.setText("Please enter your Username, Password, and Full Name respectively");
         label.setVerticalAlignment(JLabel.TOP);
-        label.setBounds(0,0,400,20);
+        label.setBounds(0,0,450,20);
 
         confirm.setText("Confirm");
         confirm.setBounds(50,250,100,50);
         confirm.addActionListener(this);
         confirm.setFocusable(false);
 
+        back.setText("Return");
+        back.setBounds(250,250,100,50);
+        back.addActionListener(this);
+        back.setFocusable(false);
+
+        Username.setText("Username");
+        Username.setBounds(10,100,80,20);
+
         username.addActionListener(this);
         username.setBounds(100,100,200,20);
 
+        Password.setText("Password");
+        Password.setBounds(10,130,80,20);
+
         password.addActionListener(this);
         password.setBounds(100,130,200,20);
+
+        FullName.setText("Full Name");
+        FullName.setBounds(10,160,80,20);
 
         fullName.addActionListener(this);
         fullName.setBounds(100,160,200,20);
@@ -61,6 +76,10 @@ public class CreateAccount extends JFrame implements ActionListener {
         this.setLocation(new Point( 500,200));
         this.add(label);
         this.add(confirm);
+        this.add(back);
+        this.add(Username);
+        this.add(Password);
+        this.add(FullName);
         this.add(username);
         this.add(password);
         this.add(fullName);
@@ -82,6 +101,10 @@ public class CreateAccount extends JFrame implements ActionListener {
             } catch (IOException ex) {
                 System.out.println("error");;
             }
+        }
+        if (e.getSource() == back){
+            this.dispose();
+            Login login = new Login(this.fm, this.cm, this.tm,this.phm);
         }
     }
 

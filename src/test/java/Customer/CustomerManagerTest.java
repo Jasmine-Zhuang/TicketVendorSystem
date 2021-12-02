@@ -142,11 +142,11 @@ public class CustomerManagerTest {
     }
 
     @Test(timeout = 50)
-    public void test_incrMillage() {
+    public void test_incrMileage() {
         assertEquals(0, Maggie.getMileage());
-        int new_millage = 500;
+        int new_Mileage = 500;
         Ryan.addCustomer(Maggie);
-        Ryan.incrMillage(new_millage, Maggie);
+        Ryan.incrMileage(new_Mileage, Maggie);
         assertEquals(500, Maggie.getMileage());
     }
 
@@ -181,74 +181,74 @@ public class CustomerManagerTest {
     @Test(timeout = 50)
     public void test_calculateRedeemPoint() {
         assertEquals(0, Maggie.getMileage());
-        int new_millage = 500;
+        int new_Mileage = 500;
         Ryan.addCustomer(Maggie);
-        Ryan.incrMillage(new_millage, Maggie);
+        Ryan.incrMileage(new_Mileage, Maggie);
         assertEquals(500, Maggie.getMileage());
         Ryan.changeMembership(Maggie);
-        double redeem_point = 5.00;
+        double redeem_point = 100.00;
         assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie), 0);
     }
 
     @Test(timeout = 50)
     public void test_minusRedeemPoint() {
         assertEquals(0, Maggie.getMileage());
-        int new_millage = 500;
+        int new_Mileage = 500;
         Ryan.addCustomer(Maggie);
-        Ryan.incrMillage(new_millage, Maggie);
+        Ryan.incrMileage(new_Mileage, Maggie);
         assertEquals(500, Maggie.getMileage());
         Ryan.changeMembership(Maggie);
-        double redeem_point = 5.00;
+        double redeem_point = 100.00;
         assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie), 0);
         assertEquals(redeem_point, Ryan.calculateRedeemPoint(Maggie),0);
         assertEquals(redeem_point, Ryan.getRedeem_points(Maggie),0);
         Integer redeemed_point = 1;
         Ryan.minusRedeemPoint(Maggie,redeemed_point);
-        assertEquals(4, Ryan.getRedeem_points(Maggie),0);
+        assertEquals(99, Ryan.getRedeem_points(Maggie),0);
     }
 
     @Test(timeout = 50)
     public void test_getRedeem_points() {
         assertEquals(0, Maggie.getMileage());
-        int new_millage = 500;
+        int new_Mileage = 500;
         Ryan.addCustomer(Maggie);
-        Ryan.incrMillage(new_millage, Maggie);
+        Ryan.incrMileage(new_Mileage, Maggie);
         assertEquals(500, Maggie.getMileage());
         Ryan.changeMembership(Maggie);
-        double redeem_point = 5.00;
+        double redeem_point = 100.00;
         Ryan.calculateRedeemPoint(Maggie);
         assertEquals(redeem_point, Ryan.getRedeem_points(Maggie), 0);
     }
 
 
     @Test(timeout = 50)
-    public void test_decrMillage() {
+    public void test_decrMileage() {
         assertEquals(0, Maggie.getMileage());
-        int new_millage = 500;
+        int new_Mileage = 500;
         Ryan.addCustomer(Maggie);
-        Ryan.incrMillage(new_millage, Maggie);
+        Ryan.incrMileage(new_Mileage, Maggie);
         assertEquals(500, Maggie.getMileage());
         Ryan.changeMembership(Maggie);
-        double redeem_point = 5.00;
+        double redeem_point = 100.00;
         assertEquals(redeem_point, Maggie.calculateRedeemPoint(), 0);
-        int remain_Millage = 400;
+        int remain_Mileage = 400;
         double redeem_points = 1;
-        Ryan.decrMillage(Maggie, redeem_points);
-        assertEquals(remain_Millage, Maggie.getMileage(), 0);
+        Ryan.decrMileage(Maggie, redeem_points);
+        assertEquals(remain_Mileage, Maggie.getMileage(), 0);
     }
 
     @Test(timeout = 1000)
     public void Test_ToString() {
         assertEquals(0, Maggie.getMileage());
-        int new_millage = 500;
+        int new_Mileage = 500;
         Ryan.addCustomer(Maggie);
-        Ryan.incrMillage(new_millage, Maggie);
+        Ryan.incrMileage(new_Mileage, Maggie);
         Ryan.displayInfo(Maggie);
         String a =
                 "Username: Name1203\n" +
                         "Name: RyanMaggie\n" +
                         "Balance: 0\n" +
-                        "Millage: 500\n" +
+                        "Mileage: 500\n" +
                         "Membership statues: false\n" +
                         "Membership level: 0\n" +
                         "Redeemed points: 0";

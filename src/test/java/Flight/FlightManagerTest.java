@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 import static org.junit.Assert.assertEquals;
@@ -44,8 +45,8 @@ public class FlightManagerTest {
         seatNumArray.add("5B");
 
         fm = new FlightManager();
-        fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime, aTime,
-                10, 10, 3600, "10A", seatNumArray);
+        fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime, aTime, "Small",
+                3600, "Gate1", seatNumArray);
     }
 
     @Test(timeout = 500)
@@ -68,6 +69,18 @@ public class FlightManagerTest {
     }
 
     @Test(timeout = 500)
+    public void TestCancelSeat() {
+        String seatNum = "1A";
+        String flightNum = "CZ311";
+        String s_return = "You have successfully canceled seat" + seatNum +" of flight " + flightNum;
+        String f_return = "This seat has not been reserved or does not exist.";
+        fm.reserveSeat("CZ311", "1A");
+        assertEquals(s_return, fm.cancelSeat("CZ311", "1A"));
+        assertEquals(f_return, fm.cancelSeat("CZ311", "1G"));
+
+    }
+
+    @Test(timeout = 500)
     public void TestPrintAvailableSeat() {
         ArrayList<ArrayList<ArrayList<String>>> seatNumArray = new ArrayList<>();
         String[][] temp = {{"1A", "First"}, {"1B", "First"}, {"2A", "First"}, {"2B", "First"}, {"3A", "First"},
@@ -87,7 +100,6 @@ public class FlightManagerTest {
         for (String[] item: temp) {
             seatNumArray.add(new ArrayList(List.of(item)));
         }
-
         assertEquals(seatNumArray, fm.printAvailableSeatByClass("CZ311", "First"));
     }
 
