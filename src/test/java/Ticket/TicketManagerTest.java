@@ -1,5 +1,6 @@
 package Ticket;
 
+import Meal.Meal_choice;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,17 +9,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import Flight.FlightManager;
 import Flight.Flight;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class TicketManagerTest {
 
     TicketManager tm;
 
     @Before
-    public void setUp() { tm = new TicketManager();}
+    public void setUp() {
+        tm = new TicketManager();
+    }
+
     ArrayList<String> dt = new ArrayList<>(Arrays.asList("2021", "8", "22", "12", "35"));
     ArrayList<String> at = new ArrayList<>(Arrays.asList("2021", "8", "23", "11", "35"));
     int dYear = Integer.parseInt(dt.get(0));
@@ -31,19 +37,20 @@ public class TicketManagerTest {
     int aDay = Integer.parseInt(at.get(2));
     int aHour = Integer.parseInt(at.get(3));
     int aMinute = Integer.parseInt(at.get(4));
-    LocalDateTime arrivalTime =  LocalDateTime.of(aYear,aMonth,aDay,aHour,aMinute);
-    LocalDateTime departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
+    LocalDateTime arrivalTime = LocalDateTime.of(aYear, aMonth, aDay, aHour, aMinute);
+    LocalDateTime departureTime = LocalDateTime.of(dYear, dMonth, dDay, dHour, dMinute);
     Ticket t1 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
-            "5B", 100, "Taylor", "taylorsusername","First");
+            "5B", 100, "Taylor", "taylorsusername", "First");
     Ticket t2 = new Ticket("4567", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
-            "12A", 100, "Taylor", "taylorsusername","Economy");
+            "12A", 100, "Taylor", "taylorsusername", "Economy");
     Ticket t3 = new Ticket("1463", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
-            "3C", 100, "Mark", "mark123","Business");
-    ArrayList<String> seatArray = new ArrayList<>(Arrays.asList("1A","1B","2A","2B","3A","3B","4A","4B","5A","5B"));
+            "3C", 100, "Mark", "mark123", "Business");
+    ArrayList<String> seatArray = new ArrayList<>(Arrays.asList("1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B"));
     Flight f1 = new Flight("1234", "Toronto", "Vancouver", dt, at, 10,
             10, 3600, "10A", seatArray);
     FlightManager fm = new FlightManager();
 
+    Meal_choice diabetic = new Meal_choice("Diabetic");
 
     @Test(timeout = 200)
     public void TestEmptyConstructor() {
@@ -100,18 +107,30 @@ public class TicketManagerTest {
     }
 
     @Test(timeout = 500)
-    public void TestGenerateTicket(){
+    public void TestGenerateTicket() {
         Ticket new_t = tm.generateTicket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
                 "5B", 100, "Taylor", "taylorsusername", "First");
         assertEquals(new_t.toString(), t1.toString());
     }
 
     @Test(timeout = 500)
-    public void TestGetMileage(){
+    public void TestGetMileage() {
         fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, 10,
                 10, 3600, "10A", seatArray);
         assertEquals(tm.getMileage(t1, fm), 3600);
 
+    }
+
+    @Test(timeout = 500)
+    public void TestgetTicket_Meal() {
+        assertNull(tm.getTicket_Meal(t1));
+    }
+
+    @Test(timeout = 500)
+    public void TestsetMeall() {
+        assertNull(tm.getTicket_Meal(t1));
+        tm.setMeal(t1, diabetic);
+        assertEquals(tm.getTicket_Meal(t1).getName(),"Diabetic");
     }
 
     @Test(timeout = 500)

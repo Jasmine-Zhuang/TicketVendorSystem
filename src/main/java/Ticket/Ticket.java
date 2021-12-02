@@ -3,6 +3,7 @@ package Ticket;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import Meal.*;
 
 
 /*
@@ -26,6 +27,7 @@ public class Ticket implements Serializable {
     private String passenger_username;
     private String ticket_id;
     private String class_type;
+    private Meal_choice meal;
 
     /**
      * Construct a Flight Ticket giving it the given flightNumber, departure city, arrival city,
@@ -58,6 +60,7 @@ public class Ticket implements Serializable {
         this.arrivalTime = a_time;
         this.departureTime = d_time;
         this.class_type = c_type;
+        this.meal = null;
     }
 
     /**
@@ -166,6 +169,24 @@ public class Ticket implements Serializable {
     }
 
     /**
+     * A setter method.
+     * Set the ticket meal
+     */
+    public void setMeal(Meal_choice meal) {
+        meal.setSelected();
+        this.meal = meal;
+    }
+
+    /**
+     * A getter method.
+     *
+     * @return Ticket's meal selection.
+     */
+    public Meal_choice getTicket_Meal() {
+        return this.meal;
+    }
+
+    /**
      * A getter method.
      *
      * @return Ticket's id.
@@ -191,6 +212,7 @@ public class Ticket implements Serializable {
                 "\nEstimate arrival time: " + formattedArrivalTime +
                 "\nBoarding Gate: " + boardingGate +
                 "\nPrice: $" + price +
+                "\nMeal: " + meal +
                 "\nBoarding time will be one hour before departure." +
                 "\nAnd gate closes 20 minutes before departure." +
                 "\nHave a nice trip!\n" +

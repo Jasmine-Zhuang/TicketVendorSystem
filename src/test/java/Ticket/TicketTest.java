@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
+import Meal.*;
+
 public class TicketTest {
     Ticket t;
     Ticket emp;
@@ -37,8 +39,14 @@ public class TicketTest {
         int aMinute = Integer.parseInt(aTime.get(4));
         LocalDateTime departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
         LocalDateTime arrivalTime =  LocalDateTime.of(aYear,aMonth,aDay,aHour,aMinute);
+
+        Meal_choice diabetic = new Meal_choice("Diabetic");
+
         t = new Ticket("A00100", "Beijing", "Toronto", departureTime, arrivalTime,
                 "C4", "15P", 1500, "James", "J52000", "First");
+
+        t.setMeal(diabetic);
+
         emp = new Ticket();
     }
 
@@ -58,6 +66,7 @@ public class TicketTest {
         assertEquals("J52000", t.getPassenger_username());
         assertEquals("A00100,15P", t.getTicket_id());
         assertEquals("First", t.getTicket_class());
+        assertEquals("Diabetic", t.getTicket_Meal().getName());
     }
 
     @Test(timeout = 100)
@@ -73,6 +82,7 @@ public class TicketTest {
         assertNull(emp.getPassenger_name());
         assertNull(emp.getPassenger_username());
         assertNull(emp.getTicket_id());
+        assertNull(emp.getTicket_Meal());
     }
 
     @Test(timeout = 500)
@@ -90,6 +100,7 @@ public class TicketTest {
                 "\nEstimate arrival time: "+formattedArrivalTime+
                 "\nBoarding Gate: C4"+
                 "\nPrice: $1500"+
+                "\nMeal: The selected meal is Diabetic"+
                 "\nBoarding time will be one hour before departure."+
                 "\nAnd gate closes 20 minutes before departure."+
                 "\nHave a nice trip!"+

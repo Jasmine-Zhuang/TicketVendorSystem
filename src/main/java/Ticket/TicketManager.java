@@ -6,6 +6,7 @@ This is the class that manages all sold tickets.
 
 import Flight.FlightManager;
 import Flight.Flight;
+import Meal.Meal_choice;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -101,7 +102,6 @@ public class TicketManager implements Serializable {
                                  String p_name, String p_user, String Class_tp) {
         return new Ticket(flightNumber, d_city, a_city, d_time, a_time, b_gate, seat_num, price, p_name, p_user,
                 Class_tp);
-
     }
 
     /**
@@ -130,7 +130,20 @@ public class TicketManager implements Serializable {
         return flight.getDistanceTraveled();
     }
 
+    /**
+     * A getter method.
+     *
+     * @return Ticket's meal selection.
+     */
+    public Meal_choice getTicket_Meal(Ticket ticket) {
+        return ticket.getTicket_Meal();
+    }
 
-
-
+    /**
+     * A setter method.
+     * Set the ticket meal
+     */
+    public void setMeal(Ticket ticket, Meal_choice meal) {
+        ticket.setMeal(meal);
+    }
 }
