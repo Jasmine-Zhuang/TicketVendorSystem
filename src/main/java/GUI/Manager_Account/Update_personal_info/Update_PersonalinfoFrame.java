@@ -122,11 +122,11 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
         }else if(change_password == e.getSource()){
             this.dispose();
             Update_passwordFrame change_password = new Update_passwordFrame(this.cm, this.fm, this.tm, this.username,
-                    this.phm);//instantiate main menu
+                    this.phm, this.lm);//instantiate main menu
         }else if(change_username == e.getSource()){
             this.dispose();
             Update_usernameFrame change_username= new Update_usernameFrame(this.cm, this.fm, this.tm, this.username,
-                    this.phm);//instantiate next page for routes picking
+                    this.phm, this.lm);//instantiate next page for routes picking
         }else if(back == e.getSource()){
             this.dispose();
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu

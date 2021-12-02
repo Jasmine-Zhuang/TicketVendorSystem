@@ -38,7 +38,7 @@ public class ManageAccount extends JFrame implements ActionListener {
     RewardsItemFactory rif;
 
     public ManageAccount(CustomerManager customerManager, FlightManager flightManager,
-                         TicketManager ticketManager, String username, PHManager phm,LuggageManager lm){
+                         TicketManager ticketManager, String username, PHManager phm, LuggageManager lm){
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
@@ -108,7 +108,7 @@ public class ManageAccount extends JFrame implements ActionListener {
 
         if (e.getSource() == update){
             this.dispose();
-            Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,this.username, this.phm);//instantiate main menu
+            Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,this.username, this.phm, this.lm);//instantiate main menu
         }
         if (e.getSource() == membership){
             this.dispose();

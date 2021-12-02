@@ -124,13 +124,13 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
                 CMSerialization cmSerialization = new CMSerialization();
                 cmSerialization.saveCM(this.cm, "CMManager.ser");
                 Update_namesuccessFrame change_username= new Update_namesuccessFrame(this.cm, this.fm, this.tm,
-                        this.username, this.phm);
+                        this.username, this.phm, this.lm);
             }//instantiate next page for routes picking
         }
         if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate main menu
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
         if(button2 == e.getSource()){
             this.dispose();

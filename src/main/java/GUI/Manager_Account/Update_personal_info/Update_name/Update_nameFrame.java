@@ -143,7 +143,7 @@ public class Update_nameFrame extends JFrame implements ActionListener {
         if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate main menu
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
         if(button2 == e.getSource()){
             this.dispose();
