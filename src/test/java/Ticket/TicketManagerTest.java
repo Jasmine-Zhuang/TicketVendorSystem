@@ -44,7 +44,7 @@ public class TicketManagerTest {
     Ticket t2 = new Ticket("4567", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
             "12A", 100, "Taylor", "taylorsusername","Economy");
     Ticket t3 = new Ticket("1463", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
-            "3C", 100, "Mark", "mark123","Business");
+            "3C", 100, "Mark", "mark123", "Business");
     ArrayList<String> seatArray = new ArrayList<>(Arrays.asList("1A","1B","2A","2B","3A","3B","4A","4B","5A","5B"));
     Flight f1 = new Flight("1234", "Toronto", "Vancouver", dt, at, 10,
             10, 3600, "10A", seatArray);
@@ -53,7 +53,7 @@ public class TicketManagerTest {
     PHManager phm = new PHManager();
     CustomerManager cm = new CustomerManager();
     PriceCalculator pc = new PriceCalculator();
-    Customer olivia = new Customer("oliviaj", "abcdef", "OLIVIAJ");
+    Customer olivia = new Customer("taylorsusername", "abcdef", "Taylor");
     PurchaseHistory ph = new PurchaseHistory(olivia);
     diabetic diabetic = new diabetic();
 
@@ -98,19 +98,7 @@ public class TicketManagerTest {
 
     }
 
-   /* @Test(timeout = 200)
-    public void TestCancelTickets() {
-        tm.bookTickets(t1);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime now = LocalDateTime.now();
-        String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() + " on " +
-                dtf.format(now) +
-                ". The details are:" + " \n" + t1;
-        assertEquals(exp1, tm.cancelTickets(t1));
-        String exp2 = "You have not booked this flight yet, so it cannot be canceled.";
-        assertEquals(exp2, tm.cancelTickets(t2));
-    }*/
-   @Test(timeout = 200)
+   @Test(timeout = 5000)
    public void TestCancelTickets() {
        // set up
        tm.bookTickets(t1);
@@ -118,10 +106,10 @@ public class TicketManagerTest {
                10, "3600");
        ph.addPurchasedTickets(t1);
        phm.updateHistory(ph);
+       cm.addCustomer(olivia);
        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
        LocalDateTime now = LocalDateTime.now();
-       String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() + " on " +
-               dtf.format(now) +
+       String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() +
                ". The details are:" + " \n" + t1;
        //assertEquals(cm.showCustomer("taylorsusername"), t1.getPassenger_username());
        assertEquals(exp1, tm.cancelTickets(t1, lm, phm, cm, fm, pc));

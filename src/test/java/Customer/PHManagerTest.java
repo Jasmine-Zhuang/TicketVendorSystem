@@ -102,4 +102,9 @@ public class PHManagerTest {
         assertEquals(r1Array, phm.getRewardsItems(c1));
         assertEquals(r2Array, phm.getRewardsItems(c2));
     }
+
+//    @Test (timeout = 500)
+//    public void TestUpdatePurchaseHistory() {
+//
+//    }
 }
