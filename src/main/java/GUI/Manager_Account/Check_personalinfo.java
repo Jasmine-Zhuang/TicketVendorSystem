@@ -6,6 +6,7 @@ import Customer.PHManager;
 import Flight.FlightManager;
 import GUI.DisplayPriceFrame;
 import GUI.DisplayTicketFrame;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class Check_personalinfo extends JFrame implements ActionListener {
     FlightManager fm;
     TicketManager tm;
     PHManager phm;
+    LuggageManager lm;
     String username;
 
 
@@ -30,12 +32,14 @@ public class Check_personalinfo extends JFrame implements ActionListener {
     JPanel panel3 = new JPanel();
 
     Check_personalinfo(CustomerManager customerManager, FlightManager flightManager,
-                    TicketManager ticketManager, String username, PHManager phm) {
+                    TicketManager ticketManager, String username, PHManager phm, LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
+        this.lm = lm;
         this.phm=phm;
         this.username = username;
+
         /*
         this.cm.showCustomer(this.username).calculateRedeemPoint();
 
@@ -88,7 +92,7 @@ public class Check_personalinfo extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonBack) {
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
         }
     }
 

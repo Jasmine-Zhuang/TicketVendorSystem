@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
 import UStore.RewardsItem;
@@ -31,16 +32,18 @@ public class ManageAccount extends JFrame implements ActionListener {
     FlightManager fm;
     TicketManager tm;
     PHManager phm;
+    LuggageManager lm;
     String username;
     RewardsItem rewardsItem;
     RewardsItemFactory rif;
 
     public ManageAccount(CustomerManager customerManager, FlightManager flightManager,
-                         TicketManager ticketManager, String username, PHManager phm){
+                         TicketManager ticketManager, String username, PHManager phm,LuggageManager lm){
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.phm = phm;
+        this.lm = lm;
         this.username=username;
         this.rif = new RewardsItemFactory();
 
@@ -109,24 +112,24 @@ public class ManageAccount extends JFrame implements ActionListener {
         }
         if (e.getSource() == membership){
             this.dispose();
-            Join_MembershipFrame membership = new Join_MembershipFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            Join_MembershipFrame membership = new Join_MembershipFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
         }
         if (e.getSource() == load){
             this.dispose();
-            Load_BalanceFrame load_balance = new Load_BalanceFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            Load_BalanceFrame load_balance = new Load_BalanceFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
         }
         if (e.getSource() == redeem){
             this.dispose();
-            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.rewardsItem, this.rif);//instantiate main menu
+            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.rewardsItem, this.rif, this.lm);//instantiate main menu
         }
         if (e.getSource() == history){
             this.dispose();
             PurchaseHistoryFrame purchase_history = new PurchaseHistoryFrame(this.cm, this.fm, this.tm, this.username,
-                    this.phm);//instantiate main menu
+                    this.phm, this.lm);//instantiate main menu
         }
         if (e.getSource() == back){
             this.dispose();
-            MainMenuFrame mainMenu = new MainMenuFrame(this.fm, this.cm, this.tm, this.username, this.phm);
+            MainMenuFrame mainMenu = new MainMenuFrame(this.fm, this.cm, this.tm, this.username, this.phm, this.lm);
         }
     }
 }

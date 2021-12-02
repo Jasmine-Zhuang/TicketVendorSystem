@@ -119,7 +119,7 @@ public class Luggage_Meal_Main extends JFrame implements ActionListener {
         }
         else if(button3 == e.getSource()){
             this.dispose();
-            End_or_MainFrame last_page = new End_or_MainFrame(this.cm,this.fm,this.tm,this.username,this.phm,this.lm,
+            End_or_MainFrame last_page = new End_or_MainFrame(this.cm,this.fm,this.tm,this.username,this.phm, this.lm,
                     this.ticket_id);
         }
     }

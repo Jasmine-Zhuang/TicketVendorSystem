@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 
 import Customer.CustomerManager;
 import Customer.PHManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 
@@ -32,14 +33,16 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
     FlightManager fm;
     TicketManager tm;
     PHManager phm;
+    LuggageManager lm;
     String username;
 
     public Update_PersonalinfoFrame(CustomerManager customerManager, FlightManager flightManager,
-                                    TicketManager ticketManager, String username, PHManager phm) {
+                                    TicketManager ticketManager, String username, PHManager phm, LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.phm = phm;
+        this.lm = lm;
         this.username=username;
 
         change_name.setFont(new Font("Times", Font.PLAIN,25));
@@ -115,7 +118,7 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(change_name == e.getSource()){
             this.dispose();
-            Update_nameFrame change_name= new Update_nameFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate next page for routes picking
+            Update_nameFrame change_name= new Update_nameFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate next page for routes picking
         }else if(change_password == e.getSource()){
             this.dispose();
             Update_passwordFrame change_password = new Update_passwordFrame(this.cm, this.fm, this.tm, this.username,
@@ -126,7 +129,7 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
                     this.phm);//instantiate next page for routes picking
         }else if(back == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
         }
     }
 }
