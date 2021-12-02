@@ -52,6 +52,14 @@ public class LuggageManager implements Serializable {
         return this.idToLuggage.get(luggageId).getLuggageWeight();
     }
 
+    public Luggage getLuggageById(String luggageId) {
+        return this.idToLuggage.get(luggageId);
+    }
+
+    public void cancelLuggage(String luggageId) {
+        this.idToLuggage.remove(luggageId);
+    }
+
     public String displayLuggageInfo(ArrayList<String> luggageIdLs){
         StringBuilder infoString = new StringBuilder();
         for(String luggageId: luggageIdLs){
