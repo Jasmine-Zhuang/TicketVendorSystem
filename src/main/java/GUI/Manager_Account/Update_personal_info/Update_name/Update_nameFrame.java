@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
+import Luggage.LuggageManager;
+
 
 public class Update_nameFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -38,16 +40,18 @@ public class Update_nameFrame extends JFrame implements ActionListener {
     TicketManager tm;
     PHManager phm;
     String username;
-
+    LuggageManager lm;
 
     // default constructor
     public Update_nameFrame(CustomerManager customerManager, FlightManager flightManager,
-                            TicketManager ticketManager, String username, PHManager phm) {
+                            TicketManager ticketManager, String username, PHManager phm,
+                            LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.phm = phm;
         this.username=username;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -133,7 +137,8 @@ public class Update_nameFrame extends JFrame implements ActionListener {
 
             if (this.cm.checkCustomername(name)) {
                 this.dispose();
-                Update_name_verifiedFrame change_name = new Update_name_verifiedFrame(this.cm, this.fm, this.tm, this.username, name, this.phm);
+                Update_name_verifiedFrame change_name = new Update_name_verifiedFrame(this.cm, this.fm, this.tm,
+                        this.username, name, this.phm,this.lm);
             }//instantiate next page for routes picking
             if (!this.cm.checkCustomername(name)) {
                 label2.setText("<html>Sorry! Your name is not in system, please enter your name below again:");
@@ -147,7 +152,8 @@ public class Update_nameFrame extends JFrame implements ActionListener {
         }
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,
+                    this.phm,this.lm);//instantiate main menu
         }
     }
 }

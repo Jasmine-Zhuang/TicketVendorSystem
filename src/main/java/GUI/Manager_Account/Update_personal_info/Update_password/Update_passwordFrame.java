@@ -150,7 +150,8 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
         }
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm,
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
     }
 }

@@ -118,7 +118,8 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(change_name == e.getSource()){
             this.dispose();
-            Update_nameFrame change_name= new Update_nameFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate next page for routes picking
+            Update_nameFrame change_name= new Update_nameFrame(this.cm, this.fm,
+                    this.tm, this.username, this.phm, this.lm);//instantiate next page for routes picking
         }else if(change_password == e.getSource()){
             this.dispose();
             Update_passwordFrame change_password = new Update_passwordFrame(this.cm, this.fm, this.tm, this.username,
@@ -129,7 +130,8 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
                     this.phm, this.lm);//instantiate next page for routes picking
         }else if(back == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm,
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
     }
 }

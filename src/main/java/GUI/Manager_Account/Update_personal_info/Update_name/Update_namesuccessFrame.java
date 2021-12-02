@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import Flight.FlightManager;
-
+import Luggage.LuggageManager;
+import Luggage.LuggageManager;
 
 class Update_namesuccessFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -29,14 +30,20 @@ class Update_namesuccessFrame extends JFrame implements ActionListener {
     TicketManager tm;
     String username;
     PHManager phm;
+    LuggageManager lm;
+
+
 
     Update_namesuccessFrame(CustomerManager customerManager, FlightManager flightManager,
-                            TicketManager ticketManager, String username, PHManager phm) {
+                            TicketManager ticketManager, String username, PHManager phm,
+                            LuggageManager lm
+    ) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.username = username;
         this.phm = phm;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);

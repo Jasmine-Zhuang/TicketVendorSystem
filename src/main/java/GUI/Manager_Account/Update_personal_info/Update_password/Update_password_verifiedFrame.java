@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
+import Luggage.LuggageManager;
 
 
 public class Update_password_verifiedFrame extends JFrame implements ActionListener {
@@ -42,17 +43,19 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
     PHManager phm;
     String username;
     String password;
-
+    LuggageManager lm;
 
     // default constructor
     Update_password_verifiedFrame(CustomerManager customerManager, FlightManager flightManager,
-                                  TicketManager ticketManager, String username, String pswd, PHManager phm) {
+                                  TicketManager ticketManager, String username, String pswd, PHManager phm,
+                                  LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.username=username;
         this.password = pswd;
         this.phm = phm;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -140,11 +143,12 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
         if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate main menu
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm,
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
     }
 }

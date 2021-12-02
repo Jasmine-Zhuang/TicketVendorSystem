@@ -14,6 +14,8 @@ import Customer.CustomerManager;
 import Customer.PHManager;
 import Flight.FlightManager;
 import Ticket.TicketManager;
+import Luggage.LuggageManager;
+
 
 public class Update_name_verifiedFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -31,6 +33,7 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
     PHManager phm;
     String username;
     String name;
+    LuggageManager lm;
 
     // create a new frame to store text field and button
     JFrame textfield = new JFrame("textfield");
@@ -44,13 +47,15 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
 
     // default constructor
     Update_name_verifiedFrame(CustomerManager customerManager, FlightManager flightManager,
-                              TicketManager ticketManager, String username, String name, PHManager phm) {
+                              TicketManager ticketManager, String username, String name, PHManager phm,
+                              LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.phm = phm;
         this.username=username;
         this.name = name;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -134,8 +139,8 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
         }
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,
-                    this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm,
+                    this.lm);//instantiate main menu
         }
     }
 }
