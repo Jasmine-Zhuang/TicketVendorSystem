@@ -26,6 +26,7 @@ public class Ticket implements Serializable {
     private String passenger_username;
     private String ticket_id;
     private String class_type;
+    private String luggage_id;
 
     /**
      * Construct a Flight Ticket giving it the given flightNumber, departure city, arrival city,
@@ -58,6 +59,7 @@ public class Ticket implements Serializable {
         this.arrivalTime = a_time;
         this.departureTime = d_time;
         this.class_type = c_type;
+        this.luggage_id = null;
     }
 
     /**
@@ -172,6 +174,10 @@ public class Ticket implements Serializable {
      */
     public String getTicket_class() {
         return class_type;
+    }
+
+    public void setLuggage(String luggage_id){
+        this.luggage_id = luggage_id;
     }
 
     /**
