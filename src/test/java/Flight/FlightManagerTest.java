@@ -32,7 +32,7 @@ public class FlightManagerTest {
         aTime.add("45");
         aTime.add("0");
         //initialize seatNumberArray
-        ArrayList<String> seatNumArray = new ArrayList<>();
+   /*     ArrayList<String> seatNumArray = new ArrayList<>();
         seatNumArray.add("1A");
         seatNumArray.add("1B");
         seatNumArray.add("2A");
@@ -43,10 +43,10 @@ public class FlightManagerTest {
         seatNumArray.add("4B");
         seatNumArray.add("5A");
         seatNumArray.add("5B");
-
+*/
         fm = new FlightManager();
         fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime, aTime,
-                10, 10, 3600, "10A", seatNumArray);
+                "Small", 3600, "10A");
     }
 
     @Test(timeout = 500)
