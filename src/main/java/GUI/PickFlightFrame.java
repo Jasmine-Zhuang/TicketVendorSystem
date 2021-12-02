@@ -47,7 +47,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         for(int i = 0; i < matchedFlights.size(); i++) {
             matchedFlightNums[i] = matchedFlights.get(i);
         }
-        JComboBox<String> flightNumsComoBox = new JComboBox<>(matchedFlightNums);
+        JComboBox flightNumsComoBox = new JComboBox(matchedFlightNums);
         flightNumsComoBox.setBounds(50, 50, 100, 20);
 
 
@@ -81,6 +81,9 @@ public class PickFlightFrame extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+      /*  if(e.getSource() == flightNumsComoBox){
+
+        }*/
         if(e.getSource()==submitButton){
             this.dispose();
             PickSeatFrame pickSeatFrame = new PickSeatFrame(this.fm,this.cm,this.tm,flightNumPicked,

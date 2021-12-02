@@ -50,11 +50,11 @@ public class Controller {
         PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
         LuggageManager lm=new LuggageManager();
 
-        try {
-            cm = cm.PutUsersInCM("users.csv");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            cm = cm.PutUsersInCM("users.csv");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         GUI gui = new GUI(fm,cm,tm,phm,lm);
 
