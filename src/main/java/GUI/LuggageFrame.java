@@ -8,6 +8,7 @@ import Flight.FlightManager;
 import Flight.FlightSerialization;
 import Luggage.LuggageManager;
 import Luggage.LuggageSerialization;
+import Ticket.PriceCalculator;
 import Ticket.TicketManager;
 import Ticket.TicketSerialization;
 
@@ -33,6 +34,7 @@ public class LuggageFrame extends JFrame implements ActionListener {
     LuggageManager lm;
     String u_name;
     String t_id;
+    PriceCalculator pc;
     FlightSerialization flightSerialization = new FlightSerialization();
     TicketSerialization ticketSerialization = new TicketSerialization();
     PHMSerialiazation phmSerialiazation = new PHMSerialiazation();
@@ -48,7 +50,7 @@ public class LuggageFrame extends JFrame implements ActionListener {
         this.lm = lm;
         this.u_name = username;
         this.t_id = tck_id;
-
+        this.pc = new PriceCalculator();
         label.setText("Please input ur Luggage weight(0kg~30kg)");
         label.setVerticalAlignment(JLabel.TOP);
         label.setBounds(0,0,400,20);
@@ -108,6 +110,14 @@ public class LuggageFrame extends JFrame implements ActionListener {
                     String luggageId = tm.getTicketByID(t_id).getFlightNumber() +
                             tm.getTicketByID(t_id).getSeat_number();
                     tm.getTicketByID(t_id).setLuggage_id(luggageId);
+                    if (wt > 23) {
+                        int penalty = pc.luggagePenalty(wt, tm.getTicketByID(t_id));
+                        if(cm.showCustomer(u_name).getBalance() >= penalty){
+                            cm.showCustomer(u_name).decrBalance(penalty);
+                        }else{
+
+                        }
+                    }
                     ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
                     luggageSerialization.saveLM(this.lm, "LuggageManager.ser");
                     this.dispose();
