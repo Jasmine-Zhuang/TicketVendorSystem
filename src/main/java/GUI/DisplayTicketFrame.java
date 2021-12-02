@@ -31,6 +31,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     LocalDateTime a_time;
     String boardingGate;
     String seatNum;
+    String ticket_id;
     JButton buttonFinish = new JButton("Finish");
     JLabel label = new JLabel("Ticket Booked!!");
     JLabel label2 = new JLabel();
@@ -65,6 +66,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
                 fm.getFlightByNum(flightNum).getArrivalTime(), b_gate, seat_num,
                 ticketPrice, cm.showCustomer(username).getName(), username, classType);
         tm.bookTickets(t);
+        this.ticket_id = t.getTicket_id();
         this.cm.decrBalance(ticketPrice,cm.showCustomer(this.username));
         this.cm.incrMillage(this.tm.getMileage(t,this.fm),cm.showCustomer(username));
         this.cm.calculateRedeemPoint(cm.showCustomer(username));

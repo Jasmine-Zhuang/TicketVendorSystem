@@ -1,16 +1,21 @@
 package GUI;
 
+import Customer.CMSerialization;
 import Customer.CustomerManager;
+import Customer.PHMSerialiazation;
 import Customer.PHManager;
 import Flight.FlightManager;
+import Flight.FlightSerialization;
 import Luggage.LuggageManager;
+import Luggage.LuggageSerialization;
 import Ticket.TicketManager;
+import Ticket.TicketSerialization;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+
 
 public class LuggageFrame extends JFrame implements ActionListener {
 
@@ -28,6 +33,11 @@ public class LuggageFrame extends JFrame implements ActionListener {
     LuggageManager lm;
     String u_name;
     String t_id;
+    FlightSerialization flightSerialization = new FlightSerialization();
+    TicketSerialization ticketSerialization = new TicketSerialization();
+    PHMSerialiazation phmSerialiazation = new PHMSerialiazation();
+    CMSerialization cmSerialization = new CMSerialization();
+    LuggageSerialization luggageSerialization = new LuggageSerialization();
 
     LuggageFrame(FlightManager fm, CustomerManager cm, TicketManager tm,PHManager phm, LuggageManager lm,
                  String username, String tck_id){
@@ -97,6 +107,8 @@ public class LuggageFrame extends JFrame implements ActionListener {
                      String luggageId = tm.getTicketByID(t_id).getFlightNumber() +
                         tm.getTicketByID(t_id).getSeat_number();
                     tm.getTicketByID(t_id).setLuggage(luggageId);
+                    ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
+                    luggageSerialization.saveLM(this.lm, "LuggageManager.ser");
                     this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "Warning: insufficient input.", "warning",
