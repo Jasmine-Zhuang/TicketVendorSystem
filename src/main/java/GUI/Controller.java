@@ -9,6 +9,7 @@ import Customer.PHManager;
 import Customer.PHMDeserialiazation;
 import Flight.FlightDeserialization;
 import Flight.FlightManager;
+import Luggage.LuggageDeserialization;
 import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import Ticket.TicketDeserialization;
@@ -40,15 +41,20 @@ public class Controller {
         TicketManager tm=new TicketManager();
         FlightManager fm=new FlightManager();
         PHManager phm=new PHManager();*/
-        TicketDeserialization ticketDeserialization =new TicketDeserialization();
+      /*  TicketDeserialization ticketDeserialization =new TicketDeserialization();
         TicketManager tm = ticketDeserialization.restoreTM("TicketManager.ser");
         FlightDeserialization flightDeserialization = new FlightDeserialization();
         FlightManager fm = flightDeserialization.restoreFM("FlightManager.ser");
         CMDeserialization cmDeserialization=new CMDeserialization();
         CustomerManager cm =  cmDeserialization.restoreCM("CMManager.ser");
         PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
-        PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
+        PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");*/
         LuggageManager lm=new LuggageManager();
+        TicketManager tm=new TicketManager();
+        FlightManager fm=new FlightManager();
+        PHManager phm=new PHManager();
+        CustomerManager cm = new CustomerManager();
+   /*     LuggageDeserialization lm = new LuggageDeserialization("LuggageManager.ser");*/
 
 //        try {
 //            cm = cm.PutUsersInCM("users.csv");

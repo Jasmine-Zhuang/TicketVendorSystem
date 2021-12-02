@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class PickSeatFrame extends JFrame implements ActionListener {
     JButton submitButton = new JButton();
+    JTextField inputSeatNum;
+    JTextField inputSeatClass;
     FlightManager fm;
     TicketManager tm;
     CustomerManager cm;
@@ -22,6 +24,7 @@ public class PickSeatFrame extends JFrame implements ActionListener {
     String username;
     PHManager phm;
     LuggageManager lm;
+
 
     PickSeatFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String flightNum, String username,
                   PHManager phm, LuggageManager lm){

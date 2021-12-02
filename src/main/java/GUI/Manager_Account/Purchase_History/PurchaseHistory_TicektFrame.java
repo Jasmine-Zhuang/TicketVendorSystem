@@ -2,6 +2,7 @@ package GUI.Manager_Account.Purchase_History;
 
 import Customer.PHManager;
 import Flight.FlightManager;
+import GUI.BookTicketMenuFrame;
 import GUI.Manager_Account.ManageAccount;
 
 import javax.swing.*;
@@ -25,6 +26,10 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
     JButton button2 = new JButton("Back to Manage Account Menu");
 
     JButton back_pre = new JButton("Back to Purchase History Menu");
+    JButton cancelButton = new JButton("Cancel Ticket");
+    JButton changeButton = new JButton("Change Ticket");
+    JTextField ticketID = new JTextField("Please input the ticket id of ticket that you want to change or cancel.");
+
 
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
@@ -53,6 +58,8 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
         label1.setVerticalAlignment(JLabel.CENTER);
         label1.setHorizontalAlignment(JLabel.CENTER);
         label1.setBounds(50,50,100,100);
+        cancelButton.addActionListener(this);
+        changeButton.addActionListener(this);
 
         label2.setBackground(lightPink);
         label2.setForeground(darkRed);
@@ -112,6 +119,9 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
         panel.setBackground(lightPink);
         panel.add(Box.createHorizontalGlue());
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(ticketID);
+        panel.add(cancelButton);
+        panel.add(changeButton);
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -142,6 +152,45 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
             this.dispose();
             PurchaseHistoryFrame pruchase_history = new PurchaseHistoryFrame(this.cm, this.fm, this.tm,
                     this.username,this.phm, this.lm);//instantiate main menu
+        }
+        else if (cancelButton == e.getSource()){
+            String ticketId = ticketID.getText();
+            if (ticketId != null){
+                int result = JOptionPane.showConfirmDialog(
+                        this,"Do you confirm to cancel this ticket?");
+                if (result == JOptionPane.YES_OPTION) {
+                    //tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.pm,this.cm,this.fm,this.pc);
+                    JOptionPane.showMessageDialog(null, "You have successfully canceled ticket"
+                            + ticketId);
+                    this.dispose();
+                    PurchaseHistory_TicektFrame purchaseHistory_ticektFrame = new PurchaseHistory_TicektFrame(this.cm,
+                            this.fm,this.tm,this.username,this.phm,this.lm);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Warning: No ticket ID entered.","warning",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        else if(e.getSource() == changeButton){
+            String ticketId = ticketID.getText();
+            int result = JOptionPane.showConfirmDialog(
+                    this,"Sure? You want to change this ticket?");
+            if (ticketId != null){
+                if (result == JOptionPane.YES_OPTION) {
+                    //tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.pm,this.cm,this.fm,this.pc);
+                    JOptionPane.showMessageDialog(null,"You have successfully change ticket"
+                                    + ticketId,"confirmation",
+                            JOptionPane.PLAIN_MESSAGE);
+                    BookTicketMenuFrame bookTicketMenuFrame=new BookTicketMenuFrame(this.fm,this.cm,
+                            this.tm,this.username,this.phm,this.lm);
+                    this.dispose();
+                }
+
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Warning: No ticket ID entered.","warning",
+                        JOptionPane.WARNING_MESSAGE);
+            }
         }
 
     }

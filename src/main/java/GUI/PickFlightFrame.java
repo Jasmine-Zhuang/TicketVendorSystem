@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class PickFlightFrame extends JFrame implements ActionListener {
     JButton submitButton;
+    JTextField inputFlightNum;
     FlightManager fm;
     TicketManager tm;
     CustomerManager cm;
@@ -35,6 +36,8 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         this.phm=phm;
         this.lm = lm;
 
+
+
         submitButton = new JButton("Submit flight picked.");
         submitButton.setSize(100,100);
         submitButton.addActionListener(this);
@@ -49,18 +52,24 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         }
         JComboBox flightNumsComoBox = new JComboBox(matchedFlightNums);
         flightNumsComoBox.setBounds(50, 50, 100, 20);
+//        flightNumsComoBox.addActionListener(this);
+
 
 
         //flight info display setup
-        flightNumPicked= flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
+       /* flightNumPicked= flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());*/
         /*ArrayList<String> flightArraylist = new ArrayList<>();
         flightArraylist.add(flightNumPicked);*/
         JLabel flightInfoLabel = new JLabel();
+        flightNumPicked = inputFlightNum.getText();
+
         flightInfoLabel.setText(fm.displayFlightInfoInGUI(flightNumPicked));
 
         JPanel panel = new JPanel();
         panel.add(flightNumsComoBox);
+        panel.add(inputFlightNum);
         panel.add(flightInfoLabel);
+
         panel.add(submitButton);
         panel.add(la);
 
@@ -68,7 +77,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         this.add(panel);
         this.setTitle("Pick your flight");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(550, 550));
+        this.setPreferredSize(new Dimension(350, 350));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
