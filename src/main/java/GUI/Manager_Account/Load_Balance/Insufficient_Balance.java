@@ -1,43 +1,53 @@
 package GUI.Manager_Account.Load_Balance;
 
+import Customer.CustomerManager;
 import Customer.PHManager;
 import Flight.FlightManager;
 import GUI.Manager_Account.ManageAccount;
+import Luggage.LuggageManager;
+import Ticket.TicketManager;
+import UStore.RewardsItem;
+import UStore.RewardsItemFactory;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Customer.CustomerManager;
-import Luggage.LuggageManager;
-import Ticket.TicketManager;
-
-public class Load_BalanceSuccess extends JFrame implements ActionListener {
+public class Insufficient_Balance extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
-    JLabel label1 = new JLabel("Load Account Balance");
+    JLabel label1 = new JLabel("Account Balance Not Enough");
 
-    String instruction = "<html>Congratulation! \n " +
-            "Your account balance has been updated successfully!";
+    String instruction = "<html>Sorry! \n " +
+            "Your account balance is not enough to book Ticket!";
     JLabel label2 = new JLabel(instruction);
+
+    JButton button1 = new JButton("Load Balance");
     JButton button2 = new JButton("Back to Manage Account Menu");
+
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
     CustomerManager cm;
     FlightManager fm;
     TicketManager tm;
-    PHManager phm;
     LuggageManager lm;
+    PHManager phm;
     String username;
+    RewardsItem rewardsItem;
+    RewardsItemFactory rif;
 
-    Load_BalanceSuccess(CustomerManager customerManager, FlightManager flightManager, TicketManager ticketManager,
-                        String username, PHManager phm, LuggageManager luggageManager) {
+    public Insufficient_Balance(CustomerManager customerManager, FlightManager flightManager,
+                                TicketManager ticketManager, String username, PHManager phm, LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.lm = luggageManager;
         this.username = username;
         this.phm=phm;
+
+        button1.setFont(new Font("Times", Font.PLAIN,25));
+        button1.setForeground(darkRed);
+        button1.addActionListener(this);
 
         button2.setFont(new Font("Times", Font.PLAIN,25));
         button2.setForeground(darkRed);
@@ -68,6 +78,8 @@ public class Load_BalanceSuccess extends JFrame implements ActionListener {
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
+        panel.add(button1);
+        panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(button2);
         panel.setBackground(lightPink);
         panel.add(Box.createHorizontalGlue());
@@ -94,8 +106,13 @@ public class Load_BalanceSuccess extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
         }
+        else if(button1 == e.getSource()){
+            this.dispose();
+            Load_BalanceFrame load_balance = new Load_BalanceFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
+        }
+
     }
 }
 
