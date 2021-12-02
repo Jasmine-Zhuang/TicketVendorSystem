@@ -46,6 +46,8 @@ public class PHManagerTest {
             "3C", 100, "Mark", "mark123","Business");
     RewardsItem rw1 = new RewardsItem("Mug", 800);
     RewardsItem rw2 = new RewardsItem("TVoucher", 1200);
+    Customer olivia = new Customer("taylorsusername", "abcdef", "Taylor");
+    PurchaseHistory ph = new PurchaseHistory(olivia);
 
     @Test (timeout = 500)
     public void TestEmptyUpdateHistory() {
@@ -103,8 +105,15 @@ public class PHManagerTest {
         assertEquals(r2Array, phm.getRewardsItems(c2));
     }
 
-//    @Test (timeout = 500)
-//    public void TestUpdatePurchaseHistory() {
-//
-//    }
+    @Test (timeout = 500)
+    public void TestUpdatePurchaseHistory() {
+        ph.addPurchasedTickets(t1);
+        ph.addPurchasedTickets(t2);
+        ph.addItemRedeemed(rw1);
+        phm.updateHistory(ph);
+        ph.removePurchasedTickets(t2);
+        phm.updatePurchaseHistory(olivia, ph);
+
+        assertFalse(phm.getTickets(olivia).contains(t2));
+    }
 }
