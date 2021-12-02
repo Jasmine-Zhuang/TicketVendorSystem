@@ -22,10 +22,10 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
 
     String instruction = "<html>To update your personal information, you need to click the button below:";
     JLabel label2 = new JLabel(instruction);
-    JButton button1 = new JButton("Change Name");
-    JButton button2 = new JButton("Change Password");
-    JButton button3 = new JButton("Change username");
-    JButton button4 = new JButton("Back to Manage Account Menu");
+    JButton change_name = new JButton("Change Name");
+    JButton change_password = new JButton("Change Password");
+    JButton change_username = new JButton("Change username");
+    JButton back = new JButton("Back to Manage Account Menu");
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
     CustomerManager cm;
@@ -42,21 +42,21 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
         this.phm = phm;
         this.username=username;
 
-        button1.setFont(new Font("Times", Font.PLAIN,25));
-        button1.setForeground(darkRed);
-        button1.addActionListener(this);
+        change_name.setFont(new Font("Times", Font.PLAIN,25));
+        change_name.setForeground(darkRed);
+        change_name.addActionListener(this);
 
-        button2.setFont(new Font("Times", Font.PLAIN,25));
-        button2.setForeground(darkRed);
-        button2.addActionListener(this);
+        change_password.setFont(new Font("Times", Font.PLAIN,25));
+        change_password.setForeground(darkRed);
+        change_password.addActionListener(this);
 
-        button3.setFont(new Font("Times", Font.PLAIN,25));
-        button3.setForeground(darkRed);
-        button3.addActionListener(this);
+        change_username.setFont(new Font("Times", Font.PLAIN,25));
+        change_username.setForeground(darkRed);
+        change_username.addActionListener(this);
 
-        button4.setFont(new Font("Times", Font.PLAIN,25));
-        button4.setForeground(darkRed);
-        button4.addActionListener(this);
+        back.setFont(new Font("Times", Font.PLAIN,25));
+        back.setForeground(darkRed);
+        back.addActionListener(this);
 
         label1.setBackground(lightPink);
         label1.setFont(new Font("Times", Font.BOLD,30));
@@ -83,20 +83,20 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
         panel.add(Box.createRigidArea(new Dimension(20,20)));
-        panel.add(button1);
+        panel.add(change_name);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
-        panel.add(button2);
+        panel.add(change_password);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
-        panel.add(button3);
+        panel.add(change_username);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
-        panel.add(button4);
+        panel.add(back);
         panel.setBackground(lightPink);
         panel.add(Box.createHorizontalGlue());
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(400, 500));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -113,18 +113,18 @@ public class Update_PersonalinfoFrame extends JFrame implements ActionListener {
          */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(button1 == e.getSource()){
+        if(change_name == e.getSource()){
             this.dispose();
             Update_nameFrame change_name= new Update_nameFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate next page for routes picking
-        }else if(button2 == e.getSource()){
+        }else if(change_password == e.getSource()){
             this.dispose();
             Update_passwordFrame change_password = new Update_passwordFrame(this.cm, this.fm, this.tm, this.username,
                     this.phm);//instantiate main menu
-        }else if(button3 == e.getSource()){
+        }else if(change_username == e.getSource()){
             this.dispose();
             Update_usernameFrame change_username= new Update_usernameFrame(this.cm, this.fm, this.tm, this.username,
                     this.phm);//instantiate next page for routes picking
-        }else if(button4 == e.getSource()){
+        }else if(back == e.getSource()){
             this.dispose();
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
         }

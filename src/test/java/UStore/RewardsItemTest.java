@@ -43,13 +43,13 @@ public class RewardsItemTest {
         String new_password = "1203";
         String new_name = "MXY";
         Customer C = new Customer(new_username,new_password,new_name);
-        C.incrMillage(100);
+        C.incrMileage(100);
         C.changeMembership();
         C.calculateRedeemPoint();
         assertEquals((int)C.getRedeem_points(),20);//not enough points
         assertNull(mug.redeemItem(C));
 
-        C.incrMillage(10000);
+        C.incrMileage(10000);
         C.calculateRedeemPoint();
         PurchaseHistory ph = C.getPurchaseHistory();
         assertEquals((int)C.getRedeem_points(),2020);

@@ -12,7 +12,6 @@ import Customer.CMSerialization;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import Flight.FlightSerialization;
-import Luggage.LuggageManager;
 import Ticket.Ticket;
 import Ticket.TicketManager;
 import Ticket.TicketSerialization;
@@ -22,7 +21,6 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     FlightManager fm;
     TicketManager tm;
     PHManager phm;
-    LuggageManager lm;
     String flightNum;
     String username;
     String classType;
@@ -47,12 +45,11 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     DisplayTicketFrame(FlightManager fm, CustomerManager cm, TicketManager tm,
                        String flightNum, String d_city, String a_city, LocalDateTime d_time,
                        LocalDateTime a_time, String b_gate, String seat_num, String username,
-                       String classType, int ticketPrice, PHManager phm,LuggageManager lm){
+                       String classType, int ticketPrice, PHManager phm){
         this.cm = cm;
         this.fm = fm;
         this.tm = tm;
         this.phm=phm;
-        this.lm=lm;
         this.username = username;
         this.flightNum = flightNum;
         this.ticketPrice = ticketPrice;
@@ -69,7 +66,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
                 ticketPrice, cm.showCustomer(username).getName(), username, classType);
         tm.bookTickets(t);
         this.cm.decrBalance(ticketPrice,cm.showCustomer(this.username));
-        this.cm.incrMillage(this.tm.getMileage(t,this.fm),cm.showCustomer(username));
+        this.cm.incrMileage(this.tm.getMileage(t,this.fm),cm.showCustomer(username));
         this.cm.calculateRedeemPoint(cm.showCustomer(username));
         fm.reserveSeat(flightNum, seat_num);
         cm.showCustomer(this.username).getPurchaseHistory().addPurchasedTickets(t);
@@ -137,7 +134,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         this.dispose();
-        MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, username,this.phm,this.lm);
+        MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, username,this.phm);
     }
 
 }

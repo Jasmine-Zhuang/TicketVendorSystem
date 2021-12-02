@@ -107,7 +107,7 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(500, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -133,7 +133,7 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
                     Update_username_verifiedFrame change_name = new Update_username_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm);
                 }//instantiate next page for routes picking
                 else{
-                    label2.setText("<html>Sorry! You entered a wrong or none-existent username, please enter your username below again:");
+                   label2.setText("<html>Sorry! You entered a wrong or none-existent username, please enter your username below again:");
                 }//instantiate next page for routes picking
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -153,3 +153,4 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
 
     }
 }
+
