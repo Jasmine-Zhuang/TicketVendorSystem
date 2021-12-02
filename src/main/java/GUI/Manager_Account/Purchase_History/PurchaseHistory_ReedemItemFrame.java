@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import UStore.RewardsItem;
 
@@ -31,14 +32,16 @@ public class PurchaseHistory_ReedemItemFrame extends JFrame implements ActionLis
     TicketManager tm;
     String username;
     PHManager phm;
+    LuggageManager lm;
 
     public PurchaseHistory_ReedemItemFrame(CustomerManager customerManager, FlightManager flightManager,
-                                           TicketManager ticketManager, String username, PHManager phm) {
+                                           TicketManager ticketManager, String username, PHManager phm, LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.username=username;
         this.phm=phm;
+        this.lm = luggageManager;
 
         ArrayList<RewardsItem> RewardsItem_list = this.phm.getRewardsItems(this.cm.showCustomer(this.username));
         if (RewardsItem_list != null){
@@ -122,12 +125,12 @@ public class PurchaseHistory_ReedemItemFrame extends JFrame implements ActionLis
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
         }
         else if(back_pre == e.getSource()){
             this.dispose();
             PurchaseHistoryFrame pruchase_history = new PurchaseHistoryFrame(this.cm, this.fm, this.tm, this.username,
-                    this.phm);//instantiate main menu
+                    this.phm, this.lm);//instantiate main menu
         }
     }
 }
