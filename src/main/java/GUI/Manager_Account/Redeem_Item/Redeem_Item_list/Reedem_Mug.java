@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import UStore.RewardsItem;
 import UStore.RewardsItemFactory;
@@ -34,12 +35,13 @@ public class Reedem_Mug extends JFrame implements ActionListener {
     TicketManager tm;
     String username;
     PHManager phm;
+    LuggageManager lm;
     RewardsItem rewardsItem;
     RewardsItemFactory rif;
 
     public Reedem_Mug(CustomerManager customerManager, FlightManager flightManager,
                       TicketManager ticketManager, String username, PHManager phm,
-                      RewardsItem rewardsItem,RewardsItemFactory rif) {
+                      RewardsItem rewardsItem,RewardsItemFactory rif, LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
@@ -47,6 +49,7 @@ public class Reedem_Mug extends JFrame implements ActionListener {
         this.rif = rif;
         this.username=username;
         this.phm=phm;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -118,15 +121,15 @@ public class Reedem_Mug extends JFrame implements ActionListener {
             this.rewardsItem=this.rif.getItem("Mug").redeemItem(this.cm.showCustomer(this.username));//redeemed rewards item
 
              */
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
         }
         else if(button1 == e.getSource()){
             this.dispose();
-            Redeem_ItemListFrame list_list = new Redeem_ItemListFrame(this.cm, this.fm, this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
+            Redeem_ItemListFrame list_list = new Redeem_ItemListFrame(this.cm, this.fm, this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);//instantiate main menu
         }
         else if(button3 == e.getSource()){
             this.dispose();
-            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username,this.phm, this.rewardsItem, this.rif);//instantiate main menu
+            Redeem_ItemFrame reedem_item = new Redeem_ItemFrame(this.cm, this.fm, this.tm, this.username,this.phm, this.rewardsItem, this.rif, this.lm);//instantiate main menu
         }
     }
 }
