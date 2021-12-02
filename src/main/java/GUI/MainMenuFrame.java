@@ -60,7 +60,8 @@ public class MainMenuFrame extends JFrame implements ActionListener {
 
             this.add(panel);
             this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            this.setSize(500, 500);
+            this.setSize(550, 550);
+            this.setLocation(new Point(500, 200));
             this.pack();
             this.setVisible(true);
         }

@@ -57,21 +57,57 @@ public class FlightManager implements Serializable {
      * @param destinationCity string of destination
      * @param departureTime departure time in the format of [year,month,day,hour,minute]
      * @param arrivalTime arrival time in the format of [year,month,day,hour,minute]
-     * @param totalNumSeats the number of seats that this flight can have
-     * @param numSeatAvailable number of seats booked
+     * @param flightType the type of the flight, small: 10 seats, median: 20 seats, large: 30 seats;
      * @param distance_traveled The flight's length
      * @param boardingGate the boarding gate of this flight
-     * @param seatNumberArray    array of all seat numbers of this flight
+
+
      */
     public void AddFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
-                          ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
-            , String boardingGate, ArrayList<String> seatNumberArray) {
+                          ArrayList<String> arrivalTime, String flightType, int distance_traveled
+            , String boardingGate) {
 
+       /* int numSeatAvailable = seatNumchecker(flightType);
+        int totalNumSeats = seatNumchecker(flightType);
         Flight newFlight = new Flight(flightNumber, originCity, destinationCity, departureTime,
                 arrivalTime, totalNumSeats, numSeatAvailable, distance_traveled
-                , boardingGate, seatNumberArray);
-        this.idToFlight.put(flightNumber, newFlight);
+                , boardingGate, seatNumberArray);*/
+        switch (flightType) {
+            case "Small": {
+                Flight newFlight = new SmallFlight(flightNumber, originCity, destinationCity, departureTime,
+                        arrivalTime, distance_traveled, boardingGate);
+                this.idToFlight.put(flightNumber, newFlight);
+                break;
+            }
+            case "Medium": {
+                Flight newFlight = new MediumFlight(flightNumber, originCity, destinationCity, departureTime,
+                        arrivalTime, distance_traveled, boardingGate);
+                this.idToFlight.put(flightNumber, newFlight);
+                break;
+            }
+            case "Large": {
+                Flight newFlight = new LargeFlight(flightNumber, originCity, destinationCity, departureTime,
+                        arrivalTime, distance_traveled, boardingGate);
+                this.idToFlight.put(flightNumber, newFlight);
+                break;
+            }
+        }
     }
+
+
+
+
+
+    /*public int FlightTypechecker(String flightType) {
+        if (Objects.equals(flightType, "Small")) {
+            return 10;
+        } else if (Objects.equals(flightType, "Medium")) {
+            return 20;
+        } else if (Objects.equals(flightType, "Large")) {
+            return 30;
+        }
+        else return -1;
+    }*/
 
 
     /**
@@ -177,7 +213,7 @@ public class FlightManager implements Serializable {
         ArrayList<ArrayList<String>> availableSeat = new ArrayList<>();
         for(ArrayList<String> seat: flight.getSeatArray()){
             String thisSeatNum = seat.get(0);
-            if(!thisSeatNum.equals("X")){
+            if(!thisSeatNum.contains("X")){
                 availableSeat.add(seat);
             }
         }
@@ -195,7 +231,7 @@ public class FlightManager implements Serializable {
         for(ArrayList<String> seat: flight.getSeatArray()){
             String thisSeatNum = seat.get(0);
             String thisSeatClass = seat.get(1);
-            if(!thisSeatNum.equals("X") && thisSeatClass.equals(seatClass)){
+            if(!thisSeatNum.contains("X") && thisSeatClass.equals(seatClass)){
                 availableSeat.add(seat);
             }
         }

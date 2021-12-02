@@ -21,7 +21,7 @@ public class Reedem_BackpackSuccess extends JFrame implements ActionListener {
     JLabel label1 = new JLabel("       Redeem Items");
 
     String instruction = "<html>Congratulation! \n " +
-            "You has redeem item back pack successfully!";
+            "You have redeemed item backpack successfully!";
 
 
     JButton button1 = new JButton("Back to Redeem Item List Menu");

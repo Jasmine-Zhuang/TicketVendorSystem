@@ -70,7 +70,7 @@ public class Flight implements Serializable {
      */
     private void CreateClassSeat(ArrayList<String> seatNumArray, ArrayList<ArrayList<String>> seatArray, int num, int index,
                                  String C) {
-       // Notice num + index <= last index in seatNumArray
+        // Notice num + index <= last index in seatNumArray
         for(int i = index; i<num+index; i++){
             ArrayList<String> seat = new ArrayList<>();
             seat.add(0,seatNumArray.get(i));
@@ -194,13 +194,13 @@ public class Flight implements Serializable {
     /**
      * Replace the seat number by "X" from seatNumberArray to represent that this seat has been booked.
      * @param seatNumber A String of seat number.
-     * @return true if this seat number was seatNumberArray, and now has been replaced by "X" , false otherwise.
+     * @return true if this seat number was seatNumberArray, and now has been replaced by "XA1" , false otherwise.
      */
     public boolean ReserveOneSeat(String seatNumber){
         for(ArrayList<String> seat: this.getSeatArray()){
             if(seat.contains(seatNumber)){
                 int index = seat.indexOf(seatNumber);
-                seat.set(index,"X");
+                seat.set(index,"X"+ seatNumber);
                 this.availableSeats --;
                 return true;
             }
@@ -209,14 +209,13 @@ public class Flight implements Serializable {
     }
 
     public boolean CancelOneSeat(String seatNumber){
+        String expS = "X" + seatNumber;
         for(ArrayList<String> seat: this.getSeatArray()){
-            if(seat.contains(seatNumber)){
-                int index = seat.indexOf(seatNumber);
-                if (Objects.equals(seat.get(index), "X")) {
-                    seat.set(index, seatNumber);
-                    this.availableSeats++;
-                    return true;
-                }
+            if(seat.contains(expS)){
+                int index = seat.indexOf(expS);
+                seat.set(index, seatNumber);
+                this.availableSeats++;
+                return true;
             }
         }
         return false;
@@ -235,10 +234,8 @@ public class Flight implements Serializable {
                 " \n from " + originCity + " to " + destinationCity +
                 "\n from " + formattedDepartureTime + " to " + formattedArrivalTime +
                 "\n boarding gate: " + boardingGate;
-        }
     }
-
-
+}
 
 
 
