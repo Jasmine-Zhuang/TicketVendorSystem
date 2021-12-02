@@ -13,7 +13,7 @@ We will demonstrate this by showing the CRC and scenario walkthrough.
 ### SOLID Principles
 * Single Responsibility \
 We ensured that all classes have single responsibility by keeping the responsibility of each class to the minimum,  so that a class will only have one reason to change, and we could test the entire class more thoroughly, which also allowed us to focus on parts that need to be addressed more.
-* Open for extension and closed for extension \
+* Open for extension and closed for modification \
 Differ from phase0, we want to add new features to flight(i.e., restrict the number of available seats and assign seat type for each seat). We chose not to modify the original flight, but use inheritance by adding 3 subclasses of flight. Then, we need to modify only the 3 subclasses of flight, to reach our goal of extending features of flight.
 * Liskov substitution \
 For all child classes of a parent class, we make sure that those subclasses won’t override methods from the parent class.
