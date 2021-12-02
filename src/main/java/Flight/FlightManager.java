@@ -2,17 +2,53 @@ package Flight;
 /*
 This is the class that manages all scheduled flights information
  */
-
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.time.format.DateTimeFormatter;
 
+public class FlightManager implements Serializable {
+    private HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
+    private static final long serialVersionUID = 2;
 
-public class FlightManager {
-    private final HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
+/*
+    public void saveFM(FlightManager fm,String filePath){
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject((FlightManager)fm);
+            out.close();
+            fileOut.close();
+            System.out.println("FM saved!");
+            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+            System.out.println("serialVersionUID: "+serialVersionUID);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }*/
+   /* public FlightManager restoreFM(String filePath){
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            FlightManager fm = (FlightManager) in.readObject();
+            System.out.println(fm.sortFlightsDistance());
+            in.close();
+            fileIn.close();
+            System.out.println("Restored FM");
+            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
+            System.out.println("serialVersionUID: "+serialVersionUID);
+            return fm;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }*/
 
     public FlightManager(){}
-
+/*
+    public FlightManager(HashMap<String, Flight>idToFlight){
+        this.idToFlight = idToFlight;
+    }*/
 
     /**
      * Add a New Flight to the manager.
@@ -21,21 +57,34 @@ public class FlightManager {
      * @param destinationCity string of destination
      * @param departureTime departure time in the format of [year,month,day,hour,minute]
      * @param arrivalTime arrival time in the format of [year,month,day,hour,minute]
-     * @param totalNumSeats the number of seats that this flight can have
-     * @param numSeatAvailable number of seats booked
+     * @param flightType the type of the flight, small: 10 seats, median: 20 seats, large: 30 seats;
      * @param distance_traveled The flight's length
      * @param boardingGate the boarding gate of this flight
      * @param seatNumberArray    array of all seat numbers of this flight
      */
     public void AddFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
-                          ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
+                          ArrayList<String> arrivalTime, String flightType, int distance_traveled
             , String boardingGate, ArrayList<String> seatNumberArray) {
 
+        int numSeatAvailable = seatNumchecker(flightType);
+        int totalNumSeats = seatNumchecker(flightType);
         Flight newFlight = new Flight(flightNumber, originCity, destinationCity, departureTime,
                 arrivalTime, totalNumSeats, numSeatAvailable, distance_traveled
                 , boardingGate, seatNumberArray);
         this.idToFlight.put(flightNumber, newFlight);
     }
+
+    public int seatNumchecker(String flightType) {
+        if (Objects.equals(flightType, "Small")) {
+            return 10;
+        } else if (Objects.equals(flightType, "Medium")) {
+            return 20;
+        } else if (Objects.equals(flightType, "Large")) {
+            return 30;
+        }
+        else return -1;
+    }
+
 
     /**
      * sort the Scheduled_flight list by travel distance, from shorter to longer
@@ -75,6 +124,17 @@ public class FlightManager {
             return "You have successfully selected this seat "+ seat_num +" of flight " +  flight_num;
         }
         return "This seat has been reserved or does not exist, please select another seat.";
+    }
+
+    /**
+     * Cancel reserved seat
+     */
+    public String cancelSeat(String flightNum, String seatNum) {
+        Flight flight = this.idToFlight.get(flightNum);
+        if (flight.CancelOneSeat(seatNum)) {
+            return "You have successfully canceled seat" + seatNum +" of flight " + flightNum;
+        }
+        return "This seat has not been reserved or does not exist.";
     }
 
     /**
@@ -127,8 +187,8 @@ public class FlightManager {
     public ArrayList<ArrayList<String>> printAvailableSeat(String flightNum){
         Flight flight = this.idToFlight.get(flightNum);
         ArrayList<ArrayList<String>> availableSeat = new ArrayList<>();
-        for(ArrayList seat: flight.getSeatArray()){
-            String thisSeatNum = (String) seat.get(0);
+        for(ArrayList<String> seat: flight.getSeatArray()){
+            String thisSeatNum = seat.get(0);
             if(!thisSeatNum.equals("X")){
                 availableSeat.add(seat);
             }
@@ -144,9 +204,9 @@ public class FlightManager {
     public ArrayList<ArrayList<String>> printAvailableSeatByClass(String flightNum, String seatClass){
         Flight flight = this.idToFlight.get(flightNum);
         ArrayList<ArrayList<String>> availableSeat = new ArrayList<>();
-        for(ArrayList seat: flight.getSeatArray()){
-            String thisSeatNum = (String) seat.get(0);
-            String thisSeatClass = (String) seat.get(1);
+        for(ArrayList<String> seat: flight.getSeatArray()){
+            String thisSeatNum = seat.get(0);
+            String thisSeatClass = seat.get(1);
             if(!thisSeatNum.equals("X") && thisSeatClass.equals(seatClass)){
                 availableSeat.add(seat);
             }

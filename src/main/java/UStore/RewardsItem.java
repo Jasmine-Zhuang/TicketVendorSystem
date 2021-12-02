@@ -3,7 +3,9 @@ package UStore;
 import Customer.Customer;
 import Customer.PurchaseHistory;
 
-public class RewardsItem implements Redeemable{
+import java.io.Serializable;
+
+public class RewardsItem implements Redeemable, Serializable {
     private boolean isRedeemed;
     private final String name;
     private final int points;
@@ -41,11 +43,9 @@ public class RewardsItem implements Redeemable{
     /**
      * Redeem a rewards item if the customer has earned the points needed for the item.
      * @param customer Customer
-     * @return
      */
     public RewardsItem redeemItem(Customer customer) {
         if (customer.getRedeem_points() >= this.getPoints()){
-            /*RewardsItem rewardsItem =  new RewardsItem(this.getName(),this.getPoints());*/
             this.setRedeemed(true);
             PurchaseHistory ph = customer.getPurchaseHistory();
             if(ph.addItemRedeemed(this)){

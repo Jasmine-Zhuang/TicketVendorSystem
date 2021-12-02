@@ -1,11 +1,15 @@
 package Customer;
+import Flight.FlightManager;
+
+import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
-public class CustomerManager{
+public class CustomerManager implements Serializable {
 
     Membership AllMember = new Membership();
-
+    private static final long serialVersionUID = 3;
     private final HashMap<String, Customer> nameToCustomer = new LinkedHashMap<>();
     public CustomerManager(){
     }
@@ -20,6 +24,20 @@ public class CustomerManager{
             AllMember.addCustomer(newCustomer);
         }
     }
+
+    /** A method named checkCustomer that takes a String (the name of the customer).
+     *  Return true if username exists in the nameToCustomer, return false otherwise.
+     * @param name The name of this customer needed to be checked if exit in nameToCustomer.
+     */
+    public boolean checkCustomername(String name) {
+        for(Customer customer : nameToCustomer.values()) {
+            if (Objects.equals(customer.getName(), name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /** A method named checkCustomer that takes a String (the name of the customer).
      *  Return true if username exists in the nameToCustomer, return false otherwise.
@@ -39,10 +57,10 @@ public class CustomerManager{
         return this.nameToCustomer.get(username).checkPassword(password);
     }
 
-    /** A method named showCustomer that takes a String (the name of the customer).
-     *       Return Customer with corresponding name.
-     * @param username The name of this customer needed to be checked if exit in nameToCustomer.
-     * @return Customer The corresponding customer with this customer's name.
+    /** A method named showCustomer that takes a String (the username of the customer).
+     *       Return Customer with corresponding username.
+     * @param username The username of this customer needed to be checked if exit in nameToCustomer.
+     * @return Customer The corresponding customer with this customer's username.
      */
     public Customer showCustomer(String username) {
         if (AllMember.checkCustomer(username)){
@@ -116,7 +134,7 @@ public class CustomerManager{
 
     /** Modify this customer's current balance.
      * @param customer The customer needed to change name.
-     * @param balance_update The new balance of this customer to be added to this customer's current balance.
+     * @param balance_update The new balance of this customer to be subctracted to this customer's current balance.
      */
     public boolean decrBalance(int balance_update, Customer customer){
         return customer.decrBalance(balance_update);}

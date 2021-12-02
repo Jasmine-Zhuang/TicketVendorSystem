@@ -1,7 +1,11 @@
 package UStore;
 
-public class RewardsItemFactory {
-    /*public RewardsItemFactory(){};*/
+import java.io.Serializable;
+
+public class RewardsItemFactory implements Serializable {
+    public RewardsItemFactory() {
+
+    }
 
     /**
      * Get an object of type RewardsItem

@@ -1,6 +1,5 @@
 package Flight;
 
-import Flight.FlightManager;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -70,10 +69,28 @@ public class FlightManagerTest {
 
     @Test(timeout = 500)
     public void TestPrintAvailableSeat() {
-        ArrayList<ArrayList<String>> seatNumArray = new ArrayList<>();
-
+        ArrayList<ArrayList<ArrayList<String>>> seatNumArray = new ArrayList<>();
+        String[][] temp = {{"1A", "First"}, {"1B", "First"}, {"2A", "First"}, {"2B", "First"}, {"3A", "First"},
+                {"3B", "First"}, {"4A", "First"}, {"4B", "First"}, {"5A", "First"}, {"5B", "First"}};
+        for (String[] item: temp) {
+            seatNumArray.add(new ArrayList(List.of(item)));
+        }
 
         assertEquals(seatNumArray, fm.printAvailableSeat("CZ311"));
     }
+
+    @Test(timeout = 500)
+    public void TestPrintAvailableSeatByClass() {
+        ArrayList<ArrayList<ArrayList<String>>> seatNumArray = new ArrayList<>();
+        String[][] temp = {{"1A", "First"}, {"1B", "First"}, {"2A", "First"}, {"2B", "First"}, {"3A", "First"},
+                {"3B", "First"}, {"4A", "First"}, {"4B", "First"}, {"5A", "First"}, {"5B", "First"}};
+        for (String[] item: temp) {
+            seatNumArray.add(new ArrayList(List.of(item)));
+        }
+
+        assertEquals(seatNumArray, fm.printAvailableSeatByClass("CZ311", "First"));
+    }
+
+
 
 }

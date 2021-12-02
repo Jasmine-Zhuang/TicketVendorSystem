@@ -6,9 +6,10 @@ This class is a record of purchase history of a customer regarding tickets and r
 import Ticket.Ticket;
 import UStore.RewardsItem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PurchaseHistory {
+public class PurchaseHistory implements Serializable {
 
     private final Customer phCustomer;
     private final ArrayList<Ticket> purchasedTickets;
@@ -65,5 +66,30 @@ public class PurchaseHistory {
     public boolean addItemRedeemed(RewardsItem item) {
         itemRedeemed.add(item);
         return true;
+    }
+
+    /**
+     * Remove an existing ticket from the list of purchasedTickets and return true if succeed.
+     * @param ticket A ticket instance.
+     * @return true if the ticket has been successfully added.
+     */
+    public boolean removePurchasedTickets (Ticket ticket) {
+        if (purchasedTickets.contains(ticket)) {
+            purchasedTickets.remove(ticket);
+            return true;
+        } else {return false;}
+    }
+
+    /**
+     * Add a new item to the list of itemRedeemed and return true.
+     * @param item A RewardsItem instance that were redeemed by points from the U-store.
+     * @return true if the item has been successfully added.
+     */
+
+    public boolean removeItemRedeemed(RewardsItem item) {
+        if (itemRedeemed.contains(item)){
+            itemRedeemed.remove(item);
+            return true;
+        } else {return false;}
     }
 }
