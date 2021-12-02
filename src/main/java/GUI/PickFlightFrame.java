@@ -53,10 +53,10 @@ public class PickFlightFrame extends JFrame implements ActionListener {
 
         //flight info display setup
         flightNumPicked= flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
-        ArrayList<String> flightArraylist = new ArrayList<>();
-        flightArraylist.add(flightNumPicked);
+        /*ArrayList<String> flightArraylist = new ArrayList<>();
+        flightArraylist.add(flightNumPicked);*/
         JLabel flightInfoLabel = new JLabel();
-        flightInfoLabel.setText(fm.displayFlightInfo(flightArraylist));
+        flightInfoLabel.setText(fm.displayFlightInfoInGUI(flightNumPicked));
 
         JPanel panel = new JPanel();
         panel.add(flightNumsComoBox);
