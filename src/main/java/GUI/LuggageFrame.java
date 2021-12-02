@@ -95,7 +95,8 @@ public class LuggageFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backBT) {
             this.dispose();
-            MainMenuFrame mainMenu = new MainMenuFrame(this.fm, this.cm, this.tm, cm.showCustomer(u_name).getName(), this.phm, this.lm);
+            Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
+                    this.u_name, this.phm, this.lm, this.t_id);
 
         }
         if (e.getSource() == continueBT) {
@@ -110,6 +111,8 @@ public class LuggageFrame extends JFrame implements ActionListener {
                     ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
                     luggageSerialization.saveLM(this.lm, "LuggageManager.ser");
                     this.dispose();
+                    Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
+                            this.u_name, this.phm, this.lm, this.t_id);
                 }else{
                     JOptionPane.showMessageDialog(null, "Warning: insufficient input.", "warning",
                             JOptionPane.WARNING_MESSAGE);

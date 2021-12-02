@@ -137,7 +137,7 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
                 this.cm.changePassword(this.password, newPassword, this.cm.showCustomer(this.username));
                 CMSerialization cmSerialization = new CMSerialization();
                 cmSerialization.saveCM(this.cm, "CMManager.ser");
-                Update_passwordsuccessFrame change_password= new Update_passwordsuccessFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate next page for routes picking
+                Update_passwordsuccessFrame change_password= new Update_passwordsuccessFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate next page for routes picking
             }
         }
         if(button1 == e.getSource()){
