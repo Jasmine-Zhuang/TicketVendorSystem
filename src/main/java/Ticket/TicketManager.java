@@ -80,15 +80,17 @@ public class TicketManager implements Serializable {
 
     public String cancelTickets(Ticket ticket, LuggageManager lm, PHManager pm, CustomerManager cm, FlightManager fm,
                                 PriceCalculator pc) {
-        String username= ticket.getPassenger_username();
-        String luggageId = ticket.getLuggage_id();
-        int luggageWeight = lm.getWeightById(luggageId);
-        Customer customer = cm.showCustomer(username);
-        Flight flight = fm.getFlightByNum(ticket.getFlightNumber());
-        int mileage = this.getMileage(ticket,fm);
-        int pts_returned = mileage / 5;
-        PurchaseHistory ph = pm.getPhMap().get(customer);
+
         if (soldTickets.contains(ticket)) {
+            String username= ticket.getPassenger_username();
+            String luggageId = ticket.getLuggage_id();
+            int luggageWeight = lm.getWeightById(luggageId);
+            Customer customer = cm.showCustomer(username);
+            int mileage = this.getMileage(ticket,fm);
+            int pts_returned = mileage / 5;
+            PurchaseHistory ph = pm.getPhMap().get(customer);
+            Flight flight = fm.getFlightByNum(ticket.getFlightNumber());
+
             // remove ticket from list
             soldTickets.remove(ticket);
             // re-add seat to the flight

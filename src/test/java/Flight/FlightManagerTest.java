@@ -56,7 +56,7 @@ public class FlightManagerTest {
                 3600, "Gate2");
         fm.AddFlight("CZ313","Toronto", "Vancouver", dTime, aTime, "Medium",
                 3600, "Gate2");
-        fm.AddFlight("CZ314","Toronto", "Vancouver", dTime, aTime, "Medium",
+        fm.AddFlight("CZ314","Toronto", "Vancouver", dTime, aTime, "Large",
                 3600, "Gate2");
         assertEquals(fm.getFlightByNum("CZ312").getTotalSeats(),10);
         assertEquals(fm.getFlightByNum("CZ313").getTotalSeats(),20);
