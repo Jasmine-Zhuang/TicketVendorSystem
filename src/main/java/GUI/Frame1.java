@@ -47,6 +47,10 @@ public class Frame1 extends JFrame implements ActionListener {
         this.add(label);
     }
 
+    public static void main(String[] args) {
+        new Frame1();
+    }
+
     /* Invoked when an action occurs.
      *
      * @param e the event to be processed

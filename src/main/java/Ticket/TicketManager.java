@@ -9,7 +9,6 @@ import Flight.Flight;
 
 import java.io.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,16 +65,41 @@ public class TicketManager implements Serializable {
      * Remove a ticket from soldTicket to represent that this ticket has been canceled with the
      * time it was cancelled.
      * @param ticket A Ticket instance.
+     * @param lm A LuggageManager instance.
+     * @param pm A PHManager instance.
+     * @param cm A CustomerManager instance.
+     * @param fm A FlightManager instance.
+     * @param pc A PriceCalculator instance.
      * @return a string to indicate whether the cancellation is successful.
      */
 
     public String cancelTickets(Ticket ticket) {
         if (soldTickets.contains(ticket)) {
+            // remove ticket from list
             soldTickets.remove(ticket);
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDateTime now = LocalDateTime.now();
-            return "You have successfully canceled the ticket for flight " + ticket.getFlightNumber() + " on " +
-                    dtf.format(now) + ". The details are:" + " \n" + ticket;
+            // re-add seat to the flight
+            flight.CancelOneSeat(ticket.getSeat_number());
+            // remove from purchase history
+            pm.getPhMap().remove(customer);
+            // update balance = price ticket - penalty + luggage penalty
+            int price = pc.calculatePrice(flight, customer, ticket.getClass_type()); // original ticket price
+            int lug_penalty = pc.luggagePenalty(luggageWeight, ticket);
+            int change_penalty = pc.penaltyPrice(ticket);
+            int minus_price = price - change_penalty + lug_penalty;
+            cm.decrBalance(minus_price,customer);
+            // calculate redeem point
+            if (cm.checkMembership(customer)){
+                cm.minusRedeemPoint(customer, pts_returned);
+            }
+            cm.decrMillage(customer, pts_returned); //minus mileage
+            //extra penalty if redeem points<0 after above operations:
+            if (customer.getRedeem_points()<0){
+                int negativePointPenalty = pc.pointPenalty(customer);//negative int or 0
+                cm.incrMillage(negativePointPenalty,customer);
+            }
+
+            return "You have successfully canceled the ticket for flight " + ticket.getFlightNumber() +
+                    ". The details are:" + " \n" + ticket;
         }
         return "You have not booked this flight yet, so it cannot be canceled.";
     }

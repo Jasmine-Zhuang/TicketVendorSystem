@@ -1,4 +1,7 @@
-package Ticket;import java.time.LocalDateTime;
+package Ticket;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -11,7 +14,7 @@ import java.util.ArrayList;
         * Information of passenger(Name of the passenger, Passenger username)
 
  */
-public class Ticket {
+public class Ticket implements Serializable {
     private String flightNumber;
     private String departure_city;
     private String arrival_city;
@@ -24,6 +27,7 @@ public class Ticket {
     private String passenger_username;
     private String ticket_id;
     private String class_type;
+    private String luggage_id;
 
     /**
      * Construct a Flight Ticket giving it the given flightNumber, departure city, arrival city,
@@ -56,6 +60,7 @@ public class Ticket {
         this.arrivalTime = a_time;
         this.departureTime = d_time;
         this.class_type = c_type;
+        this.luggage_id = null;
     }
 
     /**
@@ -169,6 +174,38 @@ public class Ticket {
      * @return Ticket's id.
      */
     public String getTicket_class() {
+        return class_type;
+    }
+
+    /**
+     * A setter method.
+     * @param newDTime A LocalDateTime instance indicates a new departure time.
+     */
+
+
+    public void changeDepartureTime(LocalDateTime newDTime) {
+        this.departureTime = newDTime;
+    }
+
+    /**
+     * A setter method.
+     * @param newDCity A String represents a new departure city.
+     */
+
+    public void changeDeparture_city(String newDCity) {
+        this.departure_city = newDCity;
+    }
+
+    /**
+     * A setter method.
+     * @param newACity A String represents a new arrival city.
+     */
+
+    public void changeArrival_city(String newACity) {
+        this.arrival_city = newACity;
+    }
+
+    public String getClass_type() {
         return class_type;
     }
 
