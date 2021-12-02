@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 public class Joint_MembershipSuccess extends JFrame implements ActionListener {
@@ -28,14 +29,16 @@ public class Joint_MembershipSuccess extends JFrame implements ActionListener {
     TicketManager tm;
     String username;
     PHManager phm;
+    LuggageManager lm;
 
     Joint_MembershipSuccess(CustomerManager customerManager, FlightManager flightManager, TicketManager ticketManager,
-                            String username, PHManager phm) {
+                            String username, PHManager phm, LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.username = username;
         this.phm=phm;
+        this.lm = luggageManager;
 
         button2.setFont(new Font("Times", Font.PLAIN,25));
         button2.setForeground(darkRed);
@@ -95,7 +98,7 @@ public class Joint_MembershipSuccess extends JFrame implements ActionListener {
             this.cm.changeMembership(this.cm.showCustomer(this.username));
             CMSerialization cmSerialization = new CMSerialization();
             cmSerialization.saveCM(this.cm, "CMManager.ser");
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
         }
         /*
         else if(button2 == e.getSource()){
