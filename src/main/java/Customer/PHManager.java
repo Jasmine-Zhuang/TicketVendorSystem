@@ -41,6 +41,11 @@ public class PHManager implements Serializable {
         this.phMap.put(customer, purchaseHistory);
     }
 
+    /**
+     * Return the list of tickets purchased stored in a customer's purchase history.
+     * @param client A Customer instance.
+     * @return An Arraylist of Tickets.
+     */
     public ArrayList<Ticket> getTickets (Customer client) {
         for (Customer c:phMap.keySet())
             if (c.getUsername().equals(client.getUsername())) {
@@ -49,6 +54,11 @@ public class PHManager implements Serializable {
         return null;
     }
 
+    /**
+     * Return the list of items redeemed stored in a customer's purchase history.
+     * @param client A Customer instance.
+     * @return An Arraylist of RewardItems.
+     */
     public ArrayList<RewardsItem> getRewardsItems (Customer client) {
         for (Customer c:phMap.keySet())
             if (c.getUsername().equals(client.getUsername())) {
@@ -57,4 +67,14 @@ public class PHManager implements Serializable {
         return null;
     }
 
+    /**
+     * Return true if a customer's purchase history is updated. False otherwise.
+     * @param customer A Customer instance.
+     * @param newPH A new purchase history.
+     * @return boolean.
+     */
+    public boolean updatePurchaseHistory (Customer customer, PurchaseHistory newPH) {
+        phMap.replace(customer, newPH);
+        return true;
+    }
 }

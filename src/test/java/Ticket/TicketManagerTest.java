@@ -3,6 +3,7 @@ package Ticket;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,6 +11,11 @@ import java.util.Arrays;
 import java.util.List;
 import Flight.FlightManager;
 import Flight.Flight;
+import Customer.Customer;
+import Customer.CustomerManager;
+import Customer.PHManager;
+import Customer.PurchaseHistory;
+import Luggage.LuggageManager;
 
 import static org.junit.Assert.*;
 
@@ -18,31 +24,39 @@ public class TicketManagerTest {
     TicketManager tm;
 
     @Before
-    public void setUp() { tm = new TicketManager();}
-    ArrayList<String> dt = new ArrayList<>(Arrays.asList("2021", "8", "22", "12", "35"));
-    ArrayList<String> at = new ArrayList<>(Arrays.asList("2021", "8", "23", "11", "35"));
-    int dYear = Integer.parseInt(dt.get(0));
-    int dMonth = Integer.parseInt(dt.get(1));
-    int dDay = Integer.parseInt(dt.get(2));
-    int dHour = Integer.parseInt(dt.get(3));
-    int dMinute = Integer.parseInt(dt.get(4));
-    int aYear = Integer.parseInt(at.get(0));
-    int aMonth = Integer.parseInt(at.get(1));
-    int aDay = Integer.parseInt(at.get(2));
-    int aHour = Integer.parseInt(at.get(3));
-    int aMinute = Integer.parseInt(at.get(4));
-    LocalDateTime arrivalTime =  LocalDateTime.of(aYear,aMonth,aDay,aHour,aMinute);
-    LocalDateTime departureTime = LocalDateTime.of(dYear,dMonth,dDay,dHour,dMinute);
-    Ticket t1 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
-            "5B", 100, "Taylor", "taylorsusername","First");
-    Ticket t2 = new Ticket("4567", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
-            "12A", 100, "Taylor", "taylorsusername","Economy");
-    Ticket t3 = new Ticket("1463", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
-            "3C", 100, "Mark", "mark123","Business");
-    ArrayList<String> seatArray = new ArrayList<>(Arrays.asList("1A","1B","2A","2B","3A","3B","4A","4B","5A","5B"));
-    Flight f1 = new Flight("1234", "Toronto", "Vancouver", dt, at, 10,
-            10, 3600, "10A", seatArray);
-    FlightManager fm = new FlightManager();
+    public void setUp() {
+        tm = new TicketManager();}
+        ArrayList<String> dt = new ArrayList<>(Arrays.asList("2021", "8", "22", "12", "35"));
+        ArrayList<String> at = new ArrayList<>(Arrays.asList("2021", "8", "23", "11", "35"));
+        int dYear = Integer.parseInt(dt.get(0));
+        int dMonth = Integer.parseInt(dt.get(1));
+        int dDay = Integer.parseInt(dt.get(2));
+        int dHour = Integer.parseInt(dt.get(3));
+        int dMinute = Integer.parseInt(dt.get(4));
+        int aYear = Integer.parseInt(at.get(0));
+        int aMonth = Integer.parseInt(at.get(1));
+        int aDay = Integer.parseInt(at.get(2));
+        int aHour = Integer.parseInt(at.get(3));
+        int aMinute = Integer.parseInt(at.get(4));
+        LocalDateTime arrivalTime = LocalDateTime.of(aYear, aMonth, aDay, aHour, aMinute);
+        LocalDateTime departureTime = LocalDateTime.of(dYear, dMonth, dDay, dHour, dMinute);
+        Ticket t1 = new Ticket("1234", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
+                "5B", 100, "Taylor", "taylorsusername", "First");
+        Ticket t2 = new Ticket("4567", "Vancouver", "Toronto", departureTime, arrivalTime, "A1",
+                "12A", 100, "Taylor", "taylorsusername", "Economy");
+        Ticket t3 = new Ticket("1463", "Toronto", "Vancouver", departureTime, arrivalTime, "A1",
+                "3C", 100, "Mark", "mark123", "Business");
+        ArrayList<String> seatArray = new ArrayList<>(Arrays.asList("1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B"));
+        Flight f1 = new Flight("1234", "Toronto", "Vancouver", dt, at, 10,
+                10, 3600, "10A", seatArray);
+        FlightManager fm = new FlightManager();
+        LuggageManager lm = new LuggageManager();
+        PHManager phm = new PHManager();
+        CustomerManager cm = new CustomerManager();
+        PriceCalculator pc = new PriceCalculator();
+        Customer olivia = new Customer("oliviaj", "abcdef", "OLIVIAJ");
+        PurchaseHistory ph = new PurchaseHistory(olivia);
+
 
 
     @Test(timeout = 200)
@@ -88,15 +102,26 @@ public class TicketManagerTest {
 
     @Test(timeout = 200)
     public void TestCancelTickets() {
+        // set up
         tm.bookTickets(t1);
+        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, "10",
+                10, "3600",  seatArray);
+        ph.addPurchasedTickets(t1);
+        phm.updateHistory(ph);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() + " on " +
                 dtf.format(now) +
                 ". The details are:" + " \n" + t1;
-        assertEquals(exp1, tm.cancelTickets(t1));
+        assertEquals(exp1, tm.cancelTickets(t1, lm, phm, cm, fm, pc));
         String exp2 = "You have not booked this flight yet, so it cannot be canceled.";
-        assertEquals(exp2, tm.cancelTickets(t2));
+        assertEquals(exp2, tm.cancelTickets(t2, lm, phm, cm, fm, pc));
+
+        // test if this ticket is not in tm anymore
+        ArrayList<Ticket> soldTickets = tm.getSoldTickets();
+        assertFalse(soldTickets.contains(t1));
+        assertFalse(soldTickets.contains(t2));
+        assertFalse(ph.getPurchasedTickets().contains(t1)); // t1 is removed from olivia's purchase history
     }
 
     @Test(timeout = 500)
@@ -108,8 +133,8 @@ public class TicketManagerTest {
 
     @Test(timeout = 500)
     public void TestGetMileage(){
-        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, 10,
-                10, 3600, "10A", seatArray);
+        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, "10",
+                10, "3600",  seatArray);
         assertEquals(tm.getMileage(t1, fm), 3600);
 
     }

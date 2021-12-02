@@ -5,6 +5,7 @@ This is the class that manages all sold tickets.
 
 import Customer.Customer;
 import Customer.CustomerManager;
+import Customer.PurchaseHistory;
 import Luggage.LuggageManager;
 import Flight.FlightManager;
 import Flight.Flight;
@@ -77,7 +78,6 @@ public class TicketManager implements Serializable {
 
     public String cancelTickets(Ticket ticket, LuggageManager lm, PHManager pm, CustomerManager cm, FlightManager fm,
                                 PriceCalculator pc) {
-        String ticketId = ticket.getTicket_id();
         String username= ticket.getPassenger_username();
         String luggageId = ticket.getLuggage_id();
         int luggageWeight = lm.getWeightById(luggageId);
@@ -85,6 +85,7 @@ public class TicketManager implements Serializable {
         Flight flight = fm.getFlightByNum(ticket.getFlightNumber());
         int mileage = this.getMileage(ticket,fm);
         int pts_returned = mileage / 5;
+        PurchaseHistory ph = pm.getPhMap().get(customer);
 
         if (soldTickets.contains(ticket)) {
             // remove ticket from list
@@ -92,7 +93,8 @@ public class TicketManager implements Serializable {
             // re-add seat to the flight
             flight.CancelOneSeat(ticket.getSeat_number());
             // remove from purchase history
-            pm.getPhMap().remove(customer);
+            ph.removePurchasedTickets(ticket);
+            pm.updatePurchaseHistory(customer, ph);
             // update balance = price ticket - penalty + luggage penalty
             int price = pc.calculatePrice(flight, customer, ticket.getTicket_class()); // original ticket price
             int lug_penalty = pc.luggagePenalty(luggageWeight, ticket);

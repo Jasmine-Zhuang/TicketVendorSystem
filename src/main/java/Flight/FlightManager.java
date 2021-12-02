@@ -57,20 +57,32 @@ public class FlightManager implements Serializable {
      * @param destinationCity string of destination
      * @param departureTime departure time in the format of [year,month,day,hour,minute]
      * @param arrivalTime arrival time in the format of [year,month,day,hour,minute]
-     * @param totalNumSeats the number of seats that this flight can have
-     * @param numSeatAvailable number of seats booked
+     * @param flightType the type of the flight, small: 10 seats, median: 20 seats, large: 30 seats;
      * @param distance_traveled The flight's length
      * @param boardingGate the boarding gate of this flight
      * @param seatNumberArray    array of all seat numbers of this flight
      */
     public void AddFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
-                          ArrayList<String> arrivalTime, int totalNumSeats, int numSeatAvailable, int distance_traveled
+                          ArrayList<String> arrivalTime, String flightType, int distance_traveled
             , String boardingGate, ArrayList<String> seatNumberArray) {
 
+        int numSeatAvailable = seatNumchecker(flightType);
+        int totalNumSeats = seatNumchecker(flightType);
         Flight newFlight = new Flight(flightNumber, originCity, destinationCity, departureTime,
                 arrivalTime, totalNumSeats, numSeatAvailable, distance_traveled
                 , boardingGate, seatNumberArray);
         this.idToFlight.put(flightNumber, newFlight);
+    }
+
+    public int seatNumchecker(String flightType) {
+        if (Objects.equals(flightType, "Small")) {
+            return 10;
+        } else if (Objects.equals(flightType, "Medium")) {
+            return 20;
+        } else if (Objects.equals(flightType, "Large")) {
+            return 30;
+        }
+        else return -1;
     }
 
 
