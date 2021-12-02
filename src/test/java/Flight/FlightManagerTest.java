@@ -32,7 +32,7 @@ public class FlightManagerTest {
         aTime.add("45");
         aTime.add("0");
         //initialize seatNumberArray
-   /*     ArrayList<String> seatNumArray = new ArrayList<>();
+        ArrayList<String> seatNumArray = new ArrayList<>();
         seatNumArray.add("1A");
         seatNumArray.add("1B");
         seatNumArray.add("2A");
@@ -43,10 +43,10 @@ public class FlightManagerTest {
         seatNumArray.add("4B");
         seatNumArray.add("5A");
         seatNumArray.add("5B");
-*/
+
         fm = new FlightManager();
-        fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime, aTime,
-                "Small", 3600, "10A");
+        fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime, aTime, "Small",
+                3600, "Gate1");
     }
 
     @Test(timeout = 500)
@@ -69,6 +69,18 @@ public class FlightManagerTest {
     }
 
     @Test(timeout = 500)
+    public void TestCancelSeat() {
+        String seatNum = "1A";
+        String flightNum = "CZ311";
+        String s_return = "You have successfully canceled seat" + seatNum +" of flight " + flightNum;
+        String f_return = "This seat has not been reserved or does not exist.";
+        fm.reserveSeat("CZ311", "1A");
+        assertEquals(s_return, fm.cancelSeat("CZ311", "1A"));
+        assertEquals(f_return, fm.cancelSeat("CZ311", "1G"));
+
+    }
+
+    @Test(timeout = 500)
     public void TestPrintAvailableSeat() {
         ArrayList<ArrayList<ArrayList<String>>> seatNumArray = new ArrayList<>();
         String[][] temp = {{"1A", "First"}, {"1B", "First"}, {"2A", "First"}, {"2B", "First"}, {"3A", "First"},
@@ -88,7 +100,6 @@ public class FlightManagerTest {
         for (String[] item: temp) {
             seatNumArray.add(new ArrayList(List.of(item)));
         }
-
         assertEquals(seatNumArray, fm.printAvailableSeatByClass("CZ311", "First"));
     }
 
