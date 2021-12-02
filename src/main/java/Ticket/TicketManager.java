@@ -168,7 +168,14 @@ public class TicketManager implements Serializable {
         return flight.getDistanceTraveled();
     }
 
-
+    /**
+     * A getter method.
+     *
+     * @return Ticket's meal selection.
+     */
+    public Meal_choice getTicket_Meal(Ticket ticket) {
+        return ticket.getTicket_Meal();
+    }
 
     /**
      * A setter method.

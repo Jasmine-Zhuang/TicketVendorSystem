@@ -143,7 +143,7 @@ public class Redeem_ItemListFrame extends JFrame implements ActionListener {
         public static void main(String[] args) {
             new Redeem_ItemListFrame(cm,fm,tm);
         }
-    
+
         /**
          * Invoked when an action occurs.
          *

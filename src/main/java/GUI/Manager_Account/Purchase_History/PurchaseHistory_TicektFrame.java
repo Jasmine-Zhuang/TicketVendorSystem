@@ -36,7 +36,8 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
     LuggageManager lm;
 
     PurchaseHistory_TicektFrame(CustomerManager customerManager, FlightManager flightManager,
-                                TicketManager ticketManager, String username,PHManager phm, LuggageManager luggageManager) {
+                                TicketManager ticketManager, String username,PHManager phm,
+                                LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
@@ -139,7 +140,8 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
 
         else if(back_pre == e.getSource()){
             this.dispose();
-            PurchaseHistoryFrame pruchase_history = new PurchaseHistoryFrame(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
+            PurchaseHistoryFrame pruchase_history = new PurchaseHistoryFrame(this.cm, this.fm, this.tm,
+                    this.username,this.phm, this.lm);//instantiate main menu
         }
 
     }

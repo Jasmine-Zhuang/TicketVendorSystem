@@ -98,7 +98,8 @@ public class Joint_MembershipSuccess extends JFrame implements ActionListener {
             this.cm.changeMembership(this.cm.showCustomer(this.username));
             CMSerialization cmSerialization = new CMSerialization();
             cmSerialization.saveCM(this.cm, "CMManager.ser");
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm,
+                    this.lm);//instantiate main menu
         }
         /*
         else if(button2 == e.getSource()){

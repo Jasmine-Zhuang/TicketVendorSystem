@@ -9,6 +9,7 @@ import Customer.PHManager;
 import Customer.PHMDeserialiazation;
 import Flight.FlightDeserialization;
 import Flight.FlightManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import Ticket.TicketDeserialization;
 
@@ -46,6 +47,7 @@ public class Controller {
         CustomerManager cm =  cmDeserialization.restoreCM("CMManager.ser");
         PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
         PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
+        LuggageManager lm=new LuggageManager();
 
         try {
             cm = cm.PutUsersInCM("users.csv");

@@ -98,7 +98,7 @@ public class TicketManagerTest {
 
     }
 
-    @Test(timeout = 200)
+   /* @Test(timeout = 200)
     public void TestCancelTickets() {
         tm.bookTickets(t1);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -109,7 +109,30 @@ public class TicketManagerTest {
         assertEquals(exp1, tm.cancelTickets(t1));
         String exp2 = "You have not booked this flight yet, so it cannot be canceled.";
         assertEquals(exp2, tm.cancelTickets(t2));
-    }
+    }*/
+   @Test(timeout = 200)
+   public void TestCancelTickets() {
+       // set up
+       tm.bookTickets(t1);
+       fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, "Small",
+               10, "3600");
+       ph.addPurchasedTickets(t1);
+       phm.updateHistory(ph);
+       DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+       LocalDateTime now = LocalDateTime.now();
+       String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() + " on " +
+               dtf.format(now) +
+               ". The details are:" + " \n" + t1;
+       assertEquals(exp1, tm.cancelTickets(t1, lm, phm, cm, fm, pc));
+       String exp2 = "You have not booked this flight yet, so it cannot be canceled.";
+       assertEquals(exp2, tm.cancelTickets(t2, lm, phm, cm, fm, pc));
+
+       // test if this ticket is not in tm anymore
+       ArrayList<Ticket> soldTickets = tm.getSoldTickets();
+       assertFalse(soldTickets.contains(t1));
+       assertFalse(soldTickets.contains(t2));
+       assertFalse(ph.getPurchasedTickets().contains(t1)); // t1 is removed from olivia's purchase history
+   }
 
     @Test(timeout = 500)
     public void TestGenerateTicket(){
@@ -119,9 +142,9 @@ public class TicketManagerTest {
     }
 
     @Test(timeout = 500)
-    public void TestGetMileage(){
-        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, 10,
-                10, 3600, "10A", seatArray);
+    public void TestGetMileage() {
+        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, "Small",
+                 3600, "10A");
         assertEquals(tm.getMileage(t1, fm), 3600);
 
     }
