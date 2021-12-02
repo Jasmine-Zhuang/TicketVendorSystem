@@ -1,8 +1,9 @@
 package GUI;
+
 import Customer.CustomerManager;
 import Customer.PHManager;
 import Flight.FlightManager;
-import Luggage.LuggageManager;
+import GUI.Select_Meal.select_meal_main;
 import Ticket.TicketManager;
 
 import javax.swing.*;
@@ -10,36 +11,35 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BookTicketMenuFrame extends JFrame implements ActionListener {
-
+public class End_or_MainFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
-    JLabel label1 = new JLabel("BOOK TICKET MENU");
-    String instruction = "<html>To book your desired ticket, you will need to:" +
-            "<br/> -> select your routes" +
-            "<br/> -> pick your flight" +
-            "<br/> -> pick seat class" +
-            "<br/> -> pick your seat" +
-            "<br/> -> submit booking<html>";
+    JLabel label1 = new JLabel("Do you want to Exit or back to Main Menu? ");
+
+    String instruction = "<html> You need to click the button below:";
     JLabel label2 = new JLabel(instruction);
-    JButton button1 = new JButton("Book flight ticket");
-    JButton button2 = new JButton("Back to main menu");
+    JButton button1 = new JButton("Main Menu");
+    JButton button2 = new JButton("Exit");
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
+
+    CustomerManager cm;
     FlightManager fm;
     TicketManager tm;
-    CustomerManager cm;
     String username;
     PHManager phm;
     LuggageManager lm;
+    String ticket_id;
 
-    public BookTicketMenuFrame(FlightManager fm, CustomerManager cm, TicketManager tm, String username, PHManager phm,
-                               LuggageManager lm) {
-        this.fm =fm;
-        this.tm=tm;
-        this.cm=cm;
+    public End_or_MainFrame(CustomerManager customerManager, FlightManager flightManager, TicketManager ticketManager,
+                             String username, PHManager phm, LuggageManager lm, String ticket_id) {
+        this.cm = customerManager;
+        this.fm = flightManager;
+        this.tm = ticketManager;
+        this.username=username;
         this.phm=phm;
-        this.lm=lm;
-        this.username = username;
+        this.lm = lm;
+        this.ticket_id = ticket_id;
+
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
         button1.addActionListener(this);
@@ -70,10 +70,10 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
 
         panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
         panel.add(label1);
-        panel.add(Box.createRigidArea(new Dimension(20,20)));
-        panel.add(button1);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
+        panel.add(Box.createRigidArea(new Dimension(20,20)));
+        panel.add(button1);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(button2);
         panel.setBackground(lightPink);
@@ -97,12 +97,11 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button1 == e.getSource()){
             this.dispose();
-            PickRoutesFrame pickRoutesFrame= new PickRoutesFrame(this.fm,this.cm,this.tm,this.username,this.phm,this.lm);//instantiate next page for routes picking
-        }else if(button2 == e.getSource()){
-            this.dispose();
-            MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, this.username,this.phm,this.lm);//instantiate main menu
+            MainMenuFrame main_menu= new MainMenuFrame(this.fm,this.cm,this.tm,this.username,this.phm);
+            //instantiate next page for routes picking
         }
-    }
+        else if(button2 == e.getSource()){
+            this.dispose();
+            System.exit(0);
+        }}
 }
-
-

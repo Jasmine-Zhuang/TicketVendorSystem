@@ -46,15 +46,14 @@ public class Controller {
         CustomerManager cm =  cmDeserialization.restoreCM("CMManager.ser");
         PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
         PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
-/*
+
         try {
-            cm = PutUsersInCM("users.csv");
+            cm = cm.PutUsersInCM("users.csv");
         } catch (IOException e) {
             e.printStackTrace();
         }
-*/
 
-        GUI gui = new GUI(fm,cm,tm,phm);
+        GUI gui = new GUI(fm,cm,tm,phm,lm);
 
         //Generate Flights
         //Route1 Toronto-Vancouver

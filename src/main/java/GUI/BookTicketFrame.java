@@ -8,6 +8,7 @@ import Customer.PHManager;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import GUI.Manager_Account.Load_Balance.Insufficient_Balance;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 public class BookTicketFrame extends JFrame implements ActionListener {
@@ -20,6 +21,7 @@ public class BookTicketFrame extends JFrame implements ActionListener {
     int ticketPrice;
     String seatNum;
     PHManager phm;
+    LuggageManager lm;
 
 
     JButton buttonBook = new JButton("Confirm");
@@ -30,12 +32,13 @@ public class BookTicketFrame extends JFrame implements ActionListener {
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
 
-    BookTicketFrame(FlightManager fm, CustomerManager cm, TicketManager tm,
-                    String flightNum, String c, String classType, int ticketPrice, String seatNum, PHManager phm) {
+    BookTicketFrame(FlightManager fm, CustomerManager cm, TicketManager tm,String flightNum, String c, String classType,
+                    int ticketPrice, String seatNum, PHManager phm, LuggageManager lm) {
         this.cm = cm;
         this.fm = fm;
         this.tm = tm;
         this.phm = phm;
+        this.lm = lm;
         this.flightNum = flightNum;
         this.customer_user = c;
         this.ticketPrice = ticketPrice;
@@ -89,7 +92,7 @@ public class BookTicketFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonBack) {
             this.dispose();
-            DisplayPriceFrame dpf = new DisplayPriceFrame(cm, fm, tm, seatNum, customer_user,this.phm);
+            DisplayPriceFrame dpf = new DisplayPriceFrame(cm, fm, tm, seatNum, customer_user,this.phm,this.lm);
         }
         else {
             if (cm.showCustomerBalance(customer_user) >= ticketPrice) {
@@ -98,11 +101,12 @@ public class BookTicketFrame extends JFrame implements ActionListener {
                         fm.getFlightByNum(flightNum).getDepartureTime(), fm.getFlightByNum(flightNum).getArrivalTime(),
                         fm.getFlightByNum(flightNum).getBoardingGate(), seatNum,
                         this.customer_user, classType, ticketPrice,
-                        this.phm);
+                        this.phm,this.lm);
             }else{JOptionPane.showMessageDialog(null,"Warning: insufficient balance.","warning",
                     JOptionPane.WARNING_MESSAGE);
 
-                Insufficient_Balance insufficient_balance = new Insufficient_Balance(this.cm,this.fm,this.tm,customer_user,this.phm);
+                Insufficient_Balance insufficient_balance = new Insufficient_Balance(this.cm,this.fm,this.tm,
+                        customer_user,this.phm,this.lm);
             }
             this.dispose();
             /*MainMenuFrame mainMenuFrame = new MainMenuFrame(fm,cm,tm,this.customer_user,phm);*/
