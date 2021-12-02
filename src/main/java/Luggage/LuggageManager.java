@@ -1,15 +1,13 @@
 package Luggage;
 
 import java.io.Serializable;
-import java.security.PublicKey;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class LuggageManager implements Serializable {
 
     private HashMap<String, Luggage> idToLuggage = new LinkedHashMap<>();
-    private static final long serialVersionUID = 5;
+    private static final long serialVersionUID = 7;
 
     /**
      *
@@ -26,18 +24,17 @@ public class LuggageManager implements Serializable {
         } else {
             return -1;
         }
+
     }
 
     /**
      * Add a new Luggage to LuggageManager
      * @param luggageWeight of this luggage
-     * @param flightNum of the flight
-     * @param seatNum of the ticket owner on the flight
+     * @param luggageId of this luggage
      */
-    public void generateLuggage(int luggageWeight, String flightNum, String seatNum){
+    public void generateLuggage(int luggageWeight, String luggageId){
         int weightFlag = checkWeight(luggageWeight);
-        if (weightFlag == 1 | weightFlag == 0){
-            String luggageId = flightNum + seatNum;
+        if (weightFlag == 1){
             Luggage newLuggage = new Luggage(luggageId, luggageWeight);
             this.idToLuggage.put(luggageId, newLuggage);
         }
@@ -50,16 +47,6 @@ public class LuggageManager implements Serializable {
      */
     public int getWeightById(String luggageId){
         return this.idToLuggage.get(luggageId).getLuggageWeight();
-    }
-
-    public String displayLuggageInfo(ArrayList<String> luggageIdLs){
-        StringBuilder infoString = new StringBuilder();
-        for(String luggageId: luggageIdLs){
-            if (this.idToLuggage.containsKey(luggageId)) {
-                infoString.append(this.idToLuggage.get(luggageId).toString());
-            }
-        }
-        return infoString.toString();
     }
 
 }

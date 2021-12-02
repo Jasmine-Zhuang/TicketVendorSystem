@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PickFlightFrame extends JFrame implements ActionListener {
@@ -49,10 +50,18 @@ public class PickFlightFrame extends JFrame implements ActionListener {
 
         //flight info display setup
         flightNumPicked= flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
-        ArrayList<String> flightArraylist = new ArrayList<>();
-        flightArraylist.add(flightNumPicked);
+       // flightNumPicked= (String) flightNumsComoBox.getSelectedItem();
+ /*       ArrayList<String> flightArraylist = new ArrayList<>();
+        flightArraylist.add(flightNumPicked);*/
+
         JLabel flightInfoLabel = new JLabel();
-        flightInfoLabel.setText(fm.displayFlightInfo(flightArraylist));
+       /* String msg= "<html> Flight " + flightNumber +
+                " <br/> from " + originCity + " to " + destinationCity +
+                "<br/>from " + formattedDepartureTime + " to " + formattedArrivalTime +
+                "<br/> boarding gate: " + "boardingGate<html>";*/
+
+/*        flightInfoLabel.setText(fm.displayFlightInfo(flightArraylist));*/
+        flightInfoLabel.setText(fm.displayFlightInfoInGUI(flightNumPicked));
 
         JPanel panel = new JPanel();
         panel.add(flightNumsComoBox);

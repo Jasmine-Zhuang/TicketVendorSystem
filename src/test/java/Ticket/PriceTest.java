@@ -41,12 +41,12 @@ public class PriceTest {
         //customer 2 has membership with level 2
         cus_2 = new Customer(new_username,new_password,new_name);
         cus_2.changeMembership();
-        cus_2.incrMileage(1500);
+        cus_2.incrMillage(1500);
         cus_2.changeMembershiplevel();
         //customer 3 has membership with level 3
         cus_3 = new Customer(new_username,new_password,new_name);
         cus_3.changeMembership();
-        cus_3.incrMileage(6000);
+        cus_3.incrMillage(6000);
         cus_3.changeMembershiplevel();
 
         //set up flight info

@@ -109,7 +109,7 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(500, 320));
+        this.setPreferredSize(new Dimension(350, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -119,7 +119,7 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
             // create a object of the text class
             new Update_password_verifiedFrame(cm,fm,tm);
         }
-    
+
         /**
          * Invoked when an action occurs.
          *
@@ -148,4 +148,3 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
         }
     }
 }
-

@@ -81,8 +81,8 @@ public class GreetingFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setBackground(LightBlue);
-        this.setPreferredSize(new Dimension(500, 600));
-        this.setLocation(new Point(500, 200));
+        this.setPreferredSize(new Dimension(500, 800));
+        this.setLocation(new Point(500, 400));
         this.add(panel);
         this.pack();
 

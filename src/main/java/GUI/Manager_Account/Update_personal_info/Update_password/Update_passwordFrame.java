@@ -108,7 +108,7 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(500, 320));
+        this.setPreferredSize(new Dimension(350, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -135,7 +135,7 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
                             this.username, password, this.phm);}//instantiate next page for routes picking
                 else{
                     label2.setText("<html>Sorry! Your password is not in system, please enter your password below again:");
-                    }
+                }
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -151,4 +151,3 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
         }
     }
 }
-

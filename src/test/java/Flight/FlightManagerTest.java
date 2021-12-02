@@ -46,7 +46,7 @@ public class FlightManagerTest {
 
         fm = new FlightManager();
         fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime, aTime, "Small",
-                3600, "Gate1", seatNumArray);
+                3600, "Gate1");
     }
 
     @Test(timeout = 500)

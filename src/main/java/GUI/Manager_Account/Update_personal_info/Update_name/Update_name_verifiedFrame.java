@@ -107,7 +107,7 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(500, 320));
+        this.setPreferredSize(new Dimension(350, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -139,5 +139,4 @@ public class Update_name_verifiedFrame extends JFrame implements ActionListener 
         }
     }
 }
-
 

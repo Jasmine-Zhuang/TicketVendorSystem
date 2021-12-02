@@ -10,7 +10,7 @@ public class CMSerialization {
         try {
             FileOutputStream fileOut = new FileOutputStream(filePath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(cm);
+            out.writeObject((CustomerManager)cm);
             out.close();
             fileOut.close();
             System.out.println("CM saved!");

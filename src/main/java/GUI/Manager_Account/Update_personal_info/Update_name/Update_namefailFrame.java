@@ -1,6 +1,7 @@
-package GUI.Manager_Account.Update_personal_info.Update_username;
+package GUI.Manager_Account.Update_personal_info.Update_name;
 
 
+import Customer.PHManager;
 import Flight.FlightManager;
 import GUI.Manager_Account.ManageAccount;
 import GUI.Manager_Account.Update_personal_info.Update_PersonalinfoFrame;
@@ -10,33 +11,46 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Customer.CustomerManager;
-import Customer.PHManager;
 import Ticket.TicketManager;
+import Flight.FlightManager;
 
-public class Update_usernamesuccessFrame extends JFrame implements ActionListener {
+
+class Update_namefailFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
-    JLabel label1 = new JLabel("Update account username");
+    JLabel label1 = new JLabel("Update account name");
 
-    String instruction = "<html>Congratulation! \n " +
-            "Your account username has been updated successfully!";
+    String instruction = "<html>Sorry! Your name is not in system, please enter your name below again:";
     JLabel label2 = new JLabel(instruction);
     JButton button1 = new JButton("Back to Personal Information Menu");
     JButton button2 = new JButton("Back to Manage Account Menu");
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
+
+    // create a new frame to store text field and button
+    JFrame textfield = new JFrame("textfield");
+
+    // create a label to display text
+    JLabel nothinglabel = new JLabel("nothing entered");
+
+    // create a new button
+    JButton submitb = new JButton("submit");
+
+    // create a object of JTextField with 16 columns and a given initial text
+    JTextField initalttext = new JTextField("Please enter your original name again", 16);
     CustomerManager cm;
     FlightManager fm;
     TicketManager tm;
-    PHManager phm;
     String username;
+    PHManager phm;
 
-    Update_usernamesuccessFrame(CustomerManager customerManager, FlightManager flightManager,
-                                TicketManager ticketManager, String username, PHManager phm) {
+    // default constructor
+    Update_namefailFrame(CustomerManager customerManager, FlightManager flightManager,
+                         TicketManager ticketManager, String username, PHManager phm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
-        this.phm = phm;
-        this.username=username;
+        this.phm=phm;
+        this.username = username;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -66,17 +80,32 @@ public class Update_usernamesuccessFrame extends JFrame implements ActionListene
         label2.setHorizontalAlignment(JLabel.CENTER);
         label2.setBounds(50,50,300,300);
 
+        nothinglabel.setBounds(50,50,300,300);
         panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
         panel.add(label1);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
-        panel.add(Box.createRigidArea(new Dimension(20,10)));
+        panel.add(Box.createRigidArea(new Dimension(10,10)));
+        panel.add(initalttext);
+        panel.add(submitb);
+        submitb.addActionListener(this);
+        panel.add(nothinglabel);
+        textfield.setSize(new Dimension(2,2));
+        textfield.add(panel);
+
+
+        panel.add(Box.createRigidArea(new Dimension(20,20)));
         panel.add(button1);
+
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(button2);
+
         panel.setBackground(lightPink);
         panel.add(Box.createHorizontalGlue());
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // set the size of frame
+        textfield.setSize(20, 20);
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -87,9 +116,10 @@ public class Update_usernamesuccessFrame extends JFrame implements ActionListene
     }
     /*
         public static void main(String[] args) {
-            new Update_usernamesuccessFrame(cm,fm,tm);
+            // create a object of the text class
+            new Update_namefailFrame(cm,fm,tm);
         }
-
+    
         /**
          * Invoked when an action occurs.
          *
@@ -97,17 +127,30 @@ public class Update_usernamesuccessFrame extends JFrame implements ActionListene
          */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(button2 == e.getSource()){
+        if(submitb == e.getSource()){
+            this.dispose();
+            String name = initalttext.getText();
+            if (this.cm.checkCustomername(name)) {
+                //Update_name_verifiedFrame change_name = new Update_name_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+            }//instantiate next page for routes picking
+            if (!this.cm.checkCustomername(name)) {
+                Update_namefailFrame change_name = new Update_namefailFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+            }//instantiate next page for routes picking
+        }else if(button1 == e.getSource()){
+            this.dispose();
+            Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+        }else if(button2 == e.getSource()){
             this.dispose();
             ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
         }
+        String s = e.getActionCommand();
+        if (s.equals("submit")) {
+            // set the text of the label to the text of the field
+            nothinglabel.setText(initalttext.getText());
 
-        else if(button1 == e.getSource()){
-            this.dispose();
-            Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate main menu
+            // set the text of field to blank
+            nothinglabel.setText("  ");
         }
-
     }
 }
 
