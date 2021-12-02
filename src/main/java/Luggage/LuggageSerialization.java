@@ -1,6 +1,4 @@
 package Luggage;
-import Flight.FlightManager;
-import Ticket.TicketManager;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

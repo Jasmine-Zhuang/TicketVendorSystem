@@ -104,7 +104,7 @@ public class Update_nameFrame extends JFrame implements ActionListener {
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(500, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -114,7 +114,7 @@ public class Update_nameFrame extends JFrame implements ActionListener {
             // create a object of the text class
             new GUI.Manager_Account.Update_personal_info.Update_name.Update_nameFrame(cm,fm,tm);
         }
-
+    
         /**
          * Invoked when an action occurs.
          *
@@ -151,3 +151,4 @@ public class Update_nameFrame extends JFrame implements ActionListener {
         }
     }
 }
+

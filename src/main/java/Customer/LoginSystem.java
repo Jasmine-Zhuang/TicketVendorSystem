@@ -25,7 +25,7 @@ public class LoginSystem implements Serializable{
             String[] data = line.split(",");
             if (Objects.equals(data[0], username)){
                 if (Objects.equals(data[1], password)){
-                    return true;
+                return true;
                 }
             }
         }
@@ -193,6 +193,6 @@ public class LoginSystem implements Serializable{
     public static void main(String[] args) throws IOException {
 //        System.out.println(changeUsername("RYAN", "ryan"));
 //            changePassword("1", "1", "2");
-        changeName("r", "r1", "rrr");
+            changeName("r", "r1", "rrr");
     }
 }

@@ -1,9 +1,8 @@
 package Ticket;
 
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 
 /*
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 
  */
 public class Ticket implements Serializable {
-
     private String flightNumber;
     private String departure_city;
     private String arrival_city;
@@ -28,13 +26,12 @@ public class Ticket implements Serializable {
     private String passenger_username;
     private String ticket_id;
     private String class_type;
-    private String luggage_id;
 
     /**
      * Construct a Flight Ticket giving it the given flightNumber, departure city, arrival city,
      * departure time, arrival time, boarding gate, seat number, distance traveled, passenger's name and username.
      *
-     * @param flightNumber Sting of the flight number of the flight on the ticket.
+     * @param flightNumber String of the flight number of the flight on the ticket.
      * @param d_city       String of the departure city's name.
      * @param a_city       String of the arrival city's name.
      * @param d_time       Departure time in the format of [year,month,day,hour,minute].
@@ -61,7 +58,6 @@ public class Ticket implements Serializable {
         this.arrivalTime = a_time;
         this.departureTime = d_time;
         this.class_type = c_type;
-        this.luggage_id = null;
     }
 
     /**
@@ -179,42 +175,6 @@ public class Ticket implements Serializable {
     }
 
     /**
-     * A getter method.
-     *
-     * @return Ticket's luggage id.
-     */
-    public String getLuggage_id() {return luggage_id;}
-
-    /**
-     * A setter method.
-     * @param newDTime A LocalDateTime instance indicates a new departure time.
-     */
-
-
-    public void changeDepartureTime(LocalDateTime newDTime) {
-        this.departureTime = newDTime;
-    }
-
-    /**
-     * A setter method.
-     * @param newDCity A String represents a new departure city.
-     */
-
-    public void changeDeparture_city(String newDCity) {
-        this.departure_city = newDCity;
-    }
-
-    /**
-     * A setter method.
-     * @param newACity A String represents a new arrival city.
-     */
-
-    public void changeArrival_city(String newACity) {
-        this.arrival_city = newACity;
-    }
-
-
-    /**
      * Override the toString method.
      *
      * @return the Air Ticket with information.
@@ -236,7 +196,4 @@ public class Ticket implements Serializable {
                 "\nHave a nice trip!\n" +
                 "-----------------------";
     }
-
-
-
 }

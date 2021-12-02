@@ -86,7 +86,6 @@ public class TicketManagerTest {
 
     }
 
-/*
     @Test(timeout = 200)
     public void TestCancelTickets() {
         tm.bookTickets(t1);
@@ -99,7 +98,6 @@ public class TicketManagerTest {
         String exp2 = "You have not booked this flight yet, so it cannot be canceled.";
         assertEquals(exp2, tm.cancelTickets(t2));
     }
-*/
 
     @Test(timeout = 500)
     public void TestGenerateTicket(){

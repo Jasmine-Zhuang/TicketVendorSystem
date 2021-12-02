@@ -30,7 +30,7 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
     String username;
     PHManager phm;
 
-    public BookTicketMenuFrame(FlightManager fm, CustomerManager cm, TicketManager tm, String username, PHManager phm) {
+    BookTicketMenuFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String username,PHManager phm) {
         this.fm =fm;
         this.tm=tm;
         this.cm=cm;

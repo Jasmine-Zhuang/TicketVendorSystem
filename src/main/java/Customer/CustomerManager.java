@@ -1,5 +1,4 @@
 package Customer;
-import Flight.FlightManager;
 
 import java.io.*;
 import java.util.HashMap;
@@ -159,14 +158,14 @@ public class CustomerManager implements Serializable {
             AllMember.decrMemberBalance(ticket_price,customer);}}
 
 
-    /** Modify this customer's current millage
-     * @param customer The customer needed to Modify current millage.
-     * @param millage_update The new millage of this customer to be added to this customer's current millage.
+    /** Modify this customer's current mileage
+     * @param customer The customer needed to Modify current mileage.
+     * @param mileage_update The new mileage of this customer to be added to this customer's current mileage.
      */
-    public void incrMillage(int millage_update, Customer customer){
+    public void incrMileage(int mileage_update, Customer customer){
         if (AllMember.checkCustomer(customer.getUsername())){
-            customer.incrMillage(millage_update);}
-        customer.incrMillage(millage_update);
+            customer.incrMileage(mileage_update);}
+        customer.incrMileage(mileage_update);
     }
 
 
@@ -241,12 +240,12 @@ public class CustomerManager implements Serializable {
     }
 
     /**
-     * Get Redeem Millage for this customer
+     * Get Redeem mileage for this customer
      */
 
-    public void decrMillage(Customer customer, double redeem_points){
+    public void decrMileage(Customer customer, double redeem_points){
         if(AllMember.checkCustomer(customer.getUsername())){
-            AllMember.decrMillage(customer, redeem_points);
+            AllMember.decrMileage(customer, redeem_points);
         }
     }
 
@@ -260,5 +259,20 @@ public class CustomerManager implements Serializable {
         return "This customer is not in system.";
     }
 
+    public CustomerManager PutUsersInCM(String path) throws IOException {
+        CustomerManager CM = new CustomerManager();
+
+        BufferedReader br =new BufferedReader(new FileReader(path));
+        String line = br.readLine();
+
+        while ((line = br.readLine()) != null){
+            String[] data = line.split(",");
+            CMSerialization cmSerialization = new CMSerialization();
+            CM.addCustomer(new Customer(data[0],data[1],data[2]));
+            cmSerialization.saveCM(CM, "CMManager.ser");
+
+        }
+        return CM;
+    }
 
 }
