@@ -103,7 +103,7 @@ public class ManageAccount extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == check) {
             this.dispose();
-            Check_personalinfo check_personal_info = new Check_personalinfo(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            Check_personalinfo check_personal_info = new Check_personalinfo(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
         }
 
         if (e.getSource() == update){

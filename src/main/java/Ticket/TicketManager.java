@@ -88,15 +88,16 @@ public class TicketManager implements Serializable {
         int mileage = this.getMileage(ticket,fm);
         int pts_returned = mileage / 5;
         PurchaseHistory ph = pm.getPhMap().get(customer);
-
         if (soldTickets.contains(ticket)) {
             // remove ticket from list
             soldTickets.remove(ticket);
             // re-add seat to the flight
             flight.CancelOneSeat(ticket.getSeat_number());
             // remove from purchase history
-            ph.removePurchasedTickets(ticket);
-            pm.updatePurchaseHistory(customer, ph);
+            if(ph != null){
+                ph.removePurchasedTickets(ticket);
+                pm.updatePurchaseHistory(customer, ph);
+            }
             // update balance = price ticket - penalty + luggage penalty
             int price = pc.calculatePrice(flight, customer, ticket.getTicket_class()); // original ticket price
             int lug_penalty = pc.luggagePenalty(luggageWeight, ticket);
@@ -111,10 +112,13 @@ public class TicketManager implements Serializable {
             //extra penalty if redeem points<0 after above operations
             int negativePointPenalty = pc.pointPenalty(customer);//negative int or 0
             cm.incrMileage(negativePointPenalty,customer);
+            //remove luggage
+            lm.cancelLuggage(luggageId);
 
             return "You have successfully canceled the ticket for flight " + ticket.getFlightNumber() +
                     ". The details are:" + " \n" + ticket;
         }
+
         return "You have not booked this flight yet, so it cannot be canceled.";
     }
 

@@ -123,6 +123,7 @@ public class TicketManagerTest {
        String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() + " on " +
                dtf.format(now) +
                ". The details are:" + " \n" + t1;
+       //assertEquals(cm.showCustomer("taylorsusername"), t1.getPassenger_username());
        assertEquals(exp1, tm.cancelTickets(t1, lm, phm, cm, fm, pc));
        String exp2 = "You have not booked this flight yet, so it cannot be canceled.";
        assertEquals(exp2, tm.cancelTickets(t2, lm, phm, cm, fm, pc));

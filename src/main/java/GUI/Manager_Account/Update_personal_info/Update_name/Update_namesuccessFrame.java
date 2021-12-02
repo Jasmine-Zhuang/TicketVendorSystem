@@ -99,12 +99,14 @@ class Update_namesuccessFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,
+                    this.phm,this.lm);//instantiate main menu
         }
 
         else if(button1 == e.getSource()){
             this.dispose();
-            Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
+                    this.username, this.phm,this.lm);//instantiate main menu
         }
 
     }
