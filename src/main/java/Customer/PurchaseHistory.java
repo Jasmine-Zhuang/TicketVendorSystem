@@ -6,9 +6,10 @@ This class is a record of purchase history of a customer regarding tickets and r
 import Ticket.Ticket;
 import UStore.RewardsItem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PurchaseHistory {
+public class PurchaseHistory implements Serializable {
 
     private final Customer phCustomer;
     private final ArrayList<Ticket> purchasedTickets;

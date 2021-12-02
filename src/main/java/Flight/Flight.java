@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 
 public class Flight implements Serializable {
@@ -191,7 +191,7 @@ public class Flight implements Serializable {
      */
     public ArrayList<ArrayList<String>> getSeatArray() {return seatArray;}
 
-    /**
+    /*
      * Replace the seat number by "X" from seatNumberArray to represent that this seat has been booked.
      * @param seatNumber A String of seat number.
      * @return true if this seat number was seatNumberArray, and now has been replaced by "X" , false otherwise.
@@ -203,20 +203,6 @@ public class Flight implements Serializable {
                 seat.set(index,"X");
                 this.availableSeats --;
                 return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean CancelOneSeat(String seatNumber){
-        for(ArrayList<String> seat: this.getSeatArray()){
-            if(seat.contains(seatNumber)){
-                int index = seat.indexOf(seatNumber);
-                if (Objects.equals(seat.get(index), "X")) {
-                    seat.set(index, seatNumber);
-                    this.availableSeats++;
-                    return true;
-                }
             }
         }
         return false;

@@ -1,6 +1,8 @@
 package UStore;
 
-public class TVoucher extends RewardsItem implements Redeemable {
+import java.io.Serializable;
+
+public class TVoucher extends RewardsItem implements Redeemable, Serializable {
     /**
      * Construct a T-card $20 voucher
      */

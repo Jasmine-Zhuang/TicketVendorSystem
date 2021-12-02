@@ -41,12 +41,6 @@ public class PHManager implements Serializable {
         this.phMap.put(customer, purchaseHistory);
     }
 
-    /**
-     * Show tickets purchased by a customer.
-     * @param client A Customer instance.
-     * @return a list of tickets client purchased.
-     */
-
     public ArrayList<Ticket> getTickets (Customer client) {
         for (Customer c:phMap.keySet())
             if (c.getUsername().equals(client.getUsername())) {
@@ -55,12 +49,6 @@ public class PHManager implements Serializable {
         return null;
     }
 
-    /**
-     * Show items redeemed by a customer.
-     * @param client A Customer instance.
-     * @return a list of items client redeemed.
-     */
-
     public ArrayList<RewardsItem> getRewardsItems (Customer client) {
         for (Customer c:phMap.keySet())
             if (c.getUsername().equals(client.getUsername())) {
@@ -68,7 +56,5 @@ public class PHManager implements Serializable {
             }
         return null;
     }
-
-
 
 }
