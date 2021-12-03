@@ -6,6 +6,7 @@ import Customer.PHMSerialiazation;
 import Customer.PHManager;
 import Flight.FlightManager;
 import Flight.FlightSerialization;
+import GUI.Manager_Account.Load_Balance.Insufficient_Balance;
 import Luggage.LuggageManager;
 import Luggage.LuggageSerialization;
 import Ticket.PriceCalculator;
@@ -115,7 +116,13 @@ public class LuggageFrame extends JFrame implements ActionListener {
                         if(cm.showCustomer(u_name).getBalance() >= penalty){
                             cm.showCustomer(u_name).decrBalance(penalty);
                         }else{
+                            JOptionPane.showMessageDialog(null,
+                                    "Warning: insufficient balance.","warning",
+                                    JOptionPane.WARNING_MESSAGE);
 
+                            Insufficient_Balance insufficient_balance = new
+                                    Insufficient_Balance(this.cm,this.fm,this.tm,
+                                    this.u_name,this.phm,this.lm);
                         }
                     }
                     ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
@@ -124,11 +131,13 @@ public class LuggageFrame extends JFrame implements ActionListener {
                     Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
                             this.u_name, this.phm, this.lm, this.t_id);
                 }else{
-                    JOptionPane.showMessageDialog(null, "Warning: insufficient input.", "warning",
+                    JOptionPane.showMessageDialog(null,
+                            "Warning: insufficient input.", "warning",
                             JOptionPane.WARNING_MESSAGE);
                 }
             } catch (Exception exception){
-                JOptionPane.showMessageDialog(null, "Warning: insufficient input.", "warning",
+                JOptionPane.showMessageDialog(null,
+                        "Warning: insufficient input.", "warning",
                         JOptionPane.WARNING_MESSAGE);
             }
         }
