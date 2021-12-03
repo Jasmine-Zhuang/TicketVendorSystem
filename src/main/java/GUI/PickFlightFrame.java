@@ -94,7 +94,9 @@ public class PickFlightFrame extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+      /*  if(e.getSource() == flightNumsComoBox){
 
+        }*/
         if(e.getSource()==submitButton){
             this.dispose();
             String flightNumPicked= (String) flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());

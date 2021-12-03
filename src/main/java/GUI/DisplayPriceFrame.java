@@ -116,7 +116,6 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
                 "<html>";
         label2.setText(msg);
     }
-
 //    public static void main(String[] args) {
 //        new DisplayPriceFrame();
 //

@@ -25,8 +25,8 @@ public class TicketManagerTest {
 
     @Before
     public void setUp() { tm = new TicketManager();}
-    ArrayList<String> dt = new ArrayList<>(Arrays.asList("2021", "8", "22", "12", "35"));
-    ArrayList<String> at = new ArrayList<>(Arrays.asList("2021", "8", "23", "11", "35"));
+    ArrayList<String> dt = new ArrayList<>(Arrays.asList("2022", "8", "22", "12", "35"));
+    ArrayList<String> at = new ArrayList<>(Arrays.asList("2022", "8", "23", "11", "35"));
     int dYear = Integer.parseInt(dt.get(0));
     int dMonth = Integer.parseInt(dt.get(1));
     int dDay = Integer.parseInt(dt.get(2));
@@ -103,7 +103,8 @@ public class TicketManagerTest {
        // set up
        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, "Small",
                10, "3600");
-       ph.addPurchasedTickets(t1);
+       Flight flight = fm.getFlightByNum("1234");
+       ph.addPurchasedTickets(t1, olivia);
        phm.updateHistory(ph);
        cm.addCustomer(olivia);
        cm.incrMileage(10, olivia);
@@ -116,7 +117,18 @@ public class TicketManagerTest {
        String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() +
                ". The details are:" + " \n" + t1;
        //assertEquals(cm.showCustomer("taylorsusername"), t1.getPassenger_username());
+//       int price = pc.calculatePrice(flight, olivia, t1.getTicket_class()); // original ticket price
+//       int lug_penalty = pc.luggagePenalty(0, t1);
+//       int change_penalty = pc.penaltyPrice(t1);
+//       int minus_price = price - change_penalty + lug_penalty;
+//       System.out.println(price);
+//       System.out.println(lug_penalty);
+//       System.out.println(change_penalty);
+//       System.out.println(minus_price);
+//       System.out.println(t1.getPassenger_username());
+
        assertEquals(exp1, tm.cancelTickets(t1, lm, phm, cm, fm, pc));
+       tm.cancelTickets(t1, lm, phm, cm, fm, pc);
        String exp2 = "You have not booked this flight yet, so it cannot be canceled.";
        assertEquals(exp2, tm.cancelTickets(t2, lm, phm, cm, fm, pc));
 

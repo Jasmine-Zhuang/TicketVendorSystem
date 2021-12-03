@@ -22,6 +22,7 @@ public class PickSeatFrame extends JFrame{
     PHManager phm;
     LuggageManager lm;
     String seatNumber;
+    JButton backButton;
 
 
     PickSeatFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String flightNum, String username,
