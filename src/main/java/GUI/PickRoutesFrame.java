@@ -48,19 +48,21 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
         this.setSize(500, 500);
         this.setVisible(true);
 
-        aCb.setBounds(50, 100, 100, 20);
+        aCb.setBounds(50, 120, 100, 20);
         this.add(aCb);
 
         label2.setHorizontalAlignment(JLabel.CENTER);
         label1.setHorizontalAlignment(JLabel.CENTER);
 
-        label1.setBounds(100, 200, 200, 20);
-        label2.setBounds(100, 250, 200, 20);
-        label1.setFont(new Font("Times", Font.PLAIN, 10));
-        label2.setFont(new Font("Times", Font.PLAIN, 10));
+        label1.setBounds(100, 200, 400, 25);
+        label2.setBounds(100, 250, 400, 25);
+        label1.setFont(new Font("Times", Font.PLAIN, 25));
+        label2.setFont(new Font("Times", Font.PLAIN, 25));
 
-        labelDepartureDis.setBounds(100, 10, 200, 20);
-        labelArrivalDis.setBounds(100, 70, 200, 20);
+        labelDepartureDis.setBounds(100, 20, 400, 25);
+        labelDepartureDis.setFont(new Font("Times", Font.PLAIN, 25));
+        labelArrivalDis.setBounds(100, 80, 400, 25);
+        labelArrivalDis.setFont(new Font("Times", Font.PLAIN, 25));
 
         button1.setBounds(100, 300, 100, 30);
         button1.addActionListener(this);

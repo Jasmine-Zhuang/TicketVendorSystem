@@ -88,7 +88,7 @@ public class TicketManager implements Serializable {
             Customer customer = cm.showCustomer(username);
             int mileage = this.getMileage(ticket,fm);
             int pts_returned = mileage / 5;
-            PurchaseHistory ph = pm.getPhMap().get(customer);
+            PurchaseHistory ph = pm.getPhMap().get(customer.getUsername());
             Flight flight = fm.getFlightByNum(ticket.getFlightNumber());
 
             // remove ticket from list

@@ -53,9 +53,12 @@ public class PurchaseHistory implements Serializable {
      * @return true if the ticket has been successfully added.
      */
     public boolean addPurchasedTickets (Ticket ticket, Customer customer) {
-        purchasedTickets.add(ticket);
-        customer.setPurchaseHistory(this);
-        return true;
+        if (!purchasedTickets.contains(ticket)) {
+            purchasedTickets.add(ticket);
+            customer.setPurchaseHistory(this);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -65,9 +68,12 @@ public class PurchaseHistory implements Serializable {
      */
 
     public boolean addItemRedeemed(RewardsItem item, Customer customer) {
+        if (!itemRedeemed.contains(item)) {
         itemRedeemed.add(item);
         customer.setPurchaseHistory(this);
         return true;
+        }
+        return false;
     }
 
     /**
