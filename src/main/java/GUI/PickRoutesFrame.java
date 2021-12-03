@@ -101,6 +101,7 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
             label2.setText(data2);
         }
         else if (e.getSource() == button2) {//Back to bookticket frame
+            this.dispose();
             BookTicketMenuFrame bookticket = new BookTicketMenuFrame(fm, cm, tm, username,  phm, lm);
         }
     }
