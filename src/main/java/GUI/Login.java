@@ -22,7 +22,7 @@ public class Login extends JFrame implements ActionListener {
     JButton loginBT = new JButton();
     JButton createBT = new JButton();
     JTextField username = new JTextField();
-    JTextField password = new JTextField();
+    JPasswordField password = new JPasswordField();
     FlightManager fm;
     TicketManager tm ;
     CustomerManager cm;
@@ -84,7 +84,7 @@ public class Login extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginBT){
             try {
-                if (LoginSystem.checkUser(username.getText(), password.getText())){
+                if (LoginSystem.checkUser(username.getText(), String.valueOf(password.getPassword()))){
                     System.out.println("Login success!");
                     this.dispose();
                     MainMenuFrame mainMenuFrame = new MainMenuFrame(this.fm, this.cm, this.tm,

@@ -78,7 +78,8 @@ public class BookTicketFrame extends JFrame implements ActionListener {
 
         this.setTitle("U-Ticket Booking System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 300);
+        this.setSize(500, 800);
+        this.setLocation(new Point(500, 300));
         this.setLayout(new BorderLayout());
         this.setVisible(true);
         this.add(panel1);
