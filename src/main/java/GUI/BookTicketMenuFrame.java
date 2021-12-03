@@ -97,7 +97,8 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button1 == e.getSource()){
             this.dispose();
-            PickRoutesFrame pickRoutesFrame= new PickRoutesFrame(this.fm,this.cm,this.tm,this.username,this.phm,this.lm);//instantiate next page for routes picking
+            PickRoutesFrame pickRoutesFrame= new PickRoutesFrame(this.fm,this.cm,this.tm,
+                    this.username,this.phm,this.lm);//instantiate next page for routes picking
         }else if(button2 == e.getSource()){
             this.dispose();
             MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, this.username,this.phm,this.lm);//instantiate main menu

@@ -19,6 +19,9 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
     String[] aCities = {"Vancouver", "Toronto", "Montreal", "Ottawa"};
     JButton button1 = new JButton("SHOW");
     JButton confirmButton = new JButton("Confirm");
+
+    JButton button2 = new JButton("Back to Book Ticket Menu");
+
     JComboBox<String> dCb = new JComboBox<>(dCities);
     JComboBox<String> aCb = new JComboBox<>(aCities);
     FlightManager fm;
@@ -58,12 +61,15 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
 
         button1.setBounds(200, 300, 100, 30);
         button1.addActionListener(this);
+        button2.setBounds(200, 300, 100, 30);
+        button2.addActionListener(this);
         confirmButton.setBounds(200, 350, 100, 30);
         confirmButton.addActionListener(this);
 
         this.add(label2);
         this.add(label1);
         this.add(button1);
+        this.add(button2);
         this.add(labelArrivalDis);
         this.add(labelDepartureDis);
         this.add(confirmButton);
@@ -93,6 +99,9 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
             String data2 = "Destination selected "
                     + dCb.getItemAt(aCb.getSelectedIndex());
             label2.setText(data2);
+        }
+        else if (e.getSource() == button2) {//Back to bookticket frame
+            BookTicketMenuFrame bookticket = new BookTicketMenuFrame(fm, cm, tm, username,  phm, lm);
         }
     }
 }

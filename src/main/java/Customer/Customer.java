@@ -31,7 +31,7 @@ public class Customer implements Serializable {
         this.membership = false;
         this.membership_level = 0;
         this.redeem_points = 0;
-        this.purchase_history = new PurchaseHistory(this);
+        this.purchase_history = null;
     }
 
     /**
@@ -91,7 +91,13 @@ public class Customer implements Serializable {
         return this.password.equals(password);
     }
 
-
+    /**
+     * Assign the purchaseHistory to this customer
+     * @param purchaseHistory the purchaseHistory for this customer.
+     */
+    public void setPurchaseHistory(PurchaseHistory purchaseHistory){
+        this.purchase_history = purchaseHistory;
+    }
     /**
      * Change the password of this customer.
      * @param original the original password (needs to be checked)

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class PickFlightFrame extends JFrame implements ActionListener {
     JButton submitButton;
     JButton showButton;
+    JButton backButton;
 
     FlightManager fm;
     TicketManager tm;
@@ -48,6 +49,9 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         showButton = new JButton("Show information of flight picked.");
         showButton.addActionListener(this);
         submitButton.setSize(100,100);
+        backButton =new JButton("Back to Route Selection Menu");
+        backButton.addActionListener(this);
+        backButton.setSize(100,100);
 
         //flightNumsComoBox setup
         ArrayList<String> matchedFlights = fm.getFlightByRoute(dCity,aCity);//array list of flight nums
@@ -75,6 +79,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
 
         panel.add(submitButton);
         panel.add(showButton);
+        panel.add(backButton);
         panel.add(la);
 
         //frame setup
@@ -103,6 +108,10 @@ public class PickFlightFrame extends JFrame implements ActionListener {
             PickSeatFrame pickSeatFrame = new PickSeatFrame(this.fm,this.cm,this.tm,flightNumPicked,
                     this.username,this.phm, this.lm);
         }else if(e.getSource() == showButton){
+            String flightNumPicked= (String) flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
+            flightInfoLabel.setText(fm.displayFlightInfoInGUI(flightNumPicked));
+        }
+        else if(e.getSource() == backButton){
             String flightNumPicked= (String) flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
             flightInfoLabel.setText(fm.displayFlightInfoInGUI(flightNumPicked));
         }
