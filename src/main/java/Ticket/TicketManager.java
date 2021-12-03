@@ -88,7 +88,7 @@ public class TicketManager implements Serializable {
             Customer customer = cm.showCustomer(username);
             int mileage = this.getMileage(ticket,fm);
             int pts_returned = mileage / 5;
-            PurchaseHistory ph = pm.getPhMap().get(customer);
+            PurchaseHistory ph = pm.getPhMap().get(customer.getUsername());
             Flight flight = fm.getFlightByNum(ticket.getFlightNumber());
 
             // remove ticket from list
@@ -97,7 +97,7 @@ public class TicketManager implements Serializable {
             flight.CancelOneSeat(ticket.getSeat_number());
             // remove from purchase history
             if(ph != null){
-                ph.removePurchasedTickets(ticket);
+                ph.removePurchasedTickets(ticket,customer);
                 pm.updatePurchaseHistory(customer, ph);
             }
             // update balance = price ticket - penalty + luggage penalty
@@ -105,15 +105,16 @@ public class TicketManager implements Serializable {
             int lug_penalty = pc.luggagePenalty(luggageWeight, ticket);
             int change_penalty = pc.penaltyPrice(ticket);
             int minus_price = price - change_penalty + lug_penalty;
-            cm.decrBalance(minus_price,customer);
+            cm.incrBalance(minus_price,customer);
             // calculate redeem point
             if (cm.checkMembership(customer)){
                 cm.minusRedeemPoint(customer, pts_returned);
             }
-            cm.decrMileage(customer, pts_returned); //minus mileage
+            int negative_mileage = mileage - 2*mileage;
+            cm.incrMileage(negative_mileage, customer); // minus mileage
             //extra penalty if redeem points<0 after above operations
             int negativePointPenalty = pc.pointPenalty(customer);//negative int or 0
-            cm.incrMileage(negativePointPenalty,customer);
+            cm.incrBalance(negativePointPenalty,customer);
             //remove luggage
             lm.cancelLuggage(luggageId);
 

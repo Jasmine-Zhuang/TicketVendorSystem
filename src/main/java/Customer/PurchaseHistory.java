@@ -52,9 +52,13 @@ public class PurchaseHistory implements Serializable {
      * @param ticket A ticket instance.
      * @return true if the ticket has been successfully added.
      */
-    public boolean addPurchasedTickets (Ticket ticket) {
-        purchasedTickets.add(ticket);
-        return true;
+    public boolean addPurchasedTickets (Ticket ticket, Customer customer) {
+        if (!purchasedTickets.contains(ticket)) {
+            purchasedTickets.add(ticket);
+            customer.setPurchaseHistory(this);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -63,9 +67,13 @@ public class PurchaseHistory implements Serializable {
      * @return true if the item has been successfully added.
      */
 
-    public boolean addItemRedeemed(RewardsItem item) {
-        itemRedeemed.add(item);
-        return true;
+    public boolean addItemRedeemed(RewardsItem item, Customer customer) {
+        if (!itemRedeemed.contains(item)) {
+            itemRedeemed.add(item);
+            customer.setPurchaseHistory(this);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -73,9 +81,10 @@ public class PurchaseHistory implements Serializable {
      * @param ticket A ticket instance.
      * @return true if the ticket has been successfully added.
      */
-    public boolean removePurchasedTickets (Ticket ticket) {
+    public boolean removePurchasedTickets (Ticket ticket, Customer customer) {
         if (purchasedTickets.contains(ticket)) {
             purchasedTickets.remove(ticket);
+            customer.setPurchaseHistory(this);
             return true;
         } else {return false;}
     }
@@ -86,9 +95,10 @@ public class PurchaseHistory implements Serializable {
      * @return true if the item has been successfully added.
      */
 
-    public boolean removeItemRedeemed(RewardsItem item) {
+    public boolean removeItemRedeemed(RewardsItem item, Customer customer) {
         if (itemRedeemed.contains(item)){
             itemRedeemed.remove(item);
+            customer.setPurchaseHistory(this);
             return true;
         } else {return false;}
     }

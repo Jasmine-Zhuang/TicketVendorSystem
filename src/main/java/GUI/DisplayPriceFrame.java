@@ -26,7 +26,6 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
     String flightNum;
     String seat;
     String username;
-//    String ticketID;
     String classType;
     int ticketPrice;
     int penalty = 0;
@@ -102,10 +101,10 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
      * @param flightNum A list of Flight, Customer, and String instances that have info[0] = the Flight instance,
      *             info[1] = Customer instance, info[2] = classType.
      */
-    public void getInfo(String flightNum, String classT) {
+    public void getInfo(String flightNum, String classType) {
 //        flight = (Flight) info.get(0);
-        this.classType = "First";
         this.flightNum=flightNum;
+        this.classType = classType;
         ticketPrice = pc.calculatePrice(fm.getFlightByNum(flightNum), cm.showCustomer(this.username), classType);
         //latePenalty = pc.penaltyPrice(tm.getTicketByID(ticketID));
         //luggagePenalty = pc.luggagePenalty()
@@ -113,6 +112,7 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
         String msg = "<html> Air transportation charges: $" + ticketPrice +
                 //"<br/> Late return/change charges: $" + penalty +
                 "<br/> Grand Total: $" + total +
+                "<br/> If agreed, please click next" +
                 "<html>";
         label2.setText(msg);
     }

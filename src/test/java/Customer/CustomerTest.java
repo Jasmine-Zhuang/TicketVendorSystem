@@ -139,7 +139,7 @@ public class CustomerTest {
     @Test(timeout = 50)
     public void test_getPurchase_History() {
         RewardsItem mug = new RewardsItem("Mug",800);
-        Maggie.getPurchaseHistory().addItemRedeemed(mug);
+        Maggie.getPurchaseHistory().addItemRedeemed(mug, Maggie);
         PurchaseHistory ph = Maggie.getPurchaseHistory();
         assertEquals(Maggie, ph.getOwner());
         ArrayList<RewardsItem> item_list = new ArrayList<>();
