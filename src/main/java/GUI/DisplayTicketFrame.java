@@ -98,7 +98,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
                 "<br/> Boarding time will be one hour before departure." +
                 "<br/> And gate closes 20 minutes before departure." +
                 "<br/> Have a nice trip!" +
-                "-----------------------<html>";
+                "<br/> -----------------------<html>";
         label2.setText(msg);
 
         label.setFont(new Font("Times", Font.BOLD,40));

@@ -52,9 +52,11 @@ public class LuggageFrame extends JFrame implements ActionListener {
         this.u_name = username;
         this.t_id = tck_id;
         this.pc = new PriceCalculator();
-        label.setText("Please input ur Luggage weight(0kg~30kg)");
+        label.setFont(new Font("Times", Font.BOLD,15));
+        label.setText("<html> Please input your luggage weight (Max: 30kg) " +
+                "<br/> 1.5% of ticket price per kg penalty will be applied for luggage over 23 kg.<html>");
         label.setVerticalAlignment(JLabel.TOP);
-        label.setBounds(0,0,400,20);
+        label.setBounds(0,0,400,60);
 
         weight.setText("Weight: ");
         weight.setBounds(10,100,100,20);
@@ -106,38 +108,64 @@ public class LuggageFrame extends JFrame implements ActionListener {
             try {
                 int wt = Integer.parseInt(l_weight.getText());
                 if (wt > 0 && wt <= 30) {
+                    if (wt > 23) {
+                        //确认是否托运：
+                        int penalty = pc.luggagePenalty(wt, tm.getTicketByID(t_id));
+                        int result = JOptionPane.showConfirmDialog(
+                                this,"Your luggage is overweight, penalty will be applied: $" + penalty);
+                        if (result == JOptionPane.YES_OPTION) {
+                            if(cm.showCustomer(u_name).getBalance() >= penalty){
+                                cm.showCustomer(u_name).decrBalance(penalty);
+                            }else{
+
+
+                                int result1 = JOptionPane.showConfirmDialog(
+                                        this,"Insufficient balance, do you want to " +
+                                                "load the outstanding fees?");
+                                if (result1 == JOptionPane.YES_OPTION) {
+                                    this.cm.showCustomer(this.u_name).incrBalance(penalty -
+                                            this.cm.showCustomer(this.u_name).getBalance());
+                                    cm.showCustomer(u_name).decrBalance(penalty);
+                                }else{
+                                    LuggageFrame select_luggage= new LuggageFrame(this.fm, this.cm, this.tm, this.phm,
+                                            this.lm, this.u_name,this.t_id);
+                                }
+//                                JOptionPane.showMessageDialog(null,
+//                                        "Warning: insufficient balance.","warning",
+//                                        JOptionPane.WARNING_MESSAGE);
+//
+//                                Insufficient_Balance insufficient_balance = new
+//                                        Insufficient_Balance(this.cm,this.fm,this.tm,
+//                                        this.u_name,this.phm,this.lm);
+                            }
+                        }else{
+                            LuggageFrame select_luggage= new LuggageFrame(this.fm, this.cm, this.tm, this.phm,
+                                    this.lm, this.u_name,this.t_id);
+                        }
+
+                    }
                     lm.generateLuggage(wt, tm.getTicketByID(t_id).getFlightNumber(),
                             tm.getTicketByID(t_id).getSeat_number());
                     String luggageId = tm.getTicketByID(t_id).getFlightNumber() +
                             tm.getTicketByID(t_id).getSeat_number();
                     tm.getTicketByID(t_id).setLuggage_id(luggageId);
-                    if (wt > 23) {
-                        int penalty = pc.luggagePenalty(wt, tm.getTicketByID(t_id));
-                        if(cm.showCustomer(u_name).getBalance() >= penalty){
-                            cm.showCustomer(u_name).decrBalance(penalty);
-                        }else{
-                            JOptionPane.showMessageDialog(null,
-                                    "Warning: insufficient balance.","warning",
-                                    JOptionPane.WARNING_MESSAGE);
 
-                            Insufficient_Balance insufficient_balance = new
-                                    Insufficient_Balance(this.cm,this.fm,this.tm,
-                                    this.u_name,this.phm,this.lm);
-                        }
-                    }
                     ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
                     luggageSerialization.saveLM(this.lm, "LuggageManager.ser");
                     this.dispose();
+                    JOptionPane.showMessageDialog(null,
+                            "Successfully added your Luggage", "Congratulations",
+                            JOptionPane.INFORMATION_MESSAGE);
                     Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
                             this.u_name, this.phm, this.lm, this.t_id);
                 }else{
                     JOptionPane.showMessageDialog(null,
-                            "Warning: insufficient input.", "warning",
+                            "Warning: You have reached the maximum luggage weight. Please re-enter", "warning",
                             JOptionPane.WARNING_MESSAGE);
                 }
             } catch (Exception exception){
                 JOptionPane.showMessageDialog(null,
-                        "Warning: insufficient input.", "warning",
+                        "Warning: Invalid input.", "warning",
                         JOptionPane.WARNING_MESSAGE);
             }
         }

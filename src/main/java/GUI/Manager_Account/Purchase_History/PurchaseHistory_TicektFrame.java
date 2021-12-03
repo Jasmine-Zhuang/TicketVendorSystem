@@ -98,6 +98,7 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
                         "<br/> Seat Number: " + Ticket_historylist.get(i).getSeat_number() +
                         "<br/> Ticket ID: " + Ticket_historylist.get(i).getTicket_id() +
                         "<br/> Meal: " + Ticket_historylist.get(i).getTicket_Meal() +
+                        "<br/> Luggage ID: " + Ticket_historylist.get(i).getLuggage_id() +
                         "<html>";
                 Ticket_Array[i] = one_ticket;
             }
