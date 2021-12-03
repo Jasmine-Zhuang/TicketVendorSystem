@@ -7,6 +7,7 @@ import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -55,6 +56,7 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
 
         label1.setBounds(100, 200, 200, 20);
         label2.setBounds(100, 250, 200, 20);
+        label1.setFont(new Font("Times", Font.PLAIN, 10));
 
         labelDepartureDis.setBounds(100, 10, 200, 20);
         labelArrivalDis.setBounds(100, 70, 200, 20);

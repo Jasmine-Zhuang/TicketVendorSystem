@@ -113,6 +113,7 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
         String msg = "<html> Air transportation charges: $" + ticketPrice +
                 //"<br/> Late return/change charges: $" + penalty +
                 "<br/> Grand Total: $" + total +
+                "<br/> If agree, please click 'next'" +
                 "<html>";
         label2.setText(msg);
     }
