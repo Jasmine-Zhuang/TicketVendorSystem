@@ -101,12 +101,16 @@ public class TicketManagerTest {
    @Test(timeout = 5000)
    public void TestCancelTickets() {
        // set up
-       tm.bookTickets(t1);
        fm.AddFlight("1234", "Toronto", "Vancouver", dt, at, "Small",
                10, "3600");
        ph.addPurchasedTickets(t1);
        phm.updateHistory(ph);
        cm.addCustomer(olivia);
+       cm.incrMileage(10, olivia);
+       cm.incrBalance(5000, olivia);
+       tm.bookTickets(t1);
+       cm.decrBalance(pc.calculatePrice(flight, olivia, t1.getTicket_class()), olivia);
+
        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
        LocalDateTime now = LocalDateTime.now();
        String exp1 = "You have successfully canceled the ticket for flight " + t1.getFlightNumber() +
@@ -121,6 +125,9 @@ public class TicketManagerTest {
        assertFalse(soldTickets.contains(t1));
        assertFalse(soldTickets.contains(t2));
        assertFalse(ph.getPurchasedTickets().contains(t1)); // t1 is removed from olivia's purchase history
+       assertEquals(5000, cm.showCustomerBalance("taylorsusername")); // check if balance has been returned
+       //assertEquals(olivia.getMileage(),5000);
+       assertEquals(olivia.getMileage(),10);
    }
 
     @Test(timeout = 500)
