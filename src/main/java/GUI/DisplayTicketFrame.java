@@ -74,7 +74,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         this.cm.incrMileage(this.tm.getMileage(t,this.fm),cm.showCustomer(username));
         this.cm.calculateRedeemPoint(cm.showCustomer(username));
         fm.reserveSeat(flightNum, seat_num);
-        cm.showCustomer(this.username).getPurchaseHistory().addPurchasedTickets(t);
+        cm.showCustomer(this.username).getPurchaseHistory().addPurchasedTickets(t, cm.showCustomer(this.username));
         this.phm.updateHistory(cm.showCustomer(this.username).getPurchaseHistory());// update purchase history
 
         flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
