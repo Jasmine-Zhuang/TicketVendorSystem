@@ -17,6 +17,7 @@ import Ticket.TicketDeserialization;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.IOException;
+import java.util.List;
 
 
 public class Controller {
@@ -131,84 +132,84 @@ public class Controller {
                 540, "10C");
 
         //Route 5 Toronto-Ottawa
-        fm.AddFlight("CZ324", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","7","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","7","10","45","0"),"Small", 450, "10A");
-
-        fm.AddFlight("CZ325", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","8","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","8","10","45","0"),"Medium", 450, "10A");
-
-        fm.AddFlight("CZ326", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Large", 450, "10A");
-
-        //Route 6 Ottawa - Toronto
-        fm.AddFlight("CZ327", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Small", 450, "10A");
-
-        fm.AddFlight("CZ328","Ottawa", "Toronto",
-                (ArrayList<String>) Arrays.asList("2021","12","10","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","10","10","45","0"),"Medium", 450, "10A");
-
-        fm.AddFlight("CZ329", "Ottawa","Toronto",
-                (ArrayList<String>) Arrays.asList("2021","12","11","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","11","10","45","0"),"Large", 450, "10A");
-
-
-        //Route 7 Vancouver-Ottawa
-        fm.AddFlight("CZ330", "Vancouver", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","7","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","7","10","45","0"),"Small", 4363, "10A");
-
-        fm.AddFlight("CZ331", "Vancouver", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","8","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","8","10","45","0"),"Medium", 4363, "10A");
-
-        fm.AddFlight("CZ332", "Vancouver", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Large", 4363, "10A");
-
-        //Route 8 Ottawa - Vancouver
-        fm.AddFlight("CZ333", "Ottawa","Vancouver",
-                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Small", 4363, "10F");
-
-        fm.AddFlight("CZ334","Ottawa", "Vancouver",
-                (ArrayList<String>) Arrays.asList("2021","12","10","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","10","10","45","0"),"Medium", 4363, "10G");
-
-        fm.AddFlight("CZ335", "Ottawa", "Vancouver",
-                (ArrayList<String>) Arrays.asList("2021","12","11","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","11","10","45","0"),"Large", 4363, "10C");
-
-        //Route 9 Montreal-Ottawa
-        fm.AddFlight("CZ336", "Montreal", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","7","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","7","10","45","0"),"Small", 199, "10A");
-
-        fm.AddFlight("CZ337", "Montreal", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","8","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","8","10","45","0"),"Medium", 199, "10A");
-
-        fm.AddFlight("CZ338", "Montreal", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Large", 199, "10A");
-
-        //Route 10 Ottawa - Montreal
-        fm.AddFlight("CZ339", "Ottawa","Montreal",
-                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Small", 199, "10W");
-
-        fm.AddFlight("CZ340","Ottawa", "Montreal",
-                (ArrayList<String>) Arrays.asList("2021","12","10","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","10","10","45","0"),"Medium", 199, "10L");
-
-        fm.AddFlight("CZ341", "Ottawa", "Montreal",
-                (ArrayList<String>) Arrays.asList("2021","12","11","8","50","0"),
-                (ArrayList<String>)Arrays.asList("2021","12","11","10","45","0"),"Large", 199, "10P");
-
+//        fm.AddFlight("CZ324", "Toronto", "Ottawa",
+//                (ArrayList<String>) Arrays.asList("2021","12","7","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","7","10","45","0"),"Small", 450, "10A");
+//
+//        fm.AddFlight("CZ325", "Toronto", "Ottawa",
+//                (ArrayList<String>)Arrays.asList("2021","12","8","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","8","10","45","0"),"Medium", 450, "10A");
+//
+//        fm.AddFlight("CZ326", "Toronto", "Ottawa",
+//                (ArrayList<String>)Arrays.asList("2021","12","9","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Large", 450, "10A");
+//
+//        //Route 6 Ottawa - Toronto
+//        fm.AddFlight("CZ327", "Toronto", "Ottawa",
+//                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Small", 450, "10A");
+//
+//        fm.AddFlight("CZ328","Ottawa", "Toronto",
+//                (ArrayList<String>) Arrays.asList("2021","12","10","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","10","10","45","0"),"Medium", 450, "10A");
+//
+//        fm.AddFlight("CZ329", "Ottawa","Toronto",
+//                (ArrayList<String>) Arrays.asList("2021","12","11","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","11","10","45","0"),"Large", 450, "10A");
+//
+//
+//        //Route 7 Vancouver-Ottawa
+//        fm.AddFlight("CZ330", "Vancouver", "Ottawa",
+//                (ArrayList<String>) Arrays.asList("2021","12","7","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","7","10","45","0"),"Small", 4363, "10A");
+//
+//        fm.AddFlight("CZ331", "Vancouver", "Ottawa",
+//                (ArrayList<String>) Arrays.asList("2021","12","8","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","8","10","45","0"),"Medium", 4363, "10A");
+//
+//        fm.AddFlight("CZ332", "Vancouver", "Ottawa",
+//                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Large", 4363, "10A");
+//
+//        //Route 8 Ottawa - Vancouver
+//        fm.AddFlight("CZ333", "Ottawa","Vancouver",
+//                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Small", 4363, "10F");
+//
+//        fm.AddFlight("CZ334","Ottawa", "Vancouver",
+//                (ArrayList<String>) Arrays.asList("2021","12","10","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","10","10","45","0"),"Medium", 4363, "10G");
+//
+//        fm.AddFlight("CZ335", "Ottawa", "Vancouver",
+//                (ArrayList<String>) Arrays.asList("2021","12","11","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","11","10","45","0"),"Large", 4363, "10C");
+//
+//        //Route 9 Montreal-Ottawa
+//        fm.AddFlight("CZ336", "Montreal", "Ottawa",
+//                (ArrayList<String>) Arrays.asList("2021","12","7","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","7","10","45","0"),"Small", 199, "10A");
+//
+//        fm.AddFlight("CZ337", "Montreal", "Ottawa",
+//                (ArrayList<String>) Arrays.asList("2021","12","8","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","8","10","45","0"),"Medium", 199, "10A");
+//
+//        fm.AddFlight("CZ338", "Montreal", "Ottawa",
+//                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Large", 199, "10A");
+//
+//        //Route 10 Ottawa - Montreal
+//        fm.AddFlight("CZ339", "Ottawa","Montreal",
+//                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Small", 199, "10W");
+//
+//        fm.AddFlight("CZ340","Ottawa", "Montreal",
+//                (ArrayList<String>) Arrays.asList("2021","12","10","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","10","10","45","0"),"Medium", 199, "10L");
+//
+//        fm.AddFlight("CZ341", "Ottawa", "Montreal",
+//                (ArrayList<String>) Arrays.asList("2021","12","11","8","50","0"),
+//                (ArrayList<String>)Arrays.asList("2021","12","11","10","45","0"),"Large", 199, "10P");
+//
     }
 }
 

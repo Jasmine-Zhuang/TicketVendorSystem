@@ -71,17 +71,16 @@ public class PickSeatFrame extends JFrame{
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                PickSeatFrame.this.seatNumber = SeatsComboBox.getItemAt(SeatsComboBox.getSelectedIndex()).substring(1,3);
-                PickSeatFrame.this.dispose();
-                DisplayPriceFrame displayPriceFrame =
-                        new DisplayPriceFrame(PickSeatFrame.this.cm,PickSeatFrame.this.fm,
-                                PickSeatFrame.this.tm,PickSeatFrame.this.seatNumber,PickSeatFrame.this.username,
-                                PickSeatFrame.this.phm, PickSeatFrame.this.lm);
-                displayPriceFrame.getInfo(PickSeatFrame.this.flightNum,"First");
-            }
+        submitButton.addActionListener(e -> {
+            String SeatAndClass = SeatsComboBox.getItemAt(SeatsComboBox.getSelectedIndex());
+            PickSeatFrame.this.seatNumber = SeatAndClass.substring(1,SeatAndClass.indexOf(","));
+            String Class = SeatAndClass.substring(SeatAndClass.indexOf(",")+2, SeatAndClass.indexOf("]"));
+            PickSeatFrame.this.dispose();
+            DisplayPriceFrame displayPriceFrame =
+                    new DisplayPriceFrame(PickSeatFrame.this.cm,PickSeatFrame.this.fm,
+                            PickSeatFrame.this.tm,PickSeatFrame.this.seatNumber,PickSeatFrame.this.username,
+                            PickSeatFrame.this.phm, PickSeatFrame.this.lm);
+            displayPriceFrame.getInfo(PickSeatFrame.this.flightNum,Class);
         });
 
 
