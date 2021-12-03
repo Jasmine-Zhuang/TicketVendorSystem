@@ -162,17 +162,6 @@ public class Membership implements Serializable {
         }
     }
 
-    /**
-     * Get Reedem Points for this customer
-     */
-
-    public void decrMileage(Customer customer, double redeem_points) {
-        if (this.MembershipCustomer.containsKey(customer.getUsername())) {
-            if (customer.checkMembership()) {
-                customer.decrMileage(redeem_points);
-            }
-        }
-    }
 
     /**
      * Calculate Reedem Points for this customer

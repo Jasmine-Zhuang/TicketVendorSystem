@@ -144,7 +144,7 @@ public class Customer implements Serializable {
         this.mileage += mileage;
     }
 
-    public void decrMileage(double redeem_points){
+    public void decrMileage_bypoints(double redeem_points){
         if (this.membership){
             this.mileage -= redeem_points * 100;}
     }

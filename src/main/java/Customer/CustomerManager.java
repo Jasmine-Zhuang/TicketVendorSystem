@@ -243,10 +243,19 @@ public class CustomerManager implements Serializable {
      * Get Redeem mileage for this customer
      */
 
-    public void decrMileage(Customer customer, double redeem_points){
+    public void decrMileage_bypoints(Customer customer, double redeem_points){
         if(AllMember.checkCustomer(customer.getUsername())){
-            AllMember.decrMileage(customer, redeem_points);
+            customer.decrMileage_bypoints(redeem_points);
         }
+    }
+
+    /**
+     * Get Redeem mileage for this customer
+     */
+
+    public void decrMileage(Customer customer, int Mileage){
+        customer.decrMileage(Mileage);
+
     }
 
     /** Return this customer's current information

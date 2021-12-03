@@ -180,7 +180,9 @@ public class Select_Meal extends JFrame implements ActionListener {
                             username, phm, lm, ticket_id);
 
                 }
-            } else if (button3 == e.getSource()) {
+            }
+
+        else if (button3 == e.getSource()) {
                 this.dispose();
                 label2.setText(Vegan);
                 vegan Vegan = new vegan();
@@ -199,7 +201,9 @@ public class Select_Meal extends JFrame implements ActionListener {
                             username, phm, lm, ticket_id);
 
                 }
-            } else if (button4 == e.getSource()) {
+            }
+
+        else if (button4 == e.getSource()) {
                 this.dispose();
                 label2.setText(calories);
                 low_calories low_calories = new low_calories();
@@ -217,7 +221,9 @@ public class Select_Meal extends JFrame implements ActionListener {
                     select_meal_main purchaseHistory_ticektFrame = new select_meal_main(cm, fm, tm,
                             username, phm, lm, ticket_id);
                 }
-            } else if (button5 == e.getSource()) {
+            }
+
+        else if (button5 == e.getSource()) {
                 this.dispose();
                 ticketSerialization.saveTM(this.tm, "TicketManager.ser");//save TM
                 select_meal_main select_meal_main = new select_meal_main(this.cm, this.fm, this.tm, this.username, this.phm,
