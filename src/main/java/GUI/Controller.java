@@ -3,10 +3,7 @@
 package GUI;
 
 
-import Customer.CustomerManager;
-import Customer.CMDeserialization;
-import Customer.PHManager;
-import Customer.PHMDeserialiazation;
+import Customer.*;
 import Flight.FlightDeserialization;
 import Flight.FlightManager;
 import Luggage.LuggageDeserialization;
@@ -36,26 +33,31 @@ public class Controller {
     }*/
 
     public static void main(String[] args) {
-/*       Customer c = new Customer("amy","12","Amy");
-        CustomerManager cm = new CustomerManager();
+    /*    CustomerManager cm = new CustomerManager();
+        Customer c = new Customer("1","12","123");
+
         cm.addCustomer(c);
-        TicketManager tm=new TicketManager();
+        c.incrBalance(6000);*/
+     /*   TicketManager tm=new TicketManager();
         FlightManager fm=new FlightManager();
         PHManager phm=new PHManager();*/
-      /*  TicketDeserialization ticketDeserialization =new TicketDeserialization();
+        TicketDeserialization ticketDeserialization =new TicketDeserialization();
         TicketManager tm = ticketDeserialization.restoreTM("TicketManager.ser");
         FlightDeserialization flightDeserialization = new FlightDeserialization();
         FlightManager fm = flightDeserialization.restoreFM("FlightManager.ser");
         CMDeserialization cmDeserialization=new CMDeserialization();
         CustomerManager cm =  cmDeserialization.restoreCM("CMManager.ser");
         PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
-        PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");*/
-        LuggageManager lm=new LuggageManager();
+        PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
+        LuggageDeserialization lmDeserialiazation = new LuggageDeserialization();
+        LuggageManager lm =lmDeserialiazation.restoreLM("LuggageManager.ser");
+
+    /*    LuggageManager lm=new LuggageManager();
         TicketManager tm=new TicketManager();
         FlightManager fm=new FlightManager();
-        PHManager phm=new PHManager();
-        CustomerManager cm = new CustomerManager();
-   /*     LuggageDeserialization lm = new LuggageDeserialization("LuggageManager.ser");*/
+        PHManager phm=new PHManager();*/
+
+
 
 //        try {
 //            cm = cm.PutUsersInCM("users.csv");
@@ -63,23 +65,23 @@ public class Controller {
 //            e.printStackTrace();
 //        }
 
-        GUI gui = new GUI(fm,cm,tm,phm,lm);
+
 
 /*
 //Generate Flights
         //Route1 Toronto-Vancouver
-        ArrayList<String> dTime = new ArrayList<>(Arrays.asList("2021","12","1","8","50","0"));
-        ArrayList<String> aTime = new ArrayList<>(Arrays.asList("2021","12","1","10","45","0"));
+        ArrayList<String> dTime = new ArrayList<>(Arrays.asList("2021","12","11","8","50","0"));
+        ArrayList<String> aTime = new ArrayList<>(Arrays.asList("2021","12","11","10","45","0"));
         fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime, aTime,"Small",
                 3600, "10A");
 
-        ArrayList<String> dTime1 = new ArrayList<>(Arrays.asList("2021","12","2","8","50","0"));
-        ArrayList<String> aTime1 = new ArrayList<>(Arrays.asList("2021","12","2","10","45","0"));
+        ArrayList<String> dTime1 = new ArrayList<>(Arrays.asList("2021","12","12","8","50","0"));
+        ArrayList<String> aTime1 = new ArrayList<>(Arrays.asList("2021","12","12","10","45","0"));
         fm.AddFlight("CZ312", "Toronto", "Vancouver", dTime1, aTime1, "Medium",
                 3600, "10B");
 
-        ArrayList<String> dTime2 = new ArrayList<>(Arrays.asList("2021","12","3","8","50","0"));
-        ArrayList<String> aTime2 = new ArrayList<>(Arrays.asList("2021","12","3","10","45","0"));
+        ArrayList<String> dTime2 = new ArrayList<>(Arrays.asList("2021","12","13","8","50","0"));
+        ArrayList<String> aTime2 = new ArrayList<>(Arrays.asList("2021","12","13","10","45","0"));
         fm.AddFlight("CZ313", "Toronto", "Vancouver", dTime2, aTime2, "Large",
                 3600, "10A");
 
@@ -210,44 +212,12 @@ public class Controller {
         fm.AddFlight("CZ523", "Ottawa", "Montreal" , dTime20, aTime20, "Large",
                 199, "10C");
 
-        //Route2 Vancouver-Toronto
-        ArrayList<String> dTime3 = new ArrayList<>(Arrays.asList("2021","12","4","8","50","0"));
-        ArrayList<String> aTime3 = new ArrayList<>(Arrays.asList("2021","12","4","10","45","0"));
-        fm.AddFlight("CZ315", "Vancouver","Toronto",  dTime3, aTime3,"Small",
-                3600, "10A");
 
-        ArrayList<String> dTime4 = new ArrayList<>(Arrays.asList("2021","12","5","8","50","0"));
-        ArrayList<String> aTime4 = new ArrayList<>(Arrays.asList("2021","12","5","10","45","0"));
-        fm.AddFlight("CZ316", "Vancouver","Toronto", dTime4, aTime4, "Medium",
-                3600, "10B");
+*/
 
-        ArrayList<String> dTime5 = new ArrayList<>(Arrays.asList("2021","12","6","8","50","0"));
-        ArrayList<String> aTime5 = new ArrayList<>(Arrays.asList("2021","12","6","10","45","0"));
-        fm.AddFlight("CZ317", "Vancouver", "Toronto", dTime5, aTime5, "Large",
-                3600, "10A");
 
-        //Route3 Toronto-Montreal
 
-        ArrayList<String> dTime6 = new ArrayList<>(Arrays.asList("2021","12","1","8","50","0"));
-        ArrayList<String> aTime6 = new ArrayList<>(Arrays.asList("2021","12","1","10","45","0"));
-        fm.AddFlight("CZ318", "Toronto", "Montreal", dTime6, aTime6,"Small",
-                540, "10A");
-
-        ArrayList<String> dTime7 = new ArrayList<>(Arrays.asList("2021","12","2","8","50","0"));
-        ArrayList<String> aTime7 = new ArrayList<>(Arrays.asList("2021","12","2","10","45","0"));
-        fm.AddFlight("CZ319", "Toronto", "Montreal", dTime7, aTime7, "Medium",
-                540, "10B");
-
-        ArrayList<String> dTime8 = new ArrayList<>(Arrays.asList("2021","12","3","8","50","0"));
-        ArrayList<String> aTime8 = new ArrayList<>(Arrays.asList("2021","12","3","10","45","0"));
-        fm.AddFlight("CZ320", "Toronto", "Montreal", dTime8, aTime8, "Large",
-                540, "10A");
-
-        //Route 4 Montreal - Toronto
-        ArrayList<String> dTime9 = new ArrayList<>(Arrays.asList("2021","12","4","8","50","0"));
-        ArrayList<String> aTime9 = new ArrayList<>(Arrays.asList("2021","12","4","10","45","0"));
-        fm.AddFlight("CZ321", "Montreal", "Toronto", dTime9, aTime9,"Small",
-                540, "10A");
+        GUI gui = new GUI(fm,cm,tm,phm,lm);
 
 
     }

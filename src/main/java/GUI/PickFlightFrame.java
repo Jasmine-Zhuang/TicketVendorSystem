@@ -86,7 +86,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         this.add(panel);
         this.setTitle("Pick your flight");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 350));
+        this.setPreferredSize(new Dimension(350, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -112,8 +112,9 @@ public class PickFlightFrame extends JFrame implements ActionListener {
             flightInfoLabel.setText(this.fm.displayFlightInfoInGUI(flightNumPicked));
         }
         else if(e.getSource() == backButton){
-            String flightNumPicked= (String) flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
-            flightInfoLabel.setText(this.fm.displayFlightInfoInGUI(flightNumPicked));
+            this.dispose();
+            BookTicketMenuFrame bookTicketMenuFrame = new BookTicketMenuFrame(this.fm,this.cm,this.tm,this.username,
+                    this.phm,this.lm);
         }
 
     }

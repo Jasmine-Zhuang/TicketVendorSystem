@@ -46,7 +46,8 @@ public class PickSeatFrame extends JFrame{
 
 
         ArrayList<ArrayList<String>> availableSeatArrayList = fm.printAvailableSeat(flightNum);
-        JLabel seatDisplayLabel = new JLabel(availableSeatArrayList.toString());
+ /*       JLabel seatDisplayLabel = new JLabel(availableSeatArrayList.toString());*/
+
         String[] availableSeatArray = new String[availableSeatArrayList.size()];
         for(int i = 0; i < availableSeatArrayList.size(); i++) {
             availableSeatArray[i] = String.valueOf(availableSeatArrayList.get(i));
@@ -56,7 +57,7 @@ public class PickSeatFrame extends JFrame{
 
         panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         panel.add(Box.createHorizontalGlue());
-        panel.add(seatDisplayLabel);
+     /*   panel.add(seatDisplayLabel);*/
         panel.add(Box.createRigidArea(new Dimension(10,10)));
         panel.add(SeatsComboBox);
         panel.add(Box.createRigidArea(new Dimension(10,10)));

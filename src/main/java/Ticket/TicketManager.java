@@ -106,11 +106,12 @@ public class TicketManager implements Serializable {
             int change_penalty = pc.penaltyPrice(ticket);
             int minus_price = price - change_penalty + lug_penalty;
             cm.incrBalance(minus_price,customer);
+
             // calculate redeem point
             if (cm.checkMembership(customer)){
                 cm.minusRedeemPoint(customer, pts_returned);
             }
-            cm.decrMileage(customer, mileage); //minus mileage
+            cm.decrMileage(customer,mileage); //minus mileage
             //extra penalty if redeem points<0 after above operations
             int negativePointPenalty = pc.pointPenalty(customer);//negative int or 0
             cm.incrBalance(negativePointPenalty,customer);

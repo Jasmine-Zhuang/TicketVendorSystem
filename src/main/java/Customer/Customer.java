@@ -150,6 +150,14 @@ public class Customer implements Serializable {
     }
 
     /**
+     * Increase the mileage of this customer
+     * @param mileage the mileage to be decrease
+     */
+    public void decrMileage(int mileage){
+            this.mileage -= mileage;}
+
+
+    /**
      * Check the current membership of this customer
      * @return return true if this customer has membership status
      */

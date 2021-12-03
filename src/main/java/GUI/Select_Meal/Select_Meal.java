@@ -161,7 +161,10 @@ public class Select_Meal extends JFrame implements ActionListener {
                 select_meal_main purchaseHistory_ticektFrame = new select_meal_main(cm, fm, tm,
                         username, phm, lm, ticket_id);
 
-            } else if (button2 == e.getSource()) {
+            }
+        }
+
+        else if (button2 == e.getSource()) {
                 this.dispose();
                 label2.setText(Gluten);
                 gluten_intolerance Gluten = new gluten_intolerance();
@@ -232,5 +235,5 @@ public class Select_Meal extends JFrame implements ActionListener {
             }
         }
     }
-}
+
 
