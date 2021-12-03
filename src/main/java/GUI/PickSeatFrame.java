@@ -73,14 +73,14 @@ public class PickSeatFrame extends JFrame{
         this.setVisible(true);
         submitButton.addActionListener(e -> {
             String SeatAndClass = SeatsComboBox.getItemAt(SeatsComboBox.getSelectedIndex());
-            String Seat = SeatAndClass.substring(1,SeatAndClass.indexOf(","));
-            String Class = SeatAndClass.substring(SeatAndClass.indexOf(",")+1, SeatAndClass.indexOf("]"));
+            PickSeatFrame.this.seatNumber = SeatAndClass.substring(1,SeatAndClass.indexOf(","));
+            String Class = SeatAndClass.substring(SeatAndClass.indexOf(",")+2, SeatAndClass.indexOf("]"));
             PickSeatFrame.this.dispose();
             DisplayPriceFrame displayPriceFrame =
                     new DisplayPriceFrame(PickSeatFrame.this.cm,PickSeatFrame.this.fm,
                             PickSeatFrame.this.tm,PickSeatFrame.this.seatNumber,PickSeatFrame.this.username,
                             PickSeatFrame.this.phm, PickSeatFrame.this.lm);
-            displayPriceFrame.getInfo(Seat,Class);
+            displayPriceFrame.getInfo(PickSeatFrame.this.flightNum,Class);
         });
 
 
