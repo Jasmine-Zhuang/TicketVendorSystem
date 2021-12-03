@@ -4,6 +4,7 @@ import Customer.CustomerManager;
 import Customer.LoginSystem;
 import Customer.PHManager;
 import Flight.FlightManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import javax.swing.*;
@@ -26,12 +27,14 @@ public class Login extends JFrame implements ActionListener {
     TicketManager tm ;
     CustomerManager cm;
     PHManager phm;
+    LuggageManager lm;
 
-    Login(FlightManager fm, CustomerManager cm, TicketManager tm,PHManager phm){
+    Login(FlightManager fm, CustomerManager cm, TicketManager tm, PHManager phm, LuggageManager lm){
         this.fm=fm;
         this.cm=cm;
         this.tm=tm;
         this.phm=phm;
+        this.lm = lm;
 
         label.setText("Please login, or create an account if you don't have one.");
         label.setVerticalAlignment(JLabel.TOP);
@@ -84,7 +87,8 @@ public class Login extends JFrame implements ActionListener {
                 if (LoginSystem.checkUser(username.getText(), password.getText())){
                     System.out.println("Login success!");
                     this.dispose();
-                    MainMenuFrame mainMenuFrame = new MainMenuFrame(this.fm, this.cm, this.tm, username.getText(),this.phm);
+                    MainMenuFrame mainMenuFrame = new MainMenuFrame(this.fm, this.cm, this.tm,
+                            username.getText(),this.phm, this.lm);
                 } else{
                     System.out.println("The password is wrong or the user does not exist.");
                 }
@@ -96,7 +100,7 @@ public class Login extends JFrame implements ActionListener {
         }
         if (e.getSource() == createBT){
             this.dispose();
-            CreateAccount ca = new CreateAccount(this.fm, this.cm, this.tm, this.phm);
+            CreateAccount ca = new CreateAccount(this.fm, this.cm, this.tm, this.phm, this.lm);
 
         }
     }

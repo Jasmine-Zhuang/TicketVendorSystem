@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Flight.FlightManager;
 import GUI.Manager_Account.Load_Balance.Load_BalanceFrame;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import Ticket.PriceCalculator;
 import Customer.PHManager;
@@ -20,6 +21,8 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
 //    Customer c = new Customer("abcdedf", "sdcsjdhc36273", "Olivia");
     TicketManager tm;
     PHManager phm;
+    LuggageManager lm;
+
     String flightNum;
     String seat;
     String username;
@@ -40,12 +43,13 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
     JPanel panel3 = new JPanel();
 
     DisplayPriceFrame(CustomerManager customerManager, FlightManager flightManager, TicketManager ticketManager,
-                      String seatNum, String username, PHManager phm) {
+                      String seatNum, String username, PHManager phm, LuggageManager lm){ //add int lug_wgt
 
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.phm = phm;
+        this.lm=lm;
         this.seat = seatNum;
         this.username = username;
 
@@ -98,18 +102,17 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
      * @param flightNum A list of Flight, Customer, and String instances that have info[0] = the Flight instance,
      *             info[1] = Customer instance, info[2] = classType.
      */
-    public void getInfo(String flightNum) {
+    public void getInfo(String flightNum, String classT) {
 //        flight = (Flight) info.get(0);
         this.classType = "First";
         this.flightNum=flightNum;
-
-        ticketPrice = pc.calculatePrice(fm.getFlightByNum(flightNum), cm.showCustomer(this.username), classType);
-//        ticketPrice = price;
-//        penalty = pc.penaltyprice(tm.getTicketByID(ticketID));
+        ticketPrice = pc.calculatePrice(fm.getFlightByNum(flightNum), cm.showCustomer(this.username), classT);
+        //latePenalty = pc.penaltyPrice(tm.getTicketByID(ticketID));
+        //luggagePenalty = pc.luggagePenalty()
         int total = ticketPrice + penalty;
         String msg = "<html> Air transportation charges: $" + ticketPrice +
-//                "<br/> Late return/change charges: $" + penalty +
-//                "<br/> Grand Total: $" + total +
+                //"<br/> Late return/change charges: $" + penalty +
+                "<br/> Grand Total: $" + total +
                 "<html>";
         label2.setText(msg);
     }
@@ -122,22 +125,22 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (buttonPrev == e.getSource()) {
-            BookTicketMenuFrame bookTicketMenuFrame = new BookTicketMenuFrame(fm, cm, tm,this.username,this.phm);
+            BookTicketMenuFrame bookTicketMenuFrame = new BookTicketMenuFrame(fm, cm, tm,this.username,this.phm,this.lm);
             bookTicketMenuFrame.setVisible(true);
             this.dispose();
 /*            PickSeatFrame psf = new PickSeatFrame();*/
         }
         else if (buttonLoad == e.getSource()) {
             // create a new instance of eg. LoadBalanceFrame
-            Load_BalanceFrame lbf = new Load_BalanceFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+            Load_BalanceFrame lbf = new Load_BalanceFrame(this.cm, this.fm, this.tm, this.username, this.phm,this.lm);
             this.dispose();
         }else if (buttonNext == e.getSource()){
         // create a new instance of BookTicketFrame
         // a method in BookTicketFrame to receive all info needed to call generateTicket
         // like btf.getInfo(Flight, Customer, classType, price)
         this.dispose();
-        BookTicketFrame btf = new BookTicketFrame(fm, cm, tm, flightNum, this.username, classType, ticketPrice,
-                seat, this.phm);
+        BookTicketFrame btf = new BookTicketFrame(this.fm, this.cm, this.tm, flightNum, this.username, classType, ticketPrice,
+                this.seat, this.phm,this.lm);
         btf.setVisible(true);
         }
     }

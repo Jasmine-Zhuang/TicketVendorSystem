@@ -127,7 +127,7 @@ public class PriceTest {
 
     @Test
     public void TestPenalty(){
-        assertEquals(75, p.penaltyPrice(t_1));
+        assertEquals(150, p.penaltyPrice(t_1));
         assertEquals(0, p.penaltyPrice(t_2));
         assertEquals(75, p.penaltyPrice(t_3));
         assertEquals(150, p.penaltyPrice(t_4));

@@ -3,15 +3,19 @@ package Ticket;
 This is the class that manages all sold tickets.
  */
 
-
+import Customer.Customer;
+import Customer.CustomerManager;
+import Customer.PurchaseHistory;
+import Luggage.LuggageManager;
 import Flight.FlightManager;
 import Flight.Flight;
-
+import Customer.PHManager;
 import java.io.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import Meal.Meal_choice;
+
 
 public class TicketManager implements Serializable {
 
@@ -66,17 +70,57 @@ public class TicketManager implements Serializable {
      * Remove a ticket from soldTicket to represent that this ticket has been canceled with the
      * time it was cancelled.
      * @param ticket A Ticket instance.
+     * @param lm A LuggageManager instance.
+     * @param pm A PHManager instance.
+     * @param cm A CustomerManager instance.
+     * @param fm A FlightManager instance.
+     * @param pc A PriceCalculator instance.
      * @return a string to indicate whether the cancellation is successful.
      */
 
-    public String cancelTickets(Ticket ticket) {
+    public String cancelTickets(Ticket ticket, LuggageManager lm, PHManager pm, CustomerManager cm, FlightManager fm,
+                                PriceCalculator pc) {
+
         if (soldTickets.contains(ticket)) {
+            String username= ticket.getPassenger_username();
+            String luggageId = ticket.getLuggage_id();
+            int luggageWeight = lm.getWeightById(luggageId);
+            Customer customer = cm.showCustomer(username);
+            int mileage = this.getMileage(ticket,fm);
+            int pts_returned = mileage / 5;
+            PurchaseHistory ph = pm.getPhMap().get(customer);
+            Flight flight = fm.getFlightByNum(ticket.getFlightNumber());
+
+            // remove ticket from list
             soldTickets.remove(ticket);
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDateTime now = LocalDateTime.now();
-            return "You have successfully canceled the ticket for flight " + ticket.getFlightNumber() + " on " +
-                    dtf.format(now) + ". The details are:" + " \n" + ticket;
+            // re-add seat to the flight
+            flight.CancelOneSeat(ticket.getSeat_number());
+            // remove from purchase history
+            if(ph != null){
+                ph.removePurchasedTickets(ticket);
+                pm.updatePurchaseHistory(customer, ph);
+            }
+            // update balance = price ticket - penalty + luggage penalty
+            int price = pc.calculatePrice(flight, customer, ticket.getTicket_class()); // original ticket price
+            int lug_penalty = pc.luggagePenalty(luggageWeight, ticket);
+            int change_penalty = pc.penaltyPrice(ticket);
+            int minus_price = price - change_penalty + lug_penalty;
+            cm.decrBalance(minus_price,customer);
+            // calculate redeem point
+            if (cm.checkMembership(customer)){
+                cm.minusRedeemPoint(customer, pts_returned);
+            }
+            cm.decrMileage(customer, pts_returned); //minus mileage
+            //extra penalty if redeem points<0 after above operations
+            int negativePointPenalty = pc.pointPenalty(customer);//negative int or 0
+            cm.incrMileage(negativePointPenalty,customer);
+            //remove luggage
+            lm.cancelLuggage(luggageId);
+
+            return "You have successfully canceled the ticket for flight " + ticket.getFlightNumber() +
+                    ". The details are:" + " \n" + ticket;
         }
+
         return "You have not booked this flight yet, so it cannot be canceled.";
     }
 
@@ -130,7 +174,21 @@ public class TicketManager implements Serializable {
         return flight.getDistanceTraveled();
     }
 
+    /**
+     * A getter method.
+     *
+     * @return Ticket's meal selection.
+     */
+    public Meal_choice getTicket_Meal(Ticket ticket) {
+        return ticket.getTicket_Meal();
+    }
 
-
+    /**
+     * A setter method.
+     * Set the ticket meal
+     */
+    public void setMeal(Ticket ticket, Meal_choice meal) {
+        ticket.setMeal(meal);
+    }
 
 }

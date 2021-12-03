@@ -37,7 +37,8 @@ public class Insufficient_Balance extends JFrame implements ActionListener {
     RewardsItemFactory rif;
 
     public Insufficient_Balance(CustomerManager customerManager, FlightManager flightManager,
-                                TicketManager ticketManager, String username, PHManager phm, LuggageManager luggageManager) {
+                                TicketManager ticketManager, String username, PHManager phm,
+                                LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;

@@ -35,7 +35,8 @@ public class PurchaseHistory_ReedemItemFrame extends JFrame implements ActionLis
     LuggageManager lm;
 
     public PurchaseHistory_ReedemItemFrame(CustomerManager customerManager, FlightManager flightManager,
-                                           TicketManager ticketManager, String username, PHManager phm, LuggageManager luggageManager) {
+                                           TicketManager ticketManager, String username, PHManager phm,
+                                           LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
@@ -125,7 +126,8 @@ public class PurchaseHistory_ReedemItemFrame extends JFrame implements ActionLis
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm,
+                    this.lm);//instantiate main menu
         }
         else if(back_pre == e.getSource()){
             this.dispose();

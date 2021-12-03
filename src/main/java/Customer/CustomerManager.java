@@ -265,13 +265,14 @@ public class CustomerManager implements Serializable {
         BufferedReader br =new BufferedReader(new FileReader(path));
         String line = br.readLine();
 
+        CMSerialization cmSerialization = new CMSerialization();
         while ((line = br.readLine()) != null){
             String[] data = line.split(",");
-            CMSerialization cmSerialization = new CMSerialization();
             CM.addCustomer(new Customer(data[0],data[1],data[2]));
-            cmSerialization.saveCM(CM, "CMManager.ser");
+
 
         }
+        cmSerialization.saveCM(CM, "CMManager.ser");
         return CM;
     }
 

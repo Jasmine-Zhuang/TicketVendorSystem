@@ -9,11 +9,14 @@ import Customer.PHManager;
 import Customer.PHMDeserialiazation;
 import Flight.FlightDeserialization;
 import Flight.FlightManager;
+import Luggage.LuggageDeserialization;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import Ticket.TicketDeserialization;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.IOException;
 
 
 public class Controller {
@@ -38,23 +41,28 @@ public class Controller {
         TicketManager tm=new TicketManager();
         FlightManager fm=new FlightManager();
         PHManager phm=new PHManager();*/
-        TicketDeserialization ticketDeserialization =new TicketDeserialization();
+      /*  TicketDeserialization ticketDeserialization =new TicketDeserialization();
         TicketManager tm = ticketDeserialization.restoreTM("TicketManager.ser");
         FlightDeserialization flightDeserialization = new FlightDeserialization();
         FlightManager fm = flightDeserialization.restoreFM("FlightManager.ser");
         CMDeserialization cmDeserialization=new CMDeserialization();
         CustomerManager cm =  cmDeserialization.restoreCM("CMManager.ser");
         PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
-        PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
-/*
-        try {
-            cm = PutUsersInCM("users.csv");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-*/
+        PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");*/
+        LuggageManager lm=new LuggageManager();
+        TicketManager tm=new TicketManager();
+        FlightManager fm=new FlightManager();
+        PHManager phm=new PHManager();
+        CustomerManager cm = new CustomerManager();
+   /*     LuggageDeserialization lm = new LuggageDeserialization("LuggageManager.ser");*/
 
-        GUI gui = new GUI(fm,cm,tm,phm);
+//        try {
+//            cm = cm.PutUsersInCM("users.csv");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        GUI gui = new GUI(fm,cm,tm,phm,lm);
 
         //Generate Flights
         //Route1 Toronto-Vancouver
@@ -124,15 +132,15 @@ public class Controller {
 
         //Route 5 Toronto-Ottawa
         fm.AddFlight("CZ324", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","7","8","50","0"),
+                (ArrayList<String>)Arrays.asList("2021","12","7","8","50","0"),
                 (ArrayList<String>)Arrays.asList("2021","12","7","10","45","0"),"Small", 450, "10A");
 
         fm.AddFlight("CZ325", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","8","8","50","0"),
+                (ArrayList<String>)Arrays.asList("2021","12","8","8","50","0"),
                 (ArrayList<String>)Arrays.asList("2021","12","8","10","45","0"),"Medium", 450, "10A");
 
         fm.AddFlight("CZ326", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
+                (ArrayList<String>)Arrays.asList("2021","12","9","8","50","0"),
                 (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Large", 450, "10A");
 
         //Route 6 Ottawa - Toronto

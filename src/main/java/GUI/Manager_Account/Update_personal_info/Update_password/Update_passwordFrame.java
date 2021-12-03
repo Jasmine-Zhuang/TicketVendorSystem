@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
 
@@ -42,14 +43,16 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
     PHManager phm;
     String username;
     Customer customer;
+    LuggageManager lm;
 
     // default constructor
     public Update_passwordFrame(CustomerManager customerManager, FlightManager flightManager,
-                                TicketManager ticketManager, String username, PHManager phm) {
+                                TicketManager ticketManager, String username, PHManager phm,LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.phm = phm;
+        this.lm=lm;
         this.username=username;
         customer = this.cm.showCustomer(username);
 
@@ -132,7 +135,7 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
                 if (this.cm.checkPassword(this.username, password) && LoginSystem.checkUser(this.username,password)) {
                     this.dispose();
                     Update_password_verifiedFrame true_password = new Update_password_verifiedFrame(this.cm, this.fm, this.tm,
-                            this.username, password, this.phm);}//instantiate next page for routes picking
+                            this.username, password, this.phm,this.lm);}//instantiate next page for routes picking
                 else{
                     label2.setText("<html>Sorry! Your password is not in system, please enter your password below again:");
                     }
@@ -143,11 +146,12 @@ public class Update_passwordFrame extends JFrame implements ActionListener {
         if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
-                    this.username,this.phm);//instantiate main menu
+                    this.username,this.phm,this.lm);//instantiate main menu
         }
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm,
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
     }
 }

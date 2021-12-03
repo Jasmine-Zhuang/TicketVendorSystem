@@ -4,6 +4,7 @@ This is the class that manages all scheduled flights information
  */
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class FlightManager implements Serializable {
@@ -61,7 +62,6 @@ public class FlightManager implements Serializable {
      * @param distance_traveled The flight's length
      * @param boardingGate the boarding gate of this flight
 
-
      */
     public void AddFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
                           ArrayList<String> arrivalTime, String flightType, int distance_traveled
@@ -92,7 +92,7 @@ public class FlightManager implements Serializable {
                 break;
             }
         }
-    }
+        }
 
 
 
@@ -251,6 +251,26 @@ public class FlightManager implements Serializable {
             }
         }
         return infoString.toString();
+    }
+    /**
+     * @param flightNum a flight number
+     * @return a string of the information of flight, that will be shown as formatted in GUI
+     */
+    public String displayFlightInfoInGUI(String flightNum) {
+        if (this.idToFlight.containsKey(flightNum)) {
+            Flight f =getFlightByNum(flightNum);
+            DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm:ss");
+            String formattedArrivalTime = f.getArrivalTime().format(FormatObj);
+            String formattedDepartureTime = f.getDepartureTime().format(FormatObj);
+
+            return "<html> Flight " + flightNum +
+                    " <br/> from " + f.getOriginCity() + " to " + f.getDestinationCity() +
+                    "<br/> from " + formattedDepartureTime + " to " + formattedArrivalTime +
+                    "<br/> distance travelled: "+f.getDistanceTraveled()+
+                    "<br/> boarding gate: " + f.getBoardingGate()+ "<html>";
+        }
+        else{return null;}
+
     }
 
 
