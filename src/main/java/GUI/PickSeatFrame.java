@@ -22,7 +22,7 @@ public class PickSeatFrame extends JFrame{
     PHManager phm;
     LuggageManager lm;
     String seatNumber;
-    JButton backButton;
+    JButton backButton = new JButton();
 
 
     PickSeatFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String flightNum, String username,
@@ -34,8 +34,6 @@ public class PickSeatFrame extends JFrame{
         this.tm=tm;
         this.phm=phm;
         this.lm = lm;
-
-
 
 
         JPanel panel = new JPanel();
@@ -67,14 +65,25 @@ public class PickSeatFrame extends JFrame{
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
-
-
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setPreferredSize(new Dimension(500, 500));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
+        backButton.addActionListener(e->{
+            String dCity = PickSeatFrame.this.fm.getDCity(PickSeatFrame.this.flightNum);
+            String aCity = PickSeatFrame.this.fm.getACity(PickSeatFrame.this.flightNum);
+            PickFlightFrame pickflight = new PickFlightFrame(dCity,aCity,
+                    PickSeatFrame.this.fm,
+                    PickSeatFrame.this.cm,
+                    PickSeatFrame.this.tm,
+                    PickSeatFrame.this.username,
+                    PickSeatFrame.this.phm,
+                    PickSeatFrame.this.lm);
+            PickSeatFrame.this.dispose();});
+
+
         submitButton.addActionListener(e -> {
             String SeatAndClass = SeatsComboBox.getItemAt(SeatsComboBox.getSelectedIndex());
             PickSeatFrame.this.seatNumber = SeatAndClass.substring(1,SeatAndClass.indexOf(","));
@@ -97,4 +106,3 @@ public class PickSeatFrame extends JFrame{
 
 
 
-}

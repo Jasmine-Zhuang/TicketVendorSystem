@@ -92,16 +92,19 @@ public class BookTicketFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonBack) {
             this.dispose();
-            DisplayPriceFrame dpf = new DisplayPriceFrame(cm, fm, tm, seatNum, customer_user,this.phm,this.lm);
+            DisplayPriceFrame dpf = new DisplayPriceFrame(this.cm, this.fm, this.tm,
+                    this.seatNum, this.customer_user,this.phm,this.lm);
         }
         else {
-            if (cm.showCustomerBalance(customer_user) >= ticketPrice) {
-                DisplayTicketFrame dtf = new DisplayTicketFrame(fm, cm, tm, flightNum,
-                        fm.getFlightByNum(flightNum).getOriginCity(), fm.getFlightByNum(flightNum).getDestinationCity(),
-                        fm.getFlightByNum(flightNum).getDepartureTime(), fm.getFlightByNum(flightNum).getArrivalTime(),
-                        fm.getFlightByNum(flightNum).getBoardingGate(), seatNum,
-                        this.customer_user, classType, ticketPrice,
-                        this.phm,this.lm);
+            if (cm.showCustomerBalance(this.customer_user) >= this.ticketPrice) {
+                DisplayTicketFrame dtf = new DisplayTicketFrame(this.fm, this.cm, this.tm, this.flightNum,
+                        this.fm.getFlightByNum(this.flightNum).getOriginCity(),
+                        this.fm.getFlightByNum(this.flightNum).getDestinationCity(),
+                        this.fm.getFlightByNum(this.flightNum).getDepartureTime(),
+                        this.fm.getFlightByNum(this.flightNum).getArrivalTime(),
+                        this.fm.getFlightByNum(this.flightNum).getBoardingGate(), this.seatNum,
+                        this.customer_user, this.classType, this.ticketPrice,
+                        this.phm, this.lm);
             }else{JOptionPane.showMessageDialog(null,"Warning: insufficient balance.","warning",
                     JOptionPane.WARNING_MESSAGE);
 

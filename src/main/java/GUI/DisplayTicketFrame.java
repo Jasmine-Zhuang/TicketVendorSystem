@@ -72,9 +72,9 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         this.t_id = t.getTicket_id();
         this.cm.decrBalance(ticketPrice,cm.showCustomer(this.username));
         this.cm.incrMileage(this.tm.getMileage(t,this.fm),cm.showCustomer(username));
-        this.cm.calculateRedeemPoint(cm.showCustomer(username));
-        fm.reserveSeat(flightNum, seat_num);
-        cm.showCustomer(this.username).getPurchaseHistory().addPurchasedTickets(t);
+        this.cm.calculateRedeemPoint(cm.showCustomer(this.username));
+        this.fm.reserveSeat(this.flightNum, this.seatNum);
+        this.cm.showCustomer(this.username).getPurchaseHistory().addPurchasedTickets(t, cm.showCustomer(this.username));
         this.phm.updateHistory(cm.showCustomer(this.username).getPurchaseHistory());// update purchase history
 
         flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
@@ -138,9 +138,11 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.dispose();
-        Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
-                this.username, this.phm, this.lm, t_id);
+        if(e.getSource()== buttonFinish ) {
+            this.dispose();
+            Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
+                    this.username, this.phm, this.lm, this.t_id);
+        }
     }
 
 }

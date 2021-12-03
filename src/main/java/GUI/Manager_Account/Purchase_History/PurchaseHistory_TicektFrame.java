@@ -97,6 +97,7 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
                         "<br/> To: " + Ticket_historylist.get(i).getArrival_city() +
                         "<br/> Seat Number: " + Ticket_historylist.get(i).getSeat_number() +
                         "<br/> Ticket ID: " + Ticket_historylist.get(i).getTicket_id() +
+                        "<br/> Meal: " + Ticket_historylist.get(i).getTicket_Meal() +
                         "<html>";
                 Ticket_Array[i] = one_ticket;
             }
@@ -166,7 +167,7 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
         }
         else if (cancelButton == e.getSource()){
             String ticketId = ticketID.getText();
-            if (ticketId != null){
+            if (ticketId != null && ticketId != "Please input the ticket id of ticket that you want to change or cancel."){
                 int result = JOptionPane.showConfirmDialog(
                         this,"Do you confirm to cancel this ticket?");
                 if (result == JOptionPane.YES_OPTION) {
@@ -193,7 +194,7 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
             String ticketId = ticketID.getText();
             int result = JOptionPane.showConfirmDialog(
                     this,"Sure? You want to change this ticket?");
-            if (ticketId != null){
+            if (ticketId != null && ticketId != "Please input the ticket id of ticket that you want to change or cancel."){
                 if (result == JOptionPane.YES_OPTION) {
                     tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.phm,this.cm,this.fm,this.pc);
 

@@ -97,7 +97,7 @@ public class TicketManager implements Serializable {
             flight.CancelOneSeat(ticket.getSeat_number());
             // remove from purchase history
             if(ph != null){
-                ph.removePurchasedTickets(ticket);
+                ph.removePurchasedTickets(ticket,customer);
                 pm.updatePurchaseHistory(customer, ph);
             }
             // update balance = price ticket - penalty + luggage penalty

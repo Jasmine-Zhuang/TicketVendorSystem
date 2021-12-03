@@ -82,9 +82,9 @@ public class PHManagerTest {
 
     @Test (timeout = 500)
     public void TestGetTickets() {
-        ph1.addPurchasedTickets(t1);
-        ph2.addPurchasedTickets(t2);
-        ph2.addPurchasedTickets(t3);
+        ph1.addPurchasedTickets(t1,c1);
+        ph2.addPurchasedTickets(t2, c2);
+        ph2.addPurchasedTickets(t3, c2);
         phm.updateHistory(ph1);
         phm.updateHistory(ph2);
         ArrayList<Ticket> t1Array = new ArrayList<>(List.of(t1));
@@ -107,9 +107,9 @@ public class PHManagerTest {
 
     @Test (timeout = 500)
     public void TestUpdatePurchaseHistory() {
-        ph.addPurchasedTickets(t1);
-        ph.addPurchasedTickets(t2);
-        ph.addItemRedeemed(rw1);
+        ph.addPurchasedTickets(t1,olivia);
+        ph.addPurchasedTickets(t2,olivia);
+        ph.addItemRedeemed(rw1,olivia);
         phm.updateHistory(ph);
         ph.removePurchasedTickets(t2, olivia);
         phm.updatePurchaseHistory(olivia, ph);

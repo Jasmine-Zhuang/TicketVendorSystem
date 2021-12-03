@@ -272,6 +272,22 @@ public class FlightManager implements Serializable {
         else{return null;}
 
     }
+    /**
+     * @param flightNum a flight number
+     * @return a string of the departure city of flight
+     */
+
+    public String getDCity(String flightNum){
+        return getFlightByNum(flightNum).getOriginCity();
+    }
 
 
+    /**
+     *
+     * @param flightNum a flight number
+     * @return a string of the arrival city of flight
+     */
+    public String getACity(String flightNum){
+        return this.getFlightByNum(flightNum).getDestinationCity();
+    }
 }
