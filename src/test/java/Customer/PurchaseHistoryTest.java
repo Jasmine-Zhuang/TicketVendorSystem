@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class PurchaseHistoryTest {
 
     PurchaseHistory ph;
-    Customer Olivia;
+    Customer Olivia = new Customer("olivia", "123", "Olivia");
     RewardsItem item1 = new RewardsItem("Mug",800);
     RewardsItem item2 = new RewardsItem("UofT bookstore $20 coupon",1000);
     ArrayList<String> dt = new ArrayList<>(Arrays.asList("2021", "8", "22", "12", "35"));

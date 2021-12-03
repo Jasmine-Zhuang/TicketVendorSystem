@@ -161,17 +161,9 @@ public class FlightManager implements Serializable {
         return "This seat has not been reserved or does not exist.";
     }
 
-    /**
-     * provide verify information for the flight that the user wants to look up
-     * return a string of the flight information if the flight is scheduled, otherwise return
-     * a string inform the customer that this flight is not scheduled to fly.
-     */
-    public String verifyYourFlight(String flight_num){
-        if (this.idToFlight.containsKey(flight_num)) {
-            return this.idToFlight.get(flight_num).toString();
-        }
-        return "This flight number is invalid or the flight is not scheduled to fly.";
-    }
+/*
+    */
+
 
     /**
      * provide user a list of flight nums that with specified city of departure and destination
