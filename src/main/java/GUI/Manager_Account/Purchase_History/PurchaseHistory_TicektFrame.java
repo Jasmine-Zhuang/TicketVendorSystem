@@ -1,7 +1,10 @@
 package GUI.Manager_Account.Purchase_History;
 
+import Customer.CMSerialization;
+import Customer.PHMSerialiazation;
 import Customer.PHManager;
 import Flight.FlightManager;
+import Flight.FlightSerialization;
 import GUI.BookTicketMenuFrame;
 import GUI.Manager_Account.ManageAccount;
 
@@ -13,9 +16,11 @@ import java.util.ArrayList;
 
 import Customer.CustomerManager;
 import Luggage.LuggageManager;
+import Luggage.LuggageSerialization;
 import Ticket.TicketManager;
 import Ticket.Ticket;
-
+import Ticket.PriceCalculator;
+import Ticket.TicketSerialization;
 
 public class PurchaseHistory_TicektFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -39,6 +44,12 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
     String username;
     PHManager phm;
     LuggageManager lm;
+    PriceCalculator pc = new PriceCalculator();
+    FlightSerialization flightSerialization = new FlightSerialization();
+    TicketSerialization ticketSerialization = new TicketSerialization();
+    PHMSerialiazation phmSerialiazation = new PHMSerialiazation();
+    CMSerialization cmSerialization = new CMSerialization();
+    LuggageSerialization luggageSerialization = new LuggageSerialization();
 
     PurchaseHistory_TicektFrame(CustomerManager customerManager, FlightManager flightManager,
                                 TicketManager ticketManager, String username,PHManager phm,
@@ -159,7 +170,14 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
                 int result = JOptionPane.showConfirmDialog(
                         this,"Do you confirm to cancel this ticket?");
                 if (result == JOptionPane.YES_OPTION) {
-                    //tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.pm,this.cm,this.fm,this.pc);
+                    tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.phm,this.cm,this.fm,this.pc);
+
+                    flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
+                    ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
+                    phmSerialiazation.savePHM(this.phm,"PHManager.ser");//save PHM
+                    cmSerialization.saveCM(this.cm, "CMManager.ser");//save cm
+                    luggageSerialization.saveLM(this.lm,"LuggageManager.ser");//save lm
+
                     JOptionPane.showMessageDialog(null, "You have successfully canceled ticket"
                             + ticketId);
                     this.dispose();
@@ -177,7 +195,14 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
                     this,"Sure? You want to change this ticket?");
             if (ticketId != null){
                 if (result == JOptionPane.YES_OPTION) {
-                    //tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.pm,this.cm,this.fm,this.pc);
+                    tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.phm,this.cm,this.fm,this.pc);
+
+                    flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
+                    ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
+                    phmSerialiazation.savePHM(this.phm,"PHManager.ser");//save PHM
+                    cmSerialization.saveCM(this.cm, "CMManager.ser");//save cm
+                    luggageSerialization.saveLM(this.lm,"LuggageManager.ser");//save lm
+
                     JOptionPane.showMessageDialog(null,"You have successfully change ticket"
                                     + ticketId,"confirmation",
                             JOptionPane.PLAIN_MESSAGE);
