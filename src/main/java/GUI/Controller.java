@@ -33,14 +33,15 @@ public class Controller {
     }*/
 
     public static void main(String[] args) {
-    /*    CustomerManager cm = new CustomerManager();
+ /*       CustomerManager cm = new CustomerManager();
         Customer c = new Customer("1","12","123");
-
         cm.addCustomer(c);
-        c.incrBalance(6000);*/
-     /*   TicketManager tm=new TicketManager();
+        c.incrBalance(6000);
+        TicketManager tm=new TicketManager();
+         LuggageManager lm=new LuggageManager();
         FlightManager fm=new FlightManager();
         PHManager phm=new PHManager();*/
+
         TicketDeserialization ticketDeserialization =new TicketDeserialization();
         TicketManager tm = ticketDeserialization.restoreTM("TicketManager.ser");
         FlightDeserialization flightDeserialization = new FlightDeserialization();
@@ -52,11 +53,11 @@ public class Controller {
         LuggageDeserialization lmDeserialiazation = new LuggageDeserialization();
         LuggageManager lm =lmDeserialiazation.restoreLM("LuggageManager.ser");
 
-    /*    LuggageManager lm=new LuggageManager();
-        TicketManager tm=new TicketManager();
-        FlightManager fm=new FlightManager();
-        PHManager phm=new PHManager();*/
 
+     /*   TicketManager tm=new TicketManager();
+        FlightManager fm=new FlightManager();
+        PHManager phm=new PHManager();
+*/
 
 
 //        try {
@@ -68,6 +69,7 @@ public class Controller {
 
 
 /*
+
 //Generate Flights
         //Route1 Toronto-Vancouver
         ArrayList<String> dTime = new ArrayList<>(Arrays.asList("2021","12","11","8","50","0"));
@@ -213,8 +215,9 @@ public class Controller {
                 199, "10C");
 
 
-*/
 
+
+*/
 
 
         GUI gui = new GUI(fm,cm,tm,phm,lm);

@@ -55,7 +55,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
 
         //flightNumsComoBox setup
         ArrayList<String> matchedFlights = fm.getFlightByRoute(dCity,aCity);//array list of flight nums
-        JLabel la= new JLabel(matchedFlights.toString());
+
 
         String[] matchedFlightNums = new String[matchedFlights.size()];
         for(int i = 0; i < matchedFlights.size(); i++) {
@@ -80,13 +80,13 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         panel.add(submitButton);
         panel.add(showButton);
         panel.add(backButton);
-        panel.add(la);
+
 
         //frame setup
         this.add(panel);
         this.setTitle("Pick your flight");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(500, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -110,10 +110,11 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         }else if(e.getSource() == showButton){
             String flightNumPicked= (String) flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
             flightInfoLabel.setText(this.fm.displayFlightInfoInGUI(flightNumPicked));
+            flightInfoLabel.setFont(new Font("Times", Font.BOLD, 18));
         }
         else if(e.getSource() == backButton){
             this.dispose();
-            BookTicketMenuFrame bookTicketMenuFrame = new BookTicketMenuFrame(this.fm,this.cm,this.tm,this.username,
+            PickRoutesFrame pickRoutesFrame = new PickRoutesFrame(this.fm,this.cm,this.tm,this.username,
                     this.phm,this.lm);
         }
 

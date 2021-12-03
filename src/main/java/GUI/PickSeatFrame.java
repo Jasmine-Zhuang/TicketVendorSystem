@@ -23,6 +23,7 @@ public class PickSeatFrame extends JFrame{
     LuggageManager lm;
     String seatNumber;
     JButton backButton = new JButton();
+    JLabel label = new JLabel();
 
 
     PickSeatFrame(FlightManager fm,CustomerManager cm, TicketManager tm, String flightNum, String username,
@@ -34,9 +35,13 @@ public class PickSeatFrame extends JFrame{
         this.tm=tm;
         this.phm=phm;
         this.lm = lm;
-
+        label.setFont(new Font("Times", Font.BOLD,25));
+        label.setText("Please select your seat.");
+        label.setVerticalAlignment(JLabel.TOP);
+        label.setBounds(0,0,400,60);
 
         JPanel panel = new JPanel();
+        panel.add(label);
         submitButton.setText("Submit seat picked");
         submitButton.setBounds(200, 300, 100, 30);
         backButton.setText("Back to Flight Selection Menu");
@@ -68,7 +73,7 @@ public class PickSeatFrame extends JFrame{
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(500, 500));
+        this.setPreferredSize(new Dimension(400, 250));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);

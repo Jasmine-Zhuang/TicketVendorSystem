@@ -45,7 +45,7 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
         dCb.setBounds(50, 50, 100, 20);
         this.add(dCb);
         this.setLayout(null);
-        this.setSize(400, 500);
+        this.setSize(500, 500);
         this.setVisible(true);
 
         aCb.setBounds(50, 100, 100, 20);
@@ -62,9 +62,9 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
         labelDepartureDis.setBounds(100, 10, 200, 20);
         labelArrivalDis.setBounds(100, 70, 200, 20);
 
-        button1.setBounds(200, 300, 100, 30);
+        button1.setBounds(100, 300, 100, 30);
         button1.addActionListener(this);
-        button2.setBounds(200, 300, 100, 30);
+        button2.setBounds(100, 300, 100, 30);
         button2.addActionListener(this);
         confirmButton.setBounds(200, 350, 100, 30);
         confirmButton.addActionListener(this);

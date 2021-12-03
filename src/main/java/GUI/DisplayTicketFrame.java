@@ -87,17 +87,17 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         String formattedArrivalTime = fm.getFlightByNum(flightNum).getArrivalTime().format(FormatObj);
         String formattedDepartureTime = fm.getFlightByNum(flightNum).getDepartureTime().format(FormatObj);
         String msg = "<html> --------Air Ticket--------" +
-                "<br/> Name of Passenger: " + cm.showCustomer(username).getName() +
-                "<br/> Flight: " + flightNum +
-                "  Seat: " + seat_num + "  Class Type: " + classType +
-                "<br/> From " + d_city + " to " + a_city +
-                "<br/> Departure time: " + formattedDepartureTime +
-                "<br/> Estimate arrival time: " + formattedArrivalTime +
-                "<br/> Boarding Gate: " + b_gate +
-                "<br/> Price: $" + ticketPrice +
-                "<br/> Boarding time will be one hour before departure." +
-                "<br/> And gate closes 20 minutes before departure." +
-                "<br/> Have a nice trip!" +
+                "<br/> <br/> Name of Passenger: " + cm.showCustomer(username).getName() +
+                "<br/> <br/> Flight: " + flightNum +
+                "<br/> <br/> Seat: " + seat_num + " <br/><br/> Class Type: " + classType +
+                "<br/> <br/>From " + d_city + " to " + a_city +
+                "<br/> <br/> Departure time: " + formattedDepartureTime +
+                "<br/> <br/>Estimate arrival time: " + formattedArrivalTime +
+                "<br/> <br/> Boarding Gate: " + b_gate +
+                "<br/> <br/> Price: $" + ticketPrice +
+                "<br/> <br/>Boarding time will be one hour before departure." +
+                "<br/> <br/>And gate closes 20 minutes before departure." +
+                "<br/> <br/>Have a nice trip!" +
                 "<br/> -----------------------<html>";
         label2.setText(msg);
 
