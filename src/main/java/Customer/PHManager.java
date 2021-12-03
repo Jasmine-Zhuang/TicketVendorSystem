@@ -39,6 +39,7 @@ public class PHManager implements Serializable {
     public void updateHistory (PurchaseHistory purchaseHistory) {
         Customer customer = purchaseHistory.getOwner();
         this.phMap.put(customer, purchaseHistory);
+        customer.setPurchaseHistory(purchaseHistory);
     }
 
     /**

@@ -14,7 +14,7 @@ public class Customer implements Serializable {
     private boolean membership;
     private int membership_level;
     private Integer redeem_points;
-    private final PurchaseHistory purchase_history;
+    private PurchaseHistory purchase_history;
 
     /**
      * Create one Customer giving it the given username, password, name
