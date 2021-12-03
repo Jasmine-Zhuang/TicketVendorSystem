@@ -74,7 +74,7 @@ public class PHManagerTest {
         hm3.put(c2, ph2);
         phm.updateHistory(ph1);
         phm.updateHistory(ph2);
-        ph1.addPurchasedTickets(t1);
+        ph1.addPurchasedTickets(t1, c1);
         phm.updateHistory(ph1);
         hm3.put(c1, ph1);
         assertEquals(hm3, phm.getPhMap());
@@ -95,8 +95,8 @@ public class PHManagerTest {
 
     @Test (timeout = 500)
     public void TestGetRewardsItems() {
-        ph1.addItemRedeemed(rw1);
-        ph2.addItemRedeemed(rw2);
+        ph1.addItemRedeemed(rw1, c1);
+        ph2.addItemRedeemed(rw2, c2);
         phm.updateHistory(ph1);
         phm.updateHistory(ph2);
         ArrayList<RewardsItem> r1Array = new ArrayList<>(List.of(rw1));
@@ -111,7 +111,7 @@ public class PHManagerTest {
         ph.addPurchasedTickets(t2);
         ph.addItemRedeemed(rw1);
         phm.updateHistory(ph);
-        ph.removePurchasedTickets(t2);
+        ph.removePurchasedTickets(t2, olivia);
         phm.updatePurchaseHistory(olivia, ph);
 
         assertFalse(phm.getTickets(olivia).contains(t2));

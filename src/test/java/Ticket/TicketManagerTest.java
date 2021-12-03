@@ -138,8 +138,7 @@ public class TicketManagerTest {
        assertFalse(soldTickets.contains(t2));
        assertFalse(ph.getPurchasedTickets().contains(t1)); // t1 is removed from olivia's purchase history
        assertEquals(5000, cm.showCustomerBalance("taylorsusername")); // check if balance has been returned
-       //assertEquals(olivia.getMileage(),5000);
-       assertEquals(olivia.getMileage(),10);
+       assertEquals(olivia.getMileage(),0);
    }
 
     @Test(timeout = 500)

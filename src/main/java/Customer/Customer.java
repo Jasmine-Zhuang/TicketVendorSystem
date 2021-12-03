@@ -31,7 +31,7 @@ public class Customer implements Serializable {
         this.membership = false;
         this.membership_level = 0;
         this.redeem_points = 0;
-        this.purchase_history = null;
+        this.purchase_history = new PurchaseHistory(this);
     }
 
     /**
