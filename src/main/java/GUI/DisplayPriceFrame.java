@@ -106,7 +106,7 @@ public class DisplayPriceFrame extends JFrame implements ActionListener {
 //        flight = (Flight) info.get(0);
         this.classType = "First";
         this.flightNum=flightNum;
-        ticketPrice = pc.calculatePrice(fm.getFlightByNum(flightNum), cm.showCustomer(this.username), classType);
+        ticketPrice = pc.calculatePrice(fm.getFlightByNum(flightNum), cm.showCustomer(this.username), classT);
         //latePenalty = pc.penaltyPrice(tm.getTicketByID(ticketID));
         //luggagePenalty = pc.luggagePenalty()
         int total = ticketPrice + penalty;

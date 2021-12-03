@@ -132,15 +132,15 @@ public class Controller {
 
         //Route 5 Toronto-Ottawa
         fm.AddFlight("CZ324", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","7","8","50","0"),
+                (ArrayList<String>)Arrays.asList("2021","12","7","8","50","0"),
                 (ArrayList<String>)Arrays.asList("2021","12","7","10","45","0"),"Small", 450, "10A");
 
         fm.AddFlight("CZ325", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","8","8","50","0"),
+                (ArrayList<String>)Arrays.asList("2021","12","8","8","50","0"),
                 (ArrayList<String>)Arrays.asList("2021","12","8","10","45","0"),"Medium", 450, "10A");
 
         fm.AddFlight("CZ326", "Toronto", "Ottawa",
-                (ArrayList<String>) Arrays.asList("2021","12","9","8","50","0"),
+                (ArrayList<String>)Arrays.asList("2021","12","9","8","50","0"),
                 (ArrayList<String>)Arrays.asList("2021","12","9","10","45","0"),"Large", 450, "10A");
 
         //Route 6 Ottawa - Toronto
