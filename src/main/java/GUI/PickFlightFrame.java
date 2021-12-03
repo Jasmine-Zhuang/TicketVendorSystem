@@ -14,16 +14,20 @@ import java.util.ArrayList;
 
 public class PickFlightFrame extends JFrame implements ActionListener {
     JButton submitButton;
-    JTextField inputFlightNum;
+    JButton showButton;
+
     FlightManager fm;
     TicketManager tm;
     CustomerManager cm;
-    String flightNumPicked;
+
     String dCity;
     String aCity;
     String username;
     PHManager phm;
     LuggageManager lm;
+
+    JComboBox flightNumsComoBox;
+    JLabel flightInfoLabel;
 
     PickFlightFrame(String dCity,String aCity,FlightManager fm,CustomerManager cm, TicketManager tm,String username,
                     PHManager phm, LuggageManager lm){
@@ -41,6 +45,9 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         submitButton = new JButton("Submit flight picked.");
         submitButton.setSize(100,100);
         submitButton.addActionListener(this);
+        showButton = new JButton("Show information of flight picked.");
+        showButton.addActionListener(this);
+        submitButton.setSize(100,100);
 
         //flightNumsComoBox setup
         ArrayList<String> matchedFlights = fm.getFlightByRoute(dCity,aCity);//array list of flight nums
@@ -50,7 +57,7 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         for(int i = 0; i < matchedFlights.size(); i++) {
             matchedFlightNums[i] = matchedFlights.get(i);
         }
-        JComboBox flightNumsComoBox = new JComboBox(matchedFlightNums);
+        flightNumsComoBox = new JComboBox(matchedFlightNums);
         flightNumsComoBox.setBounds(50, 50, 100, 20);
 //        flightNumsComoBox.addActionListener(this);
 
@@ -60,17 +67,14 @@ public class PickFlightFrame extends JFrame implements ActionListener {
        /* flightNumPicked= flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());*/
         /*ArrayList<String> flightArraylist = new ArrayList<>();
         flightArraylist.add(flightNumPicked);*/
-        JLabel flightInfoLabel = new JLabel();
-        flightNumPicked = inputFlightNum.getText();
-
-        flightInfoLabel.setText(fm.displayFlightInfoInGUI(flightNumPicked));
-
+        flightInfoLabel = new JLabel();
         JPanel panel = new JPanel();
         panel.add(flightNumsComoBox);
-        panel.add(inputFlightNum);
+
         panel.add(flightInfoLabel);
 
         panel.add(submitButton);
+        panel.add(showButton);
         panel.add(la);
 
         //frame setup
@@ -95,8 +99,12 @@ public class PickFlightFrame extends JFrame implements ActionListener {
         }*/
         if(e.getSource()==submitButton){
             this.dispose();
+            String flightNumPicked= (String) flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
             PickSeatFrame pickSeatFrame = new PickSeatFrame(this.fm,this.cm,this.tm,flightNumPicked,
                     this.username,this.phm, this.lm);
+        }else if(e.getSource() == showButton){
+            String flightNumPicked= (String) flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
+            flightInfoLabel.setText(fm.displayFlightInfoInGUI(flightNumPicked));
         }
 
     }

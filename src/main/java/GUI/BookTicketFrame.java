@@ -47,8 +47,8 @@ public class BookTicketFrame extends JFrame implements ActionListener {
 //        this.customer = cm.showCustomer(c);
         String msg = "<html> Passenger Name: " + cm.showCustomer(customer_user).getName() +
                 "<br/> Flight Number: " + flightNum +
-                "<br/> From: " + fm.getFlightByNum(flightNum).getOriginCity() +
-                "<br/> To: " + fm.getFlightByNum(flightNum).getDestinationCity() +
+                "<br/> From: " + this.fm.getFlightByNum(flightNum).getOriginCity() +
+                "<br/> To: " + this.fm.getFlightByNum(flightNum).getDestinationCity() +
                 "<br/> Class: " + classType +
                 "<br/> Ticket Price: $" + ticketPrice +
                 "<br/> Balance after consumption: $" + (cm.showCustomer(customer_user).getBalance() - ticketPrice) +
