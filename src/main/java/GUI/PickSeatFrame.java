@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class PickSeatFrame extends JFrame implements ActionListener {
+public class PickSeatFrame extends JFrame{
     JButton submitButton = new JButton();
     FlightManager fm;
     TicketManager tm;
