@@ -109,11 +109,11 @@ public class PickFlightFrame extends JFrame implements ActionListener {
                     this.username,this.phm, this.lm);
         }else if(e.getSource() == showButton){
             String flightNumPicked= (String) flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
-            flightInfoLabel.setText(fm.displayFlightInfoInGUI(flightNumPicked));
+            flightInfoLabel.setText(this.fm.displayFlightInfoInGUI(flightNumPicked));
         }
         else if(e.getSource() == backButton){
             String flightNumPicked= (String) flightNumsComoBox.getItemAt(flightNumsComoBox.getSelectedIndex());
-            flightInfoLabel.setText(fm.displayFlightInfoInGUI(flightNumPicked));
+            flightInfoLabel.setText(this.fm.displayFlightInfoInGUI(flightNumPicked));
         }
 
     }

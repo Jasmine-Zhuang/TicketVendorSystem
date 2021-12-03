@@ -101,7 +101,8 @@ public class BookTicketMenuFrame extends JFrame implements ActionListener {
                     this.username,this.phm,this.lm);//instantiate next page for routes picking
         }else if(button2 == e.getSource()){
             this.dispose();
-            MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, this.username,this.phm,this.lm);//instantiate main menu
+            MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, this.username,
+                    this.phm,this.lm);//instantiate main menu
         }
     }
 }

@@ -7,6 +7,7 @@ import Flight.FlightManager;
 import GUI.Luggage_Meal_Main;
 import GUI.Manager_Account.ManageAccount;
 import GUI.Manager_Account.Membership.Joint_MembershipSuccess;
+import GUI.Manager_Account.Purchase_History.PurchaseHistory_TicektFrame;
 import Meal.*;
 import Ticket.TicketManager;
 import Luggage.LuggageManager;

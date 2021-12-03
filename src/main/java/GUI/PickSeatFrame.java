@@ -41,6 +41,8 @@ public class PickSeatFrame extends JFrame{
         JPanel panel = new JPanel();
         submitButton.setText("Submit seat picked");
         submitButton.setBounds(200, 300, 100, 30);
+        backButton.setText("Back to Flight Selection Menu");
+        backButton.setBounds(200, 300, 100, 30);
        /* submitButton.addActionListener(this);*/
 
 
@@ -61,6 +63,7 @@ public class PickSeatFrame extends JFrame{
         panel.add(SeatsComboBox);
         panel.add(Box.createRigidArea(new Dimension(10,10)));
         panel.add(submitButton);
+        panel.add(backButton);
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
@@ -88,22 +91,10 @@ public class PickSeatFrame extends JFrame{
 
     }
 
-//    /**
-//     * Invoked when an action occurs.
-//     *
-//     * @param e the event to be processed
-//     */
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        if(e.getSource()==submitButton){
-//
-//            this.dispose();
-//            DisplayPriceFrame displayPriceFrame = new DisplayPriceFrame(this.cm,this.fm,this.tm,seatNumber,
-//                    this.username,this.phm, this.lm);
-//            //flight num, customer usertype, seat type
-//            displayPriceFrame.getInfo(this.flightNum,"First");
-//        }
-//
-//    }
+
+}
+
+
+
 
 }
