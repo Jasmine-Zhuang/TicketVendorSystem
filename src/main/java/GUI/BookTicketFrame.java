@@ -93,8 +93,10 @@ public class BookTicketFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonBack) {
             this.dispose();
+
             DisplayPriceFrame dpf = new DisplayPriceFrame(this.cm, this.fm, this.tm,
                     this.seatNum, this.customer_user,this.phm,this.lm);
+            dpf.getInfo(this.flightNum, this.classType);
         }
         else {
             if (cm.showCustomerBalance(this.customer_user) >= this.ticketPrice) {
