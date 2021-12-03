@@ -43,6 +43,7 @@ public class TicketTest {
         t = new Ticket("A00100", "Beijing", "Toronto", departureTime, arrivalTime,
                 "C4", "15P", 1500, "James", "J52000", "First");
         t.setMeal(diabetic);
+        t.setLuggage_id("CZ21115D");
         emp = new Ticket();
     }
 
@@ -63,6 +64,7 @@ public class TicketTest {
         assertEquals("A00100,15P", t.getTicket_id());
         assertEquals("First", t.getTicket_class());
         assertEquals("Diabetic", t.getTicket_Meal().getName());
+        assertEquals("CZ21115D", t.getLuggage_id());
     }
 
     @Test(timeout = 100)
