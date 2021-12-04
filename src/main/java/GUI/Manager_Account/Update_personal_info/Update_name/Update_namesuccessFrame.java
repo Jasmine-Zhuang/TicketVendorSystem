@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import Flight.FlightManager;
-
+import Luggage.LuggageManager;
+import Luggage.LuggageManager;
 
 class Update_namesuccessFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -29,14 +30,20 @@ class Update_namesuccessFrame extends JFrame implements ActionListener {
     TicketManager tm;
     String username;
     PHManager phm;
+    LuggageManager lm;
+
+
 
     Update_namesuccessFrame(CustomerManager customerManager, FlightManager flightManager,
-                            TicketManager ticketManager, String username, PHManager phm) {
+                            TicketManager ticketManager, String username, PHManager phm,
+                            LuggageManager lm
+    ) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.username = username;
         this.phm = phm;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -80,7 +87,7 @@ class Update_namesuccessFrame extends JFrame implements ActionListener {
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(500, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -99,13 +106,16 @@ class Update_namesuccessFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,
+                    this.phm,this.lm);//instantiate main menu
         }
 
         else if(button1 == e.getSource()){
             this.dispose();
-            Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
+                    this.username, this.phm,this.lm);//instantiate main menu
         }
 
     }
 }
+

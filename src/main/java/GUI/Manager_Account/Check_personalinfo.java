@@ -6,6 +6,7 @@ import Customer.PHManager;
 import Flight.FlightManager;
 import GUI.DisplayPriceFrame;
 import GUI.DisplayTicketFrame;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import javax.swing.*;
@@ -18,10 +19,11 @@ public class Check_personalinfo extends JFrame implements ActionListener {
     FlightManager fm;
     TicketManager tm;
     PHManager phm;
+    LuggageManager lm;
     String username;
 
 
-    JButton buttonBook = new JButton("Confirm");
+//    JButton buttonBook = new JButton("Confirm");
     JButton buttonBack = new JButton("Back to Manage Account Menu");
     JLabel label = new JLabel("Check Personal Information");
     JLabel label2 = new JLabel();
@@ -30,12 +32,14 @@ public class Check_personalinfo extends JFrame implements ActionListener {
     JPanel panel3 = new JPanel();
 
     Check_personalinfo(CustomerManager customerManager, FlightManager flightManager,
-                    TicketManager ticketManager, String username, PHManager phm) {
+                    TicketManager ticketManager, String username, PHManager phm, LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
+        this.lm = lm;
         this.phm=phm;
         this.username = username;
+
         /*
         this.cm.showCustomer(this.username).calculateRedeemPoint();
 
@@ -55,7 +59,7 @@ public class Check_personalinfo extends JFrame implements ActionListener {
         label2.setFont(new Font("Times", Font.PLAIN, 20));
 
 
-        buttonBook.addActionListener(this);
+//        buttonBook.addActionListener(this);
         buttonBack.addActionListener(this);
 
         panel1.setBounds(250, 250, 250, 200);
@@ -68,12 +72,13 @@ public class Check_personalinfo extends JFrame implements ActionListener {
 
         panel3.setBackground(Color.white);
         panel3.setPreferredSize(new Dimension(100, 50));
-        panel3.add(buttonBook);
+//        panel3.add(buttonBook);
         panel3.add(buttonBack);
 
         this.setTitle("U-Ticket Booking System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 300);
+        this.setSize(600, 300);
+        this.setLocation(new Point(500, 200));
         this.setLayout(new BorderLayout());
         this.setVisible(true);
         this.add(panel1);
@@ -87,10 +92,7 @@ public class Check_personalinfo extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonBack) {
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
-        } else {
-            this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
         }
     }
 

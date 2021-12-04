@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
 
@@ -41,15 +42,17 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
     FlightManager fm;
     TicketManager tm;
     PHManager phm;
+    LuggageManager lm;
     String username;
 
     // default constructor
     public Update_usernameFrame(CustomerManager customerManager, FlightManager flightManager,
-                                TicketManager ticketManager, String username, PHManager phm) {
+                                TicketManager ticketManager, String username, PHManager phm, LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.phm = phm;
+        this.lm = lm;
         this.username=username;
 
         to_personal_information_menu.setFont(new Font("Times", Font.PLAIN,25));
@@ -107,7 +110,7 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(500, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -130,10 +133,10 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
             try {
                 if (this.cm.checkCustomer(username) && !LoginSystem.checkUsername(username)) {
                     this.dispose();
-                    Update_username_verifiedFrame change_name = new Update_username_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm);
+                    Update_username_verifiedFrame change_name = new Update_username_verifiedFrame(this.cm, this.fm, this.tm, this.username, this.phm,this.lm);
                 }//instantiate next page for routes picking
                 else{
-                    label2.setText("<html>Sorry! You entered a wrong or none-existent username, please enter your username below again:");
+                   label2.setText("<html>Sorry! You entered a wrong or none-existent username, please enter your username below again:");
                 }//instantiate next page for routes picking
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -144,12 +147,13 @@ public class Update_usernameFrame extends JFrame implements ActionListener {
         if(to_personal_information_menu == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate main menu
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
         if(to_manage_account_menu == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate main menu
         }
 
     }
 }
+

@@ -46,8 +46,10 @@ public class PHManagerTest {
             "3C", 100, "Mark", "mark123","Business");
     RewardsItem rw1 = new RewardsItem("Mug", 800);
     RewardsItem rw2 = new RewardsItem("TVoucher", 1200);
+    Customer olivia = new Customer("taylorsusername", "abcdef", "Taylor");
+    PurchaseHistory ph = new PurchaseHistory(olivia);
 
-    @Test (timeout = 500)
+/*    @Test (timeout = 500)
     public void TestEmptyUpdateHistory() {
         // empty map
         HashMap<Customer, PurchaseHistory> hm1 = new HashMap<>();
@@ -55,34 +57,40 @@ public class PHManagerTest {
 
     }
 
+    public void TestEmptyUpdateHistory() {
+        // empty map
+        HashMap<String, PurchaseHistory> hm1 = new HashMap<>();
+        assertEquals(hm1, phm.getPhMap());
+
+    }*/
+
     @Test (timeout = 500)
     public void TestUpdateHistory1() {
         phm.updateHistory(ph1);
         phm.updateHistory(ph2);
-        HashMap<Customer, PurchaseHistory> hm2 = new HashMap<>();
-        hm2.put(c1, ph1);
-        hm2.put(c2, ph2);
+        HashMap<String, PurchaseHistory> hm2 = new HashMap<>();
+        hm2.put(c1.getUsername(), ph1);
+        hm2.put(c2.getUsername(), ph2);
         assertEquals(hm2, phm.getPhMap());
     }
 
     @Test (timeout = 500)
     public void TestUpdateHistory2() {
-        HashMap<Customer, PurchaseHistory> hm3 = new HashMap<>();
-        hm3.put(c1, ph1);
-        hm3.put(c2, ph2);
+        HashMap<String, PurchaseHistory> hm3 = new HashMap<>();
+        hm3.put(c1.getUsername(), ph1);
+        hm3.put(c2.getUsername(), ph2);
         phm.updateHistory(ph1);
         phm.updateHistory(ph2);
-        ph1.addPurchasedTickets(t1);
+        ph1.addPurchasedTickets(t1, c1);
         phm.updateHistory(ph1);
-        hm3.put(c1, ph1);
+        hm3.put(c1.getUsername(), ph1);
         assertEquals(hm3, phm.getPhMap());
     }
-
     @Test (timeout = 500)
     public void TestGetTickets() {
-        ph1.addPurchasedTickets(t1);
-        ph2.addPurchasedTickets(t2);
-        ph2.addPurchasedTickets(t3);
+        ph1.addPurchasedTickets(t1,c1);
+        ph2.addPurchasedTickets(t2, c2);
+        ph2.addPurchasedTickets(t3, c2);
         phm.updateHistory(ph1);
         phm.updateHistory(ph2);
         ArrayList<Ticket> t1Array = new ArrayList<>(List.of(t1));
@@ -93,13 +101,25 @@ public class PHManagerTest {
 
     @Test (timeout = 500)
     public void TestGetRewardsItems() {
-        ph1.addItemRedeemed(rw1);
-        ph2.addItemRedeemed(rw2);
+        ph1.addItemRedeemed(rw1, c1);
+        ph2.addItemRedeemed(rw2, c2);
         phm.updateHistory(ph1);
         phm.updateHistory(ph2);
         ArrayList<RewardsItem> r1Array = new ArrayList<>(List.of(rw1));
         ArrayList<RewardsItem> r2Array = new ArrayList<>(List.of(rw2));
         assertEquals(r1Array, phm.getRewardsItems(c1));
         assertEquals(r2Array, phm.getRewardsItems(c2));
+    }
+
+    @Test (timeout = 500)
+    public void TestUpdatePurchaseHistory() {
+        ph.addPurchasedTickets(t1,olivia);
+        ph.addPurchasedTickets(t2,olivia);
+        ph.addItemRedeemed(rw1,olivia);
+        phm.updateHistory(ph);
+        ph.removePurchasedTickets(t2, olivia);
+        phm.updatePurchaseHistory(olivia, ph);
+
+        assertFalse(phm.getTickets(olivia).contains(t2));
     }
 }

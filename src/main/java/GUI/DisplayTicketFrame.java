@@ -33,6 +33,7 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
     LocalDateTime a_time;
     String boardingGate;
     String seatNum;
+    String t_id;
     JButton buttonFinish = new JButton("Finish");
     JLabel label = new JLabel("Ticket Booked!!");
     JLabel label2 = new JLabel();
@@ -68,11 +69,12 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
                 fm.getFlightByNum(flightNum).getArrivalTime(), b_gate, seat_num,
                 ticketPrice, cm.showCustomer(username).getName(), username, classType);
         tm.bookTickets(t);
+        this.t_id = t.getTicket_id();
         this.cm.decrBalance(ticketPrice,cm.showCustomer(this.username));
-        this.cm.incrMillage(this.tm.getMileage(t,this.fm),cm.showCustomer(username));
-        this.cm.calculateRedeemPoint(cm.showCustomer(username));
-        fm.reserveSeat(flightNum, seat_num);
-        cm.showCustomer(this.username).getPurchaseHistory().addPurchasedTickets(t);
+        this.cm.incrMileage(this.tm.getMileage(t,this.fm),cm.showCustomer(username));
+        this.cm.calculateRedeemPoint(cm.showCustomer(this.username));
+        this.fm.reserveSeat(this.flightNum, this.seatNum);
+        this.cm.showCustomer(this.username).getPurchaseHistory().addPurchasedTickets(t, cm.showCustomer(this.username));
         this.phm.updateHistory(cm.showCustomer(this.username).getPurchaseHistory());// update purchase history
 
         flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
@@ -85,18 +87,18 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
         String formattedArrivalTime = fm.getFlightByNum(flightNum).getArrivalTime().format(FormatObj);
         String formattedDepartureTime = fm.getFlightByNum(flightNum).getDepartureTime().format(FormatObj);
         String msg = "<html> --------Air Ticket--------" +
-                "<br/> Name of Passenger: " + cm.showCustomer(username).getName() +
-                "<br/> Flight: " + flightNum +
-                "  Seat: " + seat_num + "  Class Type: " + classType +
-                "<br/> From " + d_city + " to " + a_city +
-                "<br/> Departure time: " + formattedDepartureTime +
-                "<br/> Estimate arrival time: " + formattedArrivalTime +
-                "<br/> Boarding Gate: " + b_gate +
-                "<br/> Price: $" + ticketPrice +
-                "<br/> Boarding time will be one hour before departure." +
-                "<br/> And gate closes 20 minutes before departure." +
-                "<br/> Have a nice trip!" +
-                "-----------------------<html>";
+                "<br/> <br/> Name of Passenger: " + cm.showCustomer(username).getName() +
+                "<br/> <br/> Flight: " + flightNum +
+                "<br/> <br/> Seat: " + seat_num + " <br/><br/> Class Type: " + classType +
+                "<br/> <br/>From " + d_city + " to " + a_city +
+                "<br/> <br/> Departure time: " + formattedDepartureTime +
+                "<br/> <br/>Estimate arrival time: " + formattedArrivalTime +
+                "<br/> <br/> Boarding Gate: " + b_gate +
+                "<br/> <br/> Price: $" + ticketPrice +
+                "<br/> <br/>Boarding time will be one hour before departure." +
+                "<br/> <br/>And gate closes 20 minutes before departure." +
+                "<br/> <br/>Have a nice trip!" +
+                "<br/> -----------------------<html>";
         label2.setText(msg);
 
         label.setFont(new Font("Times", Font.BOLD,40));
@@ -119,8 +121,8 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
 
         this.setTitle("U-Ticket Booking System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 300);
-        this.setLayout(new BorderLayout());
+        this.setSize(500, 800);
+        this.setLocation(new Point(500, 300));
         this.setVisible(true);
         this.add(panel1);
         this.add(panel2, BorderLayout.NORTH);
@@ -136,8 +138,11 @@ public class DisplayTicketFrame extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.dispose();
-        MainMenuFrame mainMenu = new MainMenuFrame(this.fm,this.cm,this.tm, username,this.phm,this.lm);
+        if(e.getSource()== buttonFinish ) {
+            this.dispose();
+            Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
+                    this.username, this.phm, this.lm, this.t_id);
+        }
     }
 
 }

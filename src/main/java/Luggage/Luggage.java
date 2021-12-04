@@ -1,3 +1,4 @@
+
 package Luggage;
 
 import java.io.Serializable;
@@ -5,14 +6,14 @@ import java.io.Serializable;
 public class Luggage implements Serializable {
 
     private int luggageWeight;
-    private String luggageNum;
+    private String luggageId;
 
-    /**Construct a Luggage.Luggage giving the total weight,
+    /**Construct Luggage. Luggage giving the total weight,
      * @param luggageNumber luggage number of this flight
      * @param luggageWeight the weight of this luggage
      */
     public Luggage(String luggageNumber, int luggageWeight){
-        this.luggageNum = luggageNumber;
+        this.luggageId = luggageNumber;
         this.luggageWeight = luggageWeight;
     }
 
@@ -31,11 +32,11 @@ public class Luggage implements Serializable {
     /**
      * Getter method to get luggage number
      */
-    public String getLuggageNum(){
-        return luggageNum;
+    public String getLuggageId(){
+        return luggageId;
     }
 
     public String toString(){
-        return Integer.toString(luggageWeight);
+        return luggageId + ": " + luggageWeight + "; ";
     }
 }

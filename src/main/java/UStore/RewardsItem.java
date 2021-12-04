@@ -48,7 +48,7 @@ public class RewardsItem implements Redeemable, Serializable {
         if (customer.getRedeem_points() >= this.getPoints()){
             this.setRedeemed(true);
             PurchaseHistory ph = customer.getPurchaseHistory();
-            if(ph.addItemRedeemed(this)){
+            if(ph.addItemRedeemed(this, customer)){
                 customer.minusRedeemPoint(this.getPoints());
 
             }

@@ -1,7 +1,10 @@
 package GUI.Manager_Account.Purchase_History;
 
+import Customer.CMSerialization;
+import Customer.PHMSerialiazation;
 import Customer.PHManager;
 import Flight.FlightManager;
+import Flight.FlightSerialization;
 import GUI.BookTicketMenuFrame;
 import GUI.Manager_Account.ManageAccount;
 
@@ -12,9 +15,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
+import Luggage.LuggageSerialization;
 import Ticket.TicketManager;
 import Ticket.Ticket;
-
+import Ticket.PriceCalculator;
+import Ticket.TicketSerialization;
 
 public class PurchaseHistory_TicektFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -29,6 +35,7 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
     JButton changeButton = new JButton("Change Ticket");
     JTextField ticketID = new JTextField("Please input the ticket id of ticket that you want to change or cancel.");
 
+
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
     CustomerManager cm;
@@ -36,16 +43,23 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
     TicketManager tm;
     String username;
     PHManager phm;
+    LuggageManager lm;
+    PriceCalculator pc = new PriceCalculator();
+    FlightSerialization flightSerialization = new FlightSerialization();
+    TicketSerialization ticketSerialization = new TicketSerialization();
+    PHMSerialiazation phmSerialiazation = new PHMSerialiazation();
+    CMSerialization cmSerialization = new CMSerialization();
+    LuggageSerialization luggageSerialization = new LuggageSerialization();
 
     PurchaseHistory_TicektFrame(CustomerManager customerManager, FlightManager flightManager,
-                                TicketManager ticketManager, String username,PHManager phm) {
+                                TicketManager ticketManager, String username,PHManager phm,
+                                LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.username=username;
         this.phm=phm;
-        cancelButton.addActionListener(this);
-        changeButton.addActionListener(this);
+        this.lm = luggageManager;
         label1.setBackground(lightPink);
         label1.setFont(new Font("Times", Font.BOLD,30));
         label1.setForeground(darkRed);
@@ -55,6 +69,8 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
         label1.setVerticalAlignment(JLabel.CENTER);
         label1.setHorizontalAlignment(JLabel.CENTER);
         label1.setBounds(50,50,100,100);
+        cancelButton.addActionListener(this);
+        changeButton.addActionListener(this);
 
         label2.setBackground(lightPink);
         label2.setForeground(darkRed);
@@ -71,7 +87,6 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
 
-
         ArrayList<Ticket> Ticket_historylist = this.phm.getTickets(this.cm.showCustomer(this.username));
         if (Ticket_historylist != null) {
             String[] Ticket_Array = new String[Ticket_historylist.size()];
@@ -82,6 +97,8 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
                         "<br/> To: " + Ticket_historylist.get(i).getArrival_city() +
                         "<br/> Seat Number: " + Ticket_historylist.get(i).getSeat_number() +
                         "<br/> Ticket ID: " + Ticket_historylist.get(i).getTicket_id() +
+                        "<br/> Meal: " + Ticket_historylist.get(i).getTicket_Meal() +
+                        "<br/> Luggage ID: " + Ticket_historylist.get(i).getLuggage_id() +
                         "<html>";
                 Ticket_Array[i] = one_ticket;
             }
@@ -121,7 +138,7 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(350, 520));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -140,20 +157,34 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,
+                    this.phm, this.lm);//instantiate main menu
+        }
+
+        else if(back_pre == e.getSource()){
+            this.dispose();
+            PurchaseHistoryFrame pruchase_history = new PurchaseHistoryFrame(this.cm, this.fm, this.tm,
+                    this.username,this.phm, this.lm);//instantiate main menu
         }
         else if (cancelButton == e.getSource()){
             String ticketId = ticketID.getText();
-            if (ticketId != null){
+            if (ticketId != null && ticketId.length()<10){
                 int result = JOptionPane.showConfirmDialog(
-                    this,"Do you confirm to cancel this ticket?");
+                        this,"Do you confirm to cancel this ticket?");
                 if (result == JOptionPane.YES_OPTION) {
-                    //tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.pm,this.cm,this.fm,this.pc);
+                    tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.phm,this.cm,this.fm,this.pc);
+
+                    flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
+                    ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
+                    phmSerialiazation.savePHM(this.phm,"PHManager.ser");//save PHM
+                    cmSerialization.saveCM(this.cm, "CMManager.ser");//save cm
+                    luggageSerialization.saveLM(this.lm,"LuggageManager.ser");//save lm
+
                     JOptionPane.showMessageDialog(null, "You have successfully canceled ticket"
-                        + ticketId);
+                            + ticketId);
                     this.dispose();
                     PurchaseHistory_TicektFrame purchaseHistory_ticektFrame = new PurchaseHistory_TicektFrame(this.cm,
-                            this.fm,this.tm,this.username,this.phm);
+                            this.fm,this.tm,this.username,this.phm,this.lm);
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"Warning: No ticket ID entered.","warning",
@@ -164,27 +195,29 @@ public class PurchaseHistory_TicektFrame extends JFrame implements ActionListene
             String ticketId = ticketID.getText();
             int result = JOptionPane.showConfirmDialog(
                     this,"Sure? You want to change this ticket?");
-            if (ticketId != null){
+            if (ticketId != null && ticketId.length()<10){
                 if (result == JOptionPane.YES_OPTION) {
-                    //tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.pm,this.cm,this.fm,this.pc);
+                    tm.cancelTickets(tm.getTicketByID(ticketId),this.lm,this.phm,this.cm,this.fm,this.pc);
+
+                    flightSerialization.saveFM(this.fm,"FlightManager.ser"); // save FM
+                    ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
+                    phmSerialiazation.savePHM(this.phm,"PHManager.ser");//save PHM
+                    cmSerialization.saveCM(this.cm, "CMManager.ser");//save cm
+                    luggageSerialization.saveLM(this.lm,"LuggageManager.ser");//save lm
+
                     JOptionPane.showMessageDialog(null,"You have successfully change ticket"
                                     + ticketId,"confirmation",
                             JOptionPane.PLAIN_MESSAGE);
                     BookTicketMenuFrame bookTicketMenuFrame=new BookTicketMenuFrame(this.fm,this.cm,
-                            this.tm,this.username,this.phm);
+                            this.tm,this.username,this.phm,this.lm);
                     this.dispose();
-
                 }
 
             }
             else{
                 JOptionPane.showMessageDialog(null,"Warning: No ticket ID entered.","warning",
-                    JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.WARNING_MESSAGE);
             }
-        }
-        else if(back_pre == e.getSource()){
-            this.dispose();
-            PurchaseHistoryFrame purchase_history = new PurchaseHistoryFrame(this.cm, this.fm, this.tm, this.username,this.phm);//instantiate main menu
         }
 
     }

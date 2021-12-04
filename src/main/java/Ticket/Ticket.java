@@ -1,9 +1,13 @@
 package Ticket;
 
+import Meal.Meal_choice;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import Meal.*;
+
 
 
 /*
@@ -29,7 +33,7 @@ public class Ticket implements Serializable {
     private String ticket_id;
     private String class_type;
     private String luggage_id;
-
+    private Meal_choice meal;
     /**
      * Construct a Flight Ticket giving it the given flightNumber, departure city, arrival city,
      * departure time, arrival time, boarding gate, seat number, distance traveled, passenger's name and username.
@@ -62,6 +66,7 @@ public class Ticket implements Serializable {
         this.departureTime = d_time;
         this.class_type = c_type;
         this.luggage_id = null;
+        this.meal = null;
     }
 
     /**
@@ -185,11 +190,28 @@ public class Ticket implements Serializable {
      */
     public String getLuggage_id() {return luggage_id;}
 
+
+    public void setLuggage_id(String id){
+        this.luggage_id = id;
+    }
+
     /**
      * A setter method.
-     * @param newDTime A LocalDateTime instance indicates a new departure time.
+     * Set the ticket meal
      */
+    public void setMeal(Meal_choice meal) {
+        meal.setSelected();
+        this.meal = meal;
+    }
 
+    /**
+     * A getter method.
+     *
+     * @return Ticket's meal selection.
+     */
+    public Meal_choice getTicket_Meal() {
+        return this.meal;
+    }
 
     public void changeDepartureTime(LocalDateTime newDTime) {
         this.departureTime = newDTime;
@@ -231,12 +253,10 @@ public class Ticket implements Serializable {
                 "\nEstimate arrival time: " + formattedArrivalTime +
                 "\nBoarding Gate: " + boardingGate +
                 "\nPrice: $" + price +
+                "\nMeal: " + meal +
                 "\nBoarding time will be one hour before departure." +
                 "\nAnd gate closes 20 minutes before departure." +
                 "\nHave a nice trip!\n" +
                 "-----------------------";
     }
-
-
-
 }

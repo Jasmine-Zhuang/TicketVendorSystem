@@ -48,6 +48,31 @@ public class FlightManagerTest {
         fm.AddFlight("CZ311", "Toronto", "Vancouver", dTime, aTime, "Small",
                 3600, "Gate1");
     }
+    @Test(timeout = 50)
+    public void TestGetDCity(){
+        assertEquals(fm.getFlightByNum("CZ311").getOriginCity(), "Toronto");
+
+    }
+    @Test(timeout = 50)
+    public void TestGetACity(){
+        assertEquals(fm.getFlightByNum("CZ311").getDestinationCity(), "Vancouver");
+
+    }
+    @Test(timeout = 500)
+    public void TestAddFlight(){
+        ArrayList<String> dTime = new ArrayList<>(Arrays.asList("2021","12","1","8","50","0"));
+        ArrayList<String> aTime = new ArrayList<>(Arrays.asList("2021","12","1","10","45","0"));
+        fm.AddFlight("CZ312","Toronto", "Vancouver", dTime, aTime, "Small",
+                3600, "Gate2");
+        fm.AddFlight("CZ313","Toronto", "Vancouver", dTime, aTime, "Medium",
+                3600, "Gate2");
+        fm.AddFlight("CZ314","Toronto", "Vancouver", dTime, aTime, "Large",
+                3600, "Gate2");
+        assertEquals(fm.getFlightByNum("CZ312").getTotalSeats(),10);
+        assertEquals(fm.getFlightByNum("CZ313").getTotalSeats(),20);
+        assertEquals(fm.getFlightByNum("CZ314").getTotalSeats(),30);
+
+    }
 
     @Test(timeout = 500)
     public void TestGetFlightByRoute() {

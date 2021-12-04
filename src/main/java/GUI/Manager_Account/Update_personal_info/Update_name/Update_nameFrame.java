@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
+import Luggage.LuggageManager;
+
 
 public class Update_nameFrame extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
@@ -38,16 +40,18 @@ public class Update_nameFrame extends JFrame implements ActionListener {
     TicketManager tm;
     PHManager phm;
     String username;
-
+    LuggageManager lm;
 
     // default constructor
     public Update_nameFrame(CustomerManager customerManager, FlightManager flightManager,
-                            TicketManager ticketManager, String username, PHManager phm) {
+                            TicketManager ticketManager, String username, PHManager phm,
+                            LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.phm = phm;
         this.username=username;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -104,7 +108,7 @@ public class Update_nameFrame extends JFrame implements ActionListener {
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(500, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -114,7 +118,7 @@ public class Update_nameFrame extends JFrame implements ActionListener {
             // create a object of the text class
             new GUI.Manager_Account.Update_personal_info.Update_name.Update_nameFrame(cm,fm,tm);
         }
-
+    
         /**
          * Invoked when an action occurs.
          *
@@ -133,7 +137,8 @@ public class Update_nameFrame extends JFrame implements ActionListener {
 
             if (this.cm.checkCustomername(name)) {
                 this.dispose();
-                Update_name_verifiedFrame change_name = new Update_name_verifiedFrame(this.cm, this.fm, this.tm, this.username, name, this.phm);
+                Update_name_verifiedFrame change_name = new Update_name_verifiedFrame(this.cm, this.fm, this.tm,
+                        this.username, name, this.phm,this.lm);
             }//instantiate next page for routes picking
             if (!this.cm.checkCustomername(name)) {
                 label2.setText("<html>Sorry! Your name is not in system, please enter your name below again:");
@@ -143,11 +148,13 @@ public class Update_nameFrame extends JFrame implements ActionListener {
         if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate main menu
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,
+                    this.phm,this.lm);//instantiate main menu
         }
     }
 }
+

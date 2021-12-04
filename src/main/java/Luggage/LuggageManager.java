@@ -1,13 +1,15 @@
 package Luggage;
 
 import java.io.Serializable;
+import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class LuggageManager implements Serializable {
 
     private HashMap<String, Luggage> idToLuggage = new LinkedHashMap<>();
-    private static final long serialVersionUID = 7;
+    private static final long serialVersionUID = 5;
 
     /**
      *
@@ -24,17 +26,18 @@ public class LuggageManager implements Serializable {
         } else {
             return -1;
         }
-
     }
 
     /**
      * Add a new Luggage to LuggageManager
      * @param luggageWeight of this luggage
-     * @param luggageId of this luggage
+     * @param flightNum of the flight
+     * @param seatNum of the ticket owner on the flight
      */
-    public void generateLuggage(int luggageWeight, String luggageId){
+    public void generateLuggage(int luggageWeight, String flightNum, String seatNum){
         int weightFlag = checkWeight(luggageWeight);
-        if (weightFlag == 1){
+        if (weightFlag == 1 | weightFlag == 0){
+            String luggageId = flightNum + seatNum;
             Luggage newLuggage = new Luggage(luggageId, luggageWeight);
             this.idToLuggage.put(luggageId, newLuggage);
         }
@@ -46,7 +49,35 @@ public class LuggageManager implements Serializable {
      * @return an integer which is the weight of the luggage
      */
     public int getWeightById(String luggageId){
-        return this.idToLuggage.get(luggageId).getLuggageWeight();
+        for (String id: this.idToLuggage.keySet()){
+            if(id.equals(luggageId)){
+                return this.idToLuggage.get(luggageId).getLuggageWeight();}
+        }
+        return 0; //luggage id not in the hashmap
+    }
+
+    public Luggage getLuggageById(String luggageId) {
+        if(this.idToLuggage.containsKey(luggageId)) {
+            return this.idToLuggage.get(luggageId);
+        }
+        return null;
+    }
+
+    public void cancelLuggage(String luggageId) {
+        if(this.idToLuggage.containsKey(luggageId)){
+            this.idToLuggage.remove(luggageId);}
+        }
+
+
+
+    public String displayLuggageInfo(ArrayList<String> luggageIdLs){
+        StringBuilder infoString = new StringBuilder();
+        for(String luggageId: luggageIdLs){
+            if (this.idToLuggage.containsKey(luggageId)) {
+                infoString.append(this.idToLuggage.get(luggageId).toString());
+            }
+        }
+        return infoString.toString();
     }
 
 }

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Customer.CustomerManager;
+import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 public class Load_BalanceSuccess extends JFrame implements ActionListener {
@@ -26,13 +27,15 @@ public class Load_BalanceSuccess extends JFrame implements ActionListener {
     FlightManager fm;
     TicketManager tm;
     PHManager phm;
+    LuggageManager lm;
     String username;
 
     Load_BalanceSuccess(CustomerManager customerManager, FlightManager flightManager, TicketManager ticketManager,
-                        String username, PHManager phm) {
+                        String username, PHManager phm, LuggageManager luggageManager) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
+        this.lm = luggageManager;
         this.username = username;
         this.phm=phm;
 
@@ -91,7 +94,7 @@ public class Load_BalanceSuccess extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(button2 == e.getSource()){
             this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm);
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username,this.phm, this.lm);
         }
     }
 }
