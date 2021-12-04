@@ -52,7 +52,7 @@ public class PHManagerTest {
 /*    @Test (timeout = 500)
     public void TestEmptyUpdateHistory() {
         // empty map
-        HashMap<Customer, PurchaseHistory> hm1 = new HashMap<>();
+        HashMap<String, PurchaseHistory> hm1 = new HashMap<>();
         assertEquals(hm1, phm.getPhMap());
 
     }

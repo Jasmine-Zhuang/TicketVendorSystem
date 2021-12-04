@@ -136,7 +136,7 @@ public class CustomerManager implements Serializable {
 
     /** Modify this customer's current balance.
      * @param customer The customer needed to change name.
-     * @param balance_update The new balance of this customer to be added to this customer's current balance.
+     * @param balance_update The new balance of this customer to be subctracted to this customer's current balance.
      */
     public boolean decrBalance(int balance_update, Customer customer){
         return customer.decrBalance(balance_update);}
