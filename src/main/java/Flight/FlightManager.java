@@ -11,45 +11,8 @@ public class FlightManager implements Serializable {
     private HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
     private static final long serialVersionUID = 2;
 
-/*
-    public void saveFM(FlightManager fm,String filePath){
-        try {
-            FileOutputStream fileOut = new FileOutputStream(filePath);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject((FlightManager)fm);
-            out.close();
-            fileOut.close();
-            System.out.println("FM saved!");
-            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-            System.out.println("serialVersionUID: "+serialVersionUID);
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
-    }*/
-   /* public FlightManager restoreFM(String filePath){
-        try {
-            FileInputStream fileIn = new FileInputStream(filePath);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            FlightManager fm = (FlightManager) in.readObject();
-            System.out.println(fm.sortFlightsDistance());
-            in.close();
-            fileIn.close();
-            System.out.println("Restored FM");
-            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-            System.out.println("serialVersionUID: "+serialVersionUID);
-            return fm;
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-
-    }*/
 
     public FlightManager(){}
-/*
-    public FlightManager(HashMap<String, Flight>idToFlight){
-        this.idToFlight = idToFlight;
-    }*/
 
     /**
      * Add a New Flight to the manager.
@@ -161,17 +124,9 @@ public class FlightManager implements Serializable {
         return "This seat has not been reserved or does not exist.";
     }
 
-    /**
-     * provide verify information for the flight that the user wants to look up
-     * return a string of the flight information if the flight is scheduled, otherwise return
-     * a string inform the customer that this flight is not scheduled to fly.
-     */
-    public String verifyYourFlight(String flight_num){
-        if (this.idToFlight.containsKey(flight_num)) {
-            return this.idToFlight.get(flight_num).toString();
-        }
-        return "This flight number is invalid or the flight is not scheduled to fly.";
-    }
+/*
+    */
+
 
     /**
      * provide user a list of flight nums that with specified city of departure and destination
@@ -188,21 +143,7 @@ public class FlightManager implements Serializable {
         return lst;
     }
 
-    /**
-     * provide user a list of flight which departure and arrive at specific local time
-     * @return Arraylist of flight nums, or empty list if there's no available flight
-     */
-    public ArrayList<String> getFlightByLocalTime(LocalDateTime departureTime,
-                                                  LocalDateTime arrivalTime) {
-        ArrayList<String> lst = new ArrayList<>();
-        for (String id: this.idToFlight.keySet()) {
-            if (Objects.equals(this.idToFlight.get(id).getDepartureTime(), departureTime) &&
-                    Objects.equals(this.idToFlight.get(id).getArrivalTime(), arrivalTime)) {
-                lst.add(id);
-            }
-        }
-        return lst;
-    }
+
 
     /**
      * @param flightNum flight number
@@ -239,19 +180,7 @@ public class FlightManager implements Serializable {
     }
 
 
-    /**
-     * @param flightNumLs a list of flight number
-     * @return a string of all the information of flight numbers in the list
-     */
-    public String displayFlightInfo(ArrayList<String> flightNumLs) {
-        StringBuilder infoString = new StringBuilder();
-        for(String flightNum: flightNumLs){
-            if (this.idToFlight.containsKey(flightNum)) {
-                infoString.append(this.idToFlight.get(flightNum).toString());
-            }
-        }
-        return infoString.toString();
-    }
+
     /**
      * @param flightNum a flight number
      * @return a string of the information of flight, that will be shown as formatted in GUI
@@ -272,6 +201,22 @@ public class FlightManager implements Serializable {
         else{return null;}
 
     }
+    /**
+     * @param flightNum a flight number
+     * @return a string of the departure city of flight
+     */
+
+    public String getDCity(String flightNum){
+        return getFlightByNum(flightNum).getOriginCity();
+    }
 
 
+    /**
+     *
+     * @param flightNum a flight number
+     * @return a string of the arrival city of flight
+     */
+    public String getACity(String flightNum){
+        return this.getFlightByNum(flightNum).getDestinationCity();
+    }
 }

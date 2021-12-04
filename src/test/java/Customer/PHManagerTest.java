@@ -49,13 +49,20 @@ public class PHManagerTest {
     Customer olivia = new Customer("taylorsusername", "abcdef", "Taylor");
     PurchaseHistory ph = new PurchaseHistory(olivia);
 
-    @Test (timeout = 500)
+/*    @Test (timeout = 500)
     public void TestEmptyUpdateHistory() {
         // empty map
         HashMap<String, PurchaseHistory> hm1 = new HashMap<>();
         assertEquals(hm1, phm.getPhMap());
 
     }
+
+    public void TestEmptyUpdateHistory() {
+        // empty map
+        HashMap<String, PurchaseHistory> hm1 = new HashMap<>();
+        assertEquals(hm1, phm.getPhMap());
+
+    }*/
 
     @Test (timeout = 500)
     public void TestUpdateHistory1() {
@@ -79,7 +86,6 @@ public class PHManagerTest {
         hm3.put(c1.getUsername(), ph1);
         assertEquals(hm3, phm.getPhMap());
     }
-
     @Test (timeout = 500)
     public void TestGetTickets() {
         ph1.addPurchasedTickets(t1,c1);

@@ -19,11 +19,12 @@ public class Luggage_Meal_Main extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
     JLabel label1 = new JLabel("Do you want to add Meal or add Luggage to your ticket? ");
 
-    String instruction = "<html> You need to click the button below:";
+    String instruction = "<html> You need to click the button below:" +
+            "<br/> You can also add them when you arrive your airport";
     JLabel label2 = new JLabel(instruction);
     JButton button1 = new JButton("Add Meal");
     JButton button2 = new JButton("Add Luggage");
-    JButton button3 = new JButton("Skip");
+    JButton button3 = new JButton("Next");
     Color darkRed = new Color(101,15,43);
     Color lightPink = new Color(218,198,205);
 

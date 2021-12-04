@@ -54,6 +54,7 @@ public class FlightTest {
         emptyFlight = new Flight();
 
     }
+
     @Test(timeout = 50)
     public void TestEmptyConstructor(){
         assertNull(emptyFlight.getFlightNumber());

@@ -7,6 +7,7 @@ import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +20,9 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
     String[] aCities = {"Vancouver", "Toronto", "Montreal", "Ottawa"};
     JButton button1 = new JButton("SHOW");
     JButton confirmButton = new JButton("Confirm");
+
+    JButton button2 = new JButton("Back to Book Ticket Menu");
+
     JComboBox<String> dCb = new JComboBox<>(dCities);
     JComboBox<String> aCb = new JComboBox<>(aCities);
     FlightManager fm;
@@ -41,29 +45,36 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
         dCb.setBounds(50, 50, 100, 20);
         this.add(dCb);
         this.setLayout(null);
-        this.setSize(400, 500);
+        this.setSize(500, 500);
         this.setVisible(true);
 
-        aCb.setBounds(50, 100, 100, 20);
+        aCb.setBounds(50, 120, 100, 20);
         this.add(aCb);
 
         label2.setHorizontalAlignment(JLabel.CENTER);
         label1.setHorizontalAlignment(JLabel.CENTER);
 
-        label1.setBounds(100, 200, 200, 20);
-        label2.setBounds(100, 250, 200, 20);
+        label1.setBounds(100, 200, 400, 25);
+        label2.setBounds(100, 250, 400, 25);
+        label1.setFont(new Font("Times", Font.PLAIN, 25));
+        label2.setFont(new Font("Times", Font.PLAIN, 25));
 
-        labelDepartureDis.setBounds(100, 10, 200, 20);
-        labelArrivalDis.setBounds(100, 70, 200, 20);
+        labelDepartureDis.setBounds(100, 20, 400, 25);
+        labelDepartureDis.setFont(new Font("Times", Font.PLAIN, 25));
+        labelArrivalDis.setBounds(100, 80, 400, 25);
+        labelArrivalDis.setFont(new Font("Times", Font.PLAIN, 25));
 
-        button1.setBounds(200, 300, 100, 30);
+        button1.setBounds(100, 300, 100, 30);
         button1.addActionListener(this);
+        button2.setBounds(100, 300, 100, 30);
+        button2.addActionListener(this);
         confirmButton.setBounds(200, 350, 100, 30);
         confirmButton.addActionListener(this);
 
         this.add(label2);
         this.add(label1);
         this.add(button1);
+        this.add(button2);
         this.add(labelArrivalDis);
         this.add(labelDepartureDis);
         this.add(confirmButton);
@@ -93,6 +104,11 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
             String data2 = "Destination selected "
                     + dCb.getItemAt(aCb.getSelectedIndex());
             label2.setText(data2);
+        }
+        else if (e.getSource() == button2) {//Back to bookticket frame
+            this.dispose();
+            BookTicketMenuFrame bookticket = new BookTicketMenuFrame(this.fm, this.cm, this.tm,
+                    this.username,  this.phm, this.lm);
         }
     }
 }
