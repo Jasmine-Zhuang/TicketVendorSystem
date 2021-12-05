@@ -39,30 +39,39 @@ public class Login extends JFrame implements ActionListener {
         label.setText("Please login, or create an account if you don't have one.");
         label.setVerticalAlignment(JLabel.TOP);
         label.setBounds(0,0,400,20);
+        label.setFont(new Font("Times", Font.BOLD, 13));
 
         Username.setText("Username");
+        Username.setFont(new Font("Times", Font.PLAIN, 17));
         Username.setBounds(10,100,100,20);
 
         Password.setText("Password");
+        Password.setFont(new Font("Times", Font.PLAIN, 17));
         Password.setBounds(10, 130, 100, 20);
 
 
         loginBT.setText("Login");
         loginBT.setBounds(50,250,100,50);
+        loginBT.setFont(new Font("Times", Font.PLAIN, 17));
         loginBT.addActionListener(this);
         loginBT.setFocusable(false);
 
 
         createBT.setText("Create");
         createBT.setBounds(250,250,100,50);
+        createBT.setFont(new Font("Times", Font.PLAIN, 17));
         createBT.addActionListener(this);
         createBT.setFocusable(false);
 
         username.addActionListener(this);
-        username.setBounds(100,100,200,20);
+        username.setBounds(100,100,200,30);
+        username.setPreferredSize(new Dimension(200, 30));
+        username.setFont(new Font("Times", Font.PLAIN, 17));
 
         password.addActionListener(this);
-        password.setBounds(100,130,200,20);
+        password.setBounds(100,130,200,30);
+        password.setPreferredSize(new Dimension(200, 30));
+        password.setFont(new Font("Times", Font.PLAIN, 17));
 
         this.setTitle("Login");
         this.setVisible(true);
