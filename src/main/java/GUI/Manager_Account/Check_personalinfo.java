@@ -77,7 +77,7 @@ public class Check_personalinfo extends JFrame implements ActionListener {
 
         this.setTitle("U-Ticket Booking System");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(600, 300);
+        this.setSize(600, 400);
         this.setLocation(new Point(500, 200));
         this.setLayout(new BorderLayout());
         this.setVisible(true);

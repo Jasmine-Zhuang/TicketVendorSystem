@@ -78,7 +78,7 @@ public class ManageAccount extends JFrame implements ActionListener {
         history.setFocusable(false);
 
         back.setText("Return to main menu");
-        back.setBounds(100,380,150,50);
+        back.setBounds(100,380,200,50);
         back.addActionListener(this);
         back.setFocusable(false);
         
