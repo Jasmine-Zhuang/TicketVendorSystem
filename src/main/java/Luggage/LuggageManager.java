@@ -49,16 +49,26 @@ public class LuggageManager implements Serializable {
      * @return an integer which is the weight of the luggage
      */
     public int getWeightById(String luggageId){
-        return this.idToLuggage.get(luggageId).getLuggageWeight();
+        for (String id: this.idToLuggage.keySet()){
+            if(id.equals(luggageId)){
+                return this.idToLuggage.get(luggageId).getLuggageWeight();}
+        }
+        return 0; //luggage id not in the hashmap
     }
 
     public Luggage getLuggageById(String luggageId) {
-        return this.idToLuggage.get(luggageId);
+        if(this.idToLuggage.containsKey(luggageId)) {
+            return this.idToLuggage.get(luggageId);
+        }
+        return null;
     }
 
     public void cancelLuggage(String luggageId) {
-        this.idToLuggage.remove(luggageId);
-    }
+        if(this.idToLuggage.containsKey(luggageId)){
+            this.idToLuggage.remove(luggageId);}
+        }
+
+
 
     public String displayLuggageInfo(ArrayList<String> luggageIdLs){
         StringBuilder infoString = new StringBuilder();

@@ -139,7 +139,7 @@ public class CustomerTest {
     @Test(timeout = 50)
     public void test_getPurchase_History() {
         RewardsItem mug = new RewardsItem("Mug",800);
-        Maggie.getPurchaseHistory().addItemRedeemed(mug);
+        Maggie.getPurchaseHistory().addItemRedeemed(mug,Maggie);
         PurchaseHistory ph = Maggie.getPurchaseHistory();
         assertEquals(Maggie, ph.getOwner());
         ArrayList<RewardsItem> item_list = new ArrayList<>();
@@ -176,9 +176,9 @@ public class CustomerTest {
         Maggie.incrMileage(new_mileage);
         double redeem_point = 105.0;
         assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
-        int remain_mileage = 425;
-        double redeem_points = 1;
-        Maggie.decrMileage(redeem_points);
+        int remain_mileage = 524;
+        int minus_mileage = 1;
+        Maggie.decrMileage(minus_mileage);
         assertEquals(remain_mileage, Maggie.getMileage(),0);
     }
 

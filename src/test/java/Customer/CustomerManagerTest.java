@@ -57,7 +57,7 @@ public class CustomerManagerTest {
     public void test_getPurchase_History() {
         Ryan.addCustomer(Maggie);
         RewardsItem mug = new RewardsItem("Mug",800);
-        Maggie.getPurchaseHistory().addItemRedeemed(mug);
+        Maggie.getPurchaseHistory().addItemRedeemed(mug,Maggie);
         PurchaseHistory ph = Ryan.getPurchaseHistory(Maggie);
         assertEquals(Maggie, ph.getOwner());
         ArrayList<RewardsItem> item_list = new ArrayList<>();
@@ -231,9 +231,9 @@ public class CustomerManagerTest {
         Ryan.changeMembership(Maggie);
         double redeem_point = 100.00;
         assertEquals(redeem_point, Maggie.calculateRedeemPoint(), 0);
-        int remain_Mileage = 400;
-        double redeem_points = 1;
-        Ryan.decrMileage(Maggie, redeem_points);
+        int remain_Mileage = 495;
+        int decrease_mileage = 5;
+        Ryan.decrMileage(Maggie, decrease_mileage);
         assertEquals(remain_Mileage, Maggie.getMileage(), 0);
     }
 

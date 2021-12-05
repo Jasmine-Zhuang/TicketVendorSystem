@@ -36,7 +36,23 @@ public class LuggageManagerTest {
         assertEquals(0, lm.checkWeight(w1));
     }
 
-    @Test(timeout = 100)
+    @Test(timeout = 50)
+    public void TestCancelLuggage(){
+        lm.generateLuggage(w1, flightNum1, seatNum1);
+        lm.cancelLuggage(flightNum1 + seatNum1);
+        assertNull(lm.getLuggageById(flightNum1 + seatNum1));
+    }
+
+    @Test(timeout = 50)
+    public void TestGetLuggageById(){
+        lm.generateLuggage(w1, flightNum1, seatNum1);
+        Luggage l = lm.getLuggageById(flightNum1 + seatNum1);
+        assertEquals(w1, l.getLuggageWeight());
+    }
+
+
+
+    @Test(timeout = 800)
     public void TestDisplayLuggageInfo(){
         lm.generateLuggage(w1, flightNum1, seatNum1);
         lm.generateLuggage(w2, flightNum2, seatNum2);

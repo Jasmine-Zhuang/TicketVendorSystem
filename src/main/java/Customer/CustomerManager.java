@@ -136,7 +136,7 @@ public class CustomerManager implements Serializable {
 
     /** Modify this customer's current balance.
      * @param customer The customer needed to change name.
-     * @param balance_update The new balance of this customer to be added to this customer's current balance.
+     * @param balance_update The new balance of this customer to be subctracted to this customer's current balance.
      */
     public boolean decrBalance(int balance_update, Customer customer){
         return customer.decrBalance(balance_update);}
@@ -243,10 +243,19 @@ public class CustomerManager implements Serializable {
      * Get Redeem mileage for this customer
      */
 
-    public void decrMileage(Customer customer, double redeem_points){
+    public void decrMileage_bypoints(Customer customer, double redeem_points){
         if(AllMember.checkCustomer(customer.getUsername())){
-            AllMember.decrMileage(customer, redeem_points);
+            customer.decrMileage_bypoints(redeem_points);
         }
+    }
+
+    /**
+     * Get Redeem mileage for this customer
+     */
+
+    public void decrMileage(Customer customer, int Mileage){
+        customer.decrMileage(Mileage);
+
     }
 
     /** Return this customer's current information
@@ -265,13 +274,14 @@ public class CustomerManager implements Serializable {
         BufferedReader br =new BufferedReader(new FileReader(path));
         String line = br.readLine();
 
+        CMSerialization cmSerialization = new CMSerialization();
         while ((line = br.readLine()) != null){
             String[] data = line.split(",");
-            CMSerialization cmSerialization = new CMSerialization();
             CM.addCustomer(new Customer(data[0],data[1],data[2]));
-            cmSerialization.saveCM(CM, "CMManager.ser");
+
 
         }
+        cmSerialization.saveCM(CM, "CMManager.ser");
         return CM;
     }
 

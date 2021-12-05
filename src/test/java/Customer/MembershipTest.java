@@ -152,24 +152,6 @@ public class MembershipTest {
         assertEquals(99, AllMember.getRedeem_points(Maggie),0);
     }
 
-    @Test(timeout = 50)
-    public void test_decrMileage() {
-        Maggie.changeMembership();
-        AllMember.addCustomer(Maggie);
-        assertEquals(0, Maggie.getMileage());
-        int new_Mileage = 500;
-        AllMember.addCustomer(Maggie);
-        AllMember.incrMileage(new_Mileage, Maggie);
-        assertEquals(500, Maggie.getMileage());
-        AllMember.changeMembership(Maggie);
-        double redeem_point = 100.00;
-        assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
-        int remain_Mileage = 400;
-        double redeem_points = 1;
-        AllMember.decrMileage(Maggie,redeem_points);
-        assertEquals(remain_Mileage, Maggie.getMileage(),0);
-    }
-
 
     @Test(timeout = 1000)
     public void Test_displayInfo(){

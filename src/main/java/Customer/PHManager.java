@@ -16,7 +16,7 @@ import UStore.RewardsItem;
 public class PHManager implements Serializable {
     private static final long serialVersionUID =4;
 
-    private HashMap<Customer, PurchaseHistory> phMap;
+    private HashMap<String, PurchaseHistory> phMap;
 
 
     /** Construct an empty hashmap of purchase history.
@@ -27,7 +27,7 @@ public class PHManager implements Serializable {
 
     /** A getter method.
      */
-    public HashMap<Customer, PurchaseHistory> getPhMap() {
+    public HashMap<String, PurchaseHistory> getPhMap() {
         return this.phMap;
     }
 
@@ -38,23 +38,44 @@ public class PHManager implements Serializable {
 
     public void updateHistory (PurchaseHistory purchaseHistory) {
         Customer customer = purchaseHistory.getOwner();
-        this.phMap.put(customer, purchaseHistory);
+        this.phMap.put(customer.getUsername(), purchaseHistory);
+        customer.setPurchaseHistory(purchaseHistory);
     }
 
+    /**
+     * Return the list of tickets purchased stored in a customer's purchase history.
+     * @param client A Customer instance.
+     * @return An Arraylist of Tickets.
+     */
     public ArrayList<Ticket> getTickets (Customer client) {
-        for (Customer c:phMap.keySet())
-            if (c.getUsername().equals(client.getUsername())) {
+        for (String c:phMap.keySet())
+            if (c.equals(client.getUsername())) {
                 return phMap.get(c).getPurchasedTickets();
             }
         return null;
     }
 
+    /**
+     * Return the list of items redeemed stored in a customer's purchase history.
+     * @param client A Customer instance.
+     * @return An Arraylist of RewardItems.
+     */
     public ArrayList<RewardsItem> getRewardsItems (Customer client) {
-        for (Customer c:phMap.keySet())
-            if (c.getUsername().equals(client.getUsername())) {
+        for (String c:phMap.keySet())
+            if (c.equals(client.getUsername())) {
                 return phMap.get(c).getItemRedeemed();
             }
         return null;
     }
 
+    /**
+     * Return true if a customer's purchase history is updated. False otherwise.
+     * @param customer A Customer instance.
+     * @param newPH A new purchase history.
+     * @return boolean.
+     */
+    public boolean updatePurchaseHistory (Customer customer, PurchaseHistory newPH) {
+        phMap.replace(customer.getUsername(), newPH);
+        return true;
+    }
 }

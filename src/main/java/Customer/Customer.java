@@ -14,7 +14,7 @@ public class Customer implements Serializable {
     private boolean membership;
     private int membership_level;
     private Integer redeem_points;
-    private final PurchaseHistory purchase_history;
+    private PurchaseHistory purchase_history;
 
     /**
      * Create one Customer giving it the given username, password, name
@@ -91,7 +91,13 @@ public class Customer implements Serializable {
         return this.password.equals(password);
     }
 
-
+    /**
+     * Assign the purchaseHistory to this customer
+     * @param purchaseHistory the purchaseHistory for this customer.
+     */
+    public void setPurchaseHistory(PurchaseHistory purchaseHistory){
+        this.purchase_history = purchaseHistory;
+    }
     /**
      * Change the password of this customer.
      * @param original the original password (needs to be checked)
@@ -138,10 +144,18 @@ public class Customer implements Serializable {
         this.mileage += mileage;
     }
 
-    public void decrMileage(double redeem_points){
+    public void decrMileage_bypoints(double redeem_points){
         if (this.membership){
             this.mileage -= redeem_points * 100;}
     }
+
+    /**
+     * Increase the mileage of this customer
+     * @param mileage the mileage to be decrease
+     */
+    public void decrMileage(int mileage){
+            this.mileage -= mileage;}
+
 
     /**
      * Check the current membership of this customer
