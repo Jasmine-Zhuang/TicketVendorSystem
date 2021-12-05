@@ -182,6 +182,19 @@ public class CustomerTest {
         assertEquals(remain_mileage, Maggie.getMileage(),0);
     }
 
+    @Test(timeout = 50)
+    public void test_decrMileage_bypoints() {
+        Maggie.changeMembership();
+        int new_Millage = 525;
+        Maggie.incrMileage(new_Millage);
+        double redeem_point = 105.0;
+        assertEquals(redeem_point, Maggie.calculateRedeemPoint(),0);
+        int remain_Millage = 425;
+        double redeem_points = 1;
+        Maggie.decrMileage_bypoints(redeem_points);
+        assertEquals(remain_Millage, Maggie.getMileage(),0);
+    }
+
     @Test(timeout = 1000)
     public void Test_ToString(){
         String a =
