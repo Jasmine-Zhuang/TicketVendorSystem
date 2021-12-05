@@ -153,7 +153,6 @@ public class MembershipTest {
     }
 
 
-
     @Test(timeout = 1000)
     public void Test_displayInfo(){
         Maggie.changeMembership();

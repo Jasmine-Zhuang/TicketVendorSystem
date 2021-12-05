@@ -33,7 +33,7 @@ public class Controller {
     }*/
 
     public static void main(String[] args) {
- /*       CustomerManager cm = new CustomerManager();
+   /*     CustomerManager cm = new CustomerManager();
         Customer c = new Customer("1","12","123");
         cm.addCustomer(c);
         c.incrBalance(6000);
@@ -50,7 +50,7 @@ public class Controller {
         CustomerManager cm =  cmDeserialization.restoreCM("CMManager.ser");
         PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
         PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
-        LuggageDeserialization lmDeserialiazation = new LuggageDeserialization();
+       LuggageDeserialization lmDeserialiazation = new LuggageDeserialization();
         LuggageManager lm =lmDeserialiazation.restoreLM("LuggageManager.ser");
 
 
@@ -65,6 +65,7 @@ public class Controller {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+
 
 
 
@@ -216,8 +217,9 @@ public class Controller {
 
 
 
-
 */
+
+
 
 
         GUI gui = new GUI(fm,cm,tm,phm,lm);
