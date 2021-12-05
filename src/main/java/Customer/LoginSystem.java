@@ -190,9 +190,5 @@ public class LoginSystem implements Serializable{
 
     }
 
-    public static void main(String[] args) throws IOException {
-//        System.out.println(changeUsername("RYAN", "ryan"));
-//            changePassword("1", "1", "2");
-            changeName("r", "r1", "rrr");
-    }
+
 }
