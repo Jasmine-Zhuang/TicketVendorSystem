@@ -39,6 +39,9 @@ public class Select_Meal extends JFrame implements ActionListener {
     JButton button4 = new JButton("Low calories");
     String calories = "<html> Confirmed! You have select Low calories meal to your ticket.";
 
+    JButton button6 = new JButton("Regular");
+    String Regular = "<html> Confirmed! You have select Regular meal to your ticket.";
+
     JButton button5 = new JButton("Back to previous page");
 
     TicketSerialization ticketSerialization = new TicketSerialization();
@@ -86,6 +89,10 @@ public class Select_Meal extends JFrame implements ActionListener {
         button5.setForeground(darkRed);
         button5.addActionListener(this);
 
+        button6.setFont(new Font("Times", Font.PLAIN, 25));
+        button6.setForeground(darkRed);
+        button6.addActionListener(this);
+
         label1.setBackground(lightPink);
         label1.setFont(new Font("Times", Font.BOLD, 30));
         label1.setForeground(darkRed);
@@ -118,6 +125,10 @@ public class Select_Meal extends JFrame implements ActionListener {
         panel.add(button3);
         panel.add(Box.createRigidArea(new Dimension(20, 10)));
         panel.add(button4);
+
+        panel.add(Box.createRigidArea(new Dimension(20, 10)));
+        panel.add(button6);
+
         panel.add(Box.createRigidArea(new Dimension(20, 10)));
         panel.add(button5);
         panel.setBackground(lightPink);
@@ -126,7 +137,7 @@ public class Select_Meal extends JFrame implements ActionListener {
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(500, 320));
+        this.setPreferredSize(new Dimension(500, 420));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -149,7 +160,6 @@ public class Select_Meal extends JFrame implements ActionListener {
             diabetic diabetic = new diabetic();
             this.tm.setMeal(this.tm.getTicketByID(ticket_id), diabetic);
             ticketSerialization.saveTM(this.tm, "TicketManager.ser");//save TM
-
             int result = JOptionPane.showConfirmDialog(
                     this, Diabetic);
             if (result == JOptionPane.YES_OPTION) {
@@ -170,7 +180,6 @@ public class Select_Meal extends JFrame implements ActionListener {
                 gluten_intolerance Gluten = new gluten_intolerance();
                 this.tm.setMeal(this.tm.getTicketByID(ticket_id), Gluten);
                 ticketSerialization.saveTM(this.tm, "TicketManager.ser");//save TM
-
                 int result1 = JOptionPane.showConfirmDialog(
                         this, Gluten);
                 if (result1 == JOptionPane.YES_OPTION) {
@@ -191,7 +200,6 @@ public class Select_Meal extends JFrame implements ActionListener {
                 vegan Vegan = new vegan();
                 this.tm.setMeal(this.tm.getTicketByID(ticket_id), Vegan);
                 ticketSerialization.saveTM(this.tm, "TicketManager.ser");//save TM
-
                 int result2 = JOptionPane.showConfirmDialog(
                         this, Vegan);
                 if (result2 == JOptionPane.YES_OPTION) {
@@ -212,7 +220,6 @@ public class Select_Meal extends JFrame implements ActionListener {
                 low_calories low_calories = new low_calories();
                 this.tm.setMeal(this.tm.getTicketByID(ticket_id), low_calories);
                 ticketSerialization.saveTM(this.tm, "TicketManager.ser");//save TM
-
                 int result4 = JOptionPane.showConfirmDialog(
                         this, calories);
                 if (result4 == JOptionPane.YES_OPTION) {
@@ -225,7 +232,24 @@ public class Select_Meal extends JFrame implements ActionListener {
                             username, phm, lm, ticket_id);
                 }
             }
-
+        else if (button6 == e.getSource()) {
+                this.dispose();
+                label2.setText(Regular);
+                regular_meal Regular_meal = new regular_meal();
+                this.tm.setMeal(this.tm.getTicketByID(ticket_id), Regular_meal);
+                ticketSerialization.saveTM(this.tm, "TicketManager.ser");//save TM
+                int result4 = JOptionPane.showConfirmDialog(
+                        this, Regular);
+                if (result4 == JOptionPane.YES_OPTION) {
+                    ticketSerialization.saveTM(this.tm, "TicketManager.ser");//save TM
+                    phmSerialiazation.savePHM(this.phm, "PHManager.ser");//save PHM
+                    cmSerialization.saveCM(this.cm, "CMManager.ser");//save cm
+                    JOptionPane.showMessageDialog(null, "Do you want to back to previous page?");
+                    this.dispose();
+                    select_meal_main purchaseHistory_ticektFrame = new select_meal_main(cm, fm, tm,
+                            username, phm, lm, ticket_id);
+                }
+        }
         else if (button5 == e.getSource()) {
                 this.dispose();
                 ticketSerialization.saveTM(this.tm, "TicketManager.ser");//save TM
