@@ -7,7 +7,7 @@ public class Mug extends RewardsItem implements Redeemable, Serializable {
      * Construct a mug
      */
     public Mug() {
-        super("Mug", 800);
+        super("Mug", 500);
     }
 
 
