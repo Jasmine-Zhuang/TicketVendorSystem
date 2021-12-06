@@ -163,8 +163,6 @@ public class CustomerManager implements Serializable {
      * @param mileage_update The new mileage of this customer to be added to this customer's current mileage.
      */
     public void incrMileage(int mileage_update, Customer customer){
-        if (AllMember.checkCustomer(customer.getUsername())){
-            customer.incrMileage(mileage_update);}
         customer.incrMileage(mileage_update);
     }
 
