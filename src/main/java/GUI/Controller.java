@@ -33,14 +33,6 @@ public class Controller {
     }*/
 
     public static void main(String[] args) {
-   /*     CustomerManager cm = new CustomerManager();
-        Customer c = new Customer("1","12","123");
-        cm.addCustomer(c);
-        c.incrBalance(6000);
-        TicketManager tm=new TicketManager();
-         LuggageManager lm=new LuggageManager();
-        FlightManager fm=new FlightManager();
-        PHManager phm=new PHManager();*/
 
         TicketDeserialization ticketDeserialization =new TicketDeserialization();
         TicketManager tm = ticketDeserialization.restoreTM("TicketManager.ser");
@@ -68,8 +60,18 @@ public class Controller {
 
 
 
-
 /*
+
+
+   CustomerManager cm = new CustomerManager();
+        Customer c = new Customer("1","12","123");
+        cm.addCustomer(c);
+        c.incrBalance(6000);
+        TicketManager tm=new TicketManager();
+         LuggageManager lm=new LuggageManager();
+        FlightManager fm=new FlightManager();
+        PHManager phm=new PHManager();
+
 
 //Generate Flights
         //Route1 Toronto-Vancouver
@@ -214,10 +216,12 @@ public class Controller {
 
         fm.AddFlight("CZ523", "Ottawa", "Montreal" , dTime20, aTime20, "Large",
                 199, "10C");
-
-
-
 */
+
+
+
+
+
 
 
 
