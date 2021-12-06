@@ -38,9 +38,10 @@ public class CreateAccount extends JFrame implements ActionListener {
         this.phm=phm;
         this.lm=lm;
 
-        label.setText("Please enter your Username, Password, and Full Name respectively");
+        label.setText("Please enter your Username, Password, and Full Name, respectively");
         label.setVerticalAlignment(JLabel.TOP);
         label.setBounds(0,0,450,20);
+        label.setFont(new Font("Times", Font.BOLD, 13));
 
         confirm.setText("Confirm");
         confirm.setBounds(50,250,100,50);
@@ -53,22 +54,28 @@ public class CreateAccount extends JFrame implements ActionListener {
         back.setFocusable(false);
 
         Username.setText("Username");
+        Username.setFont(new Font("Times", Font.PLAIN, 17));
         Username.setBounds(10,100,80,20);
 
         username.addActionListener(this);
-        username.setBounds(100,100,200,20);
+        username.setBounds(100,100,200,30);
+        username.setFont(new Font("Times", Font.PLAIN, 17));
 
         Password.setText("Password");
+        Password.setFont(new Font("Times", Font.PLAIN, 17));
         Password.setBounds(10,130,80,20);
 
         password.addActionListener(this);
-        password.setBounds(100,130,200,20);
+        password.setBounds(100,130,200,30);
+        password.setFont(new Font("Times", Font.PLAIN, 17));
 
         FullName.setText("Full Name");
         FullName.setBounds(10,160,80,20);
+        FullName.setFont(new Font("Times", Font.PLAIN, 17));
 
         fullName.addActionListener(this);
-        fullName.setBounds(100,160,200,20);
+        fullName.setBounds(100,160,200,30);
+        fullName.setFont(new Font("Times", Font.PLAIN, 17));
 
         this.setTitle("Create Account");
         this.setVisible(true);
@@ -102,7 +109,7 @@ public class CreateAccount extends JFrame implements ActionListener {
                     System.out.println("The username already exists, please enter a new one.");
                 }
             } catch (IOException ex) {
-                System.out.println("error");;
+                System.out.println("error");
             }
         }
         if (e.getSource() == back){
