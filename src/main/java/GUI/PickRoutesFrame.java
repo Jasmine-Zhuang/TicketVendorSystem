@@ -7,6 +7,7 @@ import Luggage.LuggageManager;
 import Ticket.TicketManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -43,6 +44,7 @@ public class PickRoutesFrame extends JFrame implements ActionListener {
         this.add(dCb);
         this.setLayout(null);
         this.setSize(400, 500);
+        this.setLocation(new Point(500, 300));
         this.setVisible(true);
 
         aCb.setBounds(50, 100, 100, 20);
