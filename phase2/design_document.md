@@ -76,6 +76,9 @@ That is to say, another significant improvement of the above refactorings descri
 
 
 Besides, We did some general refactoring that changed the name of some ambiguous variables to make our code more readable.  We also fixed some crucial typos in our code that may change the literal meaning of the function or variable names. The evidence is in pull request PP2_login.
+
+
+For the code smell, the class Customer may be too large, which can be devided into smaller classes. Meanwhile, we have too much parameter for method generateTicket, which may causes data clumps.
  
 ## Code Organization
 
