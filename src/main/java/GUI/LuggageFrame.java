@@ -109,16 +109,28 @@ public class LuggageFrame extends JFrame implements ActionListener {
                 int wt = Integer.parseInt(l_weight.getText());
                 if (wt > 0 && wt <= 30) {
                     if (wt > 23) {
-                        //确认是否托运：
+                        //Check if overweight luggage should be added.
                         int penalty = pc.luggagePenalty(wt, tm.getTicketByID(t_id));
                         int result = JOptionPane.showConfirmDialog(
                                 this,"Your luggage is overweight, penalty will be applied: $" + penalty);
                         if (result == JOptionPane.YES_OPTION) {
                             if(cm.showCustomer(u_name).getBalance() >= penalty){
                                 cm.showCustomer(u_name).decrBalance(penalty);
+                                lm.generateLuggage(wt, tm.getTicketByID(t_id).getFlightNumber(),
+                                        tm.getTicketByID(t_id).getSeat_number());
+                                String luggageId = tm.getTicketByID(t_id).getFlightNumber() +
+                                        tm.getTicketByID(t_id).getSeat_number();
+                                tm.getTicketByID(t_id).setLuggage_id(luggageId);
+
+                                ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
+                                luggageSerialization.saveLM(this.lm, "LuggageManager.ser");
+                                this.dispose();
+                                JOptionPane.showMessageDialog(null,
+                                        "Successfully added your Luggage", "Congratulations",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                                Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
+                                        this.u_name, this.phm, this.lm, this.t_id);
                             }else{
-
-
                                 int result1 = JOptionPane.showConfirmDialog(
                                         this,"Insufficient balance, do you want to " +
                                                 "load the outstanding fees?");
@@ -126,7 +138,23 @@ public class LuggageFrame extends JFrame implements ActionListener {
                                     this.cm.showCustomer(this.u_name).incrBalance(penalty -
                                             this.cm.showCustomer(this.u_name).getBalance());
                                     cm.showCustomer(u_name).decrBalance(penalty);
+
+                                    lm.generateLuggage(wt, tm.getTicketByID(t_id).getFlightNumber(),
+                                            tm.getTicketByID(t_id).getSeat_number());
+                                    String luggageId = tm.getTicketByID(t_id).getFlightNumber() +
+                                            tm.getTicketByID(t_id).getSeat_number();
+                                    tm.getTicketByID(t_id).setLuggage_id(luggageId);
+
+                                    ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
+                                    luggageSerialization.saveLM(this.lm, "LuggageManager.ser");
+                                    this.dispose();
+                                    JOptionPane.showMessageDialog(null,
+                                            "Successfully added your Luggage", "Congratulations",
+                                            JOptionPane.INFORMATION_MESSAGE);
+                                    Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
+                                            this.u_name, this.phm, this.lm, this.t_id);
                                 }else{
+                                    this.dispose();
                                     LuggageFrame select_luggage= new LuggageFrame(this.fm, this.cm, this.tm, this.phm,
                                             this.lm, this.u_name,this.t_id);
                                 }
@@ -139,25 +167,28 @@ public class LuggageFrame extends JFrame implements ActionListener {
 //                                        this.u_name,this.phm,this.lm);
                             }
                         }else{
+                            this.dispose();
                             LuggageFrame select_luggage= new LuggageFrame(this.fm, this.cm, this.tm, this.phm,
                                     this.lm, this.u_name,this.t_id);
                         }
 
-                    }
-                    lm.generateLuggage(wt, tm.getTicketByID(t_id).getFlightNumber(),
-                            tm.getTicketByID(t_id).getSeat_number());
-                    String luggageId = tm.getTicketByID(t_id).getFlightNumber() +
-                            tm.getTicketByID(t_id).getSeat_number();
-                    tm.getTicketByID(t_id).setLuggage_id(luggageId);
+                    }else{
+                        lm.generateLuggage(wt, tm.getTicketByID(t_id).getFlightNumber(),
+                                tm.getTicketByID(t_id).getSeat_number());
+                        String luggageId = tm.getTicketByID(t_id).getFlightNumber() +
+                                tm.getTicketByID(t_id).getSeat_number();
+                        tm.getTicketByID(t_id).setLuggage_id(luggageId);
 
-                    ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
-                    luggageSerialization.saveLM(this.lm, "LuggageManager.ser");
-                    this.dispose();
-                    JOptionPane.showMessageDialog(null,
-                            "Successfully added your Luggage", "Congratulations",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
-                            this.u_name, this.phm, this.lm, this.t_id);
+                        ticketSerialization.saveTM(this.tm,"TicketManager.ser");//save TM
+                        luggageSerialization.saveLM(this.lm, "LuggageManager.ser");
+                        this.dispose();
+                        JOptionPane.showMessageDialog(null,
+                                "Successfully added your Luggage", "Congratulations",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        Luggage_Meal_Main lmm = new Luggage_Meal_Main(this.cm, this.fm, this.tm,
+                                this.u_name, this.phm, this.lm, this.t_id);
+                    }
+
                 }else{
                     JOptionPane.showMessageDialog(null,
                             "Warning: You have reached the maximum luggage weight. Please re-enter", "warning",
@@ -171,15 +202,6 @@ public class LuggageFrame extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        FlightManager fm = new FlightManager();
-        TicketManager tm = new TicketManager();
-        CustomerManager cm = new CustomerManager();
-        PHManager phm = new PHManager();
-        LuggageManager lm = new LuggageManager();
-        String u_name = "sb";
-        String t_id = "CZ01101A";
-        LuggageFrame gui = new LuggageFrame(fm, cm, tm, phm, lm, u_name, t_id);
-    }
+
 
 }
