@@ -108,6 +108,7 @@ public class TicketManagerTest {
        phm.updateHistory(ph);
        cm.addCustomer(olivia);
        cm.incrMileage(10, olivia);
+       System.out.println(olivia.getMileage());
        cm.incrBalance(5000, olivia);
        tm.bookTickets(t1);
        cm.decrBalance(pc.calculatePrice(flight, olivia, t1.getTicket_class()), olivia);
