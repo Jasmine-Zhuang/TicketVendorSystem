@@ -1,12 +1,8 @@
 package GUI;
 
-import Customer.CMSerialization;
 import Customer.CustomerManager;
-import Customer.PHMSerialiazation;
 import Customer.PHManager;
 import Flight.FlightManager;
-import Flight.FlightSerialization;
-import GUI.Manager_Account.Load_Balance.Insufficient_Balance;
 import Luggage.LuggageManager;
 import Luggage.LuggageSerialization;
 import Ticket.PriceCalculator;
@@ -36,10 +32,7 @@ public class LuggageFrame extends JFrame implements ActionListener {
     String u_name;
     String t_id;
     PriceCalculator pc;
-    FlightSerialization flightSerialization = new FlightSerialization();
     TicketSerialization ticketSerialization = new TicketSerialization();
-    PHMSerialiazation phmSerialiazation = new PHMSerialiazation();
-    CMSerialization cmSerialization = new CMSerialization();
     LuggageSerialization luggageSerialization = new LuggageSerialization();
 
     LuggageFrame(FlightManager fm, CustomerManager cm, TicketManager tm,PHManager phm, LuggageManager lm,
@@ -158,13 +151,7 @@ public class LuggageFrame extends JFrame implements ActionListener {
                                     LuggageFrame select_luggage= new LuggageFrame(this.fm, this.cm, this.tm, this.phm,
                                             this.lm, this.u_name,this.t_id);
                                 }
-//                                JOptionPane.showMessageDialog(null,
-//                                        "Warning: insufficient balance.","warning",
-//                                        JOptionPane.WARNING_MESSAGE);
-//
-//                                Insufficient_Balance insufficient_balance = new
-//                                        Insufficient_Balance(this.cm,this.fm,this.tm,
-//                                        this.u_name,this.phm,this.lm);
+
                             }
                         }else{
                             this.dispose();
