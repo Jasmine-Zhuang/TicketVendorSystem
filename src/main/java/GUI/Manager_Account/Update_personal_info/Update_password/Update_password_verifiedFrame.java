@@ -2,6 +2,7 @@ package GUI.Manager_Account.Update_personal_info.Update_password;
 
 
 import Customer.CMSerialization;
+import Customer.LoginSystem;
 import Flight.FlightManager;
 import GUI.Manager_Account.ManageAccount;
 import GUI.Manager_Account.Update_personal_info.Update_PersonalinfoFrame;
@@ -13,6 +14,7 @@ import java.awt.event.ActionListener;
 import Customer.CustomerManager;
 import Ticket.TicketManager;
 import Customer.PHManager;
+import Luggage.LuggageManager;
 
 
 public class Update_password_verifiedFrame extends JFrame implements ActionListener {
@@ -29,29 +31,31 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
     // create a new frame to store text field and button
     JFrame textfield = new JFrame("textfield");
 
-    // create a label to display text
-    JLabel nothinglabel = new JLabel("nothing entered");
-
     // create a new button
     JButton submitb = new JButton("submit");
 
-    // create a object of JTextField with 16 columns and a given initial text
-    JTextField initalttext = new JTextField("Please enter your new password", 16);
+    // create an object of JTextField with 16 columns and a given initial text
+    JTextField initialText = new JTextField("Please enter your new password", 16);
 
     CustomerManager cm;
     FlightManager fm;
     TicketManager tm;
     PHManager phm;
     String username;
-
+    String password;
+    LuggageManager lm;
 
     // default constructor
     Update_password_verifiedFrame(CustomerManager customerManager, FlightManager flightManager,
-                                  TicketManager ticketManager, String username, PHManager phm) {
+                                  TicketManager ticketManager, String username, String pswd, PHManager phm,
+                                  LuggageManager lm) {
         this.cm = customerManager;
         this.fm = flightManager;
         this.tm = ticketManager;
         this.username=username;
+        this.password = pswd;
+        this.phm = phm;
+        this.lm = lm;
 
         button1.setFont(new Font("Times", Font.PLAIN,25));
         button1.setForeground(darkRed);
@@ -81,16 +85,14 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
         label2.setHorizontalAlignment(JLabel.CENTER);
         label2.setBounds(50,50,300,300);
 
-        nothinglabel.setBounds(50,50,300,300);
         panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
         panel.add(label1);
         panel.add(Box.createRigidArea(new Dimension(20,10)));
         panel.add(label2);
         panel.add(Box.createRigidArea(new Dimension(10,10)));
-        panel.add(initalttext);
+        panel.add(initialText);
         panel.add(submitb);
         submitb.addActionListener(this);
-        panel.add(nothinglabel);
         textfield.setSize(new Dimension(2,2));
         textfield.add(panel);
 
@@ -110,7 +112,7 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
 
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(350, 320));
+        this.setPreferredSize(new Dimension(500, 320));
         this.setLocation(new Point(500, 300));
         this.pack();
         this.setVisible(true);
@@ -129,27 +131,24 @@ public class Update_password_verifiedFrame extends JFrame implements ActionListe
     @Override
     public void actionPerformed(ActionEvent e) {
         if(submitb == e.getSource()){
-            this.dispose();
-            String newpassword = initalttext.getText();
-            this.cm.showCustomer(this.username).checkPassword(newpassword);
-            CMSerialization cmSerialization = new CMSerialization();
-            cmSerialization.saveCM(this.cm, "CMManager.ser");
-            Update_passwordsuccessFrame change_password= new Update_passwordsuccessFrame(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate next page for routes picking
-        }else if(button1 == e.getSource()){
+            String newPassword = initialText.getText();
+            if(LoginSystem.changePassword(this.username, this.password, newPassword)){
+                this.dispose();
+                this.cm.changePassword(this.password, newPassword, this.cm.showCustomer(this.username));
+                CMSerialization cmSerialization = new CMSerialization();
+                cmSerialization.saveCM(this.cm, "CMManager.ser");
+                Update_passwordsuccessFrame change_password= new Update_passwordsuccessFrame(this.cm, this.fm, this.tm, this.username, this.phm, this.lm);//instantiate next page for routes picking
+            }
+        }
+        if(button1 == e.getSource()){
             this.dispose();
             Update_PersonalinfoFrame personal_info = new Update_PersonalinfoFrame(this.cm, this.fm, this.tm,
-                    this.username, this.phm);//instantiate main menu
-        }else if(button2 == e.getSource()){
-            this.dispose();
-            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm, this.username, this.phm);//instantiate main menu
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
-        String s = e.getActionCommand();
-        if (s.equals("submit")) {
-            // set the text of the label to the text of the field
-            nothinglabel.setText(initalttext.getText());
-
-            // set the text of field to blank
-            nothinglabel.setText("  ");
+        if(button2 == e.getSource()){
+            this.dispose();
+            ManageAccount ManageAccountMenu = new ManageAccount(this.cm, this.fm, this.tm,
+                    this.username, this.phm, this.lm);//instantiate main menu
         }
     }
 }

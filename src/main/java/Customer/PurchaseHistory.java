@@ -52,9 +52,13 @@ public class PurchaseHistory implements Serializable {
      * @param ticket A ticket instance.
      * @return true if the ticket has been successfully added.
      */
-    public boolean addPurchasedTickets (Ticket ticket) {
-        purchasedTickets.add(ticket);
-        return true;
+    public boolean addPurchasedTickets (Ticket ticket, Customer customer) {
+        if (!purchasedTickets.contains(ticket)) {
+            purchasedTickets.add(ticket);
+            customer.setPurchaseHistory(this);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -63,8 +67,39 @@ public class PurchaseHistory implements Serializable {
      * @return true if the item has been successfully added.
      */
 
-    public boolean addItemRedeemed(RewardsItem item) {
+    public boolean addItemRedeemed(RewardsItem item, Customer customer) {
+        if (!itemRedeemed.contains(item)) {
         itemRedeemed.add(item);
+        customer.setPurchaseHistory(this);
         return true;
+        }
+        return false;
+    }
+
+    /**
+     * Remove an existing ticket from the list of purchasedTickets and return true if succeed.
+     * @param ticket A ticket instance.
+     * @return true if the ticket has been successfully added.
+     */
+    public boolean removePurchasedTickets (Ticket ticket, Customer customer) {
+        if (purchasedTickets.contains(ticket)) {
+            purchasedTickets.remove(ticket);
+            customer.setPurchaseHistory(this);
+            return true;
+        } else {return false;}
+    }
+
+    /**
+     * Add a new item to the list of itemRedeemed and return true.
+     * @param item A RewardsItem instance that were redeemed by points from the U-store.
+     * @return true if the item has been successfully added.
+     */
+
+    public boolean removeItemRedeemed(RewardsItem item, Customer customer) {
+        if (itemRedeemed.contains(item)){
+            itemRedeemed.remove(item);
+            customer.setPurchaseHistory(this);
+            return true;
+        } else {return false;}
     }
 }

@@ -70,7 +70,7 @@ public class Flight implements Serializable {
      */
     private void CreateClassSeat(ArrayList<String> seatNumArray, ArrayList<ArrayList<String>> seatArray, int num, int index,
                                  String C) {
-       // Notice num + index <= last index in seatNumArray
+        // Notice num + index <= last index in seatNumArray
         for(int i = index; i<num+index; i++){
             ArrayList<String> seat = new ArrayList<>();
             seat.add(0,seatNumArray.get(i));
@@ -234,9 +234,8 @@ public class Flight implements Serializable {
                 " \n from " + originCity + " to " + destinationCity +
                 "\n from " + formattedDepartureTime + " to " + formattedArrivalTime +
                 "\n boarding gate: " + boardingGate;
-        }
     }
-
+}
 
 
 

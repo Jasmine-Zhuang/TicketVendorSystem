@@ -4,51 +4,15 @@ This is the class that manages all scheduled flights information
  */
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class FlightManager implements Serializable {
     private HashMap<String, Flight> idToFlight = new LinkedHashMap<>();
     private static final long serialVersionUID = 2;
 
-/*
-    public void saveFM(FlightManager fm,String filePath){
-        try {
-            FileOutputStream fileOut = new FileOutputStream(filePath);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject((FlightManager)fm);
-            out.close();
-            fileOut.close();
-            System.out.println("FM saved!");
-            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-            System.out.println("serialVersionUID: "+serialVersionUID);
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
-    }*/
-   /* public FlightManager restoreFM(String filePath){
-        try {
-            FileInputStream fileIn = new FileInputStream(filePath);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            FlightManager fm = (FlightManager) in.readObject();
-            System.out.println(fm.sortFlightsDistance());
-            in.close();
-            fileIn.close();
-            System.out.println("Restored FM");
-            long serialVersionUID = ObjectStreamClass.lookup(fm.getClass()).getSerialVersionUID();
-            System.out.println("serialVersionUID: "+serialVersionUID);
-            return fm;
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-
-    }*/
 
     public FlightManager(){}
-/*
-    public FlightManager(HashMap<String, Flight>idToFlight){
-        this.idToFlight = idToFlight;
-    }*/
 
     /**
      * Add a New Flight to the manager.
@@ -60,21 +24,44 @@ public class FlightManager implements Serializable {
      * @param flightType the type of the flight, small: 10 seats, median: 20 seats, large: 30 seats;
      * @param distance_traveled The flight's length
      * @param boardingGate the boarding gate of this flight
-     * @param seatNumberArray    array of all seat numbers of this flight
+
      */
     public void AddFlight(String flightNumber, String originCity, String destinationCity, ArrayList<String> departureTime,
                           ArrayList<String> arrivalTime, String flightType, int distance_traveled
-            , String boardingGate, ArrayList<String> seatNumberArray) {
+            , String boardingGate) {
 
-        int numSeatAvailable = seatNumchecker(flightType);
+       /* int numSeatAvailable = seatNumchecker(flightType);
         int totalNumSeats = seatNumchecker(flightType);
         Flight newFlight = new Flight(flightNumber, originCity, destinationCity, departureTime,
                 arrivalTime, totalNumSeats, numSeatAvailable, distance_traveled
-                , boardingGate, seatNumberArray);
-        this.idToFlight.put(flightNumber, newFlight);
-    }
+                , boardingGate, seatNumberArray);*/
+        switch (flightType) {
+            case "Small": {
+                Flight newFlight = new SmallFlight(flightNumber, originCity, destinationCity, departureTime,
+                        arrivalTime, distance_traveled, boardingGate);
+                this.idToFlight.put(flightNumber, newFlight);
+                break;
+            }
+            case "Medium": {
+                Flight newFlight = new MediumFlight(flightNumber, originCity, destinationCity, departureTime,
+                        arrivalTime, distance_traveled, boardingGate);
+                this.idToFlight.put(flightNumber, newFlight);
+                break;
+            }
+            case "Large": {
+                Flight newFlight = new LargeFlight(flightNumber, originCity, destinationCity, departureTime,
+                        arrivalTime, distance_traveled, boardingGate);
+                this.idToFlight.put(flightNumber, newFlight);
+                break;
+            }
+        }
+        }
 
-    public int seatNumchecker(String flightType) {
+
+
+
+
+    /*public int FlightTypechecker(String flightType) {
         if (Objects.equals(flightType, "Small")) {
             return 10;
         } else if (Objects.equals(flightType, "Medium")) {
@@ -83,7 +70,7 @@ public class FlightManager implements Serializable {
             return 30;
         }
         else return -1;
-    }
+    }*/
 
 
     /**
@@ -137,17 +124,9 @@ public class FlightManager implements Serializable {
         return "This seat has not been reserved or does not exist.";
     }
 
-    /**
-     * provide verify information for the flight that the user wants to look up
-     * return a string of the flight information if the flight is scheduled, otherwise return
-     * a string inform the customer that this flight is not scheduled to fly.
-     */
-    public String verifyYourFlight(String flight_num){
-        if (this.idToFlight.containsKey(flight_num)) {
-            return this.idToFlight.get(flight_num).toString();
-        }
-        return "This flight number is invalid or the flight is not scheduled to fly.";
-    }
+/*
+    */
+
 
     /**
      * provide user a list of flight nums that with specified city of departure and destination
@@ -164,21 +143,7 @@ public class FlightManager implements Serializable {
         return lst;
     }
 
-    /**
-     * provide user a list of flight which departure and arrive at specific local time
-     * @return Arraylist of flight nums, or empty list if there's no available flight
-     */
-    public ArrayList<String> getFlightByLocalTime(LocalDateTime departureTime,
-                                                  LocalDateTime arrivalTime) {
-        ArrayList<String> lst = new ArrayList<>();
-        for (String id: this.idToFlight.keySet()) {
-            if (Objects.equals(this.idToFlight.get(id).getDepartureTime(), departureTime) &&
-                    Objects.equals(this.idToFlight.get(id).getArrivalTime(), arrivalTime)) {
-                lst.add(id);
-            }
-        }
-        return lst;
-    }
+
 
     /**
      * @param flightNum flight number
@@ -215,19 +180,43 @@ public class FlightManager implements Serializable {
     }
 
 
+
     /**
-     * @param flightNumLs a list of flight number
-     * @return a string of all the information of flight numbers in the list
+     * @param flightNum a flight number
+     * @return a string of the information of flight, that will be shown as formatted in GUI
      */
-    public String displayFlightInfo(ArrayList<String> flightNumLs) {
-        StringBuilder infoString = new StringBuilder();
-        for(String flightNum: flightNumLs){
-            if (this.idToFlight.containsKey(flightNum)) {
-                infoString.append(this.idToFlight.get(flightNum).toString());
-            }
+    public String displayFlightInfoInGUI(String flightNum) {
+        if (this.idToFlight.containsKey(flightNum)) {
+            Flight f =getFlightByNum(flightNum);
+            DateTimeFormatter FormatObj = DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm:ss");
+            String formattedArrivalTime = f.getArrivalTime().format(FormatObj);
+            String formattedDepartureTime = f.getDepartureTime().format(FormatObj);
+
+            return "<html> Flight " + flightNum +
+                    " <br/> from " + f.getOriginCity() + " to " + f.getDestinationCity() +
+                    "<br/> from " + formattedDepartureTime + " to " + formattedArrivalTime +
+                    "<br/> distance travelled: "+f.getDistanceTraveled()+
+                    "<br/> boarding gate: " + f.getBoardingGate()+ "<html>";
         }
-        return infoString.toString();
+        else{return null;}
+
+    }
+    /**
+     * @param flightNum a flight number
+     * @return a string of the departure city of flight
+     */
+
+    public String getDCity(String flightNum){
+        return getFlightByNum(flightNum).getOriginCity();
     }
 
 
+    /**
+     *
+     * @param flightNum a flight number
+     * @return a string of the arrival city of flight
+     */
+    public String getACity(String flightNum){
+        return this.getFlightByNum(flightNum).getDestinationCity();
+    }
 }
