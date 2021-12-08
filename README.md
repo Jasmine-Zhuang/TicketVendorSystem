@@ -1,4 +1,4 @@
-## Happy207 course project!
+<h1 align="center">  Welcome to U-Ticket  </h1>
 
 
 Our progress report, crc model, design document, Scenario and specification are located under the folder "phase1".
