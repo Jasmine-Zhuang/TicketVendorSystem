@@ -12,7 +12,7 @@ The GUI is clearly labeled to use.
 
 The “provide choice in method of use” rule was not implemented in our program because our program can only be run on a computer. However, in the future we could adopt this program in an android application.
 
-Other rules are followed, for example, to ensure user-friendly accuracy and precision, we positioned all windows in the center of the entire computer screen.
+Other rules are followed, for example, to Accommodate right- or left-handed access and use, we positioned all windows in the center of the entire computer screen. To ensure user-friendly accuracy and precision, we have label instructions that tells users what to do.
 
 ## Principle 3: Simple and Intuitive Use
 
