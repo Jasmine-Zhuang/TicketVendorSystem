@@ -48,7 +48,7 @@ This principle is not applicable for our program because anyone with a normal PC
 
 ### Write a paragraph about who you would market your program towards, if you were to sell or license your program to customers. This could be a specific category such as "students" or more vague, such as "people who like games". Try to give a bit more detail along with the category.
 
-This program could be marketed towards a wide range of people. More specifically, anyone who has the need to book a domestic flight between some major cities within Canada. 
+This program could be marketed toward airlines that run domestic flights within Canada because the current implementation is only suitable for domestic flights. If we implement more functions in the future, it can even be marketed toward international airlines.
 
 ### Write a paragraph about whether or not your program is less likely to be used by certain demographics. For example, a program that converts txt files to files that can be printed by a braille printer are less likely to be used by people who do not read braille.
 
