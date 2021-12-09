@@ -10,7 +10,7 @@ To ensure that our design adheres to the principles of universal design.
 
 We first ensure that all users have the same access, and we have added a password protection feature to PP2 to ensure that our privacy policy is available to all users equally.
 
-Furthermore, to ensure flexibility of use. We display text prompts on pages that require user input and button presses, such as "please enter the ticket id of the ticket that you want to change or cancel. To ensure user-friendly accuracy and precision, we positioned all windows in the center of the entire computer screen.
+Furthermore, to ensure flexibility of use. We display text prompts on pages that require user input and button presses, such as “please enter the ticket id of the ticket that you want to change or cancel.” And to ensure user-friendly accuracy and precision, we positioned all windows in the center of the entire computer screen.
 
 To make it easy and intuitive to use, we eliminate unnecessary complexity and use many buttons to accept user commands. And when the user presses a button, we provide effective prompts and feedback during and after the task is completed.
 
