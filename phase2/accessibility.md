@@ -12,7 +12,7 @@ The GUI is clearly labeled to use.
 
 The “provide choice in method of use” rule was not implemented in our program because our program can only be run on a computer. However, in the future we could adopt this program in an android application.
 
-Other rules are followed
+Other rules are followed, for example, to ensure user-friendly accuracy and precision, we positioned all windows in the center of the entire computer screen.
 
 ## Principle 3: Simple and Intuitive Use
 
@@ -24,7 +24,7 @@ The Layout is clear and neat to indicate a function that a user could expect.
 
 ## Principle 4: Perceptible Information
 
-Text font is maximized for more important and essential information.
+Text font is enlarged for more important and essential information.
 
 Every visual element is clearly labeled.
 
@@ -32,7 +32,7 @@ However, we do not have a function that is other than visual (e.g. verbal, tacti
 
 ## Principle 5: Tolerance for Error
 
-All users will be warned when they decide to make payments.
+All users will be warned when they are about to make payments.
 
 All users are allowed to return to previous pages in case they made any mistakes or decided to revert their decisions.
 
@@ -41,6 +41,8 @@ We provide warnings when the user input is wrong or unexpected.
 ## Principle 6: Low Physical Effort
 
 All operations on this program do not need users to perform high physical effort. It only requires users to click some buttons and input some text.
+
+We also minimized repetitive actions by linking pages in non-linear sequence. 
 
 ## Principle 7: Size and Space for Approach and Use
 
