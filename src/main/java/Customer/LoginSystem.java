@@ -58,7 +58,7 @@ public class LoginSystem implements Serializable{
 
 
     /**
-     *
+     * Add a user to file
      * @param username New username
      * @param password Password that matches the new username
      * @param fullName fullName of this user with username
@@ -79,6 +79,13 @@ public class LoginSystem implements Serializable{
         }
     }
 
+    /**
+     * Change the username of a user with Old username
+     * @param Old The original username
+     * @param New The new username
+     * @return return true if the change was successful, false otherwise
+     * @throws IOException throws exception if error occurs during file reading.
+     */
     public static boolean changeUsername(String Old, String New) throws IOException {
         if(checkUsername(New)){
             path = "users.csv";
@@ -115,6 +122,13 @@ public class LoginSystem implements Serializable{
         }return false;
     }
 
+    /**
+     * Change the password of a user with Username from old_password to new_password.
+     * @param Username the username that corresponds to the old password
+     * @param old_password the old password to be changed
+     * @param new_password the new password
+     * @return return true if successfully changed, false otherwise.
+     */
     public static boolean changePassword(String Username, String old_password, String new_password){
         path = "users.csv";
         String new_path = "temp.csv";
@@ -152,6 +166,13 @@ public class LoginSystem implements Serializable{
 
     }
 
+    /**
+     * Change the name of the user with Username
+     * @param Username the username that corresponds to old_name
+     * @param old_name the old name to be changed
+     * @param new_name the new name
+     * @return true if successfully changed, false otherwise
+     */
     public static boolean changeName(String Username, String old_name, String new_name){
         path = "users.csv";
         String new_path = "temp.csv";
