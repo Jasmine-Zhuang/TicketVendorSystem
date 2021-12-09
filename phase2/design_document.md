@@ -6,23 +6,7 @@ Also, to enhance the functionality of our ticket reservation system, we decided 
 
 Moreover, to make it easier for customers to track their luggage, our program now allows customers to add luggage to their booked tickets, by creating a new entity class Luggage and its use case class LuggageManager. Notice that serialization and deserialization are applied. And customers can pay for overweight luggage fees by registering luggage weight before booking tickets. Rules of penalty and fees amount will be displayed in the corresponding GUI frame.
 
-To ensure that our design adheres to The 7 Principles of universal design. 
-
-We first ensure that all users have the same access, and we have added a password protection feature to PP2 to ensure that our privacy policy is available to all users equally.
-
-Furthermore, to ensure flexibility of use. We display text prompts on pages that require user input and button presses, such as "please enter the ticket id of ticket that you want to change or cancel. To ensure user-friendly accuracy and precision, we positioned all windows in the center of the entire computer screen.
-
-To make it easy and intuitive to use, we eliminate unnecessary complexity and use many buttons to accept user commands. And when the user presses a button, we provide effective prompts and feedback during and after the task is completed.
-
-We made the font visible throughout the page to maximize the "readability" of essential information to display visual information. We also added a bold and drop shadow design around the button to ensure sufficient contrast between the essential information and its surroundings.
-
-Ensure that the hazards and negative consequences of accidental or unintended actions are minimized. For example, we provide hazard and error warnings when the user enters incorrect information and insufficient account balance.
-
-To guarantee that users can use it efficiently, comfortably, and with minimal fatigue, We have added options for pages that can be linked on many pages, so that users can return to the previous page without having to do so singularly, which minimizes repetitive user actions.
-
-Finally, in order to provide the right size and space for approach, reach, manipulation, and use regardless of the user's size, posture or mobility, our design allows for the right size and space. We limit the display window to one that is not too large and fills the entire screen and a reasonable distance between each button.
-
-
+See the accessibility file for what principles of universal design we follow, and why we are not following some of them.
 
 ## SOLID Principles 
 
