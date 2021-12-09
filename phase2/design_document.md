@@ -1,4 +1,11 @@
 # Design Document
+## Design Decisions
+In order to provide more services and convenience to our customers, and accommodate customers with different physical conditions and needs, we decided to implement a new service to customers, which gives customers the freedom to choose whether they want to include meals in his flight, and if he does, there are many types of meals available to accommodate anyone who has special needs. 
+
+Also, to enhance the functionality of our ticket reservation system, we decided to add two new functionalities: canceling tickets and changing tickets. Customers are able to make changes to purchased tickets for any reason. Notice that ticket cancellation and change both come with a penalty fee (i.e. ticket refund fee) calculated based on rules designed (this fee will be calculated by price calculator), and so the price of the ticket, redeem points and mileage will be refunded as a ticket is canceled.
+
+Moreover, to make it easier for customers to track their luggage, our program now allows customers to add luggage to their booked tickets, by creating a new entity class Luggage and its use case class LuggageManager. Notice that serialization and deserialization are applied. And customers can pay for overweight luggage fees by registering luggage weight before booking tickets. Rules of penalty and fees amount will be displayed in the corresponding GUI frame.
+
 
 ## SOLID Principles 
 
