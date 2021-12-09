@@ -39,7 +39,7 @@ This project creates an **airline reservation system** that is designed for book
   * [Specification](https://github.com/CSC207-UofT/course-project-happy207/blob/main/phase2/Specification.md)
   * [Design Document](https://github.com/CSC207-UofT/course-project-happy207/blob/main/phase2/design_document.md)
   * [Accessibility Report](https://github.com/CSC207-UofT/course-project-happy207/blob/main/phase2/accessibility.md)
-  * [CRC Cards](https://github.com/CSC207-UofT/course-project-happy207/blob/main/phase2/UTicket%20CRC%20Cards.pptx)
+  * [CRC Cards](https://github.com/CSC207-UofT/course-project-happy207/blob/main/phase2/TicketVendor%20CRC%20Cards.pdf)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
