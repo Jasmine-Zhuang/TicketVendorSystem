@@ -6,7 +6,7 @@ Also, to enhance the functionality of our ticket reservation system, we decided 
 
 Moreover, to make it easier for customers to track their luggage, our program now allows customers to add luggage to their booked tickets, by creating a new entity class Luggage and its use case class LuggageManager. Notice that serialization and deserialization are applied. And customers can pay for overweight luggage fees by registering luggage weight before booking tickets. Rules of penalty and fees amount will be displayed in the corresponding GUI frame.
 
-To ensure that our design adheres to The 7 Principles of universal design. 
+To ensure that our design adheres to the principles of universal design. 
 
 We first ensure that all users have the same access, and we have added a password protection feature to PP2 to ensure that our privacy policy is available to all users equally.
 
