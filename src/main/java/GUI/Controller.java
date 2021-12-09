@@ -33,7 +33,7 @@ public class Controller {
     }*/
 
     public static void main(String[] args) {
-
+/*
         TicketDeserialization ticketDeserialization =new TicketDeserialization();
         TicketManager tm = ticketDeserialization.restoreTM("TicketManager.ser");
         FlightDeserialization flightDeserialization = new FlightDeserialization();
@@ -42,14 +42,9 @@ public class Controller {
         CustomerManager cm =  cmDeserialization.restoreCM("CMManager.ser");
         PHMDeserialiazation phmDeserialiazation = new PHMDeserialiazation();
         PHManager phm = phmDeserialiazation.restorePHM("PHManager.ser");
-       LuggageDeserialization lmDeserialiazation = new LuggageDeserialization();
-        LuggageManager lm =lmDeserialiazation.restoreLM("LuggageManager.ser");
+        LuggageDeserialization lmDeserialiazation = new LuggageDeserialization();
+        LuggageManager lm =lmDeserialiazation.restoreLM("LuggageManager.ser");*/
 
-
-     /*   TicketManager tm=new TicketManager();
-        FlightManager fm=new FlightManager();
-        PHManager phm=new PHManager();
-*/
 
 
 //        try {
@@ -60,15 +55,14 @@ public class Controller {
 
 
 
-/*
 
 
-   CustomerManager cm = new CustomerManager();
+        CustomerManager cm = new CustomerManager();
         Customer c = new Customer("1","12","123");
         cm.addCustomer(c);
         c.incrBalance(6000);
         TicketManager tm=new TicketManager();
-         LuggageManager lm=new LuggageManager();
+        LuggageManager lm=new LuggageManager();
         FlightManager fm=new FlightManager();
         PHManager phm=new PHManager();
 
@@ -216,7 +210,7 @@ public class Controller {
 
         fm.AddFlight("CZ523", "Ottawa", "Montreal" , dTime20, aTime20, "Large",
                 199, "10C");
-*/
+
 
 
 
