@@ -113,7 +113,8 @@ When the user runs the controller, the 5 managers(flightManager, ticketManager, 
 ## Pogress Report
 
 - Jasmine Zhuang:
-I participated in the implementation of cancel ticket and change ticket features(with methods added in TicketManager and features shown in GUI purchase history ticket frames). Also, I have predefined each type of flight’s seat array and capacity. In flightManager, I have updated the addFlight method such that by inputting flight type we can construct a flight instance of that type, and add a method that returns a formatted flight information string which can be used in GUI . For GUI, I have modified some frames related to flight pick such that it is more good-looking with larger font. ```https://github.com/CSC207-UofT/course-project-happy207/pull/35 ```, 
+I participated in the implementation of cancel ticket and change ticket features(with methods added in TicketManager and features shown in GUI purchase history ticket frames). Also, I have predefined each type of flight’s seat array and capacity. In flightManager, I have updated the addFlight method such that by inputting flight type we can construct a flight instance of that type, and add a method that returns a formatted flight information string which can be used in GUI . For GUI, I have modified some frames related to flight pick such that it is more good-looking with larger font. Below are the 2 pull requests for phase 2:
+```https://github.com/CSC207-UofT/course-project-happy207/pull/35 ```,
 ```https://github.com/CSC207-UofT/course-project-happy207/pull/42``` (this main1 branch contains all commits from code with me, such that it also contains my team members’ changes that have been specified in the commit message.)
 
 
