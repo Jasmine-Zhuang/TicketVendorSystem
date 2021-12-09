@@ -8,6 +8,7 @@
  Differ from previous phases, we now added some new features to flight(i.e., restrict the number of available seats and assign seat type for each seat). We chose not to modify the original flight, but use inheritance by adding 3 subclasses of flight. Then, we need to modify only the 3 subclasses of flight, to reach our goal of extending features of flight. 
 ### Liskov substitution 
  The principle defines that objects of a superclass shall be replaceable with objects of its subclasses without breaking the application. 
+ 
  All subclasses do not override methods from the parent class such that the objects of your subclasses behave in the same way as the objects of your superclass. Therefore, this principle is not violated.
  
 ### Interface Segregation principle:    
@@ -34,27 +35,34 @@ https://github.com/CSC207-UofT/course-project-happy207/pull/33
 ## Use of GitHub Features
 
  We opened issues to discuss some specific problems. More detailed discussions were held in other ways because we found this more efficient.
+ 
  We tried the actions function but failed to implement it because we were not able to solve the error on GitHub, even after consulting the TA :(.
+ 
  We have at least one pull request for each person in each phase that indicates what we have done individually. For example, we have pull requests for each entity class and each manager class, in this way we are able to compare our code more easily and know the responsibility for each member.
 
 
 
 ## Code Style and Documentation
 
- We have documented each method with parameters needed and return value description.(javadoc used)
- We have applied coding conventions, such as file organization, comments(make code easier to understand), naming conventions(mostly CamelCase), etc. Since each member is in charge of different components and some require to use code from others, using these coding conventions make it easier to understand others' code and apply it in one’s own part.
+We have documented each method with parameters needed and return value description.(javadoc used)
+
+We have applied coding conventions, such as file organization, comments(make code easier to understand), naming conventions(mostly CamelCase), etc. Since each member is in charge of different components and some require to use code from others, using these coding conventions make it easier to understand others' code and apply it in one’s own part.
+
 We have opened pull requests for each branch and reviewed the commits of others, such that we can understand other members’ implementation, before we met on a weekly basis. By doing this, we save time explaining each member’s code during meetings.
 
 ## Testing
 
- All of our files have a method test coverage of 80% or more. Due to serialization and deserialization,  it is hard to test if each of our objects is really serializable..
+ All of our files have a method test coverage of 80% or more. Due to serialization and deserialization,  it is hard to test if each of our objects is really serializable.
+ 
  Since our serialization and deserialization are both called from the GUI,  we need to manually add a new user profile before this program can save it. This is hard to test with junit.
+ 
  We have 124 tests in total. We divide the test files into 6 big folders. For example, all classes related to Customer are grouped into Customer files, such as Customer, CustomerManager, Membership, PH Manager,PurchaseHistory Each class has a corresponding test file.
 
 
 ## Refactoring
 
 In flight, we have refactored the code in its constructor to 3 helper methods called buildSeatArray, CreateClassSeat and buildTime, these are shown in the pull request: ```Flight #35```.
+
 - buildSeatArray: Input total number of seats and an arraylist of seat number, and return  an arraylist of array list of seat number and seat type (Based on the total seat number, we can know which kind of flights that is going to be constructed and thus we have this nested arraylist built, since we have predefined how each type of flight’s seat array will be like). Notice this method called the helper method CreateClassSeat that is stated below.
 
 - CreateClassSeat: Create and add seats with type C into an array list of arraylist of seat number and seat type, with inputs of  seatArray(an array list of arraylist of seat number and seat type), seatNumArray(array of seat number), total number of seats wanted to be made and added to seatArray, and the start index, is the index of the seat number for the first seat created in seatNumArray.
