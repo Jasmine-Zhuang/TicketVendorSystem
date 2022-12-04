@@ -68,7 +68,7 @@ This project creates an **airline reservation system** that is designed for book
 
 - Yefan Jiang 
 
-- Jasmine Zhuang
+- Runxin Zhuang
 
 - Yunya Li
 
